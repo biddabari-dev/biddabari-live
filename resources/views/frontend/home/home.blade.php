@@ -16,9 +16,6 @@
                                     {!! str()->words(strip_tags($homeSliderCourse->description), 25) !!}
                                 </p>
                                 <div class="banner-btn">
-                                    {{-- <a
-                                        href="{{ route('front.course-details', ['id' => $homeSliderCourse->id, 'slug' => $homeSliderCourse->slug]) }}"
-                                        class="default-btn border-radius-50">Read More</a>--}}
                                     <button type="button" class="default-btn border-radius-50 text-dark f-s-22"
                                         style="background-color: #dedede!important;">ভর্তি হতে এখানে ক্লিক করুন</button>
                                 </div>
@@ -26,10 +23,6 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="">
-                                {{-- <a
-                                    href="{{ route('front.course-details', ['id' => $homeSliderCourse->id, 'slug' => $homeSliderCourse->slug]) }}"><img
-                                        src="{{ asset($homeSliderCourse->image) }}" class="w-100"
-                                        alt="Home Slider" /></a>--}}
                                 <img src="{{ asset($homeSliderCourse->image) }}"  class="w-100" alt="Home Slider" />
                             </div>
                         </div>
@@ -264,11 +257,7 @@
                         }
                         @endphp
                         <p></p>
-                        {{-- @if($stockStatus == true)--}}
-                        {{-- <p class="text-success f-s-19">In Stock</p>--}}
-                        {{-- @else--}}
-                        {{-- <p class="text-danger f-s-19">Out Of Stock</p>--}}
-                        {{-- @endif--}}
+
                         @if(!empty(\Cart::get($product->id)))
                         <a href="{{ route('front.view-cart') }}" class="default-btn ">এখনই কিনুন</a>
                         @else
@@ -285,8 +274,7 @@
                         </form>
                         @endif
                         @endif
-                        {{-- <a href="javascript:void(0)" onclick="addSimpleProCard({{$product->id}})"
-                            class="read-btn btn btn-warning mt-1"> Add To Cart </a>--}}
+
                     </div>
                     <div class="blog_card_img">
 
@@ -419,69 +407,6 @@
 
 
 
-<!--<div class="py-5">-->
-<!--    <div class="container">-->
-<!--        <div class="row align-items-center mb-3">-->
-<!--            <div class="col">-->
-<!--                <div class="section-title mt-rs-20">-->
-<!--                    <h2 class="text-center">আমাদের সেবা সমূহ</h2>-->
-<!--                    <hr class="w-25 mx-auto bg-danger" />-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row facility ">-->
-<!--            <div class="course-slider-one owl-carousel owl-theme">-->
-<!--                @foreach($ourServices as $key => $ourService)-->
-<!--                    @if($key % 2 != 0)-->
-<!--                        <div class="col-12 col-m-6">-->
-<!--                            <div class="card mb-4 border-0 content-shadow">-->
-<!--                                <div class="row g-0">-->
-<!--                                    <div class="col-md-4">-->
-<!--                                        <img src="{{ asset($ourService->image) ?? 'frontend/assets/images/our-speak/1.png' }}"-->
-<!--                                            class="img-fluid rounded-start h-100 py-2" alt="..." />-->
-<!--                                    </div>-->
-<!--                                    <div class="col-md-8">-->
-<!--                                        <div class="card-body text-end">-->
-<!--                                            <h2 class="card-title mb-2">{{ $ourService->title }}</h2>-->
-<!--                                            <p class="card-text text-muted">-->
-<!--                                                {!! $ourService->content !!}-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                    @else-->
-
-<!--                        <div class="col-12 col-m-6">-->
-<!--                            <div class="card mb-3 border-0 content-shadow">-->
-<!--                                <div class="row g-0">-->
-<!--                                    <div class="col-md-8">-->
-<!--                                        <div class="card-body text-start">-->
-<!--                                            <h2 class="card-title mb-2">{{ $ourService->title }}</h2>-->
-<!--                                            <p class="card-text text-muted">-->
-<!--                                                {!! $ourService->content !!}-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-md-4 text-end">-->
-<!--                                        <img src="{{ asset($ourService->image) ?? 'frontend/assets/images/our-speak/1.png' }}"-->
-<!--                                            class="img-fluid rounded-start h-100 py-2" alt="...">-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    @endif-->
-<!--                @endforeach-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-
-
 <div class="courses-area-two py-5">
     <div class="container">
         <div class="section-title text-center mb-3">
@@ -496,25 +421,13 @@
                         <source src="{{$ourTeam->video_file}}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    @php
-                    if (!empty($ourTeam->video_link))
-                    {
-                    $urlStringx = explode('https://www.youtube.com/watch?v=', $ourTeam->video_link)[1];
-                    } else {
-                    $urlStringx = 'NAruHv8Wf3k';
-                    }
-                    @endphp
-                    <!--<iframe style="width: 100%!important;" height="240" id=""-->
-                    <!--    src="https://www.youtube.com/embed/{{ $urlStringx }}" title="" frameborder="0"-->
-                    <!--    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>-->
                 </div>
                 <div class="content teacher-name">
-                    <h3><a href="javascript:void(">{{ $ourTeam->name ?? '' }}</a></h3>
+                    <h3><a href="javascript:void(0)">{{ $ourTeam->name ?? '' }}</a></h3>
                     <span> {{ $ourTeam->designation ?? '' }}</span>
                 </div>
             </div>
             @endforeach
-
         </div>
     </div>
 </div>
