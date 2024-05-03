@@ -72,8 +72,8 @@
         ::-webkit-scrollbar-thumb:hover {
             background: black;
         }
-        
-                
+
+
         /* ------------------------------------ */
         .go-messenger {
             position: fixed;
@@ -96,22 +96,22 @@
             transition: .5s;
             padding-top: 6px;
         }
-        
+
         .go-messenger i {
             -webkit-transition: .5s;
             transition: .5s;
             vertical-align: middle
         }
-        
+
         .go-messenger:hover {
             background-color: var(--titleColor)
         }
-        
+
         /*.go-messenger:hover i {*/
         /*    -webkit-transform: translateY(-5px);*/
         /*    transform: translateY(-5px)*/
         /*}*/
-        
+
         .go-messenger.active {
             top: 95%;
             -webkit-transform: translateY(-95%);
@@ -119,7 +119,7 @@
             opacity: 1;
             visibility: visible
         }
-        
+
         /* ------------------------------------------- */
     </style>
     @stack('style')
@@ -150,8 +150,9 @@
 
 @include('frontend.includes.footer')
 
-<a href="https://m.me/1652435885033225" target="blank">
-<div class="go-messenger active"><i class="fa-brands fa-facebook-messenger"></i></div></a>
+<a href="https://m.me/1652435885033225" class="go-messenger active" target="blank">
+    <div class=""><i class="fa-brands fa-facebook-messenger"></i></div>
+</a>
 
 <!-- Messenger Chat Plugin Code -->
 <!--<div id="fb-root"></div>-->
@@ -244,38 +245,6 @@
     </script>
 @endif
 
-{{--fb messenger integrate start--}}
-<!-- Messenger Chat Plugin Code -->
-<!--<div id="fb-root"></div>-->
-
-<!-- Your Chat Plugin code -->
-<!--<div id="fb-customer-chat" class="fb-customerchat">-->
-<!--</div>-->
-
-<!--<script>-->
-<!--    var chatbox = document.getElementById('fb-customer-chat');-->
-<!--    chatbox.setAttribute("page_id", "1652435885033225");-->
-<!--    chatbox.setAttribute("attribution", "biz_inbox");-->
-<!--</script>-->
-
-<!-- Your SDK code -->
-<!--<script>-->
-<!--    window.fbAsyncInit = function() {-->
-<!--        FB.init({-->
-<!--            xfbml            : true,-->
-<!--            version          : 'v18.0'-->
-<!--        });-->
-<!--    };-->
-
-<!--    (function(d, s, id) {-->
-<!--        var js, fjs = d.getElementsByTagName(s)[0];-->
-<!--        if (d.getElementById(id)) return;-->
-<!--        js = d.createElement(s); js.id = id;-->
-<!--        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';-->
-<!--        fjs.parentNode.insertBefore(js, fjs);-->
-<!--    }(document, 'script', 'facebook-jssdk'));-->
-<!--</script>-->
-{{--fb messenger integrate end--}}
 
 
 <script>
