@@ -249,12 +249,13 @@ class FrontExamController extends Controller
                     {
                         $imageUrl = imageUpload($ans_file, 'xm-temp-file-upload/', 'tmp-', 600, 800);
                         array_push($this->fileSessionPaths, $imageUrl);
-                        $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.$imageUrl.' ';
+//                        $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.$imageUrl.' ';
+                        $this->filePathString .= public_path($imageUrl).' ';
                     }
                     $this->pdfFilePath = 'backend/assets/uploaded-files/written-xm-ans-files/'.rand(10000,99999).time().'.pdf';
                     // shell_exec('magick convert '. $this->filePathString.public_path($this->pdfFilePath));
-                    exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
-                    // shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
+//                    exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
+                     shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
                     foreach ($this->fileSessionPaths as $fileSessionPath)
                     {
                         if (file_exists($fileSessionPath))
@@ -283,9 +284,9 @@ class FrontExamController extends Controller
 
     public function commonGetCourseExamResul($request, $contentId, $slug = null)
     {
-        
-        
-                    
+
+
+
 //        $existExam = CourseExamResult::where(['user_id' => ViewHelper::loggedUser()->id, 'course_section_content_id' => $contentId])->first();
 //        if (isset($existExam) && !empty($existExam))
 //        {
@@ -367,16 +368,17 @@ class FrontExamController extends Controller
 
                             $imageUrl = imageUpload($ans_file, 'course-xm-temp-file-upload/', 'tmp', 600, 800);
                             array_push($this->fileSessionPaths, $imageUrl);
-                            $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.($imageUrl).' ';
+//                            $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.($imageUrl).' ';
+                            $this->filePathString .= public_path($imageUrl).' ';
                         }
                         $this->pdfFilePath = 'backend/assets/uploaded-files/course-written-xm-ans-files/'.rand(10000,99999).time().'.pdf';
                         if (!File::isDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files')))
                         {
                             File::makeDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files'), 0777, true, true);
                         }
-                        exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
-                    
-                        // shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
+//                        exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
+
+                         shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
                         foreach ($this->fileSessionPaths as $fileSessionPath)
                         {
                             if (file_exists($fileSessionPath))
@@ -598,15 +600,16 @@ class FrontExamController extends Controller
                     {
                         $imageUrl = imageUpload($ans_file, 'batch-xm-temp-file-upload/', 'tmp-', 600, 800);
                         array_push($this->fileSessionPaths, $imageUrl);
-                        $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.($imageUrl).' ';
+//                        $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.($imageUrl).' ';
+                        $this->filePathString .= public_path($imageUrl).' ';
                     }
                     $this->pdfFilePath = 'backend/assets/uploaded-files/batch-written-xm-ans-files/'.rand(10000,99999).time().'.pdf';
                     if (!File::isDirectory(public_path('backend/assets/uploaded-files/batch-written-xm-ans-files')))
                     {
                         File::makeDirectory(public_path('backend/assets/uploaded-files/batch-written-xm-ans-files'), 0777, true, true);
                     }
-                    exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.($this->pdfFilePath));
-                    // shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
+//                    exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.($this->pdfFilePath));
+                     shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
                         // shell_exec('magick convert '. $this->filePathString.public_path($this->pdfFilePath));
                     foreach ($this->fileSessionPaths as $fileSessionPath)
                     {
@@ -1088,22 +1091,22 @@ class FrontExamController extends Controller
                 {
                     $imageUrl = imageUpload($ans_file, 'course-xm-temp-file-upload/', 'tmp-', 600, 800);
                     array_push($this->fileSessionPaths, $imageUrl);
-                    $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.$imageUrl.' ';
+                    $this->filePathString .= public_path($imageUrl).' ';
+//                    $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.$imageUrl.' ';
                 }
                 $this->pdfFilePath = 'backend/assets/uploaded-files/course-assignment-files/'.rand(10000,99999).time().'.pdf';
                 if (!File::isDirectory(public_path('backend/assets/uploaded-files/course-assignment-files')))
                 {
                     File::makeDirectory(public_path('backend/assets/uploaded-files/course-assignment-files'), 0777, true, true);
                 }
-                
-                
+
+
                 // exec('convert /home/biddabari/biddabari/public/backend/assets/uploaded-files/course-xm-temp-file-upload/tmp--1712313447380.jpg /home/biddabari/biddabari/public/backend/assets/uploaded-files/course-xm-temp-file-upload/tmp--1712313447829.jpg /home/biddabari/biddabari/public/backend/assets/uploaded-files/course-assignment-files/829821712313447.pdf');
-                
-                exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
+
+//                exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
                 // exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
                         // shell_exec('magick convert '. $this->filePathString.public_path($this->pdfFilePath));
-                // shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
-                // return $this->filePathString.base_path('public/'.$this->pdfFilePath);
+                 shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
                 AssignmentFile::create([
                     'course_section_content_id' => $request->course_content_id,
                     'file'  => $this->pdfFilePath,
