@@ -54,7 +54,7 @@ use App\Http\Controllers\Backend\AdditionalFeatureManagement\OurServices\OurServ
 use App\Http\Controllers\Backend\AdditionalFeatureManagement\StudentOpinion\StudentOpinionController;
 
 Route::get('/test', function (){
-    return base64_encode('mizan');
+    
     return $_SERVER['DOCUMENT_ROOT'].'/backend';
     return base_path('../public_html');
     //   return public_path('backend/e.jpg');
