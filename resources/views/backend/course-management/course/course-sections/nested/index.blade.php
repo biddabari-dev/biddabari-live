@@ -159,9 +159,9 @@
                     </div>
                     <div id="videoShowSection" class="d-none">
                         <div class="private d-none">
-                            <video class="w-100 video" height="500" controls="controls" controlist="nodownload">
-                                <source id="privatVid" src="//samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4">
-                            </video>
+{{--                            <video class="w-100 video" height="500" controls="controls" controlist="nodownload">--}}
+{{--                                <source id="privatVid" src="//samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4">--}}
+{{--                            </video>--}}
                         </div>
                         <div class="youtube d-none">
                             {{--                            <iframe style="width: 100%!important;" id="youtubePlayer" height="500" src="" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; " allowfullscreen></iframe>--}}

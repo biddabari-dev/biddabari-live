@@ -90,6 +90,10 @@ class CourseCategory extends Model
     {
         return $this->belongsToMany(Course::class)->orderBy('id', 'DESC');
     }
+    public function coursesDescOrderWithPagination()
+    {
+        return $this->belongsToMany(Course::class)->orderBy('id', 'DESC');
+    }
     public function siteSeos()
     {
         return $this->hasMany(SiteSeo::class, 'parent_model_id');

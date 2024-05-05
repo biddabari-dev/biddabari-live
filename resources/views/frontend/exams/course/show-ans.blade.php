@@ -64,133 +64,32 @@
     <style>
         /*.canvas-container, canvas { width: 100%!important; margin-top: 10px!important;}*/
     </style>
-    
+
     <link rel="stylesheet" href="{{ asset('/') }}backend/ppdf/css/pdfviewer.jquery.css" />
     <style>
         .pdf-toolbar {display: none;}
         #pdf-container {overflow: scroll; height: 500px;}
         .aks-video-player { width: 99%!important;/* min-height: 450px*/}
     </style>
-    
+
     <style>
         .correct-ans-bg { background-color: #B2DB9A}
     </style>
 @endpush
 
 @push('script')
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>-->
-    <!--<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';</script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.3.0/fabric.min.js"></script>-->
-    <!--<script src="{{ asset('/') }}backend/assets/plugins/pdf-draw/arrow.fabric.js"></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.2.0/jspdf.umd.min.js"></script>-->
-    <!--<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>-->
-    <!--<script src="{{ asset('/') }}backend/assets/plugins/pdf-draw/pdfannotate.js"></script>-->
-    
-    
+   
     <!--ppdf-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
 <script src="{{ asset('/') }}backend/ppdf/js/pdfviewer.jquery.js"></script>
-    
+
     <script>
-    
+
     var pdflink = "{{ isset($writtenFile) ? asset($writtenFile->written_xm_file) : null }}";
-        $('#pdf-container').pdfViewer(pdflink);
-    
-        // var pdf = new PDFAnnotate("pdf-container", "{{ isset($writtenFile) ? asset($writtenFile->written_xm_file) : null }}", {
-        //     onPageUpdated(page, oldData, newData) {
-        //         console.log(page, oldData, newData);
-        //     },
-        //     ready() {
-        //         console.log("Plugin initialized successfully");
-        //     },
-        //     scale: 1.5,
-        //     pageImageCompression: "MEDIUM", // FAST, MEDIUM, SLOW(Helps to control the new PDF file size)
-        // });
+    @if(!empty($writtenFile->written_xm_file))
 
-        // function changeActiveTool(event) {
-        //     var element = $(event.target).hasClass("tool-button")
-        //         ? $(event.target)
-        //         : $(event.target).parents(".tool-button").first();
-        //     $(".tool-button.active").removeClass("active");
-        //     $(element).addClass("active");
-        // }
-
-        // function enableSelector(event) {
-        //     event.preventDefault();
-        //     changeActiveTool(event);
-        //     pdf.enableSelector();
-        // }
-
-        // function enablePencil(event) {
-        //     event.preventDefault();
-        //     changeActiveTool(event);
-        //     pdf.enablePencil();
-        // }
-
-        // function enableAddText(event) {
-        //     event.preventDefault();
-        //     changeActiveTool(event);
-        //     pdf.enableAddText();
-        // }
-
-        // function enableAddArrow(event) {
-        //     event.preventDefault();
-        //     changeActiveTool(event);
-        //     pdf.enableAddArrow();
-        // }
-
-        // function addImage(event) {
-        //     event.preventDefault();
-        //     pdf.addImageToCanvas()
-        // }
-
-        // function enableRectangle(event) {
-        //     event.preventDefault();
-        //     changeActiveTool(event);
-        //     pdf.setColor('rgba(255, 0, 0, 0.3)');
-        //     pdf.setBorderColor('blue');
-        //     pdf.enableRectangle();
-        // }
-
-        // function deleteSelectedObject(event) {
-        //     event.preventDefault();
-        //     pdf.deleteSelectedObject();
-        // }
-
-        // function savePDF() {
-        //     // pdf.savePdf();
-        //     pdf.savePdf("written-ans"); // save with given file name
-        // }
-
-        // function clearPage() {
-        //     pdf.clearActivePage();
-        // }
-
-        // function showPdfData() {
-        //     var string = pdf.serializePdf();
-        //     $('#dataModal .modal-body pre').first().text(string);
-        //     PR.prettyPrint();
-        //     $('#dataModal').modal('show');
-        // }
-
-        // $(function () {
-        //     $('.color-tool').click(function () {
-        //         $('.color-tool.active').removeClass('active');
-        //         $(this).addClass('active');
-        //         color = $(this).get(0).style.backgroundColor;
-        //         pdf.setColor(color);
-        //     });
-
-        //     $('#brush-size').change(function () {
-        //         var width = $(this).val();
-        //         pdf.setBrushSize(width);
-        //     });
-
-        //     $('#font-size').change(function () {
-        //         var font_size = $(this).val();
-        //         pdf.setFontSize(font_size);
-        //     });
-        // });
+    $('#pdf-container').pdfViewer(pdflink);
+        @endif
 
     </script>
     <script>

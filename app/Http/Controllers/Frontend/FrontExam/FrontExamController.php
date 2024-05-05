@@ -739,7 +739,7 @@ class FrontExamController extends Controller
         $this->examCategories = BatchExamCategory::where(['status' => 1])->whereHas('batchExams')->with(['batchExams' => function($batchExams) {
             $batchExams->where(['status' => 1, 'is_master_exam' => 0, 'is_paid' => 1])->select('id', 'title', 'banner', 'slug')->get();
         }])->get();
-
+        $tempCourses = [];
         foreach ($this->examCategories as $examCategory)
         {
             foreach ($examCategory->batchExams as $batchExam)
@@ -747,18 +747,20 @@ class FrontExamController extends Controller
                 if (isset($batchExam))
                 {
                     $batchExam->purchase_status  = ViewHelper::checkUserBatchExamIsEnrollment(ViewHelper::loggedUser(), $batchExam);
+                    array_push($tempCourses, $batchExam);
                 }
             }
         }
 
-        $allBatchExams = BatchExam::where(['status' => 1, 'is_master_exam' => 0, 'is_paid' => 1])->select('id', 'title', 'banner', 'slug')->get();
-        foreach ($allBatchExams as $singleBatchExam)
-        {
-            if (isset($singleBatchExam))
-            {
-                $singleBatchExam->purchase_status  = ViewHelper::checkUserBatchExamIsEnrollment(ViewHelper::loggedUser(), $singleBatchExam);
-            }
-        }
+//        $allBatchExams = BatchExam::where(['status' => 1, 'is_master_exam' => 0, 'is_paid' => 1])->select('id', 'title', 'banner', 'slug')->get();
+//        foreach ($allBatchExams as $singleBatchExam)
+//        {
+//            if (isset($singleBatchExam))
+//            {
+//                $singleBatchExam->purchase_status  = ViewHelper::checkUserBatchExamIsEnrollment(ViewHelper::loggedUser(), $singleBatchExam);
+//            }
+//        }
+        $allBatchExams = collect($tempCourses)->unique('id');
 
         $this->data = [
 //            'exams'     => $this->exams,
@@ -894,26 +896,6 @@ class FrontExamController extends Controller
             }
         }
 
-//        foreach ($this->sectionContent->questionStores as $questionStore)
-//        {
-//            foreach ($questionStore->questionOptions as $questionOption)
-//            {
-//                foreach ($providedAnswers as $questionId => $providedAnswer)
-//                {
-//                    if ($questionId == $questionStore->id && $questionOption->is_correct == 1 && $questionOption->id == $providedAnswer->answer)
-//                    {
-//                        $questionOption->my_ans = 1;
-//                        break;
-//                    } elseif ($questionId == $questionStore->id && $questionOption->is_correct == 0 && $questionOption->id == $providedAnswer->answer)
-//                    {
-//                        $questionOption->my_ans = 0;
-//                        break;
-//                    } else {
-//                        $questionOption->my_ans = 'x';
-//                    }
-//                }
-//            }
-//        }
         $this->data = [
             'content'   => $this->sectionContent,
             'writtenFile' => $writtenXmFile ?? null

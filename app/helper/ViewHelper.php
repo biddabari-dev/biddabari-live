@@ -16,6 +16,7 @@ use App\Models\Backend\ExamManagement\ExamOrder;
 use App\Models\Backend\ExamManagement\SubscriptionOrder;
 use App\Models\Backend\OrderManagement\ParentOrder;
 use App\Models\Frontend\CourseOrder\CourseOrder;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
 
 class ViewHelper
@@ -390,5 +391,50 @@ class ViewHelper
                 $batchExamSectionContent->save();
             }
         }
+    }
+
+    public static function paginateContentByArrayFormat($request, $collectObject, $perPage, $additionalParameter = null)
+    {
+        // Paginate the courses manually
+        $page = $request->has('page') ? $request->page : 1;
+        $totalItems = count($collectObject);
+        $totalPages = ceil($totalItems / $perPage);
+        // Slice the courses based on pagination parameters
+        $currentPageCourses = array_slice($collectObject->toArray(), ($page - 1) * $perPage, $perPage);
+        // Create a paginator instance manually
+        $paginator = new LengthAwarePaginator(
+            $currentPageCourses,
+            $totalItems,
+            $perPage,
+            $page,
+            ['path' => $request->url()]
+        );
+
+        return $paginator;
+    }
+
+    public static function paginateContentByCollectionFormat($request, $collectObject, $perPage, $additionalParameter = null)
+    {
+        // Paginate the courses manually
+        $page = $request->has('page') ? $request->page : 1;
+        // Get the current page's courses
+        $currentPageCourses = $collectObject->forPage($page, $perPage);
+        // Create a paginator instance manually
+        $paginator = new LengthAwarePaginator(
+            $currentPageCourses,
+            $collectObject->count(), // Total items count
+            $perPage,
+            $page,
+            ['path' => $request->url()]
+        );
+
+        $extra_parameter = $request->input($additionalParameter);
+        if ($extra_parameter) {
+            $paginator->appends('category_id' , $extra_parameter);
+        }
+
+        // Convert the paginator items to a Collection
+        $paginator->setCollection(collect($currentPageCourses));
+        return $paginator;
     }
 }

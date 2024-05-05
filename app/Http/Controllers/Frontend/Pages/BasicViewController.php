@@ -44,7 +44,7 @@ class BasicViewController extends Controller
         {
             $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
         }
-        $this->products = Product::whereStatus(1)->latest()->select('id', 'title', 'image', 'slug', 'description','stock_amount','price')->get();
+        $this->products = Product::whereStatus(1)->latest()->select('id', 'title', 'image', 'slug', 'description','stock_amount','price')->take(8)->get();
 //        $this->homeSliderCourses = Course::where('show_home_slider', 1)->select('id', 'slug', 'title', 'banner', 'description')->get();
         $this->homeSliderCourses = Advertisement::whereStatus(1)->whereContentType('course')->select('id', 'title', 'content_type', 'description','link','image')->take(6)->get();
         $this->data = [
@@ -64,7 +64,7 @@ class BasicViewController extends Controller
     {
         $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->latest()->orderBy('order', 'ASC')->select('id', 'name', 'image', 'slug')->get();
         $this->courses = Course::whereStatus(1)->latest()->select('id', 'title', 'sub_title', 'price', 'banner')->take(8)->get();
-        $this->products = Product::whereStatus(1)->latest()->select('id', 'title', 'image', 'price')->get();
+        $this->products = Product::whereStatus(1)->latest()->select('id', 'title', 'image', 'price')->take(8)->get();
         $this->notices = Notice::whereStatus(1)->whereType('scroll')->latest()->select('id', 'title', 'image', 'body')->get();
         $this->homeSliderCourses = Advertisement::whereStatus(1)->whereContentType('course')->take(5)->select('id', 'title', 'image', 'link', 'description')->get();
         $this->data = [

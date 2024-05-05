@@ -86,6 +86,10 @@ class CourseSection extends Model
     {
         return $this->hasMany(CourseSectionContent::class)->orderBy('order', 'ASC');
     }
+    public function courseSectionContentsWithCustomColumns()
+    {
+        return $this->hasMany(CourseSectionContent::class)->orderBy('order', 'ASC')->select('id', 'title', 'content_type', 'has_class_xm', 'video_vendor', 'video_link', 'available_at_timestamp');
+    }
     public function courseSectionContentsManagePage()
     {
         return $this->hasMany(CourseSectionContent::class)->select('id', 'course_section_id', 'parent_id', 'content_type', 'title', 'pdf_link', 'pdf_file', 'video_vendor', 'video_link', 'has_class_xm', 'course_section_content_id', 'status')->orderBy('order', 'ASC');

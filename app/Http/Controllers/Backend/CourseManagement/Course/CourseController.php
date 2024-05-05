@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\CourseManagement\Course;
 
 use App\DataTables\Course\CourseStudentDataTable;
+use App\helper\ViewHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\CourseManagement\CourseCreateFormRequest;
 use App\Imports\Backend\StudentTransfer\StudentTransferImport;
@@ -26,6 +27,7 @@ use Illuminate\Pagination\Cursor;
 use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
@@ -49,14 +51,20 @@ class CourseController extends Controller
         abort_if(Gate::denies('manage-course'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         if (!empty($request->category_id))
         {
-            $this->courses = CourseCategory::find($request->category_id)->coursesDescOrder;
+
+            $courseCategory = CourseCategory::where('id', $request->category_id)->with(['coursesDescOrder' => function ($courses) {
+                $courses->select('id','title','price','banner','is_featured','is_paid','status')->get();
+            }])->select('id')->first();
+
+            $this->courses = ViewHelper::paginateContentByCollectionFormat($request, $courseCategory->coursesDescOrder, 15, 'category_id');
         } else {
-            $this->courses = Course::where('parent_id', 0)->orderBy('id', 'DESC')->select('id','title','price','banner','is_featured','is_paid','status')->paginate(500);
+            $this->courses = Course::where('parent_id', 0)->orderBy('id', 'DESC')->select('id','title','price','banner','is_featured','is_paid','status')->paginate(15);
         }
+
         return view('backend.course-management.course.courses.index', [
             'courses'   => $this->courses,
-            'courseCategories'  => CourseCategory::whereStatus(1)->where('parent_id', 0)->orderBy('order', 'DESC')->select('id','name')->get(),
-            'teachers'  => Teacher::whereStatus(1)->get()
+            'courseCategories'  => CourseCategory::whereStatus(1)->where('parent_id', 0)->with('courseCategories')->orderBy('order', 'DESC')->select('id','name', 'parent_id')->get(),
+            'teachers'  => Teacher::whereStatus(1)->select('id', 'user_id')->get(),
         ]);
     }
 
@@ -240,7 +248,7 @@ class CourseController extends Controller
     }
 
     public function assignStudent (Request $request, $transferToId)
-    
+
     {
 //        return $request;
         abort_if(Gate::denies('assign-course-student'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -287,7 +295,7 @@ class CourseController extends Controller
 
         return back()->with('success', 'Student assigned to course Successfully.');
     }
-    
+
 //     {
 //         // return $transferToId;
 //         abort_if(Gate::denies('assign-course-student'), Response::HTTP_FORBIDDEN, '403 Forbidden');

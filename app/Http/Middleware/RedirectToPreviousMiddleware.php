@@ -17,7 +17,7 @@ class RedirectToPreviousMiddleware
     {
         if ($request->method() == 'GET')
         {
-            session()->put('course_redirect_url', url()->previous());
+            session()->put('course_redirect_url', url()->current());
             return $next($request);
         }  else {
             return redirect('/')->with('error', 'Something went wrong. Please start from home page. Thanks.');

@@ -150,12 +150,12 @@
                                         @else
                                             <td>F- {{ $allOrder->paid_from }} <br> T- {{ $allOrder->paid_to }} <br> V- {{ $allOrder->vendor }}  </td>
                                         @endif
-                                        
+
 {{--                                        <td>{{ $allOrder->vendor ?? '' }}</td>--}}
 {{--                                        <td>{{ $allOrder->paid_from }}</td>--}}
 {{--                                        <td>{{ $allOrder->paid_to }}</td>--}}
                                         <td>{{ $allOrder->txt_id }}</td>
-                                        <td>{{ $allOrder->created_at->format('d M, Y') }}</td>
+                                        <td>{{ showDateTime($allOrder->created_at) }}</td>
                                         <td>{{ $allOrder->payment_status }}</td>
                                         <td>
                                             @if($allOrder->ordered_for == 'course')

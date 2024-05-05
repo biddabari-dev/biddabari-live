@@ -303,6 +303,7 @@ class ExamController extends Controller
             $this->enrolledUsers = Course::find($baseType->id)->students;
             $this->xmParticipateUsers = CourseClassExamResult::where(['course_section_content_id' => $contentId])->get(['id', 'user_id', 'course_section_content_id']);
         }
+        $count = 0;
         foreach ($this->enrolledUsers as $enrolledUser)
         {
             if (count($this->xmParticipateUsers) > 0)
@@ -311,10 +312,16 @@ class ExamController extends Controller
                 {
                     if ($enrolledUser->user_id == $xmParticipateUser->user_id)
                     {
+                        $count = $count++;
                         array_push($this->presentStudents, $enrolledUser->user);
-                    } else {
-                        array_push($this->absentStudents, $enrolledUser->user);
                     }
+//                    else {
+//                        array_push($this->absentStudents, $enrolledUser->user);
+//                    }
+                }
+                if ($count == 0)
+                {
+                    array_push($this->absentStudents, $enrolledUser->user);
                 }
             } else {
                 array_push($this->absentStudents, $enrolledUser->user);

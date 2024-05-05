@@ -21,14 +21,6 @@
                                 <div class="row" >
                                     <div class="col select2-div">
                                         <label for="">Course Category </label>
-{{--                                        <select name="category_id" class="form-control select2" id="categoryId" data-placeholder="Select Course Category">--}}
-{{--                                            <option value=""></option>--}}
-{{--                                            @foreach($courseCategories as $courseCategory)--}}
-{{--                                                <option value="{{ $courseCategory->id }}">{{ $courseCategory->name }}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-
-
                                         <select name="category_id" class="form-control select2" id="courseCategories" data-placeholder="Select Course Categories" >
                                             @if(isset($courseCategories))
                                                 @foreach($courseCategories as $courseCategory)
@@ -51,7 +43,7 @@
                             </div>
                         </div>
                     </form>
-                    <table class="table" id="file-datatable">
+                    <table class="table" id="{{--file-datatable--}}">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -75,7 +67,7 @@
 {{--                                                <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}" target="_blank">--}}
                                                 <a href="{{ route('course-sections.index', ['course_id' => $course->id]) }}" >
                                                     <div class="text-center">
-                                                        <img src="{{ asset($course->banner) }}" alt="" style="height: 100px;" />
+                                                        <img src="{{ asset(file_exists($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" alt="" style="height: 100px;" />
                                                     </div>
                                                     {{--                                            <br>--}}
                                                     <div class="text-center mt-2">{{ $course->title }}</div>
@@ -144,6 +136,9 @@
                             @endif
                         </tbody>
                     </table>
+                    <div>
+                        {{ $courses->links() }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -199,408 +194,347 @@
     @include('backend.includes.assets.plugin-files.editor')
 {{--    @include('backend.includes.assets.plugin-files.date-time-picker')--}}
     <script src="{{ asset('/') }}backend/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
-{{--    @if($errors->any())--}}
-{{--        <script>--}}
-{{--            --}}
-{{--        </script>--}}
-{{--    @endif--}}
-    <script>
-        $(function () {
-            $(".summernote").summernote({
-                height:70,
-                inheritPlaceholder: true
-                });
+    <script src="{{ asset('/') }}backend/assets/js/page-js/manage-course.js"></script>
 
-            const date = new Date();
-            // var currentDateTime = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();
+{{--    <script>--}}
+{{--        $(function () {--}}
+{{--            $(".summernote").summernote({--}}
+{{--                height:70,--}}
+{{--                inheritPlaceholder: true--}}
+{{--                });--}}
 
+{{--            const date = new Date();--}}
+{{--            // var currentDateTime = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();--}}
 
-            // $('input[data-dtp="dtp_Nufud"]').each(function () {
-            //     $(this).val(currentDateTime);
-            // });
-            // $('input[name="starting_date_time"]').val(currentDateTime);
-            // $('input[name="discount_start_date"]').val(currentDateTime);
-            // $('#dateTime1').bootstrapMaterialDatePicker({
-            //     format: 'YYYY-MM-DD HH:mm',
-            //     minDate : new Date(),
-            // });
-            // $('#dateTime2').bootstrapMaterialDatePicker({
-            //     format: 'YYYY-MM-DD HH:mm',
-            //     minDate : new Date(),
-            // });
-            // $('#dateTime3').bootstrapMaterialDatePicker({
-            //     format: 'YYYY-MM-DD HH:mm',
-            //     minDate : new Date(),
-            // });
-            $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-            $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-            $("#dateTime2").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-            $("#dateTime3").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-            $("#admissionLastDate").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-            $('.select2').select2();
-            $('input[data-dtp="dtp_Nufud"]').val(currentDateTime);
-        })
-        $(document).on('click', '.dtp-btn-cancel', function () {
-            alert('sdfsdf');
-        })
-    </script>
+{{--            $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--            $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--            $("#dateTime2").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--            $("#dateTime3").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--            $("#admissionLastDate").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--            $('.select2').select2();--}}
+{{--            $('input[data-dtp="dtp_Nufud"]').val(currentDateTime);--}}
+{{--        })--}}
+{{--        $(document).on('click', '.dtp-btn-cancel', function () {--}}
+{{--            alert('sdfsdf');--}}
+{{--        })--}}
+{{--    </script>--}}
 
 {{--    edit course category--}}
-    <script>
-        $(document).on('click', '.edit-btn', function () {
-            event.preventDefault();
-            var courseId = $(this).attr('data-course-id');
-            $.ajax({
-                url: base_url+"courses/"+courseId+"/edit",
-                method: "GET",
-                // dataType: "JSON",
-                success: function (data) {
-
-                    $('#modalForm').empty().append(data);
-                    $("#summernote").summernote({height:70, inheritPlaceholder: true});
-                    // $("#summernote1").summernote({height:70, inheritPlaceholder: true});
-
-                    // $('#dateTime').bootstrapMaterialDatePicker({format: 'YYYY-MM-DD HH:mm', minDate : new Date(),});
-                    // $('#dateTime1').bootstrapMaterialDatePicker({format: 'YYYY-MM-DD HH:mm', minDate : new Date(),});
-                    // $('#dateTime2').bootstrapMaterialDatePicker({format: 'YYYY-MM-DD HH:mm', minDate : new Date(),});
-                    // $('#dateTime3').bootstrapMaterialDatePicker({format: 'YYYY-MM-DD HH:mm', minDate : new Date(),});
-
-                    $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-                    $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-                    $("#dateTime2").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-                    $("#dateTime3").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-                    $("#admissionLastDate").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-
-                    $('.select2').select2({
-                        placeholder: $(this).attr('data-placeholder'),
-                        // dropdownParent: $('#'+$('.modal-fix').attr('data-modal-parent')),
-                        // dropdownParent: $('.modal').attr('data-modal-parent'),
-                    });
-                    $('.submit-btn').addClass('update-btn').removeClass('submit-btn');
-
-                    $('#coursesModal').modal('show');
-                }
-            })
-        })
-        $(document).on('click', '.show-btn', function () {
-            event.preventDefault();
-            var courseId = $(this).attr('data-course-id');
-            $.ajax({
-                url: base_url+"courses/"+courseId,
-                method: "GET",
-                // dataType: "JSON",
-                success: function (data) {
-                    // console.log(data);
-
-                    $('#modalForm').empty().append(data);
-                    $("#summernote").summernote({height:70, inheritPlaceholder: true});
-                    // $("#summernote1").summernote({height:70, inheritPlaceholder: true});
-
-                    // $('#dateTime').bootstrapMaterialDatePicker({format: 'YYYY-MM-DD HH:mm', minDate : new Date(),});
-                    // $('#dateTime1').bootstrapMaterialDatePicker({format: 'YYYY-MM-DD HH:mm', minDate : new Date(),});
-                    // $('#dateTime2').bootstrapMaterialDatePicker({format: 'YYYY-MM-DD HH:mm', minDate : new Date(),});
-                    // $('#dateTime3').bootstrapMaterialDatePicker({format: 'YYYY-MM-DD HH:mm', minDate : new Date(),});
-
-                    $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-                    $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-                    $("#dateTime2").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-                    $("#dateTime3").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-                    $("#admissionLastDate").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-
-                    $('.select2').select2({
-                        placeholder: $(this).attr('data-placeholder'),
-                        // dropdownParent: $('#'+$('.modal-fix').attr('data-modal-parent')),
-                        // dropdownParent: $('.modal').attr('data-modal-parent'),
-                    });
-                    // $('.submit-btn').addClass('update-btn').removeClass('submit-btn');
-
-                    $('#coursesModal').modal('show');
-                }
-            })
-        })
-
-    </script>
-{{-- update course category--}}
-    <script>
-        $(document).on('click', '.update-btn', function () {
-            event.preventDefault();
-
-            var discountAmount = Number($('input[name="discount_amount"]').val());
-            if(discountAmount != '')
-            {
-                var price = Number($('input[name="price"]').val());
-                if (discountAmount > price)
-                {
-                    $('#discountErrorMsg').text('Discount amount should be lower then Price.');
-                    return false;
-                }
-            }
-
-            var form = $('#coursesForm')[0];
-            var formData = new FormData(form);
-            $.ajax({
-                url: $('#coursesForm').attr('action'),
-                method: "POST",
-                data: formData,
-                // dataType: "JSON",
-                // async: false,
-                // cache: false,
-                contentType: false,
-                processData: false,
-                // enctype: 'multipart/form-data',
-                beforeSend: function () {
-
-                    $('.update-btn').attr('disabled', 'disabled');
-                },
-                success: function (message) {
-                    // console.log(message);
-                    toastr.success(message);
-                    $('.update-btn').addClass('submit-btn').removeClass('update-btn');
-                    $('#courseCategoryForm').attr('action', '');
-                    $('#courseCategoryModal').modal('hide');
-                    window.location.reload();
-                },
-                error: function (errors) {
-                    if (errors.responseJSON)
-                    {
-
-                        var allErrors = errors.responseJSON.errors;
-                        for (key in allErrors)
-                        {
-                            $('#'+key).empty().append(allErrors[key]);
-                        }
-                        $('.update-btn').attr('disabled', false);
-                    }
-                }
-            })
-        })
-    </script>
 {{--    <script>--}}
-{{--        $(document).on('change', '#nestable-wrapper', function () {--}}
-{{--            setTimeout(function () {--}}
-{{--                var data = $('#nestedCategoryOrderForm').serialize();--}}
-{{--                $.ajax({--}}
-{{--                    url: "{{ route('courseCategories.saveNestedCategories') }}",--}}
-{{--                    method: "POST",--}}
-{{--                    data: data,--}}
-{{--                    dataType: "JSON",--}}
-{{--                    success: function (message) {--}}
-{{--                        toastr.success(message);--}}
+{{--        $(document).on('click', '.edit-btn', function () {--}}
+{{--            event.preventDefault();--}}
+{{--            var courseId = $(this).attr('data-course-id');--}}
+{{--            $.ajax({--}}
+{{--                url: base_url+"courses/"+courseId+"/edit",--}}
+{{--                method: "GET",--}}
+{{--                // dataType: "JSON",--}}
+{{--                success: function (data) {--}}
+
+{{--                    $('#modalForm').empty().append(data);--}}
+{{--                    $("#summernote").summernote({height:70, inheritPlaceholder: true});--}}
+{{--                    // $("#summernote1").summernote({height:70, inheritPlaceholder: true});--}}
+
+{{--                    $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--                    $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--                    $("#dateTime2").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--                    $("#dateTime3").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--                    $("#admissionLastDate").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+
+{{--                    $('.select2').select2({--}}
+{{--                        placeholder: $(this).attr('data-placeholder'),--}}
+{{--                    });--}}
+{{--                    $('.submit-btn').addClass('update-btn').removeClass('submit-btn');--}}
+
+{{--                    $('#coursesModal').modal('show');--}}
+{{--                }--}}
+{{--            })--}}
+{{--        })--}}
+{{--        $(document).on('click', '.show-btn', function () {--}}
+{{--            event.preventDefault();--}}
+{{--            var courseId = $(this).attr('data-course-id');--}}
+{{--            $.ajax({--}}
+{{--                url: base_url+"courses/"+courseId,--}}
+{{--                method: "GET",--}}
+{{--                // dataType: "JSON",--}}
+{{--                success: function (data) {--}}
+{{--                    // console.log(data);--}}
+
+{{--                    $('#modalForm').empty().append(data);--}}
+{{--                    $("#summernote").summernote({height:70, inheritPlaceholder: true});--}}
+{{--                    // $("#summernote1").summernote({height:70, inheritPlaceholder: true});--}}
+
+{{--                    $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--                    $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--                    $("#dateTime2").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--                    $("#dateTime3").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+{{--                    $("#admissionLastDate").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});--}}
+
+{{--                    $('.select2').select2({--}}
+{{--                        placeholder: $(this).attr('data-placeholder'),--}}
+{{--                    });--}}
+{{--                    // $('.submit-btn').addClass('update-btn').removeClass('submit-btn');--}}
+
+{{--                    $('#coursesModal').modal('show');--}}
+{{--                }--}}
+{{--            })--}}
+{{--        })--}}
+
+{{--    </script>--}}
+{{-- update course category--}}
+{{--    <script>--}}
+{{--        $(document).on('click', '.update-btn', function () {--}}
+{{--            event.preventDefault();--}}
+
+{{--            var discountAmount = Number($('input[name="discount_amount"]').val());--}}
+{{--            if(discountAmount != '')--}}
+{{--            {--}}
+{{--                var price = Number($('input[name="price"]').val());--}}
+{{--                if (discountAmount > price)--}}
+{{--                {--}}
+{{--                    $('#discountErrorMsg').text('Discount amount should be lower then Price.');--}}
+{{--                    return false;--}}
+{{--                }--}}
+{{--            }--}}
+
+{{--            var form = $('#coursesForm')[0];--}}
+{{--            var formData = new FormData(form);--}}
+{{--            $.ajax({--}}
+{{--                url: $('#coursesForm').attr('action'),--}}
+{{--                method: "POST",--}}
+{{--                data: formData,--}}
+{{--                // dataType: "JSON",--}}
+{{--                // async: false,--}}
+{{--                // cache: false,--}}
+{{--                contentType: false,--}}
+{{--                processData: false,--}}
+{{--                // enctype: 'multipart/form-data',--}}
+{{--                beforeSend: function () {--}}
+
+{{--                    $('.update-btn').attr('disabled', 'disabled');--}}
+{{--                },--}}
+{{--                success: function (message) {--}}
+{{--                    // console.log(message);--}}
+{{--                    toastr.success(message);--}}
+{{--                    $('.update-btn').addClass('submit-btn').removeClass('update-btn');--}}
+{{--                    $('#courseCategoryForm').attr('action', '');--}}
+{{--                    $('#courseCategoryModal').modal('hide');--}}
+{{--                    window.location.reload();--}}
+{{--                },--}}
+{{--                error: function (errors) {--}}
+{{--                    if (errors.responseJSON)--}}
+{{--                    {--}}
+
+{{--                        var allErrors = errors.responseJSON.errors;--}}
+{{--                        for (key in allErrors)--}}
+{{--                        {--}}
+{{--                            $('#'+key).empty().append(allErrors[key]);--}}
+{{--                        }--}}
+{{--                        $('.update-btn').attr('disabled', false);--}}
 {{--                    }--}}
-{{--                })--}}
-{{--            }, 800)--}}
+{{--                }--}}
+{{--            })--}}
 {{--        })--}}
 {{--    </script>--}}
 
 {{--    store course--}}
-    <script>
-        $(document).on('click', '.submit-btn', function () {
-            event.preventDefault();
-            var discountAmount = Number($('input[name="discount_amount"]').val());
-            if(discountAmount != '')
-            {
-                var price = Number($('input[name="price"]').val());
-                if (discountAmount > price)
-                {
-                    $('#discountErrorMsg').text('Discount amount should be lower then Price.');
-                    return false;
-                }
-            }
+{{--    <script>--}}
+{{--        $(document).on('click', '.submit-btn', function () {--}}
+{{--            event.preventDefault();--}}
+{{--            var discountAmount = Number($('input[name="discount_amount"]').val());--}}
+{{--            if(discountAmount != '')--}}
+{{--            {--}}
+{{--                var price = Number($('input[name="price"]').val());--}}
+{{--                if (discountAmount > price)--}}
+{{--                {--}}
+{{--                    $('#discountErrorMsg').text('Discount amount should be lower then Price.');--}}
+{{--                    return false;--}}
+{{--                }--}}
+{{--            }--}}
 
-            var form = $('#coursesForm')[0];
-            var formData = new FormData(form);
-            $.ajax({
-                url: "{{ route('courses.store') }}",
-                method: "POST",
-                data: formData,
-                dataType: "JSON",
-                contentType: false,
-                processData: false,
-                beforeSend: function () {
+{{--            var form = $('#coursesForm')[0];--}}
+{{--            var formData = new FormData(form);--}}
+{{--            $.ajax({--}}
+{{--                url: "{{ route('courses.store') }}",--}}
+{{--                method: "POST",--}}
+{{--                data: formData,--}}
+{{--                dataType: "JSON",--}}
+{{--                contentType: false,--}}
+{{--                processData: false,--}}
+{{--                beforeSend: function () {--}}
 
-                  $('.submit-btn').attr('disabled', 'disabled');
-                },
-                success: function (data) {
-                    // console.log(data);
-                        toastr.success(data);
-                        $('#coursesModal').modal('hide');
-                        window.location.reload();
-                },
-                error: function (errors) {
-                    if (errors.responseJSON)
-                    {
-                        $('span[class="text-danger"]').empty();
-                        var allErrors = errors.responseJSON.errors;
-                        for (key in allErrors)
-                        {
-                            $('#'+key).empty().append(allErrors[key]);
-                        }
-                        $('.submit-btn').attr('disabled', false);
-                    }
-                }
-            })
-        })
-    </script>
-    <!-- DragNDrop js -->
+{{--                  $('.submit-btn').attr('disabled', 'disabled');--}}
+{{--                },--}}
+{{--                success: function (data) {--}}
+{{--                    // console.log(data);--}}
+{{--                        toastr.success(data);--}}
+{{--                        $('#coursesModal').modal('hide');--}}
+{{--                        window.location.reload();--}}
+{{--                },--}}
+{{--                error: function (errors) {--}}
+{{--                    if (errors.responseJSON)--}}
+{{--                    {--}}
+{{--                        $('span[class="text-danger"]').empty();--}}
+{{--                        var allErrors = errors.responseJSON.errors;--}}
+{{--                        for (key in allErrors)--}}
+{{--                        {--}}
+{{--                            $('#'+key).empty().append(allErrors[key]);--}}
+{{--                        }--}}
+{{--                        $('.submit-btn').attr('disabled', false);--}}
+{{--                    }--}}
+{{--                }--}}
+{{--            })--}}
+{{--        })--}}
+{{--    </script>--}}
+{{--    <!-- DragNDrop js -->--}}
 
-    <script>
-        $(document).on('keyup', '#discountAmount', function () {
-            var discountAmount = Number($(this).val());
-            var discountType = $('select[name="discount_type"]').val();
-            var price = Number($('input[name="price"]').val());
-            var discountErrorMsg = $('#discountErrorMsg');
-            // console.log('price-'+price);
-            // console.log('d-a-'+discountAmount);
-            if (discountType == '')
-            {
-                toastr.error('Please select a Discount type.');
-                return false;
-            }
-            if (discountType == 1)
-            {
-                if (discountAmount > price)
-                {
-                    discountErrorMsg.empty().append('Discount can\'t be greater then Price');
-                }else if (discountAmount <= price){
-                    discountErrorMsg.empty();
-                }
-            } else if (discountType == 2)
-            {
-                if (discountAmount > 100)
-                {
-                    discountErrorMsg.empty().append('Discount can\'t be greater then 100%');
-                }else if (discountAmount <= 100){
-                    discountErrorMsg.empty();
-                }
-            }
-        })
-    </script>
+{{--    <script>--}}
+{{--        $(document).on('keyup', '#discountAmount', function () {--}}
+{{--            var discountAmount = Number($(this).val());--}}
+{{--            var discountType = $('select[name="discount_type"]').val();--}}
+{{--            var price = Number($('input[name="price"]').val());--}}
+{{--            var discountErrorMsg = $('#discountErrorMsg');--}}
+
+{{--            if (discountType == '')--}}
+{{--            {--}}
+{{--                toastr.error('Please select a Discount type.');--}}
+{{--                return false;--}}
+{{--            }--}}
+{{--            if (discountType == 1)--}}
+{{--            {--}}
+{{--                if (discountAmount > price)--}}
+{{--                {--}}
+{{--                    discountErrorMsg.empty().append('Discount can\'t be greater then Price');--}}
+{{--                }else if (discountAmount <= price){--}}
+{{--                    discountErrorMsg.empty();--}}
+{{--                }--}}
+{{--            } else if (discountType == 2)--}}
+{{--            {--}}
+{{--                if (discountAmount > 100)--}}
+{{--                {--}}
+{{--                    discountErrorMsg.empty().append('Discount can\'t be greater then 100%');--}}
+{{--                }else if (discountAmount <= 100){--}}
+{{--                    discountErrorMsg.empty();--}}
+{{--                }--}}
+{{--            }--}}
+{{--        })--}}
+{{--    </script>--}}
 
 
-    <script>
-        $(document).on('change', '#courseImage', function () {
-            var imgURL = URL.createObjectURL(event.target.files[0]);
-            $('#courseImagePreview').attr('src', imgURL).css({
-                height: 150+'px',
-                width: 150+'px',
-                marginTop: '5px'
-            });
-        })
-    </script>
+{{--    <script>--}}
+{{--        $(document).on('change', '#courseImage', function () {--}}
+{{--            var imgURL = URL.createObjectURL(event.target.files[0]);--}}
+{{--            $('#courseImagePreview').attr('src', imgURL).css({--}}
+{{--                height: 150+'px',--}}
+{{--                width: 150+'px',--}}
+{{--                marginTop: '5px'--}}
+{{--            });--}}
+{{--        })--}}
+{{--    </script>--}}
 
 {{--    hide error msgs--}}
-    <script>
-        $(document).on('keyup', 'input:not(#discountAmount),textarea', function () {
-            var selectorId = $(this).attr('name');
-            if ($('#'+selectorId).text().length)
-            {
-                $('#'+selectorId).text('');
-            }
-        })
-        $(document).on('change', 'select', function () {
-            var selectorId = $(this).attr('name');
-            if ($('#'+selectorId).text().length)
-            {
-                $('#'+selectorId).text('');
-            }
-        })
-{{--        // date time error empty not working--}}
-{{--        // $(document).on('click', '#dateTime', function () {--}}
-{{--        //     var selectorId = $(this).attr('name');--}}
-{{--        //     alert('hi');--}}
-{{--        //     if ($('#'+selectorId).text().length)--}}
-{{--        //     {--}}
-{{--        //         $('#'+selectorId).text('');--}}
-{{--        //     }--}}
-{{--        // })--}}
-    </script>
+{{--    <script>--}}
+{{--        $(document).on('keyup', 'input:not(#discountAmount),textarea', function () {--}}
+{{--            var selectorId = $(this).attr('name');--}}
+{{--            if ($('#'+selectorId).text().length)--}}
+{{--            {--}}
+{{--                $('#'+selectorId).text('');--}}
+{{--            }--}}
+{{--        })--}}
+{{--        $(document).on('change', 'select', function () {--}}
+{{--            var selectorId = $(this).attr('name');--}}
+{{--            if ($('#'+selectorId).text().length)--}}
+{{--            {--}}
+{{--                $('#'+selectorId).text('');--}}
+{{--            }--}}
+{{--        })--}}
+{{--    </script>--}}
 
-    <script>
-        $(document).on('click', '.open-modal', function () {
-            event.preventDefault();
+{{--    <script>--}}
+{{--        $(document).on('click', '.open-modal', function () {--}}
+{{--            event.preventDefault();--}}
 
-                resetFromInputAndSelect("{{ route('courses.store') }}", 'coursesForm')
-            $('#summernote').summernote('reset');
-            $('#coursesModal').modal('show');
-        })
+{{--                resetFromInputAndSelect("{{ route('courses.store') }}", 'coursesForm')--}}
+{{--            $('#summernote').summernote('reset');--}}
+{{--            $('#coursesModal').modal('show');--}}
+{{--        })--}}
 
-    </script>
+{{--    </script>--}}
 
-    {{--    set value to input fields from modal start--}}
-    <script>
-        var ids = [];
-        var topicNames = '';
-        $(document).on('click', '#questionTopicInputField', function () {
-            $('#questionTopicModal').modal('show');
-            // $('#questionTopicModal').css('display', 'block');
-        })
-        $(document).on('click', '.check', function () {
-            var existVal = $(this).val();
-            var topicName = $(this).parent().text();
-            // console.log(existVal);
-            // console.log(topicName);
-            if ($(this).is(':checked'))
-            {
-                if (!ids.includes(existVal))
-                {
-                    ids.push(existVal);
-                    topicNames += topicName+',';
+{{--    --}}{{--    set value to input fields from modal start--}}
+{{--    <script>--}}
+{{--        var ids = [];--}}
+{{--        var topicNames = '';--}}
+{{--        $(document).on('click', '#questionTopicInputField', function () {--}}
+{{--            $('#questionTopicModal').modal('show');--}}
+{{--            // $('#questionTopicModal').css('display', 'block');--}}
+{{--        })--}}
+{{--        $(document).on('click', '.check', function () {--}}
+{{--            var existVal = $(this).val();--}}
+{{--            var topicName = $(this).parent().text();--}}
+{{--            // console.log(existVal);--}}
+{{--            // console.log(topicName);--}}
+{{--            if ($(this).is(':checked'))--}}
+{{--            {--}}
+{{--                if (!ids.includes(existVal))--}}
+{{--                {--}}
+{{--                    ids.push(existVal);--}}
+{{--                    topicNames += topicName+',';--}}
 
-                }
-            } else {
-                if (ids.includes(existVal))
-                {
-                    ids.splice(ids.indexOf(existVal), 1);
-                    topicNames = topicNames.replace(topicName+',','');
-                    // topicNames = topicNames.split(topicName).join('');
-                }
-            }
-        })
-        $(document).on('click', '#okDone', function () {
-            $('#questionTopicInputField').val(topicNames.slice(0, -1));
-            $('#questionTopic').val(ids);
-            $('#questionTopicModal').modal('hide');
-        })
-    </script>
-    {{--    set value to input fields from modal ends--}}
-    <!--show hide test start-->
-    <script>
-        $(document).on('click', '.drop-icon', function () {
-            var dataId = $(this).attr('data-id');
-            if ($(this).find('fa-circle-arrow-down'))
-            {
-                $(this).html('<i class="fa-solid fa-circle-arrow-up"></i>');
-            }
-            if($(this).find('fa-circle-arrow-up')) {
-                $(this).html('<i class="fa-solid fa-circle-arrow-down"></i>');
-            }
-            if($('.childDiv'+dataId).hasClass('d-none'))
-            {
-                $('.childDiv'+dataId).removeClass('d-none');
-            } else {
-                $('.childDiv'+dataId).addClass('d-none');
-            }
-        })
-        $(document).on('click', '.close-topic-modal', function () {
-            $('#questionTopicModal').modal('hide');
-        })
-    </script>
-    <!--show hide test end-->
+{{--                }--}}
+{{--            } else {--}}
+{{--                if (ids.includes(existVal))--}}
+{{--                {--}}
+{{--                    ids.splice(ids.indexOf(existVal), 1);--}}
+{{--                    topicNames = topicNames.replace(topicName+',','');--}}
+{{--                    // topicNames = topicNames.split(topicName).join('');--}}
+{{--                }--}}
+{{--            }--}}
+{{--        })--}}
+{{--        $(document).on('click', '#okDone', function () {--}}
+{{--            $('#questionTopicInputField').val(topicNames.slice(0, -1));--}}
+{{--            $('#questionTopic').val(ids);--}}
+{{--            $('#questionTopicModal').modal('hide');--}}
+{{--        })--}}
+{{--    </script>--}}
+{{--    --}}{{--    set value to input fields from modal ends--}}
+{{--    <!--show hide test start-->--}}
+{{--    <script>--}}
+{{--        $(document).on('click', '.drop-icon', function () {--}}
+{{--            var dataId = $(this).attr('data-id');--}}
+{{--            if ($(this).find('fa-circle-arrow-down'))--}}
+{{--            {--}}
+{{--                $(this).html('<i class="fa-solid fa-circle-arrow-up"></i>');--}}
+{{--            }--}}
+{{--            if($(this).find('fa-circle-arrow-up')) {--}}
+{{--                $(this).html('<i class="fa-solid fa-circle-arrow-down"></i>');--}}
+{{--            }--}}
+{{--            if($('.childDiv'+dataId).hasClass('d-none'))--}}
+{{--            {--}}
+{{--                $('.childDiv'+dataId).removeClass('d-none');--}}
+{{--            } else {--}}
+{{--                $('.childDiv'+dataId).addClass('d-none');--}}
+{{--            }--}}
+{{--        })--}}
+{{--        $(document).on('click', '.close-topic-modal', function () {--}}
+{{--            $('#questionTopicModal').modal('hide');--}}
+{{--        })--}}
+{{--    </script>--}}
+{{--    <!--show hide test end-->--}}
 
 {{--    export json--}}
-    <script>
-        $(document).on('click', '.export-json', function () {
-            event.preventDefault();
-            $.ajax({
-                url: $(this).attr('href'),
-                method: "GET",
-                dataType: "JSON",
-                success: function (data) {
-                    // console.log(data);
-                    toastr.success('course exported successfully');
-                },
-            })
-        })
-    </script>
+{{--    <script>--}}
+{{--        $(document).on('click', '.export-json', function () {--}}
+{{--            event.preventDefault();--}}
+{{--            $.ajax({--}}
+{{--                url: $(this).attr('href'),--}}
+{{--                method: "GET",--}}
+{{--                dataType: "JSON",--}}
+{{--                success: function (data) {--}}
+{{--                    // console.log(data);--}}
+{{--                    toastr.success('course exported successfully');--}}
+{{--                },--}}
+{{--            })--}}
+{{--        })--}}
+{{--    </script>--}}
 
 @endpush

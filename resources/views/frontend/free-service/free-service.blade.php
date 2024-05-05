@@ -13,24 +13,29 @@
                             <button class="nav-link f-s-26" id="" data-bs-toggle="pill" data-bs-target="#freeExams" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">ফ্রি পরীক্ষা সমূহ</button>
                         </li>
                     </ul>
+                    <style>
+                        .a .courses-item {padding-right: 50px;}
+                    </style>
                     <div class="tab-content mt-4" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="freeCourses" role="tabpanel" aria-labelledby="pills-home-tab">
-                            <div class="row">
+                            <div class="row a">
                                 @forelse($courses as $course)
-                                    <div class="courses-item col-md-4 col-sm-6 px-0 mx-2">
-                                        <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
-                                            <img src="{{ file_exists($course->banner) ? asset($course->banner) : asset('frontend/logo/biddabari-card-logo.jpg') }}" alt="Courses" class="w-100" style="height: 230px"/>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="courses-item">
+                                            <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
+                                                <img src="{{ file_exists($course->banner) ? asset($course->banner) : asset('frontend/logo/biddabari-card-logo.jpg') }}" alt="Courses" class="w-100" style="height: 230px"/>
 
-                                            <div class="content">
-                                                <h3>{{ $course->title }}</h3>
-                                                <div class="bottom-content">
-                                                    <button type="button" class="btn btn-warning">বিস্তারিত দেখুন</button>
-                                                    <div class="rating ">
-                                                        <button type="button" class="btn btn-warning">Free</button>
+                                                <div class="content">
+                                                    <h3>{{ $course->title }}</h3>
+                                                    <div class="bottom-content">
+                                                        <button type="button" class="btn btn-warning">বিস্তারিত দেখুন</button>
+                                                        <div class="rating ">
+                                                            <button type="button" class="btn btn-warning">Free</button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </a>
+                                            </a>
+                                        </div>
                                     </div>
                                 @empty
                                     <div class="col-md-12">
@@ -44,19 +49,21 @@
                         <div class="tab-pane fade" id="freeExams" role="tabpanel" aria-labelledby="pills-profile-tab">
                             <div class="row mt-3">
                                 @forelse($batchExams as $batchExam)
-                                    <div class="courses-item col-md-4 col-sm-6 px-0 mx-2 open-modal" data-xm-id="{{ $batchExam->id }}" style="cursor: pointer;">
-                                        <a href="" class="w-100">
-                                            <img src="{{ isset($batchExam->banner) ? asset($batchExam->banner) : asset('frontend/logo/biddabari-card-logo.jpg') }}" alt="Courses" class="w-100" style="height: 230px"/>
-                                            <div class="content">
-                                                <h3>{{ $batchExam->title }}</h3>
-                                                <div class="bottom-content">
-                                                    <button type="button" class="btn btn-warning">বিস্তারিত দেখুন</button>
-                                                    <div class="rating ">
-                                                        <button type="button" class="btn btn-warning">Free</button>
+                                    <div class="col-md-4 col-sm-6 open-modal" data-xm-id="{{ $batchExam->id }}" style="cursor: pointer;">
+                                        <div class="courses-item">
+                                            <a href="" class="w-100">
+                                                <img src="{{ isset($batchExam->banner) ? asset($batchExam->banner) : asset('frontend/logo/biddabari-card-logo.jpg') }}" alt="Courses" class="w-100" style="height: 230px"/>
+                                                <div class="content">
+                                                    <h3>{{ $batchExam->title }}</h3>
+                                                    <div class="bottom-content">
+                                                        <button type="button" class="btn btn-warning">বিস্তারিত দেখুন</button>
+                                                        <div class="rating ">
+                                                            <button type="button" class="btn btn-warning">Free</button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </a>
+                                            </a>
+                                        </div>
                                     </div>
                                 @empty
                                     <div class="col-md-12">

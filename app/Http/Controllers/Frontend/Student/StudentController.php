@@ -36,13 +36,14 @@ class StudentController extends Controller
     public function dashboard ()
     {
 //        $isStudent = false;
-//        foreach (auth()->user()->roles as $role)
-//        {
-//            if ($role->id == 4)
-//            {
+        foreach (auth()->user()->roles as $role)
+        {
+            if ($role->id != 4)
+            {
+                return redirect('/')->with('error', 'You don\'t have student access.');
 //                $isStudent = true;
-//            }
-//        }
+            }
+        }
 //        if ($isStudent == false)
 //        {
 //            return redirect()->route('dashboard')->with('success', 'You logged in successfully.');
@@ -84,8 +85,7 @@ class StudentController extends Controller
 
     public function myCourses ()
     {
-//        $this->courseOrders = CourseOrder::where('user_id', auth()->id())->select('id', 'course_id', 'user_id', 'status')->with('course:id,title,price,banner,discount_type,slug,status,is_approved')->get();
-        $this->courseOrders = ParentOrder::where(['user_id'=> auth()->id(), 'ordered_for' => 'course'])->where('status', '!=', 'canceled')->select('id', 'parent_model_id', 'user_id', 'status')->with('course:id,title,price,banner,discount_type,slug,status,is_approved')->get();
+        $this->courseOrders = ParentOrder::where(['user_id'=> auth()->id(), 'ordered_for' => 'course'])->where('status', '!=', 'canceled')->select('id', 'parent_model_id', 'user_id', 'status')->with('course:id,title,price,banner,slug,status')->get();
         $this->data = [
             'courseOrders'  => $this->courseOrders
         ];
@@ -94,10 +94,6 @@ class StudentController extends Controller
 
     public function showCourseContents ($courseId)
     {
-//        $this->courseSections = CourseSection::whereCourseId($courseId)->whereStatus(1)->select('id', 'course_id', 'title', 'available_at', 'is_paid')->with(['courseSectionContents' => function($sectionContent){
-//            $sectionContent->whereStatus(1)->orderBy('order', 'ASC')->whereIsPaid(1)->get();
-//        }])->get();
-
         $this->course = Course::whereId($courseId)->select('id', 'title', 'slug', 'status')->with(['courseSections' => function($courseSections){
             $courseSections->whereStatus(1)->orderBy('order', 'ASC')->where('available_at', '<=', currentDateTimeYmdHi())->select('id', 'course_id', 'title', 'available_at', 'is_paid')->with(['courseSectionContents' => function($courseSectionContents){
                 $courseSectionContents->where('available_at_timestamp', '<=', strtotime(currentDateTimeYmdHi()))->whereStatus(1)->orderBy('order', 'ASC')->get();
@@ -155,7 +151,7 @@ class StudentController extends Controller
         ])->select('id', 'user_id', 'parent_model_id', 'batch_exam_subscription_id', 'ordered_for', 'status')->get();
         foreach ($this->exams as $exam)
         {
-            $exam->has_validity = ViewHelper::checkIfBatchExamIsEnrollmentAndHasValidity($this->loggedUser, $exam);
+            $exam->has_validity = ViewHelper::checkIfBatchExamIsEnrollmentAndHasValidity($this->loggedUser, $exam->batchExam);
             $exam->order_status = ViewHelper::checkUserBatchExamIsEnrollment($this->loggedUser, $exam->batchExam);
         }
         $this->data = [
@@ -209,7 +205,7 @@ class StudentController extends Controller
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.student.my-pages.orders');
     }
-    
+
     public function myService(Request $request)
     {
         $user=[];

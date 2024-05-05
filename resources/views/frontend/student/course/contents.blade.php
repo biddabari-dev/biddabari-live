@@ -24,7 +24,7 @@
                                                     <div class="accordion-content">
                                                         @foreach($courseSection->courseSectionContents as $courseSectionContent)
                                                             @if($courseSectionContent->content_type == 'pdf')
-                                                                <a href="javascript:void(0)" data-content-id="{{ $courseSectionContent->id }}" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" class="w-100 show-pdf">
+                                                                <a href="javascript:void(0)" data-content-id="{{ $courseSectionContent->id }}"  class="w-100 show-pdf">
                                                                     <div class="accordion-content-list pt-2 pb-0">
                                                                         <div class="accordion-content-left">
 {{--                                                                            PDF--}}
@@ -50,7 +50,7 @@
                                                                     </a>
                                                             @endif
                                                             @if($courseSectionContent->content_type == 'note')
-                                                                    <a href="javascript:void(0)" class="w-100 get-text-data" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-content-id="{{ $courseSectionContent->id }}">
+                                                                    <a href="javascript:void(0)" class="w-100 get-text-data"  data-content-id="{{ $courseSectionContent->id }}">
                                                                         <div class="accordion-content-list pt-2 pb-0">
                                                                             <div class="accordion-content-left">
 {{--                                                                                Note--}}
@@ -61,7 +61,7 @@
                                                                     </a>
                                                             @endif
                                                             @if($courseSectionContent->content_type == 'live')
-                                                                    <a href="javascript:void(0)" class="w-100 get-text-data" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-content-id="{{ $courseSectionContent->id }}">
+                                                                    <a href="javascript:void(0)" class="w-100 get-text-data" data-content-id="{{ $courseSectionContent->id }}">
                                                                         <div class="accordion-content-list pt-2 pb-0">
                                                                             <div class="accordion-content-left">
 {{--                                                                                Go Live--}}
@@ -76,7 +76,7 @@
                                                                     </a>
                                                             @endif
                                                             @if($courseSectionContent->content_type == 'link')
-                                                                    <a href="javascript:void(0)" class="w-100 get-text-data" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-content-id="{{ $courseSectionContent->id }}">
+                                                                    <a href="javascript:void(0)" class="w-100 get-text-data"  data-content-id="{{ $courseSectionContent->id }}">
                                                                         <div class="accordion-content-list pt-2 pb-0">
                                                                             <div class="accordion-content-left">
 {{--                                                                                Regular Link--}}
@@ -87,7 +87,7 @@
                                                                     </a>
                                                             @endif
                                                             @if($courseSectionContent->content_type == 'assignment')
-                                                                    <a href="javascript:void(0)" class="w-100 get-text-data" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-content-id="{{ $courseSectionContent->id }}">
+                                                                    <a href="javascript:void(0)" class="w-100 get-text-data"  data-content-id="{{ $courseSectionContent->id }}">
                                                                         <div class="accordion-content-list pt-2 pb-0">
                                                                             <div class="accordion-content-left">
                                                                                 {{--                                                                        Assignment File--}}
@@ -101,18 +101,8 @@
                                                                         </div>
                                                                     </a>
                                                             @endif
-                                                            @if($courseSectionContent->content_type == 'testmoj')
-                                                                    <a href="javascript:void(0)" class="w-100 get-text-data" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-content-id="{{ $courseSectionContent->id }}">
-                                                                        <div class="accordion-content-list pt-2 pb-0">
-                                                                            <div class="accordion-content-left">
-                                                                                {{--                                                                        TestMoj--}}
-                                                                                <p class="f-s-20"><i class="fa-regular fa-copy"></i> {{ $courseSectionContent->title }}</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                            @endif
                                                             @if($courseSectionContent->content_type == 'exam')
-                                                                    <a href="javascript:void(0)" class="w-100 get-text-data" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-content-id="{{ $courseSectionContent->id }}">
+                                                                    <a href="javascript:void(0)" class="w-100 get-text-data"  data-content-id="{{ $courseSectionContent->id }}">
                                                                         <div class="accordion-content-list pt-2 pb-0">
                                                                             <div class="accordion-content-left">
                                                                                 <p class="f-s-20">
@@ -125,7 +115,7 @@
                                                                     </a>
                                                             @endif
                                                             @if($courseSectionContent->content_type == 'written_exam')
-                                                                    <a href="javascript:void(0)" class="w-100 get-text-data" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-content-id="{{ $courseSectionContent->id }}">
+                                                                    <a href="javascript:void(0)" class="w-100 get-text-data"  data-content-id="{{ $courseSectionContent->id }}">
                                                                         <div class="accordion-content-list pt-2 pb-0">
                                                                             <div class="accordion-content-left">
                                                                                 {{--                                                                        Written Exam--}}
@@ -255,35 +245,35 @@
 {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--}}
     <!--<link rel="stylesheet" href="{{ asset('/') }}backend/assets/plugins/pdf-draw/pdfannotate.css">-->
     <!--<link rel="stylesheet" href="{{ asset('/') }}backend/assets/plugins/pdf-draw/styles.css">-->
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
     <link rel="stylesheet" href="{{ asset('/') }}backend/ppdf/css/pdfviewer.jquery.css" />
     <style>
         .pdf-toolbar {display: none;}
         #pdf-container {overflow: scroll; height: 500px;}
         .aks-video-player { width: 99%!important;}
     </style>
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
 {{--    <style>--}}
 {{--        .canvas-container, canvas { width: 100%!important; margin-top: 10px!important;}--}}
 {{--    </style>--}}
     <style>
         .my-box { width: 100%!important;}
         .canvas-container, canvas {
-            width: 100%!important; 
+            width: 100%!important;
             margin-top: 10px!important;
             height:auto;
-           
+
                /* .my-box { width: 100%!important;} */
         /*.canvas-container, canvas { */
             /* width: 100%!important; */
@@ -291,13 +281,13 @@
         /*    @media screen and (max-width: 768px){*/
         /*    #pdfContentPrintDiv {overflow: scroll;}*/
         /*}*/
-            
-            
+
+
         }
         /*.canvas{*/
         /*     overflow:scroll !important;*/
         /*}*/
-        
+
         .video-container{
             width:100%!important;
             height: 440px;
@@ -372,33 +362,27 @@
 @endpush
 
 @section('js')
-   
 
-    
-    
-    
-    
-    
+
+
+
+
+
+
 {{--    note--}}
 <script>
     $(document).on('click', '.get-text-data', function () {
-        var status = checkHasClassXm($(this));
-        if (status == true)
-        {
-            var contentId = $(this).attr('data-content-id');
-            $.ajax({
-                url:"{{ route('front.student.get-text-type-content') }}",
-                method: "GET",
-                data: {content_id:contentId},
-                success: function (data) {
-                    // console.log(data);
-                    $('#printHere').html(data);
-                    $('#commonPrintModel').modal('show');
-                }
-            })
-        } else {
-            return false;
-        }
+        var contentId = $(this).attr('data-content-id');
+        $.ajax({
+            url:"{{ route('front.student.get-text-type-content') }}",
+            method: "GET",
+            data: {content_id:contentId},
+            success: function (data) {
+                // console.log(data);
+                $('#printHere').html(data);
+                $('#commonPrintModel').modal('show');
+            }
+        })
     })
     function checkHasClassXm(elementObject) {
         var hasClassXm = elementObject.attr('data-has-class-xm');
@@ -544,13 +528,13 @@
             alert('hiii');
         })
     </script>
-    
-    
-    
-    
-    
-        
-    
+
+
+
+
+
+
+
     <!--ppdf-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
     <script src="{{ asset('/') }}backend/ppdf/js/pdfviewer.jquery.js"></script>
@@ -559,40 +543,33 @@
         $(document).on('click', '.show-pdf', function () {
 
             event.preventDefault();
-            console.log('sarowar')
-            var status = checkHasClassXm($(this));
-            if (status == true)
-            {
-                var sectionContentId = $(this).attr('data-content-id');
-                $.ajax({
-                    url: base_url+"student/show-pdf/"+sectionContentId,
-                    method: "GET",
-                    success: function (data) {
-                        console.log(data);
-                        var pdflink = '';
-                        if(data.sectionContent.pdf_link != null )
-                        {
-                            pdflink = data.sectionContent.pdf_link;
-                        } else {
-                            pdflink = base_url+data.sectionContent.pdf_file;
-                        }
-                        $('#pdf-container').empty();
-                        
-                        
-                        $('#pdf-container').pdfViewer(pdflink);
-                        
-                        if(data.sectionContent.can_download_pdf == 1 )
-                        {
-                            $('#pdfDownloadLink').attr('href', pdflink).html('Download Now').attr('class', 'btn btn-success btn-sm float-end me-4 mt-2');
-                        } else {
-                            $('#pdfDownloadLink').attr('href', '').html('').attr('class', '');
-                        }
-                        $('.show-pdf-modal').modal('show');
+            var sectionContentId = $(this).attr('data-content-id');
+            $.ajax({
+                url: base_url+"student/show-pdf/"+sectionContentId,
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+                    var pdflink = '';
+                    if(data.sectionContent.pdf_link != null )
+                    {
+                        pdflink = data.sectionContent.pdf_link;
+                    } else {
+                        pdflink = base_url+data.sectionContent.pdf_file;
                     }
-                })
-            } else {
-                return false;
-            }
+                    $('#pdf-container').empty();
+
+
+                    $('#pdf-container').pdfViewer(pdflink);
+
+                    if(data.sectionContent.can_download_pdf == 1 )
+                    {
+                        $('#pdfDownloadLink').attr('href', pdflink).html('Download Now').attr('class', 'btn btn-success btn-sm float-end me-4 mt-2');
+                    } else {
+                        $('#pdfDownloadLink').attr('href', '').html('').attr('class', '');
+                    }
+                    $('.show-pdf-modal').modal('show');
+                }
+            })
 
         })
         function LoadCss(url) {
@@ -610,7 +587,7 @@
         }
 
     </script>
-    
-    
-    
+
+
+
 @endsection

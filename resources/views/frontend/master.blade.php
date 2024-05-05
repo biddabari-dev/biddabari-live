@@ -251,7 +251,7 @@
                 if(response.status == 'success'){
                     // console.log('success');
                     toastr.success(response.msg,'Success');
-                    $('.cart_count').html(`<a href="{{ route('front.view-cart') }}" class="default-btn ">এখনই কিনুন</a>`);
+                    $('.cart_count-'+spid).html(`<a href="{{ route('front.view-cart') }}" class="default-btn ">এখনই কিনুন</a>`);
                 }else{
                     toastr.error(response.msg,'Failed');
                 }
