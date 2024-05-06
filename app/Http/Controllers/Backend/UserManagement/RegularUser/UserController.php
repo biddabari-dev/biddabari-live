@@ -127,8 +127,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        abort_if(Gate::denies('delete-user'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-//        return back()->with('error', 'Developer need to talk with MD sir to active this feature.');
+//        abort_if(Gate::denies('delete-user'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         if ($id != 1)
         {
             User::find($id)->delete();

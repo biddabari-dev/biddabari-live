@@ -134,7 +134,6 @@ Route::prefix('v1')->name('api.')->group(function (){
             Route::get('show-batch-exam-answers/{content_id}/{slug?}', [FrontExamController::class, 'showBatchExamAnswers']);
         });
 
-
 //        delete user route for app production
         Route::get('delete-account/{id}', [UserController::class, 'destroy']);
     });
