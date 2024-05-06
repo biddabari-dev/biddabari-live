@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\UserManagement\RegularUser;
 
 use  App\DataTables\UserDataTables\Users;
+use App\helper\ViewHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\RoleManagement\Role;
 use App\Models\Backend\UserManagement\Student;
@@ -131,9 +132,11 @@ class UserController extends Controller
         if ($id != 1)
         {
             User::find($id)->delete();
-            return back()->with('success', 'User deleted successfully.');
+            return ViewHelper::returnSuccessMessage('User deleted successfully.');
+//            return back()->with('success', 'User deleted successfully.');
         } else {
-            return back()->with('error', 'Please Contact your developer for deleting default user');
+            return ViewHelper::returEexceptionError('Please Contact your developer for deleting default user');
+//            return back()->with('error', 'Please Contact your developer for deleting default user');
         }
     }
 
