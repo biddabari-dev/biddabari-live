@@ -136,6 +136,6 @@ Route::prefix('v1')->name('api.')->group(function (){
 
 
 //        delete user route for app production
-        Route::resources('users', UserController::class);
+        Route::apiResource('users', UserController::class);
     });
 });
