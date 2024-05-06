@@ -148,7 +148,7 @@ $(document).on('click', '.submit-btn', function () {
     var form = $('#coursesForm')[0];
     var formData = new FormData(form);
     $.ajax({
-        url: "{{ route('courses.store') }}",
+        url: base_url+"courses",
         method: "POST",
         data: formData,
         dataType: "JSON",
@@ -239,7 +239,7 @@ $(document).on('change', 'select', function () {
 $(document).on('click', '.open-modal', function () {
     event.preventDefault();
 
-    resetFromInputAndSelect("{{ route('courses.store') }}", 'coursesForm')
+    resetFromInputAndSelect(base_url+"courses", 'coursesForm')
     $('#summernote').summernote('reset');
     $('#coursesModal').modal('show');
 })
