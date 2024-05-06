@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\FrontExam\FrontExamController;
 use App\Http\Controllers\Backend\AdditionalFeatureManagement\Affiliation\AffiliationController;
 
 use App\Http\Controllers\Backend\CourseManagement\Question\QuestionStoreController;
+use App\Http\Controllers\Backend\UserManagement\RegularUser\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,5 +133,9 @@ Route::prefix('v1')->name('api.')->group(function (){
             Route::get('show-course-exam-answers/{content_id}/{slug?}', [FrontExamController::class, 'showCourseExamAnswers']);
             Route::get('show-batch-exam-answers/{content_id}/{slug?}', [FrontExamController::class, 'showBatchExamAnswers']);
         });
+
+
+//        delete user route for app production
+        Route::resources('users', UserController::class);
     });
 });
