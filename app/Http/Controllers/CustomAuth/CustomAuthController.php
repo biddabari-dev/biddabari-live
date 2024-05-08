@@ -20,7 +20,7 @@ class CustomAuthController extends Controller
     protected $email, $phone, $password, $user;
     public function login(Request $request)
     {
-        
+
         if (auth()->attempt($request->only(['mobile', 'password']), $request->remember_me))
         {
             $this->user = auth()->user();
@@ -57,7 +57,7 @@ class CustomAuthController extends Controller
             }
             return redirect()->route('login')->with('error', 'Something went wrong. Please try again');
         }
-        
+
 //         if (auth()->attempt($request->only(['mobile', 'password']), $request->remember_me))
 //         {
 
@@ -106,14 +106,12 @@ class CustomAuthController extends Controller
     public function register (UserRegisterRequest $request)
     {
 
-            
+
             $request['roles'] = 4;
         $request['request_form'] = 'student';
         DB::beginTransaction();
         try {
             $this->user = User::createOrUpdateUser($request);
-            $this->user->device_token = session()->getId();
-            $this->user->save();
             if ($request->roles == 4)
             {
                 Student::createOrUpdateStudent($request, $this->user);
@@ -122,6 +120,8 @@ class CustomAuthController extends Controller
             DB::commit();
             if (isset($this->user)) {
                 Auth::login($this->user);
+                $this->user->device_token = session()->getId();
+                $this->user->save();
                 if (str()->contains(url()->current(), '/api/')) {
                     return response()->json(['user' => $this->user, 'auth_token' => $this->user->createToken('auth_token')->plainTextToken]);
                 } else {
@@ -154,8 +154,8 @@ class CustomAuthController extends Controller
                 return redirect('/register')->with('error', $exception->getMessage());
             }
         }
-            
-            
+
+
 
 //         $request['roles'] = 4;
 //         $request['request_form'] = 'student';
@@ -219,14 +219,14 @@ class CustomAuthController extends Controller
                 //            test two
                 $client = new Client();
                 //$body = $client->request('GET', 'http://sms.felnadma.com/api/v1/send?api_key=44516684285595991668428559&contacts=88'.$request->mobile.'&senderid=01844532630&msg=Biddabari+otp+is+'.$otpNumber);
-                
+
                 $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$request->mobile.'&senderid=8809601011181&msg=Biddabari+otp+is+'.$otpNumber);
-                
+
                 //echo '<pre>'; print_r( explode(':',$body->getBody()->getContents() )[1] ); die();
                 //die($body->getBody()->getContents())[0])[1]);
-                
+
                 $responseCode = explode(':',$body->getBody()->getContents() )[1];
-                
+
                 //$responseCode = explode(':', explode(',', $body->getBody()->getContents())[0])[1];
 //            return response()->json(gettype($responseCode));
 //                return $responseCode;
@@ -305,8 +305,8 @@ class CustomAuthController extends Controller
             $client = new Client();
             //$body = $client->request('GET', 'http://sms.felnadma.com/api/v1/send?api_key=44516684285595991668428559&contacts=88'.$request->mobile.'&senderid=01844532630&msg=Biddabari+otp+is+'.$otpNumber);
             $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$request->mobile.'&senderid=8809601011181&msg=Biddabari+otp+is+'.$otpNumber);
-            
-            
+
+
             //$responseCode = explode(':', explode(',', $body->getBody()->getContents())[0])[1];
             $responseCode = explode(':',$body->getBody()->getContents() )[1];
 

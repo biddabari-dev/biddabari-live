@@ -28,7 +28,12 @@ class FrontendViewController extends Controller
     protected $comments = [], $jobCirculars = [], $jobCircular;
     public function allProducts ()
     {
-        $this->products = Product::whereStatus(1)->select('id','product_author_id', 'stock_amount','title','image','price', 'discount_amount', 'discount_start_date', 'discount_end_date', 'slug')->paginate(9);
+        if (str()->contains(url()->current(), '/api/'))
+        {
+            $this->products = Product::whereStatus(1)->select('id','product_author_id', 'stock_amount','title','image','price', 'discount_amount', 'discount_start_date', 'discount_end_date', 'slug')->get();
+        } else {
+            $this->products = Product::whereStatus(1)->select('id','product_author_id', 'stock_amount','title','image','price', 'discount_amount', 'discount_start_date', 'discount_end_date', 'slug')->paginate(9);
+        }
         foreach ($this->products as $product)
         {
             if (!empty($product->discount_start_date) && !empty($product->discount_end_date))
