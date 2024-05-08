@@ -54,9 +54,7 @@
                                             <td></td>
                                          @endif
                                         <td>
-{{--                                            <a href="" data-course-id="{{ $course->id }}" class="btn btn-sm btn-warning edit-btn" title="Edit Course">--}}
-{{--                                                <i class="mdi mdi-circle-edit-outline"></i>--}}
-{{--                                            </a>--}}
+
                                             @can('detach-course-student')
                                                 <form class="d-inline" action="{{ route('detach-student', $course->id) }}" method="post" onsubmit="return confirm('Are you sure to Detach this Student from this course?')">                                            @csrf
                                                     <input type="hidden" name="student_id" value="{{ $student['student_id'] }}">
@@ -67,59 +65,12 @@
                                             @endcan
                                         </td>
                                     </tr>
-{{--                                @else--}}
-{{--                                    @break--}}
-{{--                                @endif--}}
+
                             @endforeach
                         @endif
                         </tbody>
                     </table>
-{{--                    {{ $students->links() }}--}}
-{{--                    {{ $dataTable->table() }}--}}
 
-
-{{--                    data table by reza vai starts--}}
-{{--                    <div class="table-responsive">--}}
-{{--                        <table class="table table-bordered" id="file_export">--}}
-{{--                            <thead>--}}
-{{--                            <tr>--}}
-{{--                                <th>#</th>--}}
-{{--                                <th>Name</th>--}}
-{{--                                <th>Email</th>--}}
-{{--                                <th>Mobile</th>--}}
-{{--                                <th>Status</th>--}}
-{{--                                <th style="width: 120px;">Action</th>--}}
-{{--                            </tr>--}}
-{{--                            </thead>--}}
-{{--                            <tbody>--}}
-{{--                            @if(!empty($course))--}}
-{{--                                @foreach($course as $key=>$item)--}}
-{{--                                    <tr>--}}
-{{--                                        <td>{{ $loop->iteration }}</td>--}}
-{{--                                        <td>{{$item->user_name??''}}</td>--}}
-{{--                                        <td>{{$item->user_email??''}}</td>--}}
-{{--                                        <td>{{$item->user_mobile??''}}</td>--}}
-{{--                                        <td class="">{{$item->student_status == 1 ? 'Active' : 'De-active'}}</td>--}}
-{{--                                        <td>--}}
-{{--                                            <a href="" data-course-id="{{ $item->course_id }}" class="btn btn-sm btn-warning edit-btn" title="Edit Course">--}}
-{{--                                                <i class="mdi mdi-circle-edit-outline"></i>--}}
-{{--                                            </a>--}}
-{{--                                            @can('detach-course-student')--}}
-{{--                                                <form class="d-inline" action="{{ route('detach-student', $item->course_id) }}" method="post" onsubmit="return confirm('Are you sure to Detach this Student from this course?')">                                            @csrf--}}
-{{--                                                    <input type="hidden" name="student_id" value="{{ $item->student_id }}">--}}
-{{--                                                    <button type="submit" class="btn btn-sm btn-danger" title="Detach Student from this Course?">--}}
-{{--                                                        <i class="fa-solid fa-trash"></i>--}}
-{{--                                                    </button>--}}
-{{--                                                </form>--}}
-{{--                                            @endcan--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                @endforeach--}}
-{{--                            @endif--}}
-{{--                            </tbody>--}}
-{{--                        </table>--}}
-
-{{--                </div>--}}
                     {{--                    data table by reza vai ends--}}
                 </div>
             </div>
@@ -143,11 +94,7 @@
                                         {{--                                    <input type="number" name="paid_amount" class="form-control" placeholder="Search Student">--}}
                                         <select name="student_id" required class="form-control js-example-basic-single select2-style1"  data-placeholder="Assign Student" >
                                             <option label="Assign Students"></option>
-                                            {{--                                        @if(isset($students))--}}
-                                            {{--                                            @foreach($students as $student)--}}
-                                            {{--                                                <option value="{{ $student->id }}" >{{ $student->user->mobile }}</option>--}}
-                                            {{--                                            @endforeach--}}
-                                            {{--                                        @endif--}}
+
                                         </select>
                                         <span class="text-danger" id="student_id">{{ $errors->has('student_id') ? $errors->first('student_id') : '' }}</span>
                                     </div>
@@ -220,7 +167,7 @@
                                 <div class="row">
                                     <div class="col-md-6 mt-2 select2-div">
                                         <label for="">Transfer From</label>
-                                        <select name="course_transfer_form_id" required class="form-control select2"  multiple >
+                                        <select name="course_transfer_form_id[]" required class="form-control select2"  multiple >
                                             <option label="Select Course" disabled selected></option>
                                             {{--                                        @if(isset($students))--}}
                                             @foreach($courses as $publishedCourse)
@@ -261,26 +208,6 @@
     </style>
 
 
-    {{--    data tables from reza vai starts--}}
-{{--    <link href="{{asset('admin/js_datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/autoFill.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/buttons.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/colReorder.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/dataTables.dateTime.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/fixedColumns.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/fixedHeader.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/keyTable.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/responsive.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/rowGroup.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/rowReorder.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/scroller.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/searchBuilder.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/searchPanes.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/select.dataTables.min.css')}}" rel="stylesheet"/>--}}
-{{--    <link href="{{asset('admin/js_datatables/css/stateRestore.dataTables.min.css')}}" rel="stylesheet"/>--}}
-    {{--    data tables from reza vai ends--}}
-
-
 
 @endpush
 
@@ -288,100 +215,7 @@
 
     @include('backend.includes.assets.plugin-files.datatable')
     @include('backend.includes.assets.plugin-files.editor')
-    {{--    data tables from reza vai starts--}}
-{{--    <script src="{{asset('admin/js_datatables/js/jszip.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/pdfmake.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/vfs_fonts.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/jquery.dataTables.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.autoFill.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.buttons.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/buttons.html5.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/buttons.print.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.colReorder.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.dateTime.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.fixedColumns.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.fixedHeader.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.keyTable.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.responsive.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.rowGroup.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.rowReorder.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.scroller.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.searchBuilder.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.searchPanes.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.select.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.stateRestore.min.js')}}"></script>--}}
-{{--    <script src="{{asset('admin/js_datatables/js/dataTables.rowsGroup.js')}}"></script>--}}
 
-{{--            <script>--}}
-{{--                $(document).ready(function (){--}}
-{{--                    $("#file_export").DataTable({--}}
-{{--                        // dom: 'QBflrtip',--}}
-{{--                        dom: 'Bflrtip',--}}
-{{--                        columnDefs: [--}}
-{{--                            { width: '15%', targets: 0 }--}}
-{{--                        ],--}}
-{{--                        "lengthMenu": [ [10, 15, 20, 50, -1], [10, 15, 20, 50, "All"] ],--}}
-{{--                        "pageLength": 15,--}}
-{{--                        rowsGroup:[0],--}}
-{{--                        buttons: [--}}
-{{--                            'copy', 'csv', 'excel', 'pdf', 'print'--}}
-{{--                        ],--}}
-{{--                        language: {--}}
-{{--                            searchBuilder: {--}}
-{{--                                title: {--}}
-{{--                                    0: 'Condition search filter',--}}
-{{--                                    _: 'Custom Search Conditions (%d)'--}}
-{{--                                },--}}
-{{--                                value: 'Option',--}}
-{{--                                valueJoiner: 'et'--}}
-{{--                            }--}}
-{{--                        },--}}
-{{--                        customSearchOptions: {--}}
-{{--                            title: 'Condition search filter'--}}
-{{--                        },--}}
-{{--                        buttons: [--}}
-{{--                            'copy',--}}
-{{--                            {--}}
-{{--                                extend: 'csv',--}}
-{{--                                filename: function () {--}}
-{{--                                    return 'User report';--}}
-{{--                                },--}}
-{{--                            },--}}
-{{--                            {--}}
-{{--                                extend: 'excel',--}}
-{{--                                filename: function () {--}}
-{{--                                    return 'User report';--}}
-{{--                                },--}}
-{{--                                footer: true,--}}
-{{--                            },--}}
-{{--                            {--}}
-{{--                                extend: 'pdf',--}}
-{{--                                filename: function () {--}}
-{{--                                    return 'User report';--}}
-{{--                                },--}}
-{{--                                footer: true,--}}
-{{--                                pageSize: 'A4',--}}
-{{--                                orientation: 'landscape',--}}
-{{--                            },--}}
-{{--                            {--}}
-{{--                                extend: 'print',--}}
-{{--                                messageTop: function () {--}}
-{{--                                    return 'The data generated on: ' + new Date();--}}
-{{--                                },--}}
-{{--                                footer: true,--}}
-
-{{--                            }--}}
-{{--                        ],--}}
-{{--                        // order : [[0,'DESC']],--}}
-
-{{--                    });--}}
-
-{{--                });--}}
-{{--            </script>--}}
-    {{--    data tables from reza vai ends--}}
-
-
-{{--@include('backend.includes.assets.plugin-files.datatable')--}}
 
 @if($errors->any())
     <script>
@@ -391,49 +225,6 @@
     </script>
 @endif
 
-<script>
-    // pagination on ajax
-    // $(document).on('click', '.page-link', function () {
-    //     event.preventDefault();
-    //     var href = $(this).attr('href');
-    //     // check if page link has href
-    //     if (href !== undefined)
-    //     {
-    //         $.ajax({
-    //             url: href,
-    //             method: "GET",
-    //             success: function (response) {
-    //                 $('tbody').html(response);
-    //             }
-    //         })
-    //
-    //         $('.page-item').each(function () {
-    //             if ($(this).hasClass('active'))
-    //             {
-    //                 $(this).removeClass('active');
-    //             }
-    //         })
-    //
-    //         $(this).parent().addClass('active').attr("aria-current","page");
-    //     }
-    // })
-
-    {{--$(function () {--}}
-    {{--    var table = $('.data-table').DataTable({--}}
-    {{--        processing: true,--}}
-    {{--        serverSide: true,--}}
-    {{--        dom: 'Blfrtip',--}}
-    {{--        ajax: "{{ route('assign-student-to-course', ['course_id' => $course->id]) }}",--}}
-    {{--        columns: [--}}
-    {{--            // {data: 'id', name: 'id'},--}}
-    {{--            {data: 'name', name: 'name'},--}}
-    {{--            {data: 'mobile', name: 'mobile'},--}}
-    {{--            {data: 'status', name: 'status'},--}}
-    {{--            {data: 'action', name: 'action', orderable: false, searchable: false},--}}
-    {{--        ]--}}
-    {{--    });--}}
-    {{--})--}}
-</script>
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -477,17 +268,7 @@
 
             return $result;
         }
-        // $(".select2-style1").select2({
-        //     templateResult: a,
-        //     templateSelection: a,
-        //     escapeMarkup: function (e) {
-        //         return e
-        //     }
-        // })
 
-        // function a(e) {
-        //     return e.id ? $('<span><img src="https://laravel8.spruko.com/noa/assets/images/users/' + e.element.value.toLowerCase() + '.jpg" class="rounded-circle avatar-sm" /> ' + e.text + "</span>") : e.text
-        // }
     });
 
 
@@ -519,48 +300,5 @@
             })
         })
     </script>
-    {{-- update course category--}}
-{{--    <script>--}}
-{{--        $(document).on('click', '.update-btn', function () {--}}
-{{--            event.preventDefault();--}}
-{{--            var formData = $('#courseCategoryForm').serialize();--}}
-{{--            $.ajax({--}}
-{{--                url: $('#courseCategoryForm').attr('action'),--}}
-{{--                method: "PUT",--}}
-{{--                data: formData,--}}
-{{--                dataType: "JSON",--}}
-{{--                // async: false,--}}
-{{--                // cache: false,--}}
-{{--                contentType: false,--}}
-{{--                processData: false,--}}
-{{--                // enctype: 'multipart/form-data',--}}
-{{--                success: function (message) {--}}
-{{--                    // console.log(formData);--}}
-{{--                    toastr.success(message);--}}
-{{--                    $('.update-btn').addClass('submit-btn').removeClass('update-btn');--}}
-{{--                    $('#courseCategoryForm').attr('action', '');--}}
-{{--                    $('#courseCategoryModal').modal('hide');--}}
-{{--                    window.location.reload();--}}
-{{--                    resetInputFields();--}}
-{{--                }--}}
-{{--            })--}}
-{{--        })--}}
-{{--    </script>--}}
-{{--    <!-- DragNDrop js -->--}}
 
-{{--    --}}{{--    <script src="{{ asset('/') }}backend/assets/js/dragNdrop/init.js"></script>--}}
-
-
-{{--    <script>--}}
-{{--        $(document).ready(function() {--}}
-{{--            $('#categoryImage').change(function() {--}}
-{{--                var imgURL = URL.createObjectURL(event.target.files[0]);--}}
-{{--                $('#imagePreview').attr('src', imgURL).css({--}}
-{{--                    height: 150+'px',--}}
-{{--                    width: 150+'px',--}}
-{{--                    marginTop: '5px'--}}
-{{--                });--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
 @endpush

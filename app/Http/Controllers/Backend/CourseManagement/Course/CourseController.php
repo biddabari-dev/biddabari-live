@@ -248,166 +248,60 @@ class CourseController extends Controller
     }
 
     public function assignStudent (Request $request, $transferToId)
-
     {
 //        return $request;
         abort_if(Gate::denies('assign-course-student'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-//        $validator = $request->validate([
-//            'course_transfer_form_id' => 'required',
-//            'student_file' => 'required',
-//        ]);
+
         $xlArray = [];
-        $this->course = Course::find($request->course_transfer_form_id);
+
         if (isset($request->student_file)){
             $xlArray = Excel::toArray(new StudentTransferImport(), $request->file('student_file'))[0];
-        }else{
-            $st=CourseStudent::where('course_id',$this->course->id)->get();
-            array_push($xlArray,['phone']);
-            foreach ($st as $student){
-                $stud=Student::where('id',$student->student_id)->first();
-                if (isset($stud)){
-                    $number=[$stud->mobile];
-                    array_push($xlArray,$number);
-                }
-            }
-        }
 
-
-        foreach ($xlArray as $key => $item)
-        {
-            if ($key != 0)
+            foreach ($xlArray as $key => $item)
             {
-                $user = User::where('mobile', $item[0])->first();
-                if (isset($user))
+                if ($key != 0)
                 {
-                    $parentOrder = ParentOrder::where(['user_id' => $user->id, 'parent_model_id' => $this->course->id, 'ordered_for' => 'course'])->first();
-                    if (isset($parentOrder))
+                    $user = User::where('mobile', $item[0])->first();
+                    if (isset($user))
                     {
-                        $parentOrder->parent_model_id = $transferToId;
-                        $parentOrder->save();
+                        $this->createNewParentOrder($user->id, $transferToId);
+                        $currentStudentId = Student::where('user_id', $user->id)->first()->id;
+                        Course::find($transferToId)->students()->attach($currentStudentId);
                     }
-                    $currentStudentId = Student::where('user_id', $user->id)->first()->id;
-                    Course::find($transferToId)->students()->attach($currentStudentId);
-                    $this->course->students()->detach($currentStudentId);
+                }
+            }
+        }else{
+            foreach ($request->course_transfer_form_id as $courseId)
+            {
+                $this->course = Course::find($courseId);
+                $st=CourseStudent::where('course_id',$courseId)->get();
+                foreach ($st as $student){
+                    $stud=Student::where('id',$student->student_id)->first();
+                    $this->createNewParentOrder($stud->user_id, $transferToId);
+                    Course::find($transferToId)->students()->attach($stud->id);
                 }
             }
         }
-
         return back()->with('success', 'Student assigned to course Successfully.');
     }
 
-//     {
-//         // return $transferToId;
-//         abort_if(Gate::denies('assign-course-student'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-//         $validator = $request->validate([
-//             'course_transfer_form_id' => 'required',
-//             'student_file' => 'required',
-//         ]);
-//         $xlArray = [];
-//         $this->course = Course::find($request->course_transfer_form_id);
-//         $xlArray = Excel::toArray(new StudentTransferImport(), $request->file('student_file'))[0];
-// //        $xlArray = Excel::toArray(new StudentTransferImport(), $request->file('student_file'));
-//         // return $xlArray[1];
-//         // Delete all student for this course
-
-//         // $course_students=CourseStudent::where('course_id',$transferToId);
-//         // $course_students->delete();
-
-//         foreach ($xlArray as $key => $item)
-//         {
-//             if ($key != 0)
-//             {
-//               $user = User::where('mobile',$item[0])->first();
-// //               return $user;
-//                 if (isset($user))
-//                  {
-// //                    return 'check';
-// //                    $parentOrder = ParentOrder::where(['user_id' => $user->id, 'parent_model_id' => $this->course->id, 'ordered_for' => 'course'])->first();
-// //                    $parentOrder = ParentOrder::where('user_id',$user->id)->first();
-
-// //                    $parentOrder = ParentOrder::where('parent_model_id',$transferToId)->where('user_id',$user->id)->first();
-
-//                     $parentOrders = ParentOrder::where('parent_model_id',$transferToId)->where('user_id',$user->id);
-//                     $parentOrders->delete();
-
-// //                    return 'sarowar';
-// //
-// //                    if (isset($parentOrders)){
-// //                        dd($parentOrders);
-// //                        $parentOrders->delete();
-// //                    }else{
-// //                        return 'sarowar';
-// //                    }
-
-
-//                     $parentOrder = ParentOrder::where('parent_model_id',$transferToId)->where('user_id',$user->id)->first();
-//                     if (isset($parentOrder))
-//                     {
-//                         $parentOrder->parent_model_id = $transferToId;
-//                         $parentOrder->status='approved';
-//                         $parentOrder->save();
-//                     }else{
-//                         $prorder=new ParentOrder();
-//                         $prorder->user_id=$user->id;
-//                         $prorder->parent_model_id=$transferToId;
-//                         $prorder->status='approved';
-//                         $prorder->payment_status='approved';
-//                         $prorder->save();
-//                     }
-// //                    $currentStudentId = Student::where('user_id', $user->id)->first()->id;
-// //                    $currentStudentId=Student::where('mobile',$user->mobile)->first();
-// //                     $currentStudentId=Student::where('user_id',$user->id)->where('mobile',$user->mobile)->first();
-
-//                     $currentstudents=Student::where('mobile',$user->mobile)->get();
-//                      $orstudent=[];
-//                     foreach ($currentstudents as $current){
-//                         $count=0;
-//                         if ($user->id == $current->user_id){
-//                             foreach ($currentstudents as $cur){
-//                                 if ($count > 0){
-//                                     $cur->delete();
-//                                 }
-//                                 $count=$count+1;
-//                             }
-// //                            $orstudent=$current;
-//                             array_push($orstudent,$current);
-//                         }else{
-//                             $current->delete();
-//                         }
-//                     }
-// //                    return $orstudent;
-
-//                     if ($orstudent == null){
-//                         $student=new Student();
-//                         $student->user_id =$user->id;
-//                         $student->first_name = $user->name;
-//                         $student->mobile = $user->mobile;
-//                         $student->save();
-// //                        return 'sarowarcheck';
-//                     }
-
-//                     $currentStudentId = Student::where('user_id',$user->id)->where('mobile',$user->mobile)->first();
-//                     $coursest=CourseStudent::where('course_id',$transferToId)->where('student_id',$currentStudentId->id)->get();
-//                     $count=0;
-//                     $stud=[];
-//                     foreach ($coursest as $corst){
-//                         $count=$count+1;
-//                         if ($count >1){
-//                             $corst->delete();
-//                         }else{
-//                             // $stud=$corst;
-//                             array_push($stud,$current);
-//                         }
-//                     }
-//                     if ($stud == null){
-//                         Course::find($transferToId)->students()->attach($currentStudentId->id);
-//                     }
-
-//                 }
-//             }
-//         }
-//         return back()->with('success', 'Student assigned to course Successfully.');
-//     }
+    public function createNewParentOrder($userId, $transferToId)
+    {
+        $parentOrder = new ParentOrder();
+        $parentOrder->user_id   = $userId;
+        $parentOrder->parent_model_id   = $transferToId;
+        $parentOrder->ordered_for   = 'course';
+        $parentOrder->payment_method   = 'cod';
+        $parentOrder->vendor   = 'bkash';
+        $parentOrder->paid_to   = '01963929208';
+        $parentOrder->paid_from   = '01963929208';
+        $parentOrder->txt_id   = 'abc';
+        $parentOrder->paid_amount   = '0';
+        $parentOrder->total_amount   = '0';
+        $parentOrder->status   = 'approved';
+        $parentOrder->payment_status   = 'complete';
+        $parentOrder->save();
+    }
 
     public function assignNewStudent(Request $request, $id)
     {
