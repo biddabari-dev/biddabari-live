@@ -497,6 +497,34 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" >
+        <div class="modal-content">
+            <div class="modal-header">
+                {{--                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>--}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+                <div class="card border-0">
+                    <img class="w-100 " style="height: 500px"  src="{{asset($poppup->image)}}" alt="">
+                    <p>{!! $poppup->description !!}</p>
+                    {{--                        <div class="d-flex">--}}
+                    {{--                            <a class="btn btn-primary btn-sm ms-auto" href="{{$poppup->active_btn_link}}"> {{$poppup->action_btn_text}}</a>--}}
+                    {{--                        </div>--}}
+                </div>
+            </div>
+            <div class="modal-footer">
+                {{--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
+                {{--                    <a type="button" class="btn btn-primary">--}}
+                <a class="btn btn-primary btn-sm ms-auto" href="{{$poppup->active_btn_link}}"> {{$poppup->action_btn_text}}</a>
+                {{--                    </a>--}}
+            </div>
+
+        </div>
+    </div>
+</div>
 @endsection
 @push('style')
 <style>
@@ -517,4 +545,12 @@
         }
     }
 </style>
+@endpush
+
+@push('script')
+    <script>
+        $(function (){
+            $('#staticBackdrop').modal('show');
+        });
+    </script>
 @endpush

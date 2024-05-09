@@ -57,6 +57,7 @@ class BasicViewController extends Controller
             'ourServices'       => OurService::whereStatus(1)->select('id', 'icon_code', 'image', 'title','content')->get(),
             'ourTeams'          => OurTeam::whereStatus(1)->where(['content_show_type' => 'home_page'])->select('id', 'name', 'designation', 'image','content_show_type','video_link','video_file')->get(),
             'studentOpinions'   => StudentOpinion::whereStatus(1)->select('id', 'show_type', 'name', 'image','comment')->get(),
+            'poppup'            => PopupNotification::where('status', 1)->first(),
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.home.home');
     }
