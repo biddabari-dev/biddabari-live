@@ -1,6 +1,7 @@
 /.phpunit.cache
 /node_modules
 /public/hot
+/public/pdfs
 /vendor
 .phpunit.result.cache
 Homestead.json
