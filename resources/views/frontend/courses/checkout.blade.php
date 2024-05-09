@@ -21,10 +21,10 @@
                                 <li><i class="ri-a-b"></i> {{ $course->total_exam ?? 0 }} Exam</li>
                                 <li><i class="ri-store-3-line"></i>{{ $course->total_live ?? 0 }} live class</li>
                             </ul>
-                            <div class="courses-details-into">
-                                <h3>Description</h3>
-                                <p>{!! $course->description !!}</p>
-                            </div>
+{{--                            <div class="courses-details-into">--}}
+{{--                                <h3>Description</h3>--}}
+{{--                                <p>{!! $course->description !!}</p>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
 
