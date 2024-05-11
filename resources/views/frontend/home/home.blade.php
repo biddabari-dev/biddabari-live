@@ -508,8 +508,8 @@
             </div>
             <div class="modal-body" >
                 <div class="card border-0">
-                    <img class="w-100 " style="height: 500px"  src="{{asset($poppup->image)}}" alt="">
-                    <p>{!! $poppup->description !!}</p>
+                    <img class="w-100 " style="height: 500px"  src="{{asset(file_exists($poppup->image) ? $poppup->image : 'frontend/logo/biddabari-card-logo.jpg')}}" alt="popup-img" >
+                    <p>{!! $poppup->description ?? '' !!}</p>
                     {{--                        <div class="d-flex">--}}
                     {{--                            <a class="btn btn-primary btn-sm ms-auto" href="{{$poppup->active_btn_link}}"> {{$poppup->action_btn_text}}</a>--}}
                     {{--                        </div>--}}
@@ -518,7 +518,7 @@
             <div class="modal-footer">
                 {{--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
                 {{--                    <a type="button" class="btn btn-primary">--}}
-                <a class="btn btn-primary btn-sm ms-auto" href="{{$poppup->active_btn_link}}"> {{$poppup->action_btn_text}}</a>
+                <a class="btn btn-primary btn-sm ms-auto" href="{{$poppup->active_btn_link ?? ''}}"> {{$poppup->action_btn_text ?? ''}}</a>
                 {{--                    </a>--}}
             </div>
 
@@ -548,9 +548,11 @@
 @endpush
 
 @push('script')
-    <script>
-        $(function (){
-            $('#staticBackdrop').modal('show');
-        });
-    </script>
+    @if(isset($poppup))
+        <script>
+            $(function (){
+                $('#staticBackdrop').modal('show');
+            });
+        </script>
+    @endif
 @endpush
