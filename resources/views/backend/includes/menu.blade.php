@@ -379,12 +379,13 @@
                         <span class="side-menu__label">Site Features</span>
                         <i class="angle fa fa-angle-right"></i>
                     </a>
-                    <ul class="slide-menu {{ request()->is('number-counters*') || request()->is('our-teams*')|| request()->is('course-routines*')|| request()->is('course-coupons*')|| request()->is('course-sections*')|| request()->is('course-section-contents*')|| request()->is('assign-student-to-course*')|| request()->is('assign-teacher-to-course*') ? 'open' : '' }}">
+                    <ul class="slide-menu {{ request()->is('number-counters*') || request()->is('our-teams*')|| request()->is('course-routines*')|| request()->is('course-coupons*')|| request()->is('course-sections*')|| request()->is('course-section-contents*')|| request()->is('assign-student-to-course*')|| request()->is('assign-teacher-to-course*') || request()->is('seos*') ? 'open' : '' }}">
                         <li class="side-menu-label1"><a href="javascript:void(0)"> Site Features</a></li>
                             <li><a href="{{ route('number-counters.index') }}" class="slide-item {{ request()->is('number-counters') || request()->is('number-counters*') ? 'active' : '' }}"> Home Page Counters</a></li>
                             <li><a href="{{ route('our-teams.index') }}" class="slide-item {{ request()->is('our-teams') || request()->is('our-teams*') ? 'active' : '' }}">Our Teams</a></li>
                             <li><a href="{{ route('our-services.index') }}" class="slide-item {{ request()->is('our-services') || request()->is('our-services*') ? 'active' : '' }}">Our Services</a></li>
                             <li><a href="{{ route('student-opinions.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Student Opinions</a></li>
+                            <li><a href="{{ route('seos.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Site SEO</a></li>
                     </ul>
                 </li>
                 <li class="slide">

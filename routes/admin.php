@@ -52,9 +52,10 @@ use App\Http\Controllers\Backend\AdditionalFeatureManagement\NumberCounter\Numbe
 use App\Http\Controllers\Backend\AdditionalFeatureManagement\OurTeam\OurTeamController;
 use App\Http\Controllers\Backend\AdditionalFeatureManagement\OurServices\OurServicesController;
 use App\Http\Controllers\Backend\AdditionalFeatureManagement\StudentOpinion\StudentOpinionController;
+use App\Http\Controllers\Backend\SEO\SeoController;
 
 Route::get('/test', function (){
-    
+
     return $_SERVER['DOCUMENT_ROOT'].'/backend';
     return base_path('../public_html');
     //   return public_path('backend/e.jpg');
@@ -84,6 +85,10 @@ Route::middleware([
     //    User Profile Management
     Route::get('/view-profile', [UserController::class, 'viewProfile'])->name('view-profile');
     Route::get('/all-users-page', [UserController::class, 'allUsersPage'])->name('all-users-page');
+
+    //    Seo Management
+    Route::resource('seos',SeoController::class);
+    Route::get('/select_seofor/{seofor}',[SeoController::class,'select_seofor'])->name('select_seofor');
 
 //    Course Management
     Route::resources([
