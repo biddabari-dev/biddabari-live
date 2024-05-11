@@ -90,9 +90,9 @@
                                                 @error('txt_id')<span class="text-danger">{{ $errors->first('txt_id') }}</span>@enderror
                                             </div>
                                             <div class="col-md-6 select2-div">
-                                                <label for="vendor" class="f-s-20">Vendor</label>
+                                                <label for="vendor" class="f-s-20">Payment Method</label>
                                                 <select name="vendor"  id="vendor" class="form-control">
-                                                    <option value="" selected disabled>Select a Vendor</option>
+                                                    <option value="" selected disabled>Select payment method</option>
                                                     <option value="bkash">Bkash</option>
                                                     <option value="nagad">Nagad</option>
                                                     <option value="rocket">Rocket</option>

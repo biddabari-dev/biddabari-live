@@ -7983,6 +7983,38 @@ img {
     .facility img {
         height: 160px !important;
     }
+
+    /* -----------Design Update Mizan  ---------------------- */
+.owl-theme .owl-nav {
+    display: none;
+}
+.hero-slider-area {
+    padding: 0px !important;
+}
+.categories-item a img {
+    height: 100px;
+    width: 100%;
+}
+.categories-item .content {
+    padding: 10px 10px !important;
+}
+.categories-item h3 {
+    font-size: 16px !important;
+}
+
+.content h3 a {
+    font-size: 20px !important;
+    line-height: 24px;
+}
+.courses-details-tab-content .courses-details-accordion .accordion .accordion-title {
+    padding: 5px 10px !important;
+}
+
+    /* .p-0 {
+        padding-left: 15px !important;
+        padding-right: 15px !important   haida off koira loici .. responsive theke off korte hobe 
+    } */
+/* -----------Design Update Mizan  ---------------------- */
 }
 
 
@@ -8139,6 +8171,33 @@ img {
     .facility img {
         height: 205px !important;
     }
+
+
+        /* -----------Design Update Mizan  ---------------------- */
+.owl-theme .owl-nav {
+    display: none;
+}
+.hero-slider-area {
+    padding: 0px !important;
+}
+.categories-item a img {
+    height: 135px;
+    width: 100%;
+}
+.categories-item .content {
+    padding: 10px 10px !important;
+}
+.categories-item h3 {
+    font-size: 22px !important;
+}
+
+.content h3 a {
+    font-size: 22px !important;
+}
+.courses-details-tab-content .courses-details-accordion .accordion .accordion-title {
+    padding: 5px 10px !important;
+}
+/* -----------Design Update Mizan  ---------------------- */
 }
 
 @media only screen and (min-width : 521px) and (max-width : 767px) {
@@ -8278,6 +8337,32 @@ img {
         .facility img {
             height: 225px !important;
         }
+
+        /* -----------Design Update Mizan  ---------------------- */
+        .owl-theme .owl-nav {
+            display: none;
+        }
+        .hero-slider-area {
+            padding: 0px !important;
+        }
+        .categories-item a img {
+            height: 135px;
+            width: 100%;
+        }
+        .categories-item .content {
+            padding: 10px 10px !important;
+        }
+        .categories-item h3 {
+            font-size: 22px !important;
+        }
+
+        .content h3 a {
+            font-size: 22px !important;
+        }
+        .courses-details-tab-content .courses-details-accordion .accordion .accordion-title {
+            padding: 5px 10px !important;
+        }
+        /* -----------Design Update Mizan  ---------------------- */
 }
 
 @media only screen and (min-width : 576px) and (max-width : 767px) {
@@ -8477,4 +8562,21 @@ img {
         height: 225px !important;
         margin-top: 25%;
     }
+
+            /* -----------Design Update Mizan  ---------------------- */
+            .owl-theme .owl-nav {
+                display: none;
+            }
+            .hero-slider-area {
+                padding: 0px !important;
+            }
+            .categories-item a img {
+                height: 150px;
+                width: 100%;
+            }
+            .categories-item .content {
+                padding: 10px 10px !important;
+            }
+          
+            /* -----------Design Update Mizan  ---------------------- */
 }
