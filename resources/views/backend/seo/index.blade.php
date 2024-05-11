@@ -233,8 +233,6 @@
             if ($seofor == 'custom_page'){
                 $('#custom_page_link_div').removeClass('d-none').attr('data-active', '');
                 $('#parent_model_div').addClass('d-none').attr('data-active', '');
-                // $('#custom_page_link_div').addClass
-                // $('#parent_model_div').hide()
             }else {
                 $('#custom_page_link_div').addClass('d-none').attr('data-active', '');
                 $('#parent_model_div').removeClass('d-none').attr('data-active', '');
