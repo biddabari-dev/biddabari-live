@@ -36,7 +36,7 @@ class SeoController extends Controller
         }elseif ($seofor == 'blog'){
             $data=Blog::select('id','title')->get();
         }elseif ($seofor == 'course_category'){
-            $data=CourseCategory::select('id','title')->get();
+            $data=CourseCategory::select('id','name')->get();
         }elseif ($seofor == 'blog_category'){
             $data=BlogCategory::select('id','name')->get();
         }elseif ($seofor == 'batch_exam_category'){
