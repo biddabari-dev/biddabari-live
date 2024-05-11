@@ -303,16 +303,17 @@ class ExamController extends Controller
             $this->enrolledUsers = Course::find($baseType->id)->students;
             $this->xmParticipateUsers = CourseClassExamResult::where(['course_section_content_id' => $contentId])->get(['id', 'user_id', 'course_section_content_id']);
         }
-        $count = 0;
+        
         foreach ($this->enrolledUsers as $enrolledUser)
         {
+            $count = 0;
             if (count($this->xmParticipateUsers) > 0)
             {
                 foreach ($this->xmParticipateUsers as $xmParticipateUser)
                 {
                     if ($enrolledUser->user_id == $xmParticipateUser->user_id)
                     {
-                        $count = $count++;
+                        $count = $count + 1;
                         array_push($this->presentStudents, $enrolledUser->user);
                     }
 //                    else {
