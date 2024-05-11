@@ -121,7 +121,6 @@
                                         <option value="batch_exam_category">batch_exam_category</option>
                                         <option value="product_category">product_category</option>
                                         <option value="blog_category">blog_category</option>
-                                        <option value="product_category">product_category</option>
                                         <option value="custom_page">custom_page</option>
 {{--                                        @foreach($productCategories as $productCategory)--}}
 {{--                                            <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>--}}

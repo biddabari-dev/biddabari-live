@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Backend\SEO;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\BatchExamManagement\BatchExam;
+use App\Models\Backend\BatchExamManagement\BatchExamCategory;
 use App\Models\Backend\BlogManagement\Blog;
 use App\Models\Backend\BlogManagement\BlogCategory;
 use App\Models\Backend\Course\Course;
 use App\Models\Backend\Course\CourseCategory;
 use App\Models\Backend\ProductManagement\Product;
+use App\Models\Backend\ProductManagement\ProductCategory;
 use App\Models\Seo;
 use Illuminate\Http\Request;
 
@@ -28,21 +30,21 @@ class SeoController extends Controller
     {
         $data=[];
         if ($seofor == 'course'){
-            $data=Course::select('id','title')->get();
+            $data = Course::select('id','title')->get();
         }elseif ($seofor == 'batch_exam'){
-            $data=BatchExam::select('id','title')->get();
+            $data = BatchExam::select('id','title')->get();
         }elseif ($seofor == 'product'){
-            $data=Product::select('id','title')->get();
+            $data = Product::select('id','title')->get();
         }elseif ($seofor == 'blog'){
-            $data=Blog::select('id','title')->get();
+            $data = Blog::select('id','title')->get();
         }elseif ($seofor == 'course_category'){
-            $data=CourseCategory::select('id','name')->get();
+            $data = CourseCategory::select('id','name')->get();
         }elseif ($seofor == 'blog_category'){
-            $data=BlogCategory::select('id','name')->get();
+            $data = BlogCategory::select('id','name')->get();
         }elseif ($seofor == 'batch_exam_category'){
-            $data=Course::select('id','name')->get();
+            $data = BatchExamCategory::select('id','name')->get();
         }elseif ($seofor == 'product_category'){
-            $data=Course::select('id','name')->get();
+            $data = ProductCategory::select('id','name')->get();
         }
         return response()->json(['data'=>$data,'old_seofor'=>$seofor]);
     }
