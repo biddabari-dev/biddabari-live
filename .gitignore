@@ -3,6 +3,7 @@
 /public/hot
 /public/pdfs
 /vendor
+/public/backend/assets/uploaded-files
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
