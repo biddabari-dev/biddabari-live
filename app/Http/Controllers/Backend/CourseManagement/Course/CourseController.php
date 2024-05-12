@@ -264,9 +264,14 @@ class CourseController extends Controller
                     $user = User::where('mobile', $item[0])->first();
                     if (isset($user))
                     {
-                        $this->createNewParentOrder($user->id, $transferToId);
-                        $currentStudentId = Student::where('user_id', $user->id)->first()->id;
-                        Course::find($transferToId)->students()->attach($currentStudentId);
+                        $student=Student::where('user_id', $user->id)->first();
+                        if(isset($student)){
+                            $this->createNewParentOrder($user->id, $transferToId);
+                            $currentStudentId = $student->id;
+                            Course::find($transferToId)->students()->attach($currentStudentId);
+
+                        }
+                        
                     }
                 }
             }

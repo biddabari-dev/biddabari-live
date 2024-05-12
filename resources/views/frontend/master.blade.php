@@ -164,7 +164,7 @@
 
 <script async src="{{ asset('/') }}frontend/assets/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 <script async src="{{ asset('/') }}frontend/assets/js/meanmenu.min.js" type="text/javascript"></script>
-{{--<script async src="{{ asset('/') }}frontend/assets/js/ajaxchimp.min.js" type="text/javascript"></script>--}}
+<script async src="{{ asset('/') }}frontend/assets/js/ajaxchimp.min.js" type="text/javascript"></script>
 <script async src="{{ asset('/') }}frontend/assets/js/form-validator.min.js" type="text/javascript"></script>
 <script async src="{{ asset('/') }}frontend/assets/js/contact-form-script.min.js" type="text/javascript"></script>
 <script async src="{{ asset('/') }}frontend/assets/js/owl.carousel.min.js" type="text/javascript"></script>
@@ -177,7 +177,7 @@
 
 
 
-<script defer src="{{ asset('/') }}frontend/assets/js/custom.min.js"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/custom.js"></script>
 
 
 <script async src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.min.js"></script>
