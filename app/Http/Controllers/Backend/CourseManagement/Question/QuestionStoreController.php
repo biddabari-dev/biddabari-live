@@ -248,7 +248,9 @@ class QuestionStoreController extends Controller
 
     public function getFavouriteQuestions($userId)
     {
-        $this->questionStores = FavouriteQuestion::where(['user_id' => $userId])->with('questionStore')->get();
+        $this->questionStores = FavouriteQuestion::where(['user_id' => $userId])->with(['questionStore' => function ($questionStore) {
+            $questionStore->select('id', 'mcq_store_id', 'question_type', 'question', 'question_description', 'question_image', 'question_file_type', 'question_video_link', 'written_que_ans', 'written_que_ans_description', 'written_que_file', 'has_all_wrong_ans')->with('questionOptions')->get();
+        }])->get();
         return \response()->json(['questions' => $this->questionStores]);
     }
 }
