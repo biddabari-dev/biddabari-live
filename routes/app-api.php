@@ -45,6 +45,9 @@ Route::prefix('v1')->name('api.')->group(function (){
 
     Route::post('/send-password-reset-otp', [CustomAuthController::class, 'passResetOtp'])->name('send-password-reset-otp');
     Route::post('/verify-pass-reset-otp', [CustomAuthController::class, 'verifyPassResetOtp'])->name('verify-pass-reset-otp');
+    Route::get('/check-app-version', function (){
+        return response()->json(['version' => '1.7.3']);
+    });
 
     Route::middleware([
         'auth:sanctum',
