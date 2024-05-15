@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\CustomAuth;
 
+use App\helper\ViewHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\UserManagement\Student;
 use App\Models\User;
@@ -315,6 +316,15 @@ class CustomAuthController extends Controller
             {
                 session_start();
                 $_SESSION['otp'] = $otpNumber;
+                if (str()->contains(url()->current(), '/api/'))
+                {
+                    return response()->json([
+                        'otp'       => $otpNumber,
+                        'encoded_otp'       => base64_encode($otpNumber),
+                        'mobile'    => $request->mobile,
+                        'message'   => 'OTP send successfully',
+                    ]);
+                }
                 return redirect(url('/password-reset-otp?mn='.$request->mobile.'&oc='.base64_encode($otpNumber)))->with('success', 'OTP send successfully');
             } else {
                 return back()->with('error', 'Invalid Mobile Number or Format. Please Try again.');
