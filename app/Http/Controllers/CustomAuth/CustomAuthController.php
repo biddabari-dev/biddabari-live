@@ -349,6 +349,13 @@ class CustomAuthController extends Controller
                 $user = User::where(['mobile' => $request->mobile])->first();
                 $user->password = bcrypt($request->password);
                 $user->save();
+                if (str()->contains(url()->current(), '/api/'))
+                {
+                    return response()->json([
+                        'status'    => 'success',
+                        'message' => 'Password changed successfully.'
+                    ]);
+                }
                 return redirect('/login')->with('success', 'Password Changed successfully.');
             } else {
                 return back()->with('error', 'OTP mismatch. Please try again.');
