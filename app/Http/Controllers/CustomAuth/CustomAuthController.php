@@ -327,11 +327,13 @@ class CustomAuthController extends Controller
                 }
                 return redirect(url('/password-reset-otp?mn='.$request->mobile.'&oc='.base64_encode($otpNumber)))->with('success', 'OTP send successfully');
             } else {
-                return back()->with('error', 'Invalid Mobile Number or Format. Please Try again.');
+                return ViewHelper::returEexceptionError('Invalid Mobile Number or Format. Please Try again.');
+//                return back()->with('error', 'Invalid Mobile Number or Format. Please Try again.');
             }
         } catch (\Exception $exception)
         {
-            return redirect()->back()->with('error', 'Something went wrong. Please try again');
+            return ViewHelper::returEexceptionError('Something went wrong. Please try again');
+//            return redirect()->back()->with('error', 'Something went wrong. Please try again');
         }
     }
 
@@ -358,11 +360,13 @@ class CustomAuthController extends Controller
                 }
                 return redirect('/login')->with('success', 'Password Changed successfully.');
             } else {
-                return back()->with('error', 'OTP mismatch. Please try again.');
+                return ViewHelper::returEexceptionError('OTP mismatch. Please try again.');
+//                return back()->with('error', 'OTP mismatch. Please try again.');
             }
         } else
         {
-            return back()->with('error', 'Invalid Otp. Please try again.');
+            return ViewHelper::returEexceptionError('Invalid Otp. Please try again.');
+//            return back()->with('error', 'Invalid Otp. Please try again.');
         }
     }
 }
