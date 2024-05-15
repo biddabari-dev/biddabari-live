@@ -44,7 +44,7 @@ Route::prefix('v1')->name('api.')->group(function (){
     Route::get('get-all-batch-exams', [AppApiController::class, 'getAllBatchDetails']);
 
     Route::post('/send-password-reset-otp', [CustomAuthController::class, 'passResetOtp'])->name('send-password-reset-otp');
-    Route::get('/password-reset-otp', [CustomAuthController::class, 'passwordResetOtp'])->name('password-reset-otp');
+    Route::post('/verify-pass-reset-otp', [CustomAuthController::class, 'verifyPassResetOtp'])->name('verify-pass-reset-otp');
 
     Route::middleware([
         'auth:sanctum',
