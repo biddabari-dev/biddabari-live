@@ -54,7 +54,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="instructors-card ab-shadow">
                         <a href="javascript:void(0)">
-                            <img src="{{ asset('/') }}frontend/assets/images/courses/j6RzLRZwuCNyx61iljyofCu4LVHk5t7X.jpg" alt="Team Images">
+                            <img src="{{ asset('/') }}frontend/assets/images/courses/j6RzLRZwuCNyx61iljyofCu4LVHk5t7X.jpg" alt="Team Images" style="height:300px">
                         </a>
                         <div class="content py-1">
 
@@ -66,7 +66,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="instructors-card ab-shadow">
                         <a href="javascript:void(0)">
-                            <img src="{{ asset('/') }}frontend/assets/images/courses/pxl1RjegF9AJ3Xv2VqS07NKsopE0GzDnKt14GVSm.jpg" alt="Team Images">
+                            <img src="{{ asset('/') }}frontend/assets/images/courses/pxl1RjegF9AJ3Xv2VqS07NKsopE0GzDnKt14GVSm.jpg" alt="Team Images" style="height:300px">
                         </a>
                         <div class="content py-1">
 
@@ -78,7 +78,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="instructors-card ab-shadow">
                         <a href="javascript:void(0)">
-                            <img src="{{ asset('/') }}frontend/assets/images/courses/QseeWuKN7MfWiQuLBqdKDjJuk66AyBFUo1NInXfu.png" alt="Team Images">
+                            <img src="{{ asset('/') }}frontend/assets/images/courses/QseeWuKN7MfWiQuLBqdKDjJuk66AyBFUo1NInXfu.png" alt="Team Images" style="height:300px">
                         </a>
                         <div class="content py-1">
 
@@ -90,7 +90,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="instructors-card ab-shadow">
                         <a href="javascript:void(0)">
-                            <img src="{{ asset('/') }}frontend/assets/images/courses/ik62fWZmfzW5pKLNIAfqwD3PwAB2JeGOpy6NpHI6.jpg" alt="Team Images">
+                            <img src="{{ asset('/') }}frontend/assets/images/courses/ik62fWZmfzW5pKLNIAfqwD3PwAB2JeGOpy6NpHI6.jpg" alt="Team Images" style="height:300px">
                         </a>
                         <div class="content py-1">
 

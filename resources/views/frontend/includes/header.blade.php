@@ -7,11 +7,11 @@
                         <ul>
                             <li>
                                 <i class="ri-phone-fill"></i>
-                                <a href="">+8801896060809</a>
+                                <a href="tel:++8801896060809">+8801896060809</a>
                             </li>
                             <li>
                                 <i class="ri-mail-fill"></i>
-                                <a href=""><span class="__cf_email__">info@biddabari.com</span></a>
+                                <a href="mailto:info@biddabari.com"><span class="__cf_email__">info@biddabari.com</span></a>
                             </li>
                         </ul>
                     </div>
@@ -34,17 +34,17 @@
                     <div class="header-right">
                         <ul class="social-list">
                             <li>
-                                <a href="https://www.facebook.com/" target="_blank">
+                                <a href="https://www.facebook.com/biddaabari" target="_blank">
                                     <i class="ri-facebook-fill"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://twitter.com/" target="_blank">
+                                <a href="https://twitter.com/biddabari" target="_blank">
                                     <i class="ri-twitter-fill"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://www.pinterest.com/" target="_blank">
+                                <a href="https://www.instagram.com/biddabari.insta/" target="_blank">
                                     <i class="ri-instagram-line"></i>
                                 </a>
                             </li>
@@ -138,7 +138,7 @@
 
                             @else
                             <a href="{{ route('login') }}" {{--data-bs-toggle="modal" data-bs-target="#authModal" --}}
-                                class="default-btn two border-radius-50">Sign In</a>
+                                class="default-btn two border-radius-50">Log In</a>
                             @endif
                         </div>
                     </div>

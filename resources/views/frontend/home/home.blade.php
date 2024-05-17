@@ -57,7 +57,7 @@
             </div>
             <div class="col-lg-3 col-sm-6 col-6 col-m-6">
                 <div class="featured-item-two">
-                    <a href="javascript:void(0)" class="p-2">
+                    <a href="" class="p-2">
                         <i class="flaticon-wellness"></i>
                         <h3>লাইভ এসাইনমেন্ট</h3>
                     </a>
@@ -81,7 +81,7 @@
             </div>
             <div class="col-lg-3 col-sm-6 col-6 col-m-6">
                 <div class="featured-item-two">
-                    <a href="javascript:void(0)" class="p-2">
+                    <a href="#StudentsComments" class="p-2">
                         <i class="flaticon-camera"></i>
                         <h3>শিক্ষার্থীর মন্তব্য</h3>
                     </a>
@@ -319,6 +319,7 @@
 </div>
 
 
+
 <div class="py-5 section-bg">
     <div class="container">
         <div class="row pb-4">
@@ -432,7 +433,7 @@
     </div>
 </div>
 
-<div class="testimonials-area bg-light py-5">
+<div id="StudentsComments" class="testimonials-area bg-light py-5">
     <div class="container">
         <div class="section-title text-center">
             <h2>শিক্ষার্থীদের মতামত</h2>
