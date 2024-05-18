@@ -11,13 +11,13 @@
                 @forelse($teachers as $teacher)
                     <div class="col-lg-3 col-md-6">
                         <div class="instructors-card ab-shadow">
-                            <a href="{{ route('front.instructor-details', ['id' => $teacher->id, 'slug' => str_replace(' ', '-', $teacher->name)]) }}">
-                                <img src="{{ asset(isset($teacher->image) ? '' : 'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg' ) }}" alt="Team Images">
+                            <a href="{{--{{ route('front.instructor-details', ['id' => $teacher->id, 'slug' => str_replace(' ', '-', $teacher->name)]) }}--}}">
+                                <img src="{{ asset(file_exists($teacher->user->user_photo_path) ? $teacher->user->user_photo_path : 'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg' ) }}" alt="Team Images">
                             </a>
-                            <div class="content py-1">
+                            <div class="content py-3">
 
-                                <h3><a href="{{ route('front.instructor-details', ['id' => $teacher->id, 'slug' => str_replace(' ', '-', $teacher->name)]) }}">{{ $teacher->user->name }}</a></h3>
-                                <span>{{ $teacher->subject }}</span>
+                                <h3><a href="{{--{{ route('front.instructor-details', ['id' => $teacher->id, 'slug' => str_replace(' ', '-', $teacher->name)]) }}--}}">{{ $teacher->user->name ?? '' }}</a></h3>
+                                <span>{{ $teacher->subject ?? '' }}</span>
                             </div>
                         </div>
                     </div>

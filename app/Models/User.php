@@ -207,6 +207,10 @@ class User extends Authenticatable
         self::$user->name       = $request->name;
         self::$user->email       = $request->email;
         self::$user->mobile       = $request->mobile;
+        if ($request->hasFile('image'))
+        {
+            self::$user->profile_photo_path       = imageUpload($request->file('image'), 'user-images/', 'user', '280', '350', (isset($id) ? static::find($id)->image : null));
+        }
         self::$user->save();
     }
     public function teachers()
