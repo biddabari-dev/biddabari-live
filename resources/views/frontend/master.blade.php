@@ -175,13 +175,13 @@
 <script async src="{{ asset('/') }}frontend/assets/js/tweenMax.min.js" type="text/javascript"></script>
 
 
-
-
 <script  src="{{ asset('/') }}frontend/assets/js/custom.js"></script>
 
 
-<script async src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.min.js"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/multi-countdown.min.js"></script>
+<script async src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.js"></script>
+{{--<script async src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.min.js"></script>--}}
+<script async src="{{ asset('/') }}frontend/assets/js/multi-countdown.js"></script>
+{{--<script async src="{{ asset('/') }}frontend/assets/js/multi-countdown.min.js"></script>--}}
 
 
 <script>
@@ -196,7 +196,8 @@
 @yield('js')
 
 {{--custom js--}}
-<script defer src="{{ asset('/') }}frontend/assets/js/my-custom-mod.min.js"></script>
+<script defer src="{{ asset('/') }}frontend/assets/js/my-custom-mod.js"></script>
+{{--<script defer src="{{ asset('/') }}frontend/assets/js/my-custom-mod.min.js"></script>--}}
 
 
 <!-- Toastr Css -->
