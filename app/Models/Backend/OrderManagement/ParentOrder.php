@@ -201,7 +201,7 @@ class ParentOrder extends Model
 
     public static function generateOrderNumber ()
     {
-        $number = rand(100000, 999999);
+        $number = rand(100000, 999999999);
         $existNumber = ParentOrder::where('order_invoice_number', $number)->first();
         if (!empty($existNumber) && count($existNumber) > 0)
         {
