@@ -43,7 +43,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use HasApiTokens;
 
-    protected $fillable = ['name', 'email', 'password', 'status', 'mobile', 'device_token'];
+    protected $fillable = ['name', 'email', 'password', 'status', 'mobile', 'device_token', 'profile_photo_path'];
 
     protected $searchableFields = ['*'];
 
@@ -180,6 +180,10 @@ class User extends Authenticatable
         self::$user->name       = $request->name;
         self::$user->email       = $request->email;
         self::$user->mobile       = $request->mobile;
+        if ($request->hasFile('image'))
+        {
+            self::$user->profile_photo_path       = imageUpload($request->file('image'), 'user-images/', 'user', '280', '350', (isset($id) ? static::find($id)->image : null));
+        }
         if (isset($request->password))
         {
             self::$user->password   = Hash::make($request->password);

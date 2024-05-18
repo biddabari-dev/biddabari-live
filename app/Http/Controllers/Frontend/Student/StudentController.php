@@ -253,6 +253,10 @@ class StudentController extends Controller
                 }
             }
         }
+        if (isset($isStudent) && $isStudent != true)
+        {
+            return redirect()->route('view-profile');
+        }
         if ($isStudent)
         {
             $this->data = [

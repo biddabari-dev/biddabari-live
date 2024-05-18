@@ -48,7 +48,7 @@
                                     <i class="ri-instagram-line"></i>
                                 </a>
                             </li>
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -125,8 +125,10 @@
                                         class="text-dark f-s-20">Dashboard</a></div>
                                 <div class="dropdown-item"><a href="{{ route('front.all-job-circulars') }}"
                                         class="text-dark f-s-20">Job Circulars</a></div>
+
                                 <div class="dropdown-item"><a href="{{ route('front.student.view-profile') }}"
                                         class="text-dark f-s-20">Profile</a></div>
+
                                 <div class="dropdown-item"
                                     onclick="event.preventDefault(); document.getElementById('logoutForm').submit()">
                                     <a href="" class="text-dark f-s-20">Logout</a>
