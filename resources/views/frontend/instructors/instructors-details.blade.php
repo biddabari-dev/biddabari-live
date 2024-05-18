@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="instructors-details-img">
-                        <img src="{{ asset(isset($teacher->image) ? $teacher->image : 'frontend/assets/images/instructors/instructors-details.jpg') }}" alt="Instructor" />
+                        <img src="{{ asset(isset($teacher->image) ? $teacher->image : 'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg') }}" alt="Instructor" />
                         <ul class="social-link">
                             <li class="social-title">Follow me:</li>
                             <li>
