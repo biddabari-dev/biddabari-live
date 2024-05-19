@@ -5,14 +5,14 @@
     <div class="row" style=" min-height: 500px;">
         <div class="col-md-8 quiz-wizard mx-auto">
             <div class="card border-0">
-                <div class="card-header d-flex align-items-center position-sticky" style="top: 105px!important; z-index: 10;">
-                    <div>
+                <div class="card-header d-flex align-items-center position-sticky" >
+                    <div class="custome_mobile_null">
                         <div>
                             <h2 class="quiz-name">Exam - {{ $exam->title }}</h2>
                             <span class="course-name d-block">{{ count($exam->questionStores) }} Questions</span>
                         </div>
                     </div>
-                    <div class="mx-auto">
+                    <div class="mx-auto custome_mobile_null">
                         <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a>
                     </div>
                     <div class="ms-auto">
@@ -49,13 +49,13 @@
                                                 </div>
                                                 @if(!empty($question->question_image))
                                                     <div class="{{--image-container--}}">
-                                                        <img src="{{ $question->question_image }}" class="fit-image" alt="" style="max-height: 350px" />
+                                                        <img src="{{ $question->question_image }}" class="fit-image" alt="" style="max-height: 350px; max-width: 94%" />
                                                     </div>
                                                 @endif
                                                 @if(isset($question->question_option_image))
                                                     <div class="row py-2">
                                                         <div class="col-12">
-                                                            <img src="{{ asset($question->question_option_image) }}" class="" alt="" style="max-height: 350px">
+                                                            <img src="{{ asset($question->question_option_image) }}" class="" alt="" style="max-height: 350px; max-width: 94%">
                                                         </div>
                                                     </div>
                                                 @endif
@@ -101,7 +101,7 @@
                                                         <div class="my-2 d-grid"><a href="{{ asset($question->question_image) }}" download="" class="btn btn-sm btn-success text-warning col-3 ms-auto">Download</a></div>
                                                         <div id="pdf-container" data-pdf-url="{{ asset($question->question_image) }}"></div>
                                                     @else
-                                                        <img src="{{ asset($question->question_image) }}" alt="" style="height: 60px;">
+                                                        <img src="{{ asset($question->question_image) }}" alt="" style="height: 60px; width: 94%;">
                                                     @endif
                                                 </div>
                                             </div>
@@ -229,111 +229,115 @@
 </script>
 {{--disable page reload start--}}
 
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>--}}
+{{--<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';</script>--}}
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.3.0/fabric.min.js"></script>--}}
+{{--<script src="{{ asset('/') }}backend/assets/plugins/pdf-draw/arrow.fabric.js"></script>--}}
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.2.0/jspdf.umd.min.js"></script>--}}
+{{--<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>--}}
+{{--<script src="{{ asset('/') }}backend/assets/plugins/pdf-draw/pdfannotate.js"></script>--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
-<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.3.0/fabric.min.js"></script>
-<script src="{{ asset('/') }}backend/assets/plugins/pdf-draw/arrow.fabric.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.2.0/jspdf.umd.min.js"></script>
-<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-<script src="{{ asset('/') }}backend/assets/plugins/pdf-draw/pdfannotate.js"></script>
+<script src="{{ asset('/') }}backend/ppdf/js/pdfviewer.jquery.js"></script>
 <script>
     var pdfUrl = $('#pdf-container').attr('data-pdf-url');
+
+    $('#pdf-container').pdfViewer(pdfUrl);
     {{--        var pdf = new PDFAnnotate("pdf-container", "{{ !empty($sectionContent->pdf_link) ? $sectionContent->pdf_link : asset($sectionContent->pdf_file) }}", {--}}
-    var pdf = new PDFAnnotate("pdf-container", pdfUrl, {
-        onPageUpdated(page, oldData, newData) {
-            console.log(page, oldData, newData);
-        },
-        ready() {
-            console.log("Plugin initialized successfully");
-        },
-        scale: 1.5,
-        pageImageCompression: "MEDIUM", // FAST, MEDIUM, SLOW(Helps to control the new PDF file size)
-    });
-
-    function changeActiveTool(event) {
-        var element = $(event.target).hasClass("tool-button")
-            ? $(event.target)
-            : $(event.target).parents(".tool-button").first();
-        $(".tool-button.active").removeClass("active");
-        $(element).addClass("active");
-    }
-
-    function enableSelector(event) {
-        event.preventDefault();
-        changeActiveTool(event);
-        pdf.enableSelector();
-    }
-
-    function enablePencil(event) {
-        event.preventDefault();
-        changeActiveTool(event);
-        pdf.enablePencil();
-    }
-
-    function enableAddText(event) {
-        event.preventDefault();
-        changeActiveTool(event);
-        pdf.enableAddText();
-    }
-
-    function enableAddArrow(event) {
-        event.preventDefault();
-        changeActiveTool(event);
-        pdf.enableAddArrow();
-    }
-
-    function addImage(event) {
-        event.preventDefault();
-        pdf.addImageToCanvas()
-    }
-
-    function enableRectangle(event) {
-        event.preventDefault();
-        changeActiveTool(event);
-        pdf.setColor('rgba(255, 0, 0, 0.3)');
-        pdf.setBorderColor('blue');
-        pdf.enableRectangle();
-    }
-
-    function deleteSelectedObject(event) {
-        event.preventDefault();
-        pdf.deleteSelectedObject();
-    }
-
-    function savePDF() {
-        // pdf.savePdf();
-        pdf.savePdf("written-ans"); // save with given file name
-    }
-
-    function clearPage() {
-        pdf.clearActivePage();
-    }
-
-    function showPdfData() {
-        var string = pdf.serializePdf();
-        $('#dataModal .modal-body pre').first().text(string);
-        PR.prettyPrint();
-        $('#dataModal').modal('show');
-    }
-
-    $(function () {
-        $('.color-tool').click(function () {
-            $('.color-tool.active').removeClass('active');
-            $(this).addClass('active');
-            color = $(this).get(0).style.backgroundColor;
-            pdf.setColor(color);
-        });
-
-        $('#brush-size').change(function () {
-            var width = $(this).val();
-            pdf.setBrushSize(width);
-        });
-
-        $('#font-size').change(function () {
-            var font_size = $(this).val();
-            pdf.setFontSize(font_size);
-        });
-    });
+    // var pdf = new PDFAnnotate("pdf-container", pdfUrl, {
+    //     onPageUpdated(page, oldData, newData) {
+    //         console.log(page, oldData, newData);
+    //     },
+    //     ready() {
+    //         console.log("Plugin initialized successfully");
+    //     },
+    //     scale: 1.5,
+    //     pageImageCompression: "MEDIUM", // FAST, MEDIUM, SLOW(Helps to control the new PDF file size)
+    // });
+    //
+    // function changeActiveTool(event) {
+    //     var element = $(event.target).hasClass("tool-button")
+    //         ? $(event.target)
+    //         : $(event.target).parents(".tool-button").first();
+    //     $(".tool-button.active").removeClass("active");
+    //     $(element).addClass("active");
+    // }
+    //
+    // function enableSelector(event) {
+    //     event.preventDefault();
+    //     changeActiveTool(event);
+    //     pdf.enableSelector();
+    // }
+    //
+    // function enablePencil(event) {
+    //     event.preventDefault();
+    //     changeActiveTool(event);
+    //     pdf.enablePencil();
+    // }
+    //
+    // function enableAddText(event) {
+    //     event.preventDefault();
+    //     changeActiveTool(event);
+    //     pdf.enableAddText();
+    // }
+    //
+    // function enableAddArrow(event) {
+    //     event.preventDefault();
+    //     changeActiveTool(event);
+    //     pdf.enableAddArrow();
+    // }
+    //
+    // function addImage(event) {
+    //     event.preventDefault();
+    //     pdf.addImageToCanvas()
+    // }
+    //
+    // function enableRectangle(event) {
+    //     event.preventDefault();
+    //     changeActiveTool(event);
+    //     pdf.setColor('rgba(255, 0, 0, 0.3)');
+    //     pdf.setBorderColor('blue');
+    //     pdf.enableRectangle();
+    // }
+    //
+    // function deleteSelectedObject(event) {
+    //     event.preventDefault();
+    //     pdf.deleteSelectedObject();
+    // }
+    //
+    // function savePDF() {
+    //     // pdf.savePdf();
+    //     pdf.savePdf("written-ans"); // save with given file name
+    // }
+    //
+    // function clearPage() {
+    //     pdf.clearActivePage();
+    // }
+    //
+    // function showPdfData() {
+    //     var string = pdf.serializePdf();
+    //     $('#dataModal .modal-body pre').first().text(string);
+    //     PR.prettyPrint();
+    //     $('#dataModal').modal('show');
+    // }
+    //
+    // $(function () {
+    //     $('.color-tool').click(function () {
+    //         $('.color-tool.active').removeClass('active');
+    //         $(this).addClass('active');
+    //         color = $(this).get(0).style.backgroundColor;
+    //         pdf.setColor(color);
+    //     });
+    //
+    //     $('#brush-size').change(function () {
+    //         var width = $(this).val();
+    //         pdf.setBrushSize(width);
+    //     });
+    //
+    //     $('#font-size').change(function () {
+    //         var font_size = $(this).val();
+    //         pdf.setFontSize(font_size);
+    //     });
+    // });
 
 </script>
 

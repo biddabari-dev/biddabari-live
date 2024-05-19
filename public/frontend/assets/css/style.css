@@ -7825,9 +7825,31 @@ img {
     margin-top: 18.5%;
 }
 
+.quiz-wizard .position-sticky{
+    top: 105px!important;
+    z-index: 10;
+}
 
 
 @media only screen and (min-width : 280px) and (max-width: 420px) {
+
+    .quiz-wizard .card-header {
+        padding: 34px 24px !important;
+    }
+
+    .quiz-wizard .position-sticky{
+        top: 67px!important;
+        z-index: 10;
+    }
+
+    .flipTimer .digit-set {
+        width: 35px !important;
+    }
+
+    .custome_mobile_null{
+        display: none;
+    }
+
 
     .mobile_res {
         display: none;
@@ -8012,7 +8034,7 @@ img {
 
     /* .p-0 {
         padding-left: 15px !important;
-        padding-right: 15px !important   haida off koira loici .. responsive theke off korte hobe 
+        padding-right: 15px !important   haida off koira loici .. responsive theke off korte hobe
     } */
 /* -----------Design Update Mizan  ---------------------- */
 }
@@ -8020,6 +8042,23 @@ img {
 
 
 @media only screen and (min-width : 421px) and (max-width: 520px) {
+
+    .quiz-wizard .card-header {
+        padding: 34px 24px !important;
+    }
+
+    .quiz-wizard .position-sticky{
+        top: 67px!important;
+        z-index: 10;
+    }
+
+    .flipTimer .digit-set {
+        width: 35px !important;
+    }
+
+    .custome_mobile_null{
+        display: none;
+    }
 
     .mobile_res {
         display: none;
@@ -8201,6 +8240,24 @@ img {
 }
 
 @media only screen and (min-width : 521px) and (max-width : 767px) {
+
+    .quiz-wizard .card-header {
+        padding: 34px 24px !important;
+    }
+
+    .quiz-wizard .position-sticky{
+        top: 67px!important;
+        z-index: 10;
+    }
+
+    .flipTimer .digit-set {
+        width: 35px !important;
+    }
+
+    .custome_mobile_null{
+        display: none;
+    }
+
 
     .mobile_res {
         display: none;
@@ -8577,6 +8634,6 @@ img {
             .categories-item .content {
                 padding: 10px 10px !important;
             }
-          
+
             /* -----------Design Update Mizan  ---------------------- */
 }

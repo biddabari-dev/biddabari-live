@@ -9126,9 +9126,9 @@ button.btn.btn-custom.pull-left.btn-register-user:hover {
     color: #c62504 !important;
 }
 
-.flipTimer .digit-set {
-    width: 38px !important;
-}
+/*.flipTimer .digit-set {*/
+/*    width: 38px !important;*/
+/*}*/
 
 .flipTimer .digit > div.shadow-top {
     width: 38px !important;
