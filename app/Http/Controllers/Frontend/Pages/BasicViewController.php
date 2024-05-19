@@ -384,7 +384,9 @@ class BasicViewController extends Controller
 
     public function aboutUs ()
     {
-        return view('frontend.basic-pages.about');
+        return view('frontend.basic-pages.about', [
+            'ourTeams'   => OurTeam::where(['content_show_type' => 'about_us_page', 'status' => 1])->get(['id', 'name', 'designation', 'image']),
+        ]);
     }
 
     public function termsConditions ()

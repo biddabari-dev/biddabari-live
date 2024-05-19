@@ -162,25 +162,25 @@
 <script src="{{ asset('/') }}frontend/assets/js/jquery.min.js"></script>
 {{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/jquery.min.js"></script>--}}
 
-<script async src="{{ asset('/') }}frontend/assets/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/meanmenu.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/ajaxchimp.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/form-validator.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/contact-form-script.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/owl.carousel.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/magnific-popup.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/aos.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/odometer.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/appear.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/tweenMax.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/meanmenu.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/ajaxchimp.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/form-validator.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/contact-form-script.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/owl.carousel.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/magnific-popup.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/aos.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/odometer.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/appear.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/tweenMax.min.js" type="text/javascript"></script>
 
 
 <script  src="{{ asset('/') }}frontend/assets/js/custom.js"></script>
 
 
-<script async src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.js"></script>
+<script  src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.js"></script>
 {{--<script async src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.min.js"></script>--}}
-<script async src="{{ asset('/') }}frontend/assets/js/multi-countdown.js"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/multi-countdown.js"></script>
 {{--<script async src="{{ asset('/') }}frontend/assets/js/multi-countdown.min.js"></script>--}}
 
 
@@ -196,7 +196,7 @@
 @yield('js')
 
 {{--custom js--}}
-<script defer src="{{ asset('/') }}frontend/assets/js/my-custom-mod.js"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/my-custom-mod.js"></script>
 {{--<script defer src="{{ asset('/') }}frontend/assets/js/my-custom-mod.min.js"></script>--}}
 
 

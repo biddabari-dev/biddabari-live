@@ -51,54 +51,19 @@
                 <h2>Meet our Team</h2>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="instructors-card ab-shadow">
-                        <a href="javascript:void(0)">
-                            <img src="{{ asset('/') }}frontend/assets/images/courses/j6RzLRZwuCNyx61iljyofCu4LVHk5t7X.jpg" alt="Team Images" style="height:300px">
-                        </a>
-                        <div class="content py-1">
-
-                            <h3><a href="javascript:void(0)">M I Prodhan Mukul</a></h3>
-                            <span>BCS Cadre & Career Specialist. Founder, Biddabari</span>
+                @foreach($ourTeams as $key => $ourTeam)
+                    <div class="col-lg-3 col-md-6">
+                        <div class="instructors-card ab-shadow">
+                            <a href="javascript:void(0)">
+                                <img src="{{ asset(file_exists($ourTeam->image) ? $ourTeam->image : 'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg' ) }}" alt="Team Images" style="height:300px">
+                            </a>
+                            <div class="content py-1">
+                                <h3><a href="javascript:void(0)">{{ $ourTeam->name ?? 'Name' }}</a></h3>
+                                <span>{{ $ourTeam->designation ?? 'designation' }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="instructors-card ab-shadow">
-                        <a href="javascript:void(0)">
-                            <img src="{{ asset('/') }}frontend/assets/images/courses/pxl1RjegF9AJ3Xv2VqS07NKsopE0GzDnKt14GVSm.jpg" alt="Team Images" style="height:300px">
-                        </a>
-                        <div class="content py-1">
-
-                            <h3><a href="javascript:void(0)">Md. Anwar Hossain Tamim</a></h3>
-                            <span>GM Biddabari</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="instructors-card ab-shadow">
-                        <a href="javascript:void(0)">
-                            <img src="{{ asset('/') }}frontend/assets/images/courses/QseeWuKN7MfWiQuLBqdKDjJuk66AyBFUo1NInXfu.png" alt="Team Images" style="height:300px">
-                        </a>
-                        <div class="content py-1">
-
-                            <h3><a href="javascript:void(0)">Monjurul Islam</a></h3>
-                            <span>Manager</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="instructors-card ab-shadow">
-                        <a href="javascript:void(0)">
-                            <img src="{{ asset('/') }}frontend/assets/images/courses/ik62fWZmfzW5pKLNIAfqwD3PwAB2JeGOpy6NpHI6.jpg" alt="Team Images" style="height:300px">
-                        </a>
-                        <div class="content py-1">
-
-                            <h3><a href="javascript:void(0)">Mizanur Rahman</a></h3>
-                            <span>Software Engineer & IT Officer</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
