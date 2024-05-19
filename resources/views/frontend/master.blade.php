@@ -173,13 +173,13 @@
 <script async src="{{ asset('/') }}frontend/assets/js/aos.min.js" type="text/javascript"></script>
 <script  src="{{ asset('/') }}frontend/assets/js/odometer.min.js" type="text/javascript"></script>
 <script async src="{{ asset('/') }}frontend/assets/js/appear.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/tweenMax.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/tweenMax.min.js" type="text/javascript"></script>
 
 
 <script  src="{{ asset('/') }}frontend/assets/js/custom.js"></script>
 
 
-<script async src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.js"></script>
+<script  src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.js"></script>
 {{--<script async src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.min.js"></script>--}}
 <script  src="{{ asset('/') }}frontend/assets/js/multi-countdown.js"></script>
 {{--<script async src="{{ asset('/') }}frontend/assets/js/multi-countdown.min.js"></script>--}}
