@@ -25,7 +25,7 @@ class UserController extends Controller
     {
         abort_if(Gate::denies('manage-user'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-//        return $dateTable->render('backend.role-management.user.index');
+        return $dateTable->render('backend.role-management.user.index');
 
         if (isset($request->user_type))
         {
