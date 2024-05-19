@@ -190,7 +190,7 @@
                                                 <input type="hidden" name="used_coupon" value="0">
                                                 <input type="hidden" name="coupon_code" value="">
                                                 <input type="hidden" name="coupon_amount" value="">
-                                                <input type="hidden" name="ordered_for" value="course">
+                                                <input type="hidden" name="ordered_for" value="batch_exam">
                                                 <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">
                                                 <input type="hidden" name="payment_method" value="ssl">
                                                 <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">
