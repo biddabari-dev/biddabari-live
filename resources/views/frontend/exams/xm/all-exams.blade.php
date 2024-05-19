@@ -183,83 +183,83 @@
                                     <div class="card card-body" >
                                         <div id="checkEnroll">
 
-                                            <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="course_id" value="{{ $course->id }}" />
-                                                <input type="hidden" name="total_amount" id="totalAmount" />
-                                                <input type="hidden" name="used_coupon" value="0">
-                                                <input type="hidden" name="coupon_code" value="">
-                                                <input type="hidden" name="coupon_amount" value="">
-                                                <input type="hidden" name="ordered_for" value="batch_exam">
-                                                <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">
-                                                <input type="hidden" name="payment_method" value="ssl">
-                                                <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">
-                                            </form>
-
-{{--                                            <form action="" id="xmCardForm" method="post" enctype="multipart/form-data">--}}
+{{--                                            <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">--}}
 {{--                                                @csrf--}}
+{{--                                                <input type="hidden" name="course_id" value="{{ $course->id }}" />--}}
 {{--                                                <input type="hidden" name="total_amount" id="totalAmount" />--}}
-{{--                                                <input type="hidden" name="ordered_for" value="batch_exam" />--}}
-{{--                                                <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}" />--}}
-{{--                                                <div class="payment-box">--}}
-{{--                                                    <div class="payment-method">--}}
-{{--                                                        <h3>Payment Method</h3>--}}
-{{--                                                        <p>--}}
-{{--                                                            <input type="radio" id="paypal" name="payment_method" value="ssl">--}}
-{{--                                                            <label for="paypal">SSLCommerz</label>--}}
-{{--                                                        </p>--}}
-{{--                                                        <p>--}}
-{{--                                                            <input type="radio" id="direct-bank-transfer" value="cod" name="payment_method" checked>--}}
-{{--                                                            <label for="direct-bank-transfer">Manual Payment</label>--}}
-{{--                                                        </p>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="mt-2">--}}
-{{--                                                        <h3>Select a Package</h3>--}}
-{{--                                                        <div class="" id="selectPackages">--}}
-
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="payment-des-parent-div">--}}
-{{--                                                        <div class="payment-cod d-none xm-payment-div">--}}
-{{--                                                            <p>ম্যানুয়াল পেমেন্ট করলে আমাদের <span>বিকাশ মার্চেন্ট</span> নাম্বারে টাকা পাঠাতে হবে। <br><span>01896 060888</span></p>--}}
-{{--                                                            <p>রকেট এ পাঠাতে চাইলে <span>রকেট মার্চেন্ট</span> পাঠাতে হবে। <br><span>01963 929208</span></p>--}}
-{{--                                                            <p>নগদ এ পাঠাতে চাইলে <span>নগদ মার্চেন্ট</span> নাম্বারে টাকা পাঠাতে হবে। <br><span>01896 060828</span></p>--}}
-{{--                                                            <div class="row">--}}
-{{--                                                                <div class="col-md-6">--}}
-{{--                                                                    <label for="paidTo">Paid To</label>--}}
-{{--                                                                    <input type="number" id="paidTo"  name="paid_to" class="form-control" placeholder="Paid To" />--}}
-{{--                                                                    <span class="text-danger">{{ $errors->has('paid_to') ? $errors->first('paid_to') : '' }}</span>--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="col-md-6">--}}
-{{--                                                                    <label for="paidForm">Paid Form</label>--}}
-{{--                                                                    <input type="number" id="paidForm"  name="paid_from" class="form-control" placeholder="Paid Form" />--}}
-{{--                                                                    <span class="text-danger">{{ $errors->has('paid_from') ? $errors->first('paid_from') : '' }}</span>--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="col-md-6">--}}
-{{--                                                                    <label for="transactionId">Transaction Id</label>--}}
-{{--                                                                    <input type="text" id="transactionId"  name="txt_id" class="form-control" placeholder="Transaction Id" />--}}
-{{--                                                                    <span class="text-danger">{{ $errors->has('txt_id') ? $errors->first('txt_id') : '' }}</span>--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="col-md-6 select2-div">--}}
-{{--                                                                    <label for="vendor">Vendor</label>--}}
-{{--                                                                    <select name="vendor" id="vendor" class="form-control">--}}
-{{--                                                                        <option value="" selected disabled>Select a Vendor</option>--}}
-{{--                                                                        <option value="bkash">Bkash</option>--}}
-{{--                                                                        <option value="nagad">Nagad</option>--}}
-{{--                                                                        <option value="rocket">Rocket</option>--}}
-{{--                                                                    </select>--}}
-{{--                                                                    <span class="text-danger">{{ $errors->has('vendor') ? $errors->first('vendor') : '' }}</span>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                    @if(auth()->check())--}}
-{{--                                                        <button type="submit" class="default-btn">Place Order</button>--}}
-{{--                                                    @else--}}
-{{--                                                        <button type="button" onclick="toastr.error('Please Login First To Order this exam.')" class="default-btn">Place Order</button>--}}
-{{--                                                    @endif--}}
-{{--                                                </div>--}}
+{{--                                                <input type="hidden" name="used_coupon" value="0">--}}
+{{--                                                <input type="hidden" name="coupon_code" value="">--}}
+{{--                                                <input type="hidden" name="coupon_amount" value="">--}}
+{{--                                                <input type="hidden" name="ordered_for" value="batch_exam">--}}
+{{--                                                <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">--}}
+{{--                                                <input type="hidden" name="payment_method" value="ssl">--}}
+{{--                                                <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">--}}
 {{--                                            </form>--}}
+
+                                            <form action="" id="xmCardForm" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="total_amount" id="totalAmount" />
+                                                <input type="hidden" name="ordered_for" value="batch_exam" />
+                                                <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}" />
+                                                <div class="payment-box">
+                                                    <div class="payment-method">
+                                                        <h3>Payment Method</h3>
+                                                        <p>
+                                                            <input type="radio" id="paypal" name="payment_method" value="ssl">
+                                                            <label for="paypal">SSLCommerz</label>
+                                                        </p>
+                                                        <p>
+                                                            <input type="radio" id="direct-bank-transfer" value="cod" name="payment_method" checked>
+                                                            <label for="direct-bank-transfer">Manual Payment</label>
+                                                        </p>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <h3>Select a Package</h3>
+                                                        <div class="" id="selectPackages">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="payment-des-parent-div">
+                                                        <div class="payment-cod d-none xm-payment-div">
+                                                            <p>ম্যানুয়াল পেমেন্ট করলে আমাদের <span>বিকাশ মার্চেন্ট</span> নাম্বারে টাকা পাঠাতে হবে। <br><span>01896 060888</span></p>
+                                                            <p>রকেট এ পাঠাতে চাইলে <span>রকেট মার্চেন্ট</span> পাঠাতে হবে। <br><span>01963 929208</span></p>
+                                                            <p>নগদ এ পাঠাতে চাইলে <span>নগদ মার্চেন্ট</span> নাম্বারে টাকা পাঠাতে হবে। <br><span>01896 060828</span></p>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="paidTo">Paid To</label>
+                                                                    <input type="number" id="paidTo"  name="paid_to" class="form-control" placeholder="Paid To" />
+                                                                    <span class="text-danger">{{ $errors->has('paid_to') ? $errors->first('paid_to') : '' }}</span>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="paidForm">Paid Form</label>
+                                                                    <input type="number" id="paidForm"  name="paid_from" class="form-control" placeholder="Paid Form" />
+                                                                    <span class="text-danger">{{ $errors->has('paid_from') ? $errors->first('paid_from') : '' }}</span>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="transactionId">Transaction Id</label>
+                                                                    <input type="text" id="transactionId"  name="txt_id" class="form-control" placeholder="Transaction Id" />
+                                                                    <span class="text-danger">{{ $errors->has('txt_id') ? $errors->first('txt_id') : '' }}</span>
+                                                                </div>
+                                                                <div class="col-md-6 select2-div">
+                                                                    <label for="vendor">Vendor</label>
+                                                                    <select name="vendor" id="vendor" class="form-control">
+                                                                        <option value="" selected disabled>Select a Vendor</option>
+                                                                        <option value="bkash">Bkash</option>
+                                                                        <option value="nagad">Nagad</option>
+                                                                        <option value="rocket">Rocket</option>
+                                                                    </select>
+                                                                    <span class="text-danger">{{ $errors->has('vendor') ? $errors->first('vendor') : '' }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @if(auth()->check())
+                                                        <button type="submit" class="default-btn">Place Order</button>
+                                                    @else
+                                                        <button type="button" onclick="toastr.error('Please Login First To Order this exam.')" class="default-btn">Place Order</button>
+                                                    @endif
+                                                </div>
+                                            </form>
                                         </div>
                                         <div class="msgPrint">
 
