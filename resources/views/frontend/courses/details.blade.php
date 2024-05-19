@@ -160,11 +160,6 @@
 
 
 
-
-
-
-
-
                         </div>
 
 
@@ -197,7 +192,7 @@
                                                     <?php
                                                     $discountPrice = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100;
                                                     ?>
-                                                <p class="f-s-20">After Discount: {{ $course->price - $discountPrice }} tk</p>
+                                                <p class="f-s-20">After Discount: {{ $totalAmount = $course->price - $discountPrice ?? 0 }} tk</p>
                                             @else
                                                 <p class="f-s-20">Price: {{ $course->is_paid == 1 ? $course->price.' tk' : 'Free' }} </p>
                                             @endif
@@ -226,7 +221,19 @@
                                                 $date=date('Y-m-d H:i');
                                             @endphp
                                             @if($course->admission_last_date > $date)
-                                                <a href="{{ route('front.checkout', ['id' => $course->id, 'slug' => $course->slug, 'rc' => ($_GET['rc'] ?? '') ]) }}" class="default-btn bg-default-color">কোর্সটি কিনুন</a>
+{{--                                                <a href="{{ route('front.checkout', ['id' => $course->id, 'slug' => $course->slug, 'rc' => ($_GET['rc'] ?? '') ]) }}" class="default-btn bg-default-color">কোর্সটি কিনুন</a>--}}
+                                                <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="course_id" value="{{ $course->id }}" />
+                                                    <input type="hidden" name="total_amount" value="{{ $totalAmount }}" />
+                                                    <input type="hidden" name="used_coupon" value="0">
+                                                    <input type="hidden" name="coupon_code" value="">
+                                                    <input type="hidden" name="coupon_amount" value="">
+                                                    <input type="hidden" name="ordered_for" value="course">
+                                                    <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">
+                                                    <input type="hidden" name="payment_method" value="ssl">
+                                                    <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">
+                                                </form>
                                             @else
                                                 <a class="default-btn bg-default-color">ভর্তির সময় শেষ</a>
                                             @endif
