@@ -350,7 +350,7 @@ class FrontExamController extends Controller
 //                        'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
                     'result_mark'       => $this->resultNumber,
                     'is_reviewed'       => 0,
-                    'required_time'       => $request->required_time,
+                    'required_time'       => $request->required_time ?? 0,
                     'status'        => $this->exam->content_type == 'exam' ? ($this->resultNumber >= $this->exam->exam_pass_mark ? 'pass' : 'fail') : 'pending',
                 ];
 
@@ -396,7 +396,7 @@ class FrontExamController extends Controller
 //                    'provided_ans'      => json_encode($this->questionJson),
 //                    'result_mark'       => $this->resultNumber ?? 0,
                     'is_reviewed'       => 0,
-                    'required_time'       => $request->required_time,
+                    'required_time'       => $request->required_time ?? 0,
                     'status'        =>  'pending',
                 ];
             }
@@ -499,7 +499,7 @@ class FrontExamController extends Controller
 //                    'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
                     'result_mark'       => $this->resultNumber,
                     'is_reviewed'       => 0,
-                    'required_time'     => $request->required_time,
+                    'required_time'     => $request->required_time ?? 0,
 //                'status'        => $this->resultNumber >= $this->exam->exam_pass_mark ? 'pass' : 'fail',
                     'status'            => 'pass',
                 ];
@@ -586,7 +586,7 @@ class FrontExamController extends Controller
 //                        'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
                     'result_mark'       => $this->resultNumber,
                     'is_reviewed'       => 0,
-                    'required_time'       => $request->required_time,
+                    'required_time'       => $request->required_time ?? 0,
                     'status'        => $this->exam->content_type == 'exam' ? ($this->resultNumber >= $this->exam->exam_pass_mark ? 'pass' : 'fail') : 'pending',
                 ];
 
@@ -628,7 +628,7 @@ class FrontExamController extends Controller
 //                    'provided_ans'      => json_encode($this->questionJson),
 //                    'result_mark'       => $this->resultNumber ?? 0,
                     'is_reviewed'       => 0,
-                    'required_time'       => $request->required_time,
+                    'required_time'       => $request->required_time ?? 0,
                     'status'        =>  'pending',
                 ];
             }
