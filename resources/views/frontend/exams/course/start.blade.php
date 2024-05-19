@@ -104,10 +104,10 @@
                                                 <h4 class="float-start fw-bold">{!! $question->question !!}</h4>
                                                 <div class="mt-3">
                                                     @if($question->question_file_type == 'pdf')
-                                                        <div class="my-2 d-grid"><a href="{{ asset($question->question_image) }}" download="" class="btn btn-sm btn-success text-warning col-3 ms-auto">Download</a></div>
+                                                        <div class="my-2 d-grid"><a href="{{ asset($question->question_image) }}" download="" class="btn btn-sm btn-success text-warning col-md-3 col-sm-6 ms-auto">Download</a></div>
                                                         <div id="pdf-container" data-pdf-url="{{ asset($question->question_image) }}"></div>
                                                     @else
-                                                        <img src="{{ asset($question->question_image) }}" alt="" style="height: 60px;">
+                                                        <img src="{{ asset($question->question_image) }}" alt="" style="max-height: 60px;">
                                                     @endif
                                                 </div>
                                             </div>

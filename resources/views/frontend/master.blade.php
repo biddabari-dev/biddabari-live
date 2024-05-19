@@ -172,7 +172,7 @@
 <script  src="{{ asset('/') }}frontend/assets/js/magnific-popup.min.js" type="text/javascript"></script>
 <script async src="{{ asset('/') }}frontend/assets/js/aos.min.js" type="text/javascript"></script>
 <script  src="{{ asset('/') }}frontend/assets/js/odometer.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/appear.min.js" type="text/javascript"></script>
+<script src="{{ asset('/') }}frontend/assets/js/appear.min.js" type="text/javascript"></script>
 <script  src="{{ asset('/') }}frontend/assets/js/tweenMax.min.js" type="text/javascript"></script>
 
 
