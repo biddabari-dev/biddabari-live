@@ -13,8 +13,8 @@
 
         <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/iconplugins.css">
 
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.min.css">
-{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">--}}
+{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.min.css">--}}
+        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
 
 
         <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.min.css">
