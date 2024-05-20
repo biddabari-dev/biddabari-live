@@ -7213,7 +7213,7 @@ img {
 .go-top {
     position: fixed;
     top: 50%;
-    right: 3%;
+    right: 5%;
     opacity: 0;
     cursor: pointer;
     text-decoration: none;
@@ -7228,7 +7228,7 @@ img {
     line-height: 43px;
     z-index: 100;
     -webkit-transition: .5s;
-    transition: .5s
+    transition: .5s;
 }
 
 .go-top i {
@@ -7831,8 +7831,67 @@ img {
 }
 
 
-@media only screen and (min-width : 280px) and (max-width: 420px) {
+/* ----------------messenger icon-------------------- */
+.go-messenger {
+    position: fixed;
+    top: 50%;
+    right: 3%;
+    opacity: 1;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--whiteColor);
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    background: #281367;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    line-height: 35px;
+    z-index: 100;
+    -webkit-transition: .5s;
+    transition: .5s;
+    padding-top: 6px;
+}
 
+.go-messenger i {
+    -webkit-transition: .5s;
+    transition: .5s;
+    vertical-align: middle
+}
+
+.go-messenger:hover {
+    background-color: var(--titleColor)
+}
+
+/*.go-messenger:hover i {*/
+/*    -webkit-transform: translateY(-5px);*/
+/*    transform: translateY(-5px)*/
+/*}*/
+
+.go-messenger.active {
+    top: 95%;
+    -webkit-transform: translateY(-95%);
+    transform: translateY(-95%);
+    opacity: 1;
+    visibility: visible
+}
+
+/* ------------------------------------------- */
+
+
+
+@media only screen and (min-width : 280px) and (max-width: 420px) {
+    .courses-details-sidebar .btn-warning {
+        color: #fff!important;
+        background-color: #000!important;
+        border-color: #000!important;
+        width: 92%;
+        z-index: 1000;
+        position: fixed;
+        top: 93%;
+        left: 4%;
+    }
     .quiz-wizard .card-header {
         padding: 34px 24px !important;
     }
@@ -8042,7 +8101,16 @@ img {
 
 
 @media only screen and (min-width : 421px) and (max-width: 520px) {
-
+    .courses-details-sidebar .btn-warning {
+        color: #fff!important;
+        background-color: #000!important;
+        border-color: #000!important;
+        width: 92%;
+        z-index: 1000;
+        position: fixed;
+        top: 93%;
+        left: 4%;
+    }
     .quiz-wizard .card-header {
         padding: 34px 24px !important;
     }
@@ -8240,7 +8308,16 @@ img {
 }
 
 @media only screen and (min-width : 521px) and (max-width : 767px) {
-
+    .courses-details-sidebar .btn-warning {
+        color: #fff!important;
+        background-color: #000!important;
+        border-color: #000!important;
+        width: 92%;
+        z-index: 1000;
+        position: fixed;
+        top: 93%;
+        left: 4%;
+    }
     .quiz-wizard .card-header {
         padding: 34px 24px !important;
     }

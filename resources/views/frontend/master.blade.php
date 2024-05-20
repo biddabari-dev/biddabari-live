@@ -75,53 +75,7 @@
         }
 
 
-        /* ------------------------------------ */
-        .go-messenger {
-            position: fixed;
-            top: 50%;
-            left: 3%;
-            opacity: 1;
-            cursor: pointer;
-            text-decoration: none;
-            color: var(--whiteColor);
-            font-size: 40px;
-            font-weight: 700;
-            text-align: center;
-            background: #281367;
-            border-radius: 50px;
-            width: 60px;
-            height: 60px;
-            line-height: 43px;
-            z-index: 100;
-            -webkit-transition: .5s;
-            transition: .5s;
-            padding-top: 6px;
-        }
 
-        .go-messenger i {
-            -webkit-transition: .5s;
-            transition: .5s;
-            vertical-align: middle
-        }
-
-        .go-messenger:hover {
-            background-color: var(--titleColor)
-        }
-
-        /*.go-messenger:hover i {*/
-        /*    -webkit-transform: translateY(-5px);*/
-        /*    transform: translateY(-5px)*/
-        /*}*/
-
-        .go-messenger.active {
-            top: 95%;
-            -webkit-transform: translateY(-95%);
-            transform: translateY(-95%);
-            opacity: 1;
-            visibility: visible
-        }
-
-        /* ------------------------------------------- */
     </style>
     @stack('style')
     <!-- Meta Pixel Code -->
@@ -166,7 +120,7 @@
 <script  src="{{ asset('/') }}frontend/assets/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 <script  src="{{ asset('/') }}frontend/assets/js/meanmenu.min.js" type="text/javascript"></script>
 <script async src="{{ asset('/') }}frontend/assets/js/ajaxchimp.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/form-validator.min.js" type="text/javascript"></script>
+<script  src="{{ asset('/') }}frontend/assets/js/form-validator.min.js" type="text/javascript"></script>
 <script async src="{{ asset('/') }}frontend/assets/js/contact-form-script.min.js" type="text/javascript"></script>
 <script  src="{{ asset('/') }}frontend/assets/js/owl.carousel.min.js" type="text/javascript"></script>
 <script  src="{{ asset('/') }}frontend/assets/js/magnific-popup.min.js" type="text/javascript"></script>

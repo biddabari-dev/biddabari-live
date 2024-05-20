@@ -29,7 +29,6 @@
                 @endforelse
                 <div class="col-lg-12 col-md-12 text-center">
                     <div class="pagination-area">
-
                         {{ $teachers->links() }}
                     </div>
                 </div>
