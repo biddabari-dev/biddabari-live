@@ -32,9 +32,9 @@ class AppServiceProvider extends ServiceProvider
             $view->with('scrollingNotices', Notice::where(['status'=> 1, 'type' => 'scroll'])->take(6)->get());
         });
         View::share('siteSettings', SiteSetting::first());
-		URL::forceRootUrl(Config::get('app.url'));
-			if (str_contains(Config::get('app.url'), 'https://')) {
+//		URL::forceRootUrl(Config::get('app.url'));
+//			if (str_contains(Config::get('app.url'), 'https://')) {
         URL::forceScheme('https');
-		}
+//		}
     }
 }
