@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Checkout;
 
 use App\helper\ViewHelper;
+use App\Http\Controllers\Backend\BkashController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\Order\OrderSubmitRequest;
 use App\Models\Backend\AdditionalFeatureManagement\Affiliation\AffiliationHistory;
@@ -66,9 +67,26 @@ class CheckoutController extends Controller
                     $request['model_id'] = $request->course_id;
                     $request['affiliate_amount'] = Course::find($request->course_id)->affiliate_amount;
                     \session()->put('requestData', $request->all());
-                    
+
                     return self::sendOrderRequestToSSLZ($request->total_amount, Course::find($request->course_id)->title);
-                } elseif ($request->payment_method == 'cod')
+                }
+                elseif ($request->payment_method == 'bkash'){
+//                    if (str()->contains(url()->current(), '/api/'))
+//                    {
+//                        $request['parent_model_id'] = $modelId;
+//                        ParentOrder::createOrderAfterSsl($request);
+//                        return response()->json(['success' => 'Payment completed successfully.']);
+//                    }
+                    $request['details_url'] = url()->previous();
+                    $request['model_name'] = 'course';
+                    $request['model_id'] = $request->course_id;
+                    $request['affiliate_amount'] = Course::find($request->course_id)->affiliate_amount;
+                    \session()->put('requestData', $request->all());
+                    $bkash=new BkashController();
+                    return $bkash->createPayment($request);
+
+                }
+                elseif ($request->payment_method == 'cod')
                 {
                     $this->validate($request, [
                         'vendor'    => 'required',
@@ -85,7 +103,7 @@ class CheckoutController extends Controller
                     {
                         return response()->json(['message' => 'You Ordered the course successfully.'], 200);
                     }
-                    
+
                     return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the course successfully.');
                 }
 

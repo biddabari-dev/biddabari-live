@@ -64,9 +64,13 @@
                                         <label for="paypal">SSLCommerz</label>
                                     </p>
                                     <p>
-                                        <input type="radio" id="direct-bank-transfer" value="cod" name="payment_method" checked>
-                                        <label for="direct-bank-transfer">Manual Payment</label>
+                                        <input type="radio" id="bkash" name="payment_method" value="bkash">
+                                        <label for="bkash">Bkash</label>
                                     </p>
+{{--                                    <p>--}}
+{{--                                        <input type="radio" id="direct-bank-transfer" value="cod" name="payment_method" checked>--}}
+{{--                                        <label for="direct-bank-transfer">Manual Payment</label>--}}
+{{--                                    </p>--}}
                                 </div>
                                 <div class="payment-des-parent-div">
                                     <div class="payment-cod d-none">
