@@ -40,6 +40,58 @@
     <!--font awesome link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
+    <style>
+
+        /* ----------------messenger icon-------------------- */
+        .go-messenger {
+            position: fixed;
+            top: 50%;
+            right: 3%;
+            opacity: 1;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--whiteColor);
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+            background: #281367;
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            line-height: 35px;
+            z-index: 100;
+            -webkit-transition: .5s;
+            transition: .5s;
+            padding-top: 6px;
+        }
+
+        .go-messenger i {
+            -webkit-transition: .5s;
+            transition: .5s;
+            vertical-align: middle
+        }
+
+        .go-messenger:hover {
+            background-color: var(--titleColor)
+        }
+
+        /*.go-messenger:hover i {*/
+        /*    -webkit-transform: translateY(-5px);*/
+        /*    transform: translateY(-5px)*/
+        /*}*/
+
+        .go-messenger.active {
+            top: 95%;
+            -webkit-transform: translateY(-95%);
+            transform: translateY(-95%);
+            opacity: 1;
+            visibility: visible
+        }
+
+        /* ------------------------------------------- */
+    </style>
+
     <style>
         .box-shadow {
             box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.75);
