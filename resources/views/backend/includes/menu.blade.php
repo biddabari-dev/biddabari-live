@@ -386,6 +386,7 @@
                             <li><a href="{{ route('our-services.index') }}" class="slide-item {{ request()->is('our-services') || request()->is('our-services*') ? 'active' : '' }}">Our Services</a></li>
                             <li><a href="{{ route('student-opinions.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Student Opinions</a></li>
                             <li><a href="{{ route('seos.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Site SEO</a></li>
+                            <li><a href="{{ route('app_varsion.index') }}" class="slide-item {{ request()->is('app_varsion') || request()->is('app_varsion*') ? 'active' : '' }}">App Varsion</a></li>
                     </ul>
                 </li>
                 <li class="slide">

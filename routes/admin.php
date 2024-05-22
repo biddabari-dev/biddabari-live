@@ -53,6 +53,7 @@ use App\Http\Controllers\Backend\AdditionalFeatureManagement\OurTeam\OurTeamCont
 use App\Http\Controllers\Backend\AdditionalFeatureManagement\OurServices\OurServicesController;
 use App\Http\Controllers\Backend\AdditionalFeatureManagement\StudentOpinion\StudentOpinionController;
 use App\Http\Controllers\Backend\SEO\SeoController;
+use App\Http\Controllers\Backend\AppVarsion\AppVarsionController;
 
 Route::get('/test', function (){
 
@@ -73,6 +74,9 @@ Route::middleware([
     'single.device'
 ])->group(function () {
     Route::get('/dashboard', [AdminViewController::class, 'dashboard'])->name('dashboard');
+
+    //    App Varsion Management
+    Route::resource('app_varsion',AppVarsionController::class);
 
 //    Role Management
     Route::resources([
