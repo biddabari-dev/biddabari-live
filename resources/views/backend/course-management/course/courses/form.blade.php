@@ -31,6 +31,11 @@
 {{--                    </select>--}}
                     <span class="text-danger" id="course_categories"></span>
                 </div>
+                <div class="col-md-7 mt-2">
+                    <label for="courseSlug">Course Slug</label>
+                    <input type="text" name="slug" id="courseSlug" class="form-control" placeholder="Course Slug" />
+                    <span class="text-danger" id="slug"></span>
+                </div>
                 <div class="col-md-12 mt-2">
                     <label for="">Course Sub Title</label>
                     <textarea name="sub_title" id="" placeholder="Course Sub Title" class="form-control" cols="30" rows="5"></textarea>
