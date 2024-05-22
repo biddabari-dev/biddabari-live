@@ -35,6 +35,8 @@
                                         </div>
                                     </div>
                                 </li>
+
+
                                 <li>
                                     <div class="row">
                                         <div class="col-md-6 checkout_coupon">
@@ -45,6 +47,7 @@
                                                     class="form-control" />
                                                 <label for="couponCode" class="input-group-text" id="checkBtn"
                                                     style="cursor: pointer">Apply</label>
+
                                             </div>
                                         </div>
                                         <div class="col-md-6 checkout_contact">
