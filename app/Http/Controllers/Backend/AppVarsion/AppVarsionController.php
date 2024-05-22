@@ -67,14 +67,14 @@ class AppVarsionController extends Controller
      */
     public function destroy(string $id)
     {
-       $app= AppVarsion::find($id);
+       $app = AppVarsion::find($id);
        $app->delete();
        return redirect()->back();
     }
 
     public function checkVersion()
     {
-        $currentVersion = AppVarsion::where('status', 1)->select('version')->first();
+        $currentVersion = AppVarsion::where('status', 1)->select('varsion')->first();
 //        return response()->json(['version' => '1.7.4']);
         return response()->json(['version' => $currentVersion]);
     }
