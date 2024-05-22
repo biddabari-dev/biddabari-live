@@ -39,12 +39,12 @@
                                     </td>
                                     <td>
                                         @can('edit-product')
-                                            <a href="{{route('app_varsion.edit',$app->id)}}" data-appvarsion-id="{{ $app['id'] }}"  class="btn btn-sm btn-warning appvarsion-edit-btn" title="Edit Blog Category">
+                                            <a href="{{route('app-varsions.edit',$app->id)}}" data-appvarsion-id="{{ $app['id'] }}"  class="btn btn-sm btn-warning appvarsion-edit-btn" title="Edit Blog Category">
                                                 <i class="fa-solid fa-edit"></i>
                                             </a>
                                         @endcan
                                         @can('delete-product')
-                                            <form class="d-inline" action="{{ route('app_varsion.destroy', $app->id) }}" method="post">
+                                            <form class="d-inline" action="{{ route('app-varsions.destroy', $app->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-sm btn-danger data-delete-form" title="Delete Category">
@@ -66,7 +66,7 @@
     <div class="modal fade modal-div" id="blogCategoryModal" data-modal-parent="blogCategoryModal" data-bs-backdrop="static" >
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content" id="">
-                <form id="app_varsion_submit" action="{{ route('app_varsion.store') }}" method="post" enctype="multipart/form-data">
+                <form id="app_varsion_submit" action="{{ route('app-varsions.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 {{--                    {{csrf_field()}}--}}
                     {{ method_field('PUT') }}

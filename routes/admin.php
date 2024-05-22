@@ -76,7 +76,7 @@ Route::middleware([
     Route::get('/dashboard', [AdminViewController::class, 'dashboard'])->name('dashboard');
 
     //    App Varsion Management
-    Route::resource('app_varsion',AppVarsionController::class);
+    Route::resource('app-varsions',AppVarsionController::class);
 
 //    Role Management
     Route::resources([
