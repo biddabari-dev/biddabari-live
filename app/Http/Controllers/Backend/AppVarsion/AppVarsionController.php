@@ -13,7 +13,7 @@ class AppVarsionController extends Controller
      */
     public function index()
     {
-        return view('Backend.app-varsion.index',[
+        return view('backend.app-varsion.index',[
             'apps' => AppVarsion::latest()->get()
         ]);
     }
