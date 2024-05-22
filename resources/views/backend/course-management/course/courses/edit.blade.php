@@ -14,7 +14,7 @@
             <div class="row mt-2">
                 <div class="col-md-7 mt-2">
                     <label for="courseTitle">Course Title</label>
-                    <input type="text" name="title" value="{{ isset($course) ? $course->title : '' }}" class="form-control" placeholder="Course Title" />
+                    <input type="text" name="title" value="{{ isset($course) ? $course->title : '' }}" id="courseTitle" class="form-control" placeholder="Course Title" />
                     <span class="text-danger" id="title"></span>
                 </div>
                 <div class="col-md-5 mt-2 select2-div">
@@ -40,6 +40,11 @@
 {{--                        @endif--}}
 {{--                    </select>--}}
                     <span class="text-danger" id="course_categories"></span>
+                </div>
+                <div class="col-md-7 mt-2">
+                    <label for="courseSlug">Course Slug</label>
+                    <input type="text" name="slug" id="courseSlug" class="form-control" required placeholder="Course Slug" value="{{ isset($course) ? $course->slug : '' }}" />
+                    <span class="text-danger" id="slug"></span>
                 </div>
                 <div class="col-md-12 mt-2">
                     <label for="">Course Sub Title</label>

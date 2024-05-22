@@ -138,13 +138,14 @@ class Course extends Model
         } else {
             self::$course = new Course();
         }
-        self::$course->title                    = $request->title;
-        self::$course->slug                     = str_replace(' ', '-', $request->title);
-        self::$course->sub_title                = $request->sub_title;
-        self::$course->price                    = $request->price;
+        self::$course->title                    = $request->title ?? '';
+//        self::$course->slug                     = str_replace(' ', '-', $request->title);
+        self::$course->slug                     = $request->slug ?? '';
+        self::$course->sub_title                = $request->sub_title ?? '';
+        self::$course->price                    = $request->price ?? 0;
         self::$course->banner                   = isset($id) ? imageUpload($request->file('banner'), 'course/course-banners/', 'courses', '300', '200', Course::find($id)->banner) : imageUpload($request->file('banner'), 'course/course-banners/', 'courses', '300', '200');
-        self::$course->description              = $request->description;
-        self::$course->whythiscourse              = $request->whythiscourse;
+        self::$course->description              = $request->description ?? '';
+        self::$course->whythiscourse              = $request->whythiscourse ?? '';
         self::$course->duration_in_month        = $request->duration_in_month;
         self::$course->starting_date_time       = $request->starting_date_time;
         self::$course->starting_date_time_timestamp       = strtotime($request->starting_date_time);
@@ -152,13 +153,13 @@ class Course extends Model
         self::$course->ending_date_time_timestamp       = strtotime($request->ending_date_time);
         self::$course->discount_type            = $request->discount_type;
 //        self::$course->discount_amount          = $request->discount_type == 1 ? $request->discount_amount : (($request->price * $request->discount_amount)/100);
-        self::$course->discount_amount          = $request->discount_amount;
+        self::$course->discount_amount          = $request->discount_amount ?? 0;
         self::$course->discount_start_date      = $request->discount_start_date;
         self::$course->discount_start_date_timestamp   = strtotime($request->discount_start_date);
         self::$course->discount_end_date        = $request->discount_end_date;
         self::$course->discount_end_date_timestamp     = strtotime($request->discount_end_date);
-        self::$course->partial_payment          = $request->partial_payment;
-        self::$course->fack_student_count       = $request->fack_student_count;
+        self::$course->partial_payment          = $request->partial_payment ?? 0;
+        self::$course->fack_student_count       = $request->fack_student_count ?? 0;
 //        self::$course->featured_video_url       = $request->featured_video_url;
         if (isset($request->featured_video_url))
         {
@@ -166,20 +167,20 @@ class Course extends Model
             $vidUrlString = explode('https://www.youtube.com/watch?v=', $request->featured_video_url)[1];
         }
         self::$course->featured_video_url       = isset($vidUrlString) ? $vidUrlString : (isset($id) ? self::$course->featured_video_url : null);
-        self::$course->affiliate_amount         = $request->affiliate_amount;
+        self::$course->affiliate_amount         = $request->affiliate_amount ?? 0;
         self::$course->featured_video_vendor    = $request->featured_video_vendor;
-        self::$course->total_class              = $request->total_class;
-        self::$course->total_hours               = $request->total_hours;
-        self::$course->total_video              = $request->total_video;
-        self::$course->total_audio              = $request->total_audio;
-        self::$course->total_exam               = $request->total_exam;
-        self::$course->total_pdf                = $request->total_pdf;
-        self::$course->total_note               = $request->total_note;
-        self::$course->total_link               = $request->total_link;
-        self::$course->total_live               = $request->total_live;
-        self::$course->total_zip                = $request->total_zip;
-        self::$course->total_file               = $request->total_file;
-        self::$course->total_written_exam       = $request->total_written_exam;
+        self::$course->total_class              = $request->total_class ?? 0;
+        self::$course->total_hours               = $request->total_hours ?? 0;
+        self::$course->total_video              = $request->total_video ?? 0;
+        self::$course->total_audio              = $request->total_audio ?? 0;
+        self::$course->total_exam               = $request->total_exam ?? 0;
+        self::$course->total_pdf                = $request->total_pdf ?? 0;
+        self::$course->total_note               = $request->total_note ?? 0;
+        self::$course->total_link               = $request->total_link ?? 0;
+        self::$course->total_live               = $request->total_live ?? 0;
+        self::$course->total_zip                = $request->total_zip ?? 0;
+        self::$course->total_file               = $request->total_file ?? 0;
+        self::$course->total_written_exam       = $request->total_written_exam ?? 0;
         self::$course->admission_last_date      = $request->admission_last_date;
         self::$course->c_order                  = isset($id) ? self::$course->c_order : (isset($lastOrder) ? $lastOrder->c_order+1 : 1);
         self::$course->status                   = $request->status == 'on' ? 1 : 0;

@@ -225,7 +225,7 @@
                                                 <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="course_id" value="{{ $course->id }}" />
-                                                    <input type="hidden" name="total_amount" value="{{ $totalAmount }}" />
+                                                    <input type="hidden" name="total_amount" value="{{ $totalAmount ?? 0 }}" />
                                                     <input type="hidden" name="used_coupon" value="0">
                                                     <input type="hidden" name="coupon_code" value="">
                                                     <input type="hidden" name="coupon_amount" value="">

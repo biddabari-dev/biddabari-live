@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\Student\StudentController;
 
 use App\Http\Controllers\Frontend\FrontExam\FrontExamController;
 use App\Http\Controllers\Backend\CourseManagement\Question\QuestionStoreController;
+use App\Http\Controllers\Backend\AppVarsion\AppVarsionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +46,7 @@ Route::prefix('v1')->name('api.')->group(function (){
 
     Route::post('/send-password-reset-otp', [CustomAuthController::class, 'passResetOtp'])->name('send-password-reset-otp');
     Route::post('/verify-pass-reset-otp', [CustomAuthController::class, 'verifyPassResetOtp'])->name('verify-pass-reset-otp');
-    Route::get('/check-app-version', function (){
-        return response()->json(['version' => '1.7.4']);
-    });
+    Route::get('/check-app-version', [AppVarsionController::class, 'checkVersion']);
 
     Route::middleware([
         'auth:sanctum',
