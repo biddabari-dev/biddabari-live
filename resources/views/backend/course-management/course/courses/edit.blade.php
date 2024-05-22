@@ -14,7 +14,7 @@
             <div class="row mt-2">
                 <div class="col-md-7 mt-2">
                     <label for="courseTitle">Course Title</label>
-                    <input type="text" name="title" value="{{ isset($course) ? $course->title : '' }}" class="form-control" placeholder="Course Title" />
+                    <input type="text" name="title" value="{{ isset($course) ? $course->title : '' }}" id="courseTitle" class="form-control" placeholder="Course Title" />
                     <span class="text-danger" id="title"></span>
                 </div>
                 <div class="col-md-5 mt-2 select2-div">
