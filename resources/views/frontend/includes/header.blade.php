@@ -12,9 +12,7 @@
                             <li class="bg-danger">
                                 <i class="fa-brands fa-google-play"></i>
                                 <!-- <a href="mailto:info@biddabari.com"><span class="__cf_email__">info@biddabari.com</span></a> -->
-                                <a
-                                    href="https://play.google.com/store/apps/details?id=com.nextive.biddabari2021&pcampaignid=web_share"><span
-                                        class="__cf_email__">Install Biddabari App</span></a>
+                                <a href="https://play.google.com/store/apps/details?id=com.nextive.biddabari2021&pcampaignid=web_share" target="_blank"><span class="__cf_email__">Install Biddabari App</span></a>
                             </li>
                         </ul>
                     </div>

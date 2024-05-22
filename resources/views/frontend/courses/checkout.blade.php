@@ -65,7 +65,7 @@
                                             <label for="direct-bank-transfer">বিকাশ পেমেন্ট মেথড</label>
                                         </div>
                                         <div class="pay_method_icon ">
-                                            <img src="{{asset('frontend')}}/assets/images/bkash_logo.jpg">
+                                            <img src="{{asset('frontend')}}/assets/images/bkash_logo.webp">
                                         </div>
 
                                     </div>
