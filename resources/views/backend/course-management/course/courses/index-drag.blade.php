@@ -64,20 +64,7 @@
                             <ol class="dd-list list-group">
                                 @foreach($courses as $k => $course)
                                     <li class="dd-item list-group-item" data-id="{{ $course['id'] }}">
-                                        <!-- <div class="dd-handle" >
-                                            <div class="row">
-                                                <div class="col-md-9">
-                                                    <div class=" ps-3">
-                                                        <img src="{{ asset($course->banner) }}" alt="" style="height: 100px;" />
-                                                    </div>
-                                                    <div class=" ps-3 mt-2">{{ $course->title }}</div>
-                                                </div>
 
-                                                <div class="col-md-3">
-                                                    <p>৳ {{ $course->price }}</p>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                         <div class="dd-option-handle">
                                             <div class="row">
 
@@ -89,11 +76,9 @@
                                                                 <div class="row">
                                                                     <div class="col-md-9 custom">
                                                                         <div class=" ps-3">
-                                                                            <img src="{{ asset($course->banner) }}"
-                                                                                 alt="" style="height: 100px;"/>
+                                                                            <img src="{{ asset($course->banner) }}" alt="" style="height: 100px;"/>
                                                                         </div>
-                                                                        <div
-                                                                            class=" ps-3 mt-2">{{ $course->title }}</div>
+                                                                        <div class=" ps-3 mt-2">{{ $course->title }}</div>
                                                                     </div>
 
                                                                     <div class="col-md-3">
@@ -235,14 +220,14 @@
 
                                                 @endcan
                                                 <br>
-@can('edit-course')
+                                                @can('edit-course')
                                                     <a href="" data-course-id="{{ $course->id }}" class="btn btn-sm mt-1 btn-warning edit-btn" title="Edit Course">
                                                             <i class="fa-solid fa-edit"></i>
                                                         </a>
 
                                                 @endcan
                                                 <br>
-@can('delete-course')
+                                                @can('delete-course')
                                                     <form class="d-inline" action="{{ route('courses.destroy', $course->id) }}" method="post" >
                                                             @csrf
                                                     @method('delete')

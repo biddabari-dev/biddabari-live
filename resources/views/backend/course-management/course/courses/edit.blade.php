@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-md-7 mt-2">
                     <label for="courseSlug">Course Slug</label>
-                    <input type="text" name="slug" id="courseSlug" class="form-control" placeholder="Course Slug" value="{{ isset($course) ? $course->slug : '' }}" />
+                    <input type="text" name="slug" id="courseSlug" class="form-control" required placeholder="Course Slug" value="{{ isset($course) ? $course->slug : '' }}" />
                     <span class="text-danger" id="slug"></span>
                 </div>
                 <div class="col-md-12 mt-2">

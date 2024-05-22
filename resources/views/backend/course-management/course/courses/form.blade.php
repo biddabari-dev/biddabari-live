@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-7 mt-2">
                     <label for="courseSlug">Course Slug</label>
-                    <input type="text" name="slug" id="courseSlug" class="form-control" placeholder="Course Slug" />
+                    <input type="text" name="slug" id="courseSlug" required class="form-control" placeholder="Course Slug" />
                     <span class="text-danger" id="slug"></span>
                 </div>
                 <div class="col-md-12 mt-2">
