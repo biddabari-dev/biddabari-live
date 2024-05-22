@@ -76,6 +76,6 @@ class AppVarsionController extends Controller
     {
         $currentVersion = AppVarsion::where('status', 1)->select('varsion')->first();
 //        return response()->json(['version' => '1.7.4']);
-        return response()->json(['version' => $currentVersion]);
+        return response()->json($currentVersion);
     }
 }
