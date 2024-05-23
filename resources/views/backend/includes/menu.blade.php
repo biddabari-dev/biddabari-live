@@ -372,28 +372,66 @@
                         </a>
                     </li>
                 @endcan
-                @can('role-management')
-                <li class="slide {{ request()->is('number-counters*') || request()->is('our-teams*')|| request()->is('course-routines*')|| request()->is('course-coupons*')|| request()->is('course-sections*')|| request()->is('course-section-contents*')|| request()->is('assign-student-to-course*')|| request()->is('assign-teacher-to-course*') ? 'is-expanded' : '' }}">
-                    <a class="side-menu__item {{ request()->is('number-counters*') || request()->is('our-teams*')|| request()->is('course-routines*')|| request()->is('course-coupons*')|| request()->is('course-sections*')|| request()->is('course-section-contents*')|| request()->is('assign-student-to-course*')|| request()->is('assign-teacher-to-course*') ? 'active is-expanded' : '' }}" data-bs-toggle="slide" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M19,2H9C7.3438721,2.0018311,6.0018311,3.3438721,6,5v1H5C3.3438721,6.0018311,2.0018311,7.3438721,2,9v10c0.0018311,1.6561279,1.3438721,2.9981689,3,3h10c1.6561279-0.0018311,2.9981689-1.3438721,3-3v-1h1c1.6561279-0.0018311,2.9981689-1.3438721,3-3V5C21.9981689,3.3438721,20.6561279,2.0018311,19,2z M17,19c-0.0014038,1.1040039-0.8959961,1.9985962-2,2H5c-1.1040039-0.0014038-1.9985962-0.8959961-2-2v-8h14V19z M17,10H3V9c0.0014038-1.1040039,0.8959961-1.9985962,2-2h10c1.1040039,0.0014038,1.9985962,0.8959961,2,2V10z M21,15c-0.0014038,1.1040039-0.8959961,1.9985962-2,2h-1V9c-0.0008545-0.7719116-0.3010864-1.4684448-0.7803345-2H21V15z M21,6H7V5c0.0014038-1.1040039,0.8959961-1.9985962,2-2h10c1.1040039,0.0014038,1.9985962,0.8959961,2,2V6z"/></svg>
-                        <span class="side-menu__label">Site Features</span>
-                        <i class="angle fa fa-angle-right"></i>
-                    </a>
-                    <ul class="slide-menu {{ request()->is('number-counters*') || request()->is('our-teams*')|| request()->is('course-routines*')|| request()->is('course-coupons*')|| request()->is('course-sections*')|| request()->is('course-section-contents*')|| request()->is('assign-student-to-course*')|| request()->is('assign-teacher-to-course*') || request()->is('seos*') ? 'open' : '' }}">
-                        <li class="side-menu-label1"><a href="javascript:void(0)"> Site Features</a></li>
+
+                @can('service-module')
+                    <li class="slide {{ request()->is('my_services*') || request()->is('my_service*') || request()->is('adminservice*')|| request()->is('servicestatus*') || request()->is('admin_status_update*')|| request()->is('status_update*') ? 'is-expanded' : '' }}">
+                        <a class="side-menu__item {{ request()->is('my_services*') || request()->is('my_service*') || request()->is('adminservice*')|| request()->is('servicestatus*') || request()->is('admin_status_update*')|| request()->is('status_update*') ? 'active is-expanded' : '' }}" data-bs-toggle="slide" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M16.6766357,7.3233643C15.7435303,4.2431641,12.8848267,2,9.5,2C5.3578491,2,2,5.3578491,2,9.5c0,3.3848267,2.2431641,6.2435303,5.3233643,7.1766357C8.2564697,19.7568359,11.1151733,22,14.5,22c4.1402588-0.0045166,7.4954834-3.3597412,7.5-7.5C22,11.1151733,19.7568359,8.2564697,16.6766357,7.3233643z M16,9.5c0,0.8760376-0.1757202,1.7103882-0.4899292,2.4730225l-3.4830933-3.4830933C12.7896118,8.1757202,13.6239624,8,14.5,8c0.4649658,0.0005493,0.9176636,0.0518799,1.3549194,0.1450806C15.9481201,8.5823364,15.9994507,9.0350342,16,9.5z M15.0283203,12.906311c-0.5328369,0.862854-1.2597656,1.5897217-2.1226807,2.1224365l-3.9343872-3.9343872c0.5328369-0.8630981,1.2598877-1.5901489,2.1229858-2.1230469L15.0283203,12.906311z M7.0787354,15.5289917C4.6891479,14.5682983,3,12.2332764,3,9.5C3,5.9101562,5.9101562,3,9.5,3c2.7313232,0.0031738,5.06427,1.6907959,6.0264893,4.0783081C15.1900635,7.0321655,14.8491211,7,14.5,7C10.3578491,7,7,10.3578491,7,14.5C7,14.8500366,7.0323486,15.1917114,7.0787354,15.5289917z M8,14.5c0-0.8759766,0.1757812-1.7103271,0.4899292-2.4729614l3.4830322,3.4830322C11.2103271,15.8242188,10.3759766,16,9.5,16c-0.465332,0-0.918457-0.0509644-1.3560791-0.1439209C8.0509644,15.418457,8,14.965332,8,14.5z M14.5,21c-2.7332764,0-5.0682983-1.6891479-6.0289917-4.0787354C8.8082886,16.9676514,9.1499634,17,9.5,17c4.1402588-0.0045166,7.4954834-3.3597412,7.5-7.5c0-0.3491211-0.0321655-0.6900635-0.0783081-1.0264893C19.3092041,9.43573,20.9968262,11.7686768,21,14.5C21,18.0898438,18.0898438,21,14.5,21z"/></svg>
+                            <span class="side-menu__label"> Service</span><i class="angle fa fa-angle-right"></i>
+                        </a>
+                        <ul class="slide-menu {{  request()->is('my_service*') || request()->is('adminservice*')|| request()->is('servicestatus*') || request()->is('admin_status_update*')|| request()->is('status_update*')  ? 'open' : '' }}">
+                            {{--                            <li class="side-menu-label1"><a href="javascript:void(0)"> orders</a></li>--}}
+                            {{--                            <li><a href="javascript:void(0)" class="slide-item"> Delivery Options</a></li>--}}
+                            @can('service-complain')
+                                <li><a href="{{ route('my_service') }}" class="slide-item  {{ request()->is('my_services.index') || request()->is('adminservice*')||  request()->is('admin_status_update*') ? 'active' : '' }}"> service</a></li>
+                            @endcan
+                            @can('admin-service-complain')
+                                <li><a href="{{ route('my_services.index') }}" class="slide-item">Admin service</a></li>
+                            @endcan
+                            {{--                            @can('manage-course-order')--}}
+                            {{--                                <li><a href="{{ route('course-orders.index') }}" class="slide-item {{ request()->is('course-orders') || request()->is('course-orders*') ? 'active' : '' }}"> Course Order</a></li>--}}
+                            {{--                            @endcan--}}
+                            {{--                            @can('manage-batch-exam-order')--}}
+                            {{--                                <li><a href="{{ route('exam-orders.index') }}" class="slide-item {{ request()->is('exam-orders') || request()->is('exam-orders*') ? 'active' : '' }}"> Exam Order</a></li>--}}
+                            {{--                            @endcan--}}
+                            {{--                            @can('manage-product-order')--}}
+                            {{--                                <li><a href="{{ route('product-orders.index') }}" class="slide-item"> Product Order</a></li>--}}
+                            {{--                            @endcan--}}
+                        </ul>
+                    </li>
+                @endcan
+
+                @can('site-management')
+                    <li class="slide {{ request()->is('number-counters*') || request()->is('our-teams*')|| request()->is('course-routines*')|| request()->is('course-coupons*')|| request()->is('course-sections*')|| request()->is('course-section-contents*')|| request()->is('assign-student-to-course*')|| request()->is('assign-teacher-to-course*') ? 'is-expanded' : '' }}">
+                        <a class="side-menu__item {{ request()->is('number-counters*') || request()->is('our-teams*')|| request()->is('course-routines*')|| request()->is('course-coupons*')|| request()->is('course-sections*')|| request()->is('course-section-contents*')|| request()->is('assign-student-to-course*')|| request()->is('assign-teacher-to-course*') ? 'active is-expanded' : '' }}" data-bs-toggle="slide" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M19,2H9C7.3438721,2.0018311,6.0018311,3.3438721,6,5v1H5C3.3438721,6.0018311,2.0018311,7.3438721,2,9v10c0.0018311,1.6561279,1.3438721,2.9981689,3,3h10c1.6561279-0.0018311,2.9981689-1.3438721,3-3v-1h1c1.6561279-0.0018311,2.9981689-1.3438721,3-3V5C21.9981689,3.3438721,20.6561279,2.0018311,19,2z M17,19c-0.0014038,1.1040039-0.8959961,1.9985962-2,2H5c-1.1040039-0.0014038-1.9985962-0.8959961-2-2v-8h14V19z M17,10H3V9c0.0014038-1.1040039,0.8959961-1.9985962,2-2h10c1.1040039,0.0014038,1.9985962,0.8959961,2,2V10z M21,15c-0.0014038,1.1040039-0.8959961,1.9985962-2,2h-1V9c-0.0008545-0.7719116-0.3010864-1.4684448-0.7803345-2H21V15z M21,6H7V5c0.0014038-1.1040039,0.8959961-1.9985962,2-2h10c1.1040039,0.0014038,1.9985962,0.8959961,2,2V6z"/></svg>
+                            <span class="side-menu__label">Site Features</span>
+                            <i class="angle fa fa-angle-right"></i>
+                        </a>
+                        <ul class="slide-menu {{ request()->is('number-counters*') || request()->is('our-teams*')|| request()->is('course-routines*')|| request()->is('course-coupons*')|| request()->is('course-sections*')|| request()->is('course-section-contents*')|| request()->is('assign-student-to-course*')|| request()->is('assign-teacher-to-course*')|| request()->is('seos*')|| request()->is('app_varsion*')|| request()->is('accounts*') ? 'open' : '' }}">
+                            <li class="side-menu-label1"><a href="javascript:void(0)"> Site Features</a></li>
                             <li><a href="{{ route('number-counters.index') }}" class="slide-item {{ request()->is('number-counters') || request()->is('number-counters*') ? 'active' : '' }}"> Home Page Counters</a></li>
                             <li><a href="{{ route('our-teams.index') }}" class="slide-item {{ request()->is('our-teams') || request()->is('our-teams*') ? 'active' : '' }}">Our Teams</a></li>
                             <li><a href="{{ route('our-services.index') }}" class="slide-item {{ request()->is('our-services') || request()->is('our-services*') ? 'active' : '' }}">Our Services</a></li>
                             <li><a href="{{ route('student-opinions.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Student Opinions</a></li>
-                            <li><a href="{{ route('seos.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Site SEO</a></li>
-                    </ul>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item" data-bs-toggle="slide" href="{{ route('site-settings.index') }}" >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M21.6,2.7c0-0.2-0.2-0.3-0.4-0.4c-3.8-1-7.9,0.3-10.4,3.3L9.5,7.1L6.8,6.4C5.7,6,4.6,6.5,4.1,7.5L2,11.2c0,0,0,0.1-0.1,0.1c-0.1,0.3,0.1,0.5,0.4,0.6l3.4,0.7c-0.3,0.9-0.6,1.8-0.7,2.7c0,0.2,0,0.3,0.1,0.4l3,2.9c0.1,0.1,0.2,0.1,0.4,0.1c0,0,0,0,0,0c0.9-0.1,1.9-0.3,2.8-0.6l0.7,3.3c0,0.2,0.3,0.4,0.5,0.4c0.1,0,0.2,0,0.2-0.1l3.7-2.1c0.9-0.5,1.3-1.6,1.1-2.6l-0.7-2.9l1.4-1.3C21.3,10.5,22.6,6.5,21.6,2.7z M3.2,11.1L4.9,8c0.3-0.6,0.9-0.8,1.5-0.6l2.3,0.6L7.7,9.2c-0.6,0.8-1.2,1.6-1.6,2.5L3.2,11.1z M16,19l-3.1,1.8l-0.6-2.9c0.9-0.4,1.7-1,2.5-1.6l1.3-1.2l0.6,2.3C16.7,18,16.5,18.7,16,19z M17.6,12.3l-3.5,3.2c-1.5,1.3-3.4,2.1-5.4,2.3l-2.6-2.6c0.3-2,1.1-3.9,2.4-5.4L10.1,8c0,0,0.1-0.1,0.1-0.1l1.4-1.6c2.2-2.6,5.8-3.8,9.1-3.1C21.4,6.6,20.3,10.1,17.6,12.3z M16.4,5.6c-1.1,0-1.9,0.9-1.9,1.9s0.9,1.9,1.9,1.9c1.1,0,1.9-0.9,1.9-1.9C18.3,6.5,17.5,5.6,16.4,5.6z M16.4,8.5c-0.5,0-0.9-0.4-0.9-0.9c0-0.5,0.4-0.9,0.9-0.9c0.5,0,0.9,0.4,0.9,0.9C17.3,8.1,16.9,8.5,16.4,8.5z"/></svg>
-                        <span class="side-menu__label">Site Info</span>
-                    </a>
-                </li>
+
+                            @can('seo-module')
+                                <li><a href="{{ route('seos.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Site SEO</a></li>
+                            @endcan
+                            @can('app-version-module')
+                                <li><a href="{{ route('app_varsion.index') }}" class="slide-item {{ request()->is('app_varsion') || request()->is('app_varsion*') ? 'active' : '' }}">App Varsion</a></li>
+                            @endcan
+                            @can('accounts-module')
+                                <li><a href="{{ route('accounts.index') }}" class="slide-item {{ request()->is('accounts') || request()->is('accounts*') ? 'active' : '' }}">Accounts</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="{{ route('site-settings.index') }}" >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M21.6,2.7c0-0.2-0.2-0.3-0.4-0.4c-3.8-1-7.9,0.3-10.4,3.3L9.5,7.1L6.8,6.4C5.7,6,4.6,6.5,4.1,7.5L2,11.2c0,0,0,0.1-0.1,0.1c-0.1,0.3,0.1,0.5,0.4,0.6l3.4,0.7c-0.3,0.9-0.6,1.8-0.7,2.7c0,0.2,0,0.3,0.1,0.4l3,2.9c0.1,0.1,0.2,0.1,0.4,0.1c0,0,0,0,0,0c0.9-0.1,1.9-0.3,2.8-0.6l0.7,3.3c0,0.2,0.3,0.4,0.5,0.4c0.1,0,0.2,0,0.2-0.1l3.7-2.1c0.9-0.5,1.3-1.6,1.1-2.6l-0.7-2.9l1.4-1.3C21.3,10.5,22.6,6.5,21.6,2.7z M3.2,11.1L4.9,8c0.3-0.6,0.9-0.8,1.5-0.6l2.3,0.6L7.7,9.2c-0.6,0.8-1.2,1.6-1.6,2.5L3.2,11.1z M16,19l-3.1,1.8l-0.6-2.9c0.9-0.4,1.7-1,2.5-1.6l1.3-1.2l0.6,2.3C16.7,18,16.5,18.7,16,19z M17.6,12.3l-3.5,3.2c-1.5,1.3-3.4,2.1-5.4,2.3l-2.6-2.6c0.3-2,1.1-3.9,2.4-5.4L10.1,8c0,0,0.1-0.1,0.1-0.1l1.4-1.6c2.2-2.6,5.8-3.8,9.1-3.1C21.4,6.6,20.3,10.1,17.6,12.3z M16.4,5.6c-1.1,0-1.9,0.9-1.9,1.9s0.9,1.9,1.9,1.9c1.1,0,1.9-0.9,1.9-1.9C18.3,6.5,17.5,5.6,16.4,5.6z M16.4,8.5c-0.5,0-0.9-0.4-0.9-0.9c0-0.5,0.4-0.9,0.9-0.9c0.5,0,0.9,0.4,0.9,0.9C17.3,8.1,16.9,8.5,16.4,8.5z"/></svg>
+                            <span class="side-menu__label">Site Info</span>
+                        </a>
+                    </li>
                 @endcan
             </ul>
             <div class="slide-right" id="slide-right">
