@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
 @section('body')
-   
+
     @if(!$courseCategory->courseCategories->isEmpty())
         <div class="categories-area pb-70">
             <div class="container">
@@ -54,7 +54,7 @@
                                         <li><i class="ri-a-b"></i> {{ $course->total_exam ?? 0 }} Exam</li>
                                         <li><i class="ri-store-3-line"></i>{{ $course->total_live ?? 0 }} live class</li>
                                     </ul>
-                                    
+
                                     <div class="custome_dis_course_price">
                                         @if($course->discount_type == 1 || $course->discount_type == 2)
                                         <span class="course-price"> ৳ <del>{{ $course->price }} </del> </span>
@@ -69,10 +69,28 @@
                                             @php
                                                 $date = date('Y-m-d H:i')
                                             @endphp
+												@php
+													$discountAmount = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100;
+													$totalAmount = $course->price - (isset($discountAmount) ? $discountAmount : 0);
+												@endphp
                                             @if($course->order_status == 'false')
                                                 @if($course->admission_last_date > $date)
-                                                    <a href="{{ route('front.checkout', ['id' => $course->id, 'slug' => $course->slug]) }}"
-                                                       class="btn btn-warning">কোর্সটি কিনুন</a>
+												{{--                 <a href="{{ route('front.checkout', ['id' => $course->id, 'slug' => $course->slug]) }}"
+												class="btn btn-warning">কোর্সটি কিনুন</a> --}}
+
+													   <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">
+														@csrf
+														<input type="hidden" name="course_id" value="{{ $course->id }}" />
+														<input type="hidden" name="total_amount" value="{{ $totalAmount ?? 0 }}" />
+														<input type="hidden" name="used_coupon" value="0">
+														<input type="hidden" name="coupon_code" value="">
+														<input type="hidden" name="coupon_amount" value="">
+														<input type="hidden" name="ordered_for" value="course">
+														<input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">
+														<input type="hidden" name="payment_method" value="ssl">
+														<input type="submit" class="btn btn-warning btn-block" value="কোর্সটি কিনুন">
+														</form>
+
                                                 @else
                                                     <a class="btn btn-warning">ভর্তির সময় শেষ</a>
                                                 @endif

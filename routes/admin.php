@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Service\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\RolePermissionManagement\Permission\PermissionCategoryController;
 use App\Http\Controllers\Backend\ViewControllers\AdminViewController;
@@ -91,6 +92,7 @@ Route::middleware([
         'users' => UserController::class,
     ]);
 
+
     //    User Profile Management
     Route::get('/view-profile', [UserController::class, 'viewProfile'])->name('view-profile');
     Route::get('/all-users-page', [UserController::class, 'allUsersPage'])->name('all-users-page');
@@ -108,6 +110,10 @@ Route::middleware([
         'course-sections'   => CourseSectionController::class,
         'course-section-contents'   => CourseSectionContentController::class,
     ]);
+
+    Route::resource('my_services',ServiceController::class);
+    Route::get('my_service', [ServiceController::class, 'myService'])->name('my_service');
+
     Route::post('/course-categories/update/{id}', [CourseCategoryController::class, 'update'])->name('course-categories.update');
     Route::post('course-categories/save-nested-categories', [CourseCategoryController::class, 'saveNestedCategories'])->name('courseCategories.saveNestedCategories');
     Route::post('courses/save-nested-categories', [CourseController::class, 'saveNestedCourses'])->name('courses.saveNestedCategories');

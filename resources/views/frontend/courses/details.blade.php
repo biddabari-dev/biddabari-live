@@ -235,7 +235,7 @@
                                                     <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">
                                                 </form>
                                             @else
-                                                <a class="default-btn bg-default-color">ভর্তির সময় শেষ</a>
+                                                <a class="default-btn bg-default-color btn-block">ভর্তির সময় শেষ</a>
                                             @endif
 
                                             <ul class="social-link">

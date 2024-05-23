@@ -60,7 +60,7 @@
                                 <input type="hidden" name="ordered_for" value="course">
                                 <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">
                                 <input type="hidden" name="payment_method" value="ssl">
-                                <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">
+                                <input type="submit" class="btn btn-warning btn-block" value="কোর্সটি কিনুন">
                             </form>
 
 
