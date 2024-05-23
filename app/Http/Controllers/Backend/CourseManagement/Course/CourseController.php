@@ -200,7 +200,7 @@ class CourseController extends Controller
         $students = [];
         $students =  CourseStudent::where('course_id', $courseId)->with(['students' => function($students) {
             $students->select('id', 'first_name', 'last_name', 'email', 'mobile', 'status')->with('user')->get();
-        }])->paginate(10000);
+        }])->paginate(5000);
 //        if ($request->ajax())
 //        {
 //            return \view('backend.course-management.course.courses.ajax-assign-student', ['students' => $students, 'course' => $this->course]);
@@ -267,47 +267,7 @@ class CourseController extends Controller
         }
         return back()->with('success', 'Student assigned to course Successfully.');
     }
-//    {
-////        return $request;
-//        abort_if(Gate::denies('assign-course-student'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-//
-//        $xlArray = [];
-//
-//        if (isset($request->student_file)){
-//            $xlArray = Excel::toArray(new StudentTransferImport(), $request->file('student_file'))[0];
-//
-//            foreach ($xlArray as $key => $item)
-//            {
-//                if ($key != 0)
-//                {
-//                    $user = User::where('mobile', $item[0])->first();
-//                    if (isset($user))
-//                    {
-//                        $student=Student::where('user_id', $user->id)->first();
-//                        if(isset($student)){
-//                            $this->createNewParentOrder($user->id, $transferToId);
-//                            $currentStudentId = $student->id;
-//                            Course::find($transferToId)->students()->attach($currentStudentId);
-//
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }else{
-//            foreach ($request->course_transfer_form_id as $courseId)
-//            {
-//                $this->course = Course::find($courseId);
-//                $st=CourseStudent::where('course_id',$courseId)->get();
-//                foreach ($st as $student){
-//                    $stud=Student::where('id',$student->student_id)->first();
-//                    $this->createNewParentOrder($stud->user_id, $transferToId);
-//                    Course::find($transferToId)->students()->attach($stud->id);
-//                }
-//            }
-//        }
-//        return back()->with('success', 'Student assigned to course Successfully.');
-//    }
+
 
     public function createNewParentOrder($userId, $transferToId)
     {

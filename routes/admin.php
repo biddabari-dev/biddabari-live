@@ -111,6 +111,8 @@ Route::middleware([
         'course-section-contents'   => CourseSectionContentController::class,
     ]);
 
+    Route::resource('teachers_profile', TeacherProfileController::class);
+
     Route::resource('my_services',ServiceController::class);
     Route::get('my_service', [ServiceController::class, 'myService'])->name('my_service');
 

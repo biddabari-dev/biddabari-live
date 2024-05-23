@@ -3146,6 +3146,30 @@ class PermissionSeeder extends Seeder
                 'status'      => 1,
                 'is_default'  => 1,
             ],
+            [
+                'id' => 382,
+                'permission_category_id'  => 16,
+                'title'       => 'Teacher Profile',
+                'slug'        => 'teacher-profile',
+                'status'      => 1,
+                'is_default'  => 1,
+            ],
+            [
+                'id' => 383,
+                'permission_category_id'  => 16,
+                'title'       => 'Teacher Profile edit',
+                'slug'        => 'teacher-profile-edit',
+                'status'      => 1,
+                'is_default'  => 1,
+            ],
+            [
+                'id' => 384,
+                'permission_category_id'  => 16,
+                'title'       => 'Teacher Profile update',
+                'slug'        => 'teacher-profile-update',
+                'status'      => 1,
+                'is_default'  => 1,
+            ],
         ]);
     }
 }

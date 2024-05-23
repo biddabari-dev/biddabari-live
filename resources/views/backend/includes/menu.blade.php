@@ -309,6 +309,9 @@
                             @can('view-user-profile')
                                 <li><a href="{{ route('view-profile') }}" class="slide-item">Profile</a></li>
                             @endcan
+                            @can('teacher-profile')
+                                <li><a href="{{ route('teachers_profile.index') }}" class="slide-item">All teachers</a></li>
+                            @endcan
                         </ul>
                     </li>
                 @endcan
