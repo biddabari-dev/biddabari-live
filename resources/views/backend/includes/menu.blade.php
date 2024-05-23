@@ -383,23 +383,12 @@
                             <span class="side-menu__label"> Service</span><i class="angle fa fa-angle-right"></i>
                         </a>
                         <ul class="slide-menu {{  request()->is('my_service*') || request()->is('adminservice*')|| request()->is('servicestatus*') || request()->is('admin_status_update*')|| request()->is('status_update*')  ? 'open' : '' }}">
-                            {{--                            <li class="side-menu-label1"><a href="javascript:void(0)"> orders</a></li>--}}
-                            {{--                            <li><a href="javascript:void(0)" class="slide-item"> Delivery Options</a></li>--}}
                             @can('service-complain')
                                 <li><a href="{{ route('my_service') }}" class="slide-item  {{ request()->is('my_services.index') || request()->is('adminservice*')||  request()->is('admin_status_update*') ? 'active' : '' }}"> service</a></li>
                             @endcan
                             @can('admin-service-complain')
                                 <li><a href="{{ route('my_services.index') }}" class="slide-item">Admin service</a></li>
                             @endcan
-                            {{--                            @can('manage-course-order')--}}
-                            {{--                                <li><a href="{{ route('course-orders.index') }}" class="slide-item {{ request()->is('course-orders') || request()->is('course-orders*') ? 'active' : '' }}"> Course Order</a></li>--}}
-                            {{--                            @endcan--}}
-                            {{--                            @can('manage-batch-exam-order')--}}
-                            {{--                                <li><a href="{{ route('exam-orders.index') }}" class="slide-item {{ request()->is('exam-orders') || request()->is('exam-orders*') ? 'active' : '' }}"> Exam Order</a></li>--}}
-                            {{--                            @endcan--}}
-                            {{--                            @can('manage-product-order')--}}
-                            {{--                                <li><a href="{{ route('product-orders.index') }}" class="slide-item"> Product Order</a></li>--}}
-                            {{--                            @endcan--}}
                         </ul>
                     </li>
                 @endcan
@@ -417,8 +406,6 @@
                             <li><a href="{{ route('our-teams.index') }}" class="slide-item {{ request()->is('our-teams') || request()->is('our-teams*') ? 'active' : '' }}">Our Teams</a></li>
                             <li><a href="{{ route('our-services.index') }}" class="slide-item {{ request()->is('our-services') || request()->is('our-services*') ? 'active' : '' }}">Our Services</a></li>
                             <li><a href="{{ route('student-opinions.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Student Opinions</a></li>
-<<<<<<< HEAD
-
                             @can('seo-module')
                                 <li><a href="{{ route('seos.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Site SEO</a></li>
                             @endcan
@@ -436,18 +423,6 @@
                             <span class="side-menu__label">Site Info</span>
                         </a>
                     </li>
-=======
-                            <li><a href="{{ route('seos.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Site SEO</a></li>
-                            <li><a href="{{ route('app-varsions.index') }}" class="slide-item {{ request()->is('app-varsions') || request()->is('app-varsions*') ? 'active' : '' }}">App Varsion</a></li>
-                    </ul>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item" data-bs-toggle="slide" href="{{ route('site-settings.index') }}" >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M21.6,2.7c0-0.2-0.2-0.3-0.4-0.4c-3.8-1-7.9,0.3-10.4,3.3L9.5,7.1L6.8,6.4C5.7,6,4.6,6.5,4.1,7.5L2,11.2c0,0,0,0.1-0.1,0.1c-0.1,0.3,0.1,0.5,0.4,0.6l3.4,0.7c-0.3,0.9-0.6,1.8-0.7,2.7c0,0.2,0,0.3,0.1,0.4l3,2.9c0.1,0.1,0.2,0.1,0.4,0.1c0,0,0,0,0,0c0.9-0.1,1.9-0.3,2.8-0.6l0.7,3.3c0,0.2,0.3,0.4,0.5,0.4c0.1,0,0.2,0,0.2-0.1l3.7-2.1c0.9-0.5,1.3-1.6,1.1-2.6l-0.7-2.9l1.4-1.3C21.3,10.5,22.6,6.5,21.6,2.7z M3.2,11.1L4.9,8c0.3-0.6,0.9-0.8,1.5-0.6l2.3,0.6L7.7,9.2c-0.6,0.8-1.2,1.6-1.6,2.5L3.2,11.1z M16,19l-3.1,1.8l-0.6-2.9c0.9-0.4,1.7-1,2.5-1.6l1.3-1.2l0.6,2.3C16.7,18,16.5,18.7,16,19z M17.6,12.3l-3.5,3.2c-1.5,1.3-3.4,2.1-5.4,2.3l-2.6-2.6c0.3-2,1.1-3.9,2.4-5.4L10.1,8c0,0,0.1-0.1,0.1-0.1l1.4-1.6c2.2-2.6,5.8-3.8,9.1-3.1C21.4,6.6,20.3,10.1,17.6,12.3z M16.4,5.6c-1.1,0-1.9,0.9-1.9,1.9s0.9,1.9,1.9,1.9c1.1,0,1.9-0.9,1.9-1.9C18.3,6.5,17.5,5.6,16.4,5.6z M16.4,8.5c-0.5,0-0.9-0.4-0.9-0.9c0-0.5,0.4-0.9,0.9-0.9c0.5,0,0.9,0.4,0.9,0.9C17.3,8.1,16.9,8.5,16.4,8.5z"/></svg>
-                        <span class="side-menu__label">Site Info</span>
-                    </a>
-                </li>
->>>>>>> 33c9096ad4cbfda017775c16c52d3e935242ed2b
                 @endcan
             </ul>
             <div class="slide-right" id="slide-right">
