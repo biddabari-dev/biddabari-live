@@ -62,7 +62,8 @@ Route::get('/bkash/pay',[BkashController::class,'callBack'])->name('excute_payme
 //Route::post('/bkash/callback', [App\Http\Controllers\BkashTokenizePaymentController::class,'callBack'])->name('bkash-callBack');
 
 Route::get('/test', function (){
-
+    \App\Models\Backend\Course\Course::find(594)->students()->detach();
+    exit();
     return $_SERVER['DOCUMENT_ROOT'].'/backend';
     return base_path('../public_html');
     //   return public_path('backend/e.jpg');

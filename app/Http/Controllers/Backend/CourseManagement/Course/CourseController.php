@@ -237,12 +237,13 @@ class CourseController extends Controller
                     if (isset($user))
                     {
                         $student=Student::where('user_id', $user->id)->first();
-                        if(isset($student)){
-                            $corstud=CourseStudent::where('student_id',$student->student_id)->where('course_id',$transferToId)->first();
-                            if (empty($corstud)){
+                        if (!empty($student))
+                        {
+                            $courseStudent = CourseStudent::where(['student_id' => $student->id, 'course_id' => $transferToId])->first();
+                            if (empty($courseStudent))
+                            {
                                 $this->createNewParentOrder($user->id, $transferToId);
-                                $currentStudentId = $student->id;
-                                Course::find($transferToId)->students()->attach($currentStudentId);
+                                Course::find($transferToId)->students()->attach($student->id);
                             }
                         }
                     }
@@ -252,15 +253,18 @@ class CourseController extends Controller
             foreach ($request->course_transfer_form_id as $courseId)
             {
                 $this->course = Course::find($courseId);
-                $st=CourseStudent::where('course_id',$courseId)->get();
-                foreach ($st as $student){
-                    $stud=Student::where('id',$student->student_id)->first();
-                    if (isset($stud)){
-                        $corstud=CourseStudent::where('student_id',$student->student_id)->where('course_id',$transferToId)->first();
-                        if (empty($corstud)){
+                $st = CourseStudent::where('course_id',$courseId)->get();
+                foreach ($st as $courseStudent){
+                    $stud = Student::where('id', $courseStudent->student_id)->first();
+                    if (!empty($stud))
+                    {
+                        $existStudentCourse = CourseStudent::where(['student_id' => $stud->id, 'course_id' => $transferToId])->first();
+                        if (empty($existStudentCourse))
+                        {
                             $this->createNewParentOrder($stud->user_id, $transferToId);
                             Course::find($transferToId)->students()->attach($stud->id);
                         }
+
                     }
                 }
             }
