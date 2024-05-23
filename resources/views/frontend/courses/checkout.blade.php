@@ -13,17 +13,26 @@
                         <h3 class="text-center py-3">Checkout Summary</h3>
                         <ul>
                             <li>Course Name : <span>{{ $course->title }}</span></li>
-                            <li>Course Price <span>BDT {{ $course->price ?? 0 }}</span></li>
+                            <li>Course Price <span>BDT {{ $reqFor == 'course' ? ($course->price ?? 0) : 0 }}</span></li>
                             <li id="couponLi" class="d-none">Coupon <span>BDT <b id="couponAmount"></b></span></li>
 
                             <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}"
                                 method="post" enctype="multipart/form-data">
                                 @csrf
+
+                                <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                <input type="hidden" name="total_amount" value="{{ $course->total_amount_after_discount ?? $course->price }}">
+                                <input type="hidden" name="used_coupon" value="0">
+                                <input type="hidden" name="coupon_code" value="">
+                                <input type="hidden" name="coupon_amount" value="">
+                                <input type="hidden" name="ordered_for" value="{{ $reqFor ?? 'course' }}">
+                                <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">
+
                                 <li>
                                     <div class="row checkout_log">
                                         <div class="col-md-6">
                                             <label for="paidTo">Student Name</label>
-                                            <input type="text" id="paidTo" name="user_name" class="form-control"
+                                            <input type="text" id="paidTo" name="name" class="form-control"
                                                 placeholder="Enter your name" />
                                             @error('paid_to')<span class="text-danger"></span>@enderror
                                         </div>
@@ -43,10 +52,8 @@
                                         <label for="couponCode" >Coupon Code</label>
 
                                             <div class="input-group">
-                                                <input type="text" placeholder="Coupon Code" id="couponCode"
-                                                    class="form-control" />
-                                                <label for="couponCode" class="input-group-text" id="checkBtn"
-                                                    style="cursor: pointer">Apply</label>
+                                                <input type="text" placeholder="Coupon Code" id="couponCode" class="form-control" />
+                                                <label for="couponCode" class="input-group-text" id="checkBtn" style="cursor: pointer">Apply</label>
 
                                             </div>
                                         </div>
@@ -63,7 +70,7 @@
                                     <div class="bkash_payment d-flex justify-content-between">
 
                                         <div class="d-flex">
-                                            <input type="radio" id="direct-bank-transfer" class="me-2" value="cod"
+                                            <input type="radio" id="direct-bank-transfer" class="me-2" value="bkash"
                                                 name="payment_method" checked>
                                             <label for="direct-bank-transfer">বিকাশ পেমেন্ট মেথড</label>
                                         </div>

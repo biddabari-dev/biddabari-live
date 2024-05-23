@@ -223,13 +223,27 @@ class BasicViewController extends Controller
         return 'something went wrong';
     }
 
-    public function checkout ($id, $slug = null)
+    public function checkout ($id, $type = 'course',  $slug = null)
     {
+        if ($type == 'course')
+        {
+            $this->course = Course::whereId($id)->select('id', 'title', 'price','discount_amount', 'discount_type', 'discount_end_date_timestamp')->first();
+
+        } elseif ($type == 'batch_exam')
+        {
+            $this->course = BatchExam::whereId($id)->first();
+        }
+
         if (auth()->check())
         {
-            $this->course = Course::whereId($id)->first();
-//            $existUser = CourseOrder::where(['user_id' => auth()->id(), 'course_id' => $this->course->id])->first();
-            $existUser = ParentOrder::where(['user_id' => auth()->id(), 'ordered_for' => 'course', 'parent_model_id' => $this->course->id])->where('status', '!=', 'canceled')->first();
+            if ($type == 'course')
+            {
+                $existUser = ParentOrder::where(['user_id' => ViewHelper::loggedUser()->id, 'ordered_for' => 'course', 'parent_model_id' => $this->course->id])->where('status', '!=', 'canceled')->first();
+
+            } elseif ($type == 'batch_exam')
+            {
+                $existUser = ParentOrder::where(['user_id' => ViewHelper::loggedUser()->id, 'ordered_for' => 'batch_exam', 'parent_model_id' => $this->course->id])->where('status', '!=', 'canceled')->first();
+            }
             if (!empty($existUser))
             {
                 if (str()->contains(url()->current(), '/api/'))
@@ -238,26 +252,43 @@ class BasicViewController extends Controller
                 }
                 return back()->with('error', 'Sorry. You already enrolled this course.');
             }
-            if (!empty($this->course))
-            {
-                $this->data = [
-                    'course'    => $this->course,
-//                    'discountStatus'   => dateTimeFormatYmdHi($this->course->discount_start_date) < currentDateTimeYmdHi() && dateTimeFormatYmdHi($this->course->discount_end_date) > currentDateTimeYmdHi() ? 'valid' : 'not-valid'
-                    'discountStatus'   => isset($this->course->discount_start_date) && !empty($this->course->discount_start_date) ? (dateTimeFormatYmdHi($this->course->discount_start_date) < currentDateTimeYmdHi() && dateTimeFormatYmdHi($this->course->discount_end_date) > currentDateTimeYmdHi() ? 'valid' : 'not-valid') : 'not-valid'
-                ];
-                return ViewHelper::checkViewForApi($this->data, 'frontend.courses.checkout');
-            } else {
-                if (str()->contains(url()->current(), '/api/'))
-                {
-                    return response()->json('Course Not Found', 400);
-                } else {
-                    return back()->with('error', 'Course Not Found');
-                }
-            }
-        } else {
-            return redirect()->route('login')->with('error', 'Please Login First to order a course.');
+
         }
-        return 'course Checkout page';
+
+
+        if (!empty($this->course))
+        {
+            if ($this->course->discount_end_date_timestamp < currentDateTimeYmdHi())
+            {
+                if ($this->course->discount_type == 1)
+                {
+                    $this->course->total_amount_after_discount = $this->course->price - $this->course->discount_amount;
+                } elseif ($this->course->discount_type == 2)
+                {
+                    $this->course->total_amount_after_discount = $this->course->price - (($this->course->price * $this->course->discount_amount)/100);
+                }
+            } else {
+                $this->course->total_amount_after_discount  = $this->course->price;
+            }
+
+            $this->data = [
+                'reqFor'  => $type,
+                'course'    => $this->course,
+//                    'discountStatus'   => dateTimeFormatYmdHi($this->course->discount_start_date) < currentDateTimeYmdHi() && dateTimeFormatYmdHi($this->course->discount_end_date) > currentDateTimeYmdHi() ? 'valid' : 'not-valid'
+//                'discountStatus'   => isset($this->course->discount_start_date) && !empty($this->course->discount_start_date) ? (dateTimeFormatYmdHi($this->course->discount_start_date) < currentDateTimeYmdHi() && dateTimeFormatYmdHi($this->course->discount_end_date) > currentDateTimeYmdHi() ? 'valid' : 'not-valid') : 'not-valid'
+            ];
+            return ViewHelper::checkViewForApi($this->data, 'frontend.courses.checkout');
+        } else {
+            if (str()->contains(url()->current(), '/api/'))
+            {
+                return response()->json($type.' Not Found', 400);
+            } else {
+                return back()->with('error', $type.' Not Found');
+            }
+        }
+
+
+        return redirect()->back()->with('Something went wrong. Please try agian.');
     }
 
 
