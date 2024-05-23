@@ -7210,11 +7210,10 @@ img {
     color: #dc3545 !important
 }
 
-
 .go-top {
     position: fixed;
     top: 50%;
-    right: 5%;
+    right: 3%;
     opacity: 0;
     cursor: pointer;
     text-decoration: none;
@@ -7229,7 +7228,7 @@ img {
     line-height: 43px;
     z-index: 100;
     -webkit-transition: .5s;
-    transition: .5s;
+    transition: .5s
 }
 
 .go-top i {
@@ -7826,6 +7825,11 @@ img {
     margin-top: 18.5%;
 }
 
+<<<<<<< HEAD
+
+
+@media only screen and (min-width : 280px) and (max-width: 420px) {
+=======
 .quiz-wizard .position-sticky{
     top: 105px!important;
     z-index: 10;
@@ -7957,6 +7961,7 @@ img {
         display: none;
     }
 
+>>>>>>> 33c9096ad4cbfda017775c16c52d3e935242ed2b
 
     .mobile_res {
         display: none;
@@ -8141,7 +8146,7 @@ img {
 
     /* .p-0 {
         padding-left: 15px !important;
-        padding-right: 15px !important   haida off koira loici .. responsive theke off korte hobe
+        padding-right: 15px !important   haida off koira loici .. responsive theke off korte hobe 
     } */
 /* -----------Design Update Mizan  ---------------------- */
 }
@@ -8149,6 +8154,8 @@ img {
 
 
 @media only screen and (min-width : 421px) and (max-width: 520px) {
+<<<<<<< HEAD
+=======
     /* --------------------Checkout page Start-------------- */
 
     .pay_method_icon img {
@@ -8209,6 +8216,7 @@ img {
     .custome_mobile_null{
         display: none;
     }
+>>>>>>> 33c9096ad4cbfda017775c16c52d3e935242ed2b
 
     .mobile_res {
         display: none;
@@ -8390,6 +8398,8 @@ img {
 }
 
 @media only screen and (min-width : 521px) and (max-width : 767px) {
+<<<<<<< HEAD
+=======
 
     /* --------------------Checkout page Start-------------- */
 
@@ -8452,6 +8462,7 @@ img {
         display: none;
     }
 
+>>>>>>> 33c9096ad4cbfda017775c16c52d3e935242ed2b
 
     .mobile_res {
         display: none;
@@ -8828,6 +8839,6 @@ img {
             .categories-item .content {
                 padding: 10px 10px !important;
             }
-
+          
             /* -----------Design Update Mizan  ---------------------- */
 }

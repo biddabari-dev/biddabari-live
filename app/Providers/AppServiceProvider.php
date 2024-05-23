@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('siteSettings', SiteSetting::first());
 //		URL::forceRootUrl(Config::get('app.url'));
 //			if (str_contains(Config::get('app.url'), 'https://')) {
-        URL::forceScheme('https');
+        // URL::forceScheme('https');
 //		}
     }
 }

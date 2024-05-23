@@ -250,6 +250,27 @@ class PermissionCategorySeeder extends Seeder
                 'note'  => '',
                 'status'    => 1,
                 'is_default'    => 1,
+            ], [
+                'id' => 30,
+                'name'  => 'Service Management Module',
+                'slug'  => 'service-management-module',
+                'note'  => '',
+                'status'    => 1,
+                'is_default'    => 1,
+            ], [
+                'id' => 31,
+                'name'  => 'SEO Management Module',
+                'slug'  => 'SEO-management-module',
+                'note'  => '',
+                'status'    => 1,
+                'is_default'    => 1,
+            ], [
+                'id' => 32,
+                'name'  => 'Accounts Management Module',
+                'slug'  => 'Accounts-management-module',
+                'note'  => '',
+                'status'    => 1,
+                'is_default'    => 1,
             ],
         ]);
     }
