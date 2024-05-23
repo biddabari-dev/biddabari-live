@@ -34,8 +34,8 @@
                                     <tr>
                                         @if(isset($student['students'][0]['first_name']))
                                             <td>{{ $student['students'][0]['first_name'] }}</td>
-                                            @else
-                                            <td></td>
+                                        @else
+                                            <td>{{ $student['students'][0]['user']['name'] }}</td>
                                         @endif
                                          @if(isset($student['students'][0]['email']))
                                         <td>{{ $student['students'][0]['email'] }}</td>

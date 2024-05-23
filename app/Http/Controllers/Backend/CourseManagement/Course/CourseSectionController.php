@@ -24,6 +24,7 @@ class CourseSectionController extends Controller
         return view('backend.course-management.course.course-sections.nested.index', [
             'courseSections'   => CourseSection::whereCourseId(\request()->input('course_id'))->select('id', 'course_id', 'title')->with('courseSectionContentsManagePage')->orderBy('order', 'ASC')->get(),
             'pdfStoreCategories'   => PdfStoreCategory::whereStatus(1)->where('parent_id', 0)->select('id', 'title')->get(),
+            'course'        => Course::where('id', \request()->input('course_id'))->select('id', 'title')->first(),
         ]);
     }
 

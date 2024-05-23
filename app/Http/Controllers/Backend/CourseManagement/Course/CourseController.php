@@ -196,38 +196,10 @@ class CourseController extends Controller
     {
         abort_if(Gate::denies('assign-course-student-page'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-//       codes by reza vai
-        $sql = "select
-            c.id course_id,
-            c.title course_title,
-            s.id student_id,
-            s.user_id,
-            s.status student_status,
-            u.id user_table_id,
-            u.name user_name,
-            u.mobile user_mobile,
-            u.email user_email
-            from courses c
-            inner join course_student cs on cs.course_id = c.id
-            inner join students s on s.id = cs.student_id
-            inner join users u on u.id = s.user_id
-            where c.id = $courseId
-            group by
-            c.id,
-            c.title,
-            s.id,
-            s.user_id,
-            s.status,
-            u.id,
-            u.name,
-            u.mobile,
-            u.email";
-
-//       $result = DB::select($sql);
         $this->course = Course::select('id', 'title')->find($courseId);
         $students = [];
         $students =  CourseStudent::where('course_id', $courseId)->with(['students' => function($students) {
-            $students->select('id', 'first_name', 'last_name', 'email', 'mobile', 'status')->get();
+            $students->select('id', 'first_name', 'last_name', 'email', 'mobile', 'status')->with('user')->get();
         }])->paginate(10000);
 //        if ($request->ajax())
 //        {

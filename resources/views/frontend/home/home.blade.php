@@ -55,14 +55,14 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-6 col-m-6">
-                <div class="featured-item-two">
-                    <a href="" class="p-2">
-                        <i class="flaticon-wellness"></i>
-                        <h3>লাইভ এসাইনমেন্ট</h3>
-                    </a>
-                </div>
-            </div>
+{{--            <div class="col-lg-3 col-sm-6 col-6 col-m-6">--}}
+{{--                <div class="featured-item-two">--}}
+{{--                    <a href="" class="p-2">--}}
+{{--                        <i class="flaticon-wellness"></i>--}}
+{{--                        <h3>লাইভ এসাইনমেন্ট</h3>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="col-lg-3 col-sm-6 col-6 col-m-6">
                 <div class="featured-item-two">
                     <a href="{{ route('front.guideline') }}" class="p-2">

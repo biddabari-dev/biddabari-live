@@ -41,7 +41,7 @@ class ParentOrder extends Model
         'bank_tran_id',
         'gateway_val_id',
         'gateway_status',
-
+        'payment_status',
         'shipping_address',
         'notes',
         'delivery_charge',
