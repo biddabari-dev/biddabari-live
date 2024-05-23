@@ -195,11 +195,6 @@
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        beforeSend: function(xhr, settings) {
-            if (!settings.crossDomain) {
-                settings.url = settings.url.replace(/^http:/, 'https:');
-            }
         }
     });
 </script>
