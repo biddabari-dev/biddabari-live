@@ -410,7 +410,7 @@
                                 <li><a href="{{ route('seos.index') }}" class="slide-item {{ request()->is('student-opinions') || request()->is('student-opinions*') ? 'active' : '' }}">Site SEO</a></li>
                             @endcan
                             @can('app-version-module')
-                                <li><a href="{{ route('app_varsion.index') }}" class="slide-item {{ request()->is('app_varsion') || request()->is('app_varsion*') ? 'active' : '' }}">App Varsion</a></li>
+                                <li><a href="{{ route('app-varsions.index') }}" class="slide-item {{ request()->is('app_varsion') || request()->is('app_varsion*') ? 'active' : '' }}">App Varsion</a></li>
                             @endcan
                             @can('accounts-module')
                                 <li><a href="{{ route('accounts.index') }}" class="slide-item {{ request()->is('accounts') || request()->is('accounts*') ? 'active' : '' }}">Accounts</a></li>

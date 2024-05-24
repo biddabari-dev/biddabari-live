@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/plugins.css">--}}
 
+    <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/assets/images/favicon.png">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.min.css" />
+
         <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/iconplugins.css">
 
 {{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.min.css">--}}
@@ -33,8 +36,7 @@
         <link href="{{ asset('/') }}backend/assets/css/helper.css" rel="stylesheet" />
 {{--    <link href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/backend/assets/css/helper.min.css" rel="stylesheet" />--}}
 
-    <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/assets/images/favicon.png">
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.min.css">
+
 
         <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom-my-mod.min.css">
 
