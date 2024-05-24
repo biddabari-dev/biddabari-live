@@ -1,3 +1,21 @@
+<div class="appInstall">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="custome_col-6 bg_custome_clr">
+                <i class="ri-phone-fill"></i>
+                <a href="tel:+8809638800000">09638800000</a>
+            </div>
+            <div class="custome_col-6 bg-danger">
+                <div class="">
+                    <i class="fa-solid fa-hand-point-right"></i>
+                    <a href="https://play.google.com/store/apps/details?id=com.nextive.biddabari2021&pcampaignid=web_share"
+                       target="blank"><span class="__cf_email__">Install Biddabari App</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <header class="top-header">
     <div class="container-fluid">
         <div class="custome_col_4">
@@ -7,7 +25,7 @@
                         <ul>
                             <li>
                                 <i class="ri-phone-fill"></i>
-                                <a href="tel:++8801896060809">+8801896060809</a>
+                                <a href="tel:+8809638800000">09638800000</a>
                             </li>
                             <li class="bg-danger">
                                 <i class="fa-brands fa-google-play"></i>
@@ -156,7 +174,7 @@
             <div class="dot-menu">
                     @if(auth()->check())
                 <div class="side-item">
-                    <a href="{{ route('front.student.dashboard') }}">Profile</i></a>
+                    <a href="{{ route('front.student.dashboard') }}">Profile</a>
                 </div>
                 @else
                 <div class="side-item">

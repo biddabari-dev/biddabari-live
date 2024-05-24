@@ -507,7 +507,7 @@
     }
 
     .counter-content i {
-        font-size: 38px
+        font-size: 25px
     }
 
     .counter-content i::after {
@@ -2983,7 +2983,7 @@
 
 @media only screen and (min-width:1800px) {
 
-    
+
     .container-fluid {
         max-width: 1640px !important;
         margin-left: auto !important;

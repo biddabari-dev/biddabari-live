@@ -22,7 +22,7 @@
                                 @forelse($courses as $course)
                                     <div class="col-md-4 col-sm-6">
                                         <div class="courses-item">
-                                            <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
+                                            <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
                                                 <img src="{{ file_exists($course->banner) ? asset($course->banner) : asset('frontend/logo/biddabari-card-logo.jpg') }}" alt="Courses" class="w-100" style="height: 230px"/>
 
                                                 <div class="content">

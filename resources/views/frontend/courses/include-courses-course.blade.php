@@ -38,7 +38,7 @@
 
             <div class="bottom-content">
                 @if($course->order_status != 'true')
-                <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}"
+                <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}"
                     class="btn btn-warning">বিস্তারিত দেখুন</a>
                 @endif
                 <div class="rating ">

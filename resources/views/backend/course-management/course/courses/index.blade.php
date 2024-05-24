@@ -64,7 +64,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             <div class="mt-3">
-{{--                                                <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}" target="_blank">--}}
+{{--                                                <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}" target="_blank">--}}
                                                 <a href="{{ route('course-sections.index', ['course_id' => $course->id]) }}" >
                                                     <div class="text-center">
                                                         <img src="{{ asset(file_exists($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" alt="" style="height: 100px;" />

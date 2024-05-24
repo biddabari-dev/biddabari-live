@@ -1002,15 +1002,15 @@ body{
     /*    border-radius: 50%;*/
     /*    color: #fff;*/
     /*}*/
-    
+
     .side-nav-responsive .dot-menu .side-item a{
-    height: 35px;
-    width: 71px;
-    background: #F18345;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 20px;
-    color: #fff;
+        height: 35px;
+        width: 100px;
+        background: #f18345;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 20px;
+        color: #fff;
     }
 
     .acme-news-ticker{
@@ -1059,7 +1059,7 @@ body{
 }
 
 @media only screen and (min-width : 521px) and (max-width : 767px) {
-    
+
     .mobile_res{
         display: none;
     }

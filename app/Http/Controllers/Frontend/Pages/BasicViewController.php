@@ -190,7 +190,7 @@ class BasicViewController extends Controller
 
     public function courseDetails ($id,$slug = null)
     {
-        $course = Course::find($id);
+        $course = Course::where('slug', $slug)->first();
         $courseEnrollStatus = ViewHelper::checkIfCourseIsEnrolled($course);
         if ($courseEnrollStatus == 'true')
         {

@@ -89,10 +89,10 @@ Route::as('front.')->group(function (){
 Route::middleware('previousUrlMiddleware')->group(function (){
         Route::get('/', [BasicViewController::class, 'home'])->name('home');
         Route::get('/all-courses', [BasicViewController::class, 'allCourses'])->name('all-courses');
-        Route::get('/course-details/{id}/{slug?}', [BasicViewController::class, 'courseDetails'])->name('course-details');
+        Route::get('/details/{slug}', [BasicViewController::class, 'courseDetails'])->name('course-details');
         Route::get('/checkout/{type}/{id}/{slug?}', [BasicViewController::class, 'checkout'])->name('checkout');
 
-        Route::get('/category-courses/{id}/{slug?}', [BasicViewController::class, 'categoryCourses'])->name('category-courses');
+        Route::get('/category/{id}/{slug?}', [BasicViewController::class, 'categoryCourses'])->name('category-courses');
         Route::get('/all-notices', [BasicViewController::class, 'allNotices'])->name('notices');
 
 

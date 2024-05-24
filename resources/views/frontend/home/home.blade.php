@@ -153,14 +153,14 @@
             @foreach($courses as $course)
             <div class="col-lg-4 col-md-6">
                 <div class="courses-item">
-                    <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
+                    <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
                         <img loading="lazy" src="{{ asset(file_exists($course->banner) ?$course->banner: 'frontend/logo/biddabari-card-logo.jpg') }}" alt="Courses"
                             class="w-100 p-2" style="height: 230px" />
                     </a>
-                    <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
+                    <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
                         <div class="content">
                             <h3 class="py-2"><a
-                                    href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">{{
+                                    href="{{ route('front.course-details', ['slug' => $course->slug]) }}">{{
                                     $course->title }}</a></h3>
 
 
@@ -201,7 +201,7 @@
 
                             <div class="bottom-content">
                                 @if($course->order_status != 'true')
-                                <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}"
+                                <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}"
                                     class="btn btn-warning">বিস্তারিত দেখুন</a>
                                 @else
                                 <a href="javascript:void(0)" class=""></a>
@@ -524,18 +524,15 @@
                     {{--                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>--}}
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" >
+                <div class="modal-body popup_card" >
                     <div class="card border-0">
-                        <img class="w-100 " style="height: 400px"  src="{{asset(file_exists($poppup->image) ? $poppup->image : 'frontend/logo/biddabari-card-logo.jpg')}}" alt="popup-img" >
+                        <img class="" src="{{asset(file_exists($poppup->image) ? $poppup->image : 'frontend/logo/biddabari-card-logo.jpg')}}" alt="popup-img" >
                         <p>{!! $poppup->description ?? '' !!}</p>
-                        {{--                        <div class="d-flex">--}}
-                        {{--                            <a class="btn btn-primary btn-sm ms-auto" href="{{$poppup->active_btn_link}}"> {{$poppup->action_btn_text}}</a>--}}
-                        {{--                        </div>--}}
+
                     </div>
                 </div>
                 <div class="modal-footer">
-                    {{--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
-                    {{--                    <a type="button" class="btn btn-primary">--}}
+
                     <a class="btn btn-primary btn-sm ms-auto" href="{{$poppup->active_btn_link ?? ''}}"> {{$poppup->action_btn_text ?? ''}}</a>
                     {{--                    </a>--}}
                 </div>
@@ -546,24 +543,24 @@
 @endif
 @endsection
 @push('style')
-<style>
-    .hero-slider-area {
-        padding: 25px 0 !important;
-        /*background-color: rgba(241, 131, 69, .5)*/
-        background-color: #ebe9f1
-    }
-
-    .featured-item-two a h3 {
-        font-size: 23px
-    }
-</style>
-<style>
-    @media screen and (max-width: 426px) {
-        .col-m-6 {
-            width: 50% !important;
+    <style>
+        .hero-slider-area {
+            padding: 5px 0 !important;
+            /*background-color: rgba(241, 131, 69, .5)*/
+            background-color: #ebe9f1
         }
-    }
-</style>
+
+        .featured-item-two a h3 {
+            font-size: 18px
+        }
+    </style>
+    <style>
+        @media screen and (max-width: 426px) {
+            .col-m-6 {
+                width: 50% !important;
+            }
+        }
+    </style>
 @endpush
 
 @push('script')
