@@ -17,13 +17,15 @@
         <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
 
 
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.min.css">
+{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.min.css">--}}
+        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.css">
 
 
         <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/theme-dark.min.css">
 
 
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.min.css">
+{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.min.css">--}}
+        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.css">
 
     <title>BiddaBari - The First Job Study Online Platform in Bangladesh</title>
 

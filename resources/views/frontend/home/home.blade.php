@@ -524,7 +524,7 @@
                     {{--                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>--}}
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" >
+                <div class="modal-body popup_card" >
                     <div class="card border-0">
                         <img class="w-100 " style="height: 400px"  src="{{asset(file_exists($poppup->image) ? $poppup->image : 'frontend/logo/biddabari-card-logo.jpg')}}" alt="popup-img" >
                         <p>{!! $poppup->description ?? '' !!}</p>
@@ -546,24 +546,24 @@
 @endif
 @endsection
 @push('style')
-<style>
-    .hero-slider-area {
-        padding: 25px 0 !important;
-        /*background-color: rgba(241, 131, 69, .5)*/
-        background-color: #ebe9f1
-    }
-
-    .featured-item-two a h3 {
-        font-size: 23px
-    }
-</style>
-<style>
-    @media screen and (max-width: 426px) {
-        .col-m-6 {
-            width: 50% !important;
+    <style>
+        .hero-slider-area {
+            padding: 5px 0 !important;
+            /*background-color: rgba(241, 131, 69, .5)*/
+            background-color: #ebe9f1
         }
-    }
-</style>
+
+        .featured-item-two a h3 {
+            font-size: 18px
+        }
+    </style>
+    <style>
+        @media screen and (max-width: 426px) {
+            .col-m-6 {
+                width: 50% !important;
+            }
+        }
+    </style>
 @endpush
 
 @push('script')
