@@ -56,6 +56,7 @@ use App\Http\Controllers\Backend\AdditionalFeatureManagement\StudentOpinion\Stud
 use App\Http\Controllers\Backend\SEO\SeoController;
 use App\Http\Controllers\Backend\AppVarsion\AppVarsionController;
 use App\Http\Controllers\Backend\BkashController;
+use App\Http\Controllers\Backend\UserManagement\TeacherProfileController;
 
 Route::post('create/bkash',[BkashController::class,'createPayment'])->name('bkash-create-payment');
 Route::get('/bkash/pay',[BkashController::class,'callBack'])->name('excute_payment');
