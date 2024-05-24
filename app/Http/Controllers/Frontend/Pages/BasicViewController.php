@@ -190,9 +190,8 @@ class BasicViewController extends Controller
 
     public function courseDetails ($id,$slug = null)
     {
-        $course = Course::where('slug', $slug)->first();
-        $courseEnrollStatus = 'false';
-//        $courseEnrollStatus = ViewHelper::checkIfCourseIsEnrolled($course);
+        $course = Course::find($id);
+        $courseEnrollStatus = ViewHelper::checkIfCourseIsEnrolled($course);
         if ($courseEnrollStatus == 'true')
         {
             return redirect()->route('front.student.course-contents', ['course_id' => $course->id, 'slug' => $course->slug]);
