@@ -13,16 +13,19 @@
         <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/iconplugins.css">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/iconplugins.css">--}}
 
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.min.css">
+{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.min.css">--}}
+        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/style.min.css">--}}
 
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.min.css">
+{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.min.css">--}}
+        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.css">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/responsive.min.css">--}}
 
         <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/theme-dark.css">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/theme-dark.css">--}}
 
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.min.css">
+{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.min.css">--}}
+        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.css">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/custom.min.css">--}}
 
    <!--font awesome link-->
@@ -102,7 +105,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: black;
         }
-        
+
           /* ------------------------------------ */
         .go-messenger {
             position: fixed;
@@ -125,22 +128,22 @@
             transition: .5s;
             padding-top: 6px;
         }
-        
+
         .go-messenger i {
             -webkit-transition: .5s;
             transition: .5s;
             vertical-align: middle
         }
-        
+
         .go-messenger:hover {
             background-color: var(--titleColor)
         }
-        
+
         /*.go-messenger:hover i {*/
         /*    -webkit-transform: translateY(-5px);*/
         /*    transform: translateY(-5px)*/
         /*}*/
-        
+
         .go-messenger.active {
             top: 95%;
             -webkit-transform: translateY(-95%);
@@ -148,7 +151,7 @@
             opacity: 1;
             visibility: visible
         }
-        
+
         /* ------------------------------------------- */
     </style>
     @stack('style')
@@ -293,9 +296,9 @@ src="https://www.facebook.com/tr?id=1185093055952372&ev=PageView&noscript=1"
                                                 <a class="nav-link" href="{{ route('front.student.my_service') }}">Service</a>
                                             </li>
                                         @endcan
-                                        
-                                        
-                                        
+
+
+
                                         <li class="nav-item border-1">
                                             <a class="nav-link" href="#"
                                                onclick="event.preventDefault();document.getElementById('logout').submit()">Logout</a>
