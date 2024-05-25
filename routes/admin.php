@@ -63,11 +63,13 @@ Route::get('/bkash/pay',[BkashController::class,'callBack'])->name('excute_payme
 //Route::post('/bkash/callback', [App\Http\Controllers\BkashTokenizePaymentController::class,'callBack'])->name('bkash-callBack');
 
 Route::get('/test', function (){
-    foreach (\App\Models\Backend\OrderManagement\ParentOrder::where(['parent_model_id' => 711, 'ordered_for' => 'course'])->get() as $item)
-    {
-        $item->delete();
-    }
-    \App\Models\Backend\Course\Course::find(711)->students()->detach();
+
+    return view('bkash-temp');
+//    foreach (\App\Models\Backend\OrderManagement\ParentOrder::where(['parent_model_id' => 711, 'ordered_for' => 'course'])->get() as $item)
+//    {
+//        $item->delete();
+//    }
+//    \App\Models\Backend\Course\Course::find(711)->students()->detach();
     exit();
     return $_SERVER['DOCUMENT_ROOT'].'/backend';
     return base_path('../public_html');
