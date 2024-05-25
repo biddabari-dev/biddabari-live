@@ -19,6 +19,12 @@ use App\Http\Controllers\PaymentController;
 
 Route::post('/register', [CustomAuthController::class, 'register'])->name('register');
 Route::post('/login', [CustomAuthController::class, 'login'])->name('login');
+Route::get('/login-page', function (){
+    return view('backend.auth.admin-login');
+})->name('custom-login');
+Route::get('/register-page', function (){
+    return view('backend.auth.admin-register');
+})->name('custom-register');
 Route::get('/forgot-user-password', [CustomAuthController::class, 'forgotPassword'])->name('forgot-user-password');
 Route::post('/send-password-reset-otp', [CustomAuthController::class, 'passResetOtp'])->name('send-password-reset-otp');
 Route::get('/password-reset-otp', [CustomAuthController::class, 'passwordResetOtp'])->name('password-reset-otp');

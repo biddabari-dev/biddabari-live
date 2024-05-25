@@ -201,6 +201,39 @@ class User extends Authenticatable
         }
         return self::$user;
     }
+
+    public static function createOrUpdateUserAfterPayment($request, $password = null, $id = null)
+    {
+        if (isset($id))
+        {
+            self::$user = User::find($id);
+        } else {
+            self::$user = new User();
+        }
+        self::$user->name       = $request->name;
+        self::$user->mobile       = $request->mobile;
+        if ($request->hasFile('image'))
+        {
+            self::$user->profile_photo_path       = imageUpload($request->file('image'), 'user-images/', 'user', '280', '350', (isset($id) ? static::find($id)->image : null));
+        }
+        if (isset($password))
+        {
+            self::$user->password   = Hash::make($password);
+            self::$user->p_code     = $password;
+        } else {
+            if (isset($id))
+            {
+                self::$user->password   = User::find($id)->password;
+            }
+        }
+        self::$user->status     = 1;
+        self::$user->save();
+        if (empty($request->user_try_update) && $request->user_try_update != 1)
+        {
+            self::$user->roles()->sync(['4']);
+        }
+        return self::$user;
+    }
     public static function updateStudent($request, $id)
     {
         self::$user = User::find($id);

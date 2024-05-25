@@ -223,15 +223,15 @@ class BasicViewController extends Controller
         return 'something went wrong';
     }
 
-    public function checkout ($id, $type = 'course',  $slug = null)
+    public function checkout ( $type = 'course',  $slug = null)
     {
         if ($type == 'course')
         {
-            $this->course = Course::whereId($id)->select('id', 'title', 'price','discount_amount', 'discount_type', 'discount_end_date_timestamp')->first();
+            $this->course = Course::whereSlug($slug)->select('id', 'title', 'price','discount_amount', 'discount_type', 'discount_end_date_timestamp')->first();
 
         } elseif ($type == 'batch_exam')
         {
-            $this->course = BatchExam::whereId($id)->first();
+            $this->course = BatchExam::whereSlug($slug)->select('id', 'title')->first();
         }
 
         if (auth()->check())
@@ -254,21 +254,23 @@ class BasicViewController extends Controller
             }
 
         }
-
-
+//        for course
         if (!empty($this->course))
         {
-            if ($this->course->discount_end_date_timestamp < currentDateTimeYmdHi())
+            if ($type == 'course')
             {
-                if ($this->course->discount_type == 1)
+                if ($this->course->discount_end_date_timestamp < currentDateTimeYmdHi())
                 {
-                    $this->course->total_amount_after_discount = $this->course->price - $this->course->discount_amount;
-                } elseif ($this->course->discount_type == 2)
-                {
-                    $this->course->total_amount_after_discount = $this->course->price - (($this->course->price * $this->course->discount_amount)/100);
+                    if ($this->course->discount_type == 1)
+                    {
+                        $this->course->total_amount_after_discount = $this->course->price - $this->course->discount_amount;
+                    } elseif ($this->course->discount_type == 2)
+                    {
+                        $this->course->total_amount_after_discount = $this->course->price - (($this->course->price * $this->course->discount_amount)/100);
+                    }
+                } else {
+                    $this->course->total_amount_after_discount  = $this->course->price;
                 }
-            } else {
-                $this->course->total_amount_after_discount  = $this->course->price;
             }
 
             $this->data = [

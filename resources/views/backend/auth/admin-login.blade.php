@@ -118,83 +118,14 @@
                                 <a href="{{ route('forgot-user-password') }}" class="float-end" style="color: black; ">Forgot Password?</a>
                             </div>
                         </div>
-{{--                        <div class="text-end pt-1">--}}
-{{--                            <p class="mb-0"><a href="{{ route('password.request') }}" class="text-primary ms-1">Forgot Password?</a></p>--}}
-{{--                        </div>--}}
-{{--                        <div class="container-login100-form-btn">--}}
-{{--                            <button type="submit" class="login100-form-btn btn-primary">--}}
-{{--                                Login--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                        <div class="text-center pt-3">--}}
-{{--                            <p class="text-dark mb-0">Not a member?<a href="{{ route('register') }}" class="text-primary ms-1">Create an Account</a></p>--}}
-{{--                        </div>--}}
+
                     </form>
                 </div>
                 <div class="card-footer">
-{{--                    <div class="d-flex justify-content-center my-3">--}}
-{{--                        <a href="javascript:void(0)" class="social-login  text-center me-4">--}}
-{{--                            <i class="fa-brands fa-google"></i>--}}
-{{--                        </a>--}}
-{{--                        <a href="javascript:void(0)" class="social-login  text-center me-4">--}}
-{{--                            <i class="fa-brands fa-facebook"></i>--}}
-{{--                        </a>--}}
-{{--                        <a href="javascript:void(0)" class="social-login  text-center">--}}
-{{--                            <i class="fa-brands fa-twitter"></i>--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
+
                     <button type="button" class="btn btn-primary prev d-none w-100">Previous</button>
                     <button type="button" class="btn btn-primary next w-100">Next</button>
                 </div>
-
-
-
-
-
-{{--                <div class="card" style="width: 100%">--}}
-{{--                    <div class="card-header">--}}
-{{--                        <h1 class="card-title fs-5" id="exampleModalLabel">Login</h1>--}}
-{{--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-{{--                    </div>--}}
-{{--                    <div class="card-body">--}}
-{{--                        <form action="" method="post" id="authModalForm">--}}
-{{--                            @csrf--}}
-{{--                            <div class="auth-div">--}}
-{{--                                <div class="row mobile-div" data-order="0" data-active="1">--}}
-{{--                                    <label for="" class="col-md-4">Mobile</label>--}}
-{{--                                    <div class="col-md-8">--}}
-{{--                                        <input type="text" name="mobile" class="form-control" placeholder="Mobile Number" />--}}
-{{--                                        <span class="text-danger" id="name"></span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="row otp-div d-none" data-order="1" >--}}
-{{--                                    <label for="" class="col-md-4">Enter OTP</label>--}}
-{{--                                    <div class="col-md-8">--}}
-{{--                                        <input type="number" id="otpInput" class="form-control" placeholder="Enter OTP" />--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="row name-div mt-3 d-none" data-order="2">--}}
-{{--                                    <label for="" class="col-md-4">Name</label>--}}
-{{--                                    <div class="col-md-8">--}}
-{{--                                        <input type="text" name="name" class="form-control" placeholder="Name" />--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="row password-div mt-3 d-none" data-order="3">--}}
-{{--                                    <label for="" class="col-md-4">Password</label>--}}
-{{--                                    <div class="col-md-8">--}}
-{{--                                        <input type="password" name="password" class="form-control" placeholder="Password" />--}}
-{{--                                        <span class="text-danger" id="password"></span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
-{{--                    </div>--}}
-{{--                    <div class="card-footer">--}}
-{{--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
-{{--                        <button type="button" class="btn btn-primary prev d-none">Previous</button>--}}
-{{--                        <button type="button" class="btn btn-primary next">Next</button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
 
 
 

@@ -158,7 +158,7 @@
                             </div>
 
                             @else
-                            <a href="{{ route('login') }}" {{--data-bs-toggle="modal" data-bs-target="#authModal" --}}
+                            <a href="{{ route('custom-login') }}" {{--data-bs-toggle="modal" data-bs-target="#authModal" --}}
                                 class="default-btn two border-radius-50">Log In</a>
                             @endif
                         </div>
@@ -178,7 +178,7 @@
                 </div>
                 @else
                 <div class="side-item">
-                    <a href="{{ route('login') }}" class="">Login</a>
+                    <a href="{{ route('custom-login') }}" class="">Login</a>
                 </div>
                  @endif
                 <!-- <div class="circle-inner">

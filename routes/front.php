@@ -90,7 +90,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
         Route::get('/', [BasicViewController::class, 'home'])->name('home');
         Route::get('/all-courses', [BasicViewController::class, 'allCourses'])->name('all-courses');
         Route::get('/course-details/{id}/{slug?}', [BasicViewController::class, 'courseDetails'])->name('course-details');
-        Route::get('/checkout/{type}/{id}/{slug?}', [BasicViewController::class, 'checkout'])->name('checkout');
+        Route::get('/checkout/{type}/{slug}', [BasicViewController::class, 'checkout'])->name('checkout');
 
         Route::get('/category/{id}/{slug?}', [BasicViewController::class, 'categoryCourses'])->name('category-courses');
         Route::get('/all-notices', [BasicViewController::class, 'allNotices'])->name('notices');
@@ -147,7 +147,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
     Route::get('show-product-pdf/{content_id}', [StudentController::class, 'showProductPdf'])->name('show-product-pdf');
     Route::get('get-video-comments/{content_id}/{type?}', [StudentController::class, 'getVideoComments'])->name('get-video-comments');
 
-
+    Route::post('/common-order/{model_id}', [CheckoutController::class, 'commonOrder'])->name('common-order');
 
 
     Route::middleware([

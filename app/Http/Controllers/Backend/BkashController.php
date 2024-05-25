@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\helper\BkashPayment;
 use App\helper\ViewHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Frontend\Checkout\CheckoutController;
 use App\Models\Backend\AdditionalFeatureManagement\Affiliation\AffiliationHistory;
 use App\Models\Backend\BatchExamManagement\BatchExam;
 use App\Models\Backend\Course\Course;
@@ -45,62 +46,33 @@ class BkashController extends Controller
     }
 
     public function callBack(Request $request){
-//        return 'sarowar';
-//        $requestData = (object) session()->get('requestData');
-//        return $requestData;
+
         $execute=new BkashPayment();
-//return $request;
+
         if ($request->status == 'success'){
             $response= $execute->executePayment($request['paymentID']);
             if (!isset($response)){
                 $response=$execute->queryPayment($request['paymentID']);
             }
-//            return $response; // Output data submit bkash website for original creditionals
-//            $requestData = (object) \session()->get('requestData');
-//            return $requestData;
+
             if (isset($response['statusCode']) && $response['statusCode'] == "0000" && $response['transactionStatus'] == "Completed"){
                     $requestData = (object) \session()->get('requestData');
-//                    return $requestData;
-                    if ($requestData->ordered_for == 'product')
-                    {
-                        ParentOrder::orderProductThroughSSL($requestData, $request);
-                    } else {
-                        ParentOrder::placeOrderAfterGatewayPayment($request, $requestData);
-                        if ($requestData->ordered_for == 'course')
-                        {
-//                            return 'sarowar';
-                            Course::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
-                        } elseif ($requestData->ordered_for == 'batch_exam')
-                        {
-                            BatchExam::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
-                        }
-                        //  Do the rest database saving works
-                        //  take a look at dd($request->all()) to see what you need
-                        if (isset($requestData->rc))
-                        {
-                            AffiliationHistory::createNewHistory($requestData, $requestData->model_name, $requestData->model_id, $requestData->affiliate_amount, 'insert');
-                        }
-                    }
+
+                //                user create or old
+                $request['trxID']   = $response->trxID;
+                CheckoutController::createOrderAndAssignStudent($requestData, $request);
 
 //                    if (str()->contains(url()->current(), '/api/'))
 //                    {
 //                        return response()->json(['message' => 'You Ordered the course successfully.'], 200);
 //                    }
-                    return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
+//                    return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
 
             }else{
-                return redirect()->back();
-//                notify()->error($response['statusMessage']);
-//                $failedTranscations = new FailedTranscations();
-//                $failedTranscations->txn_id = 'Bkash' . Str::uuid();
-//                $failedTranscations->user_id = auth()->id();
-//                $failedTranscations->save();
-//                return redirect(route('order.review'));
+                return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');;
             }
         }else{
-//            return 'sarowar bk';
-            notify()->error($request->status);
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
         }
     }
 

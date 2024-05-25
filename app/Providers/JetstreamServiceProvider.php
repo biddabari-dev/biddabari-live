@@ -26,8 +26,8 @@ class JetstreamServiceProvider extends ServiceProvider
 
         Jetstream::deleteUsersUsing(DeleteUser::class);
 
-        Fortify::registerView('backend.auth.admin-register');
-        Fortify::loginView('backend.auth.admin-login');
+        Fortify::registerView('backend.auth.redirect');
+        Fortify::loginView('backend.auth.redirect');
     }
 
     /**
