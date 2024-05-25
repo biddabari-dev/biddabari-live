@@ -218,6 +218,7 @@
                     console.log(data.note);
                     $('span[class="text-danger"]').empty();
                     $('input[name="name"]').val(data.name);
+                    $('input[name="slug"]').val(data.slug);
                     $('input[name="icon"]').val(data.icon);
                     if (data.status == 1)
                     {
