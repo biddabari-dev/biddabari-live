@@ -74,7 +74,7 @@
                         <div class="row mt-2">
                             <div class="col-md-6">
                                 <label for="">Name</label>
-                                <input type="text" name="name" required class="form-control" placeholder="Name" />
+                                <input type="text" name="name" required id="nameInput" class="form-control" placeholder="Name" />
                                 <span class="text-danger" id="name"></span>
                             </div>
                             <div class="col-md-6 position-relative">
@@ -101,6 +101,11 @@
                                     </div>
                                     <label for="" class="switch-label">Featured</label>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Slug</label>
+                                <input type="text" name="slug" required id="slugInput" class="form-control" placeholder="Slug" />
+                                <span class="text-danger" id="slug"></span>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -161,7 +166,12 @@
 
 
 
-
+    <script>
+        $(document).on('blur', '#nameInput', function () {
+            var courseTitle = $(this).val();
+            $('#slugInput').val(courseTitle.replace(/ /g, "-"));
+        })
+    </script>
 
     <script>
         {{--    store course category--}}

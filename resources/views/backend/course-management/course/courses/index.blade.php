@@ -191,7 +191,10 @@
 
 @push('script')
     @include('backend.includes.assets.plugin-files.datatable')
-    @include('backend.includes.assets.plugin-files.editor')
+{{--    @include('backend.includes.assets.plugin-files.editor')--}}
+    <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+
+
 {{--    @include('backend.includes.assets.plugin-files.date-time-picker')--}}
     <script src="{{ asset('/') }}backend/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
     <script src="{{ asset('/') }}backend/assets/js/page-js/manage-course.js"></script>

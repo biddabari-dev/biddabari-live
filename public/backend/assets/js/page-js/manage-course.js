@@ -1,8 +1,9 @@
 $(function () {
-    $(".summernote").summernote({
-        height:70,
-        inheritPlaceholder: true
-    });
+    // $(".summernote").summernote({
+    //     height:70,
+    //     inheritPlaceholder: true
+    // });
+    CKEDITOR.replace( 'summernote' );
 
     const date = new Date();
 
@@ -29,8 +30,9 @@ $(document).on('click', '.edit-btn', function () {
         success: function (data) {
 
             $('#modalForm').empty().append(data);
-            $("#summernote").summernote({height:70, inheritPlaceholder: true});
+            // $("#summernote").summernote({height:70, inheritPlaceholder: true});
             // $("#summernote1").summernote({height:70, inheritPlaceholder: true});
+            CKEDITOR.replace( 'summernote' );
 
             $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
             $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
@@ -58,8 +60,9 @@ $(document).on('click', '.show-btn', function () {
             // console.log(data);
 
             $('#modalForm').empty().append(data);
-            $("#summernote").summernote({height:70, inheritPlaceholder: true});
+            // $("#summernote").summernote({height:70, inheritPlaceholder: true});
             // $("#summernote1").summernote({height:70, inheritPlaceholder: true});
+            CKEDITOR.replace( 'summernote' );
 
             $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
             $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
@@ -240,7 +243,7 @@ $(document).on('click', '.open-modal', function () {
     event.preventDefault();
 
     resetFromInputAndSelect(base_url+"courses", 'coursesForm')
-    $('#summernote').summernote('reset');
+    // $('#summernote').summernote('reset');
     $('#coursesModal').modal('show');
 })
 
