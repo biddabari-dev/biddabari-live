@@ -3,7 +3,7 @@ $(function () {
     //     height:70,
     //     inheritPlaceholder: true
     // });
-    CKEDITOR.replace( 'summernote' );
+    CKEDITOR.replace( 'description' );
 
     const date = new Date();
 
@@ -32,7 +32,7 @@ $(document).on('click', '.edit-btn', function () {
             $('#modalForm').empty().append(data);
             // $("#summernote").summernote({height:70, inheritPlaceholder: true});
             // $("#summernote1").summernote({height:70, inheritPlaceholder: true});
-            CKEDITOR.replace( 'summernote' );
+            CKEDITOR.replace( 'description' );
 
             $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
             $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
@@ -62,7 +62,7 @@ $(document).on('click', '.show-btn', function () {
             $('#modalForm').empty().append(data);
             // $("#summernote").summernote({height:70, inheritPlaceholder: true});
             // $("#summernote1").summernote({height:70, inheritPlaceholder: true});
-            CKEDITOR.replace( 'summernote' );
+            CKEDITOR.replace( 'description' );
 
             $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
             $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
