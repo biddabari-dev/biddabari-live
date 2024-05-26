@@ -18,17 +18,12 @@ class BkashController extends Controller
 {
 
     public function createPayment(Request $request){
-//        $requestData = (object) \session()->get('requestData');
-//        return $requestData;
-//        return $requestData;
         $bkashobj=new BkashPayment();
-//return 'sarowar';
         $inv = uniqid();
         $request['intent'] = 'sale';
         $request['mode'] = '0011'; //0011 for checkout
         $request['payerReference'] = $inv;
         $request['currency'] = 'BDT';
-//        $request['amount'] =  round(Crypt::decrypt($request->total_amount), 2);
         $request['amount'] = $request->total_amount;
         $request['merchantInvoiceNumber'] = $inv;
         $request['callbackURL'] = config('bkashpay.callbackURL');
@@ -60,7 +55,7 @@ class BkashController extends Controller
 
                 //                user create or old
                 $request['trxID']   = $response->trxID;
-                CheckoutController::createOrderAndAssignStudent($requestData, $request);
+                return CheckoutController::createOrderAndAssignStudent($requestData, $request);
 
 //                    if (str()->contains(url()->current(), '/api/'))
 //                    {
