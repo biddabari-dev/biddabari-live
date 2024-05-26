@@ -228,7 +228,6 @@ class BasicViewController extends Controller
         if ($type == 'course')
         {
             $this->course = Course::whereSlug($slug)->select('id', 'title', 'price','discount_amount', 'discount_type', 'discount_end_date_timestamp')->first();
-
         } elseif ($type == 'batch_exam')
         {
             $this->course = BatchExam::whereSlug($slug)->select('id', 'title')->first();
