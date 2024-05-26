@@ -54,7 +54,7 @@ class BkashController extends Controller
                     $requestData = (object) \session()->get('requestData');
 
                 //                user create or old
-                $request['trxID']   = $response->trxID;
+                $request['trxID']   = $response['trxID'];
                 return CheckoutController::createOrderAndAssignStudent($requestData, $request);
 
 //                    if (str()->contains(url()->current(), '/api/'))
