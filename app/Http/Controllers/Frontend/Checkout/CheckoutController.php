@@ -288,34 +288,34 @@ class CheckoutController extends Controller
             {
                 $requestData = (object) \session()->get('requestData');
 
-                self::createOrderAndAssignStudent($requestData, $request);
+//                self::createOrderAndAssignStudent($requestData, $request);
 
-//                if ($requestData->ordered_for == 'product')
-//                {
-//
-//                    ParentOrder::orderProductThroughSSL($requestData, $request);
-//                } else {
-//                    ParentOrder::placeOrderAfterGatewayPayment($request, $requestData);
-//                    if ($requestData->ordered_for == 'course')
-//                    {
-//                        Course::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
-//                    } elseif ($requestData->ordered_for == 'batch_exam')
-//                    {
-//                        BatchExam::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
-//                    }
-//                    //  Do the rest database saving works
-//                    //  take a look at dd($request->all()) to see what you need
-//                    if (isset($requestData->rc))
-//                    {
-//                        AffiliationHistory::createNewHistory($requestData, $requestData->model_name, $requestData->model_id, $requestData->affiliate_amount, 'insert');
-//                    }
-//                }
-//
-//                if (str()->contains(url()->current(), '/api/'))
-//                {
-//                    return response()->json(['message' => 'You Ordered the course successfully.'], 200);
-//                }
-//                return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
+                if ($requestData->ordered_for == 'product')
+                {
+
+                    ParentOrder::orderProductThroughSSL($requestData, $request);
+                } else {
+                    ParentOrder::placeOrderAfterGatewayPayment($request, $requestData);
+                    if ($requestData->ordered_for == 'course')
+                    {
+                        Course::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
+                    } elseif ($requestData->ordered_for == 'batch_exam')
+                    {
+                        BatchExam::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
+                    }
+                    //  Do the rest database saving works
+                    //  take a look at dd($request->all()) to see what you need
+                    if (isset($requestData->rc))
+                    {
+                        AffiliationHistory::createNewHistory($requestData, $requestData->model_name, $requestData->model_id, $requestData->affiliate_amount, 'insert');
+                    }
+                }
+
+                if (str()->contains(url()->current(), '/api/'))
+                {
+                    return response()->json(['message' => 'You Ordered the course successfully.'], 200);
+                }
+                return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
             }
         } catch (\Exception $exception)
         {
