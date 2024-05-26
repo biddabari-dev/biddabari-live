@@ -28,22 +28,22 @@
                                 <input type="hidden" name="ordered_for" value="{{ $reqFor ?? 'course' }}">
                                 <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">
 
-                                <li>
-                                    <div class="row checkout_log">
-                                        <div class="col-md-6">
-                                            <label for="paidTo">Student Name</label>
-                                            <input type="text" id="paidTo" name="name" class="form-control"
-                                                placeholder="Enter your name" />
-                                            @error('paid_to')<span class="text-danger"></span>@enderror
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="paidForm" >Phone No</label>
-                                            <input type="number" id="paidForm" name="mobile_no" class="form-control"
-                                                placeholder="Enter your phone no" />
-                                            @error('paid_from')<span class="text-danger"></span>@enderror
-                                        </div>
-                                    </div>
-                                </li>
+{{--                                <li>--}}
+{{--                                    <div class="row checkout_log">--}}
+{{--                                        <div class="col-md-6">--}}
+{{--                                            <label for="paidTo">Student Name</label>--}}
+{{--                                            <input type="text" id="paidTo" name="name" class="form-control"--}}
+{{--                                                placeholder="Enter your name" />--}}
+{{--                                            @error('paid_to')<span class="text-danger"></span>@enderror--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-6">--}}
+{{--                                            <label for="paidForm" >Phone No</label>--}}
+{{--                                            <input type="number" id="paidForm" name="mobile_no" class="form-control"--}}
+{{--                                                placeholder="Enter your phone no" />--}}
+{{--                                            @error('paid_from')<span class="text-danger"></span>@enderror--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
 
 
                                 <li>
