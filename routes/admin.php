@@ -65,16 +65,7 @@ Route::get('/bkash/pay',[BkashController::class,'callBack'])->name('excute_payme
 Route::get('/test', function (){
 
     return view('bkash-temp');
-//    foreach (\App\Models\Backend\OrderManagement\ParentOrder::where(['parent_model_id' => 711, 'ordered_for' => 'course'])->get() as $item)
-//    {
-//        $item->delete();
-//    }
-//    \App\Models\Backend\Course\Course::find(711)->students()->detach();
-    exit();
-    return $_SERVER['DOCUMENT_ROOT'].'/backend';
-    return base_path('../public_html');
-    //   return public_path('backend/e.jpg');
-    // exit();
+
     exec('convert '.public_path('backend/e.jpg').' '.public_path('backend/e.pdf'));
     exit();
     return bcrypt('superadmin');
