@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        'sslcommerz/*', 'https://connect.facebook.net/en_US/fbevents.js'
+        'sslcommerz/*'
     ];
 }
