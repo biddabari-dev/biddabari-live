@@ -47,8 +47,8 @@
                     @endphp
                     @if($course->order_status == 'false')
                         @if($course->admission_last_date > $date)
-                            <a href="{{ route('front.checkout', ['type' => 'course', 'slug' => $course->slug]) }}"
-                               class="btn btn-warning">কোর্সটি কিনুন</a>
+{{--                            <a href="{{ route('front.checkout', ['type' => 'course', 'slug' => $course->slug]) }}"--}}
+{{--                               class="btn btn-warning">কোর্সটি কিনুন</a>--}}
 
 {{--                            <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">--}}
 {{--                                @csrf--}}
