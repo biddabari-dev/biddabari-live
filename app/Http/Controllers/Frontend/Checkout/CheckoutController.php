@@ -58,8 +58,6 @@ class CheckoutController extends Controller
                         $request['total_amount']  = $request->total_amount - $courseCoupon->discount_amount;
                     }
                 }
-//                return $request;
-//                CourseOrder::saveOrUpdateCourseOrder($request);
                 if ($request->payment_method == 'ssl')
                 {
                     if (str()->contains(url()->current(), '/api/'))
@@ -78,12 +76,12 @@ class CheckoutController extends Controller
                     return self::sendOrderRequestToSSLZ($request->total_amount, Course::find($request->course_id)->title, $request);
                 }
                 elseif ($request->payment_method == 'bkash'){
-//                    if (str()->contains(url()->current(), '/api/'))
-//                    {
-//                        $request['parent_model_id'] = $modelId;
-//                        ParentOrder::createOrderAfterSsl($request);
-//                        return response()->json(['success' => 'Payment completed successfully.']);
-//                    }
+                    if (str()->contains(url()->current(), '/api/'))
+                    {
+                        $request['parent_model_id'] = $modelId;
+                        ParentOrder::createOrderAfterSsl($request);
+                        return response()->json(['success' => 'Payment completed successfully.']);
+                    }
                     $request['details_url'] = url()->previous();
                     $request['model_name'] = 'course';
                     $request['model_id'] = $request->course_id;

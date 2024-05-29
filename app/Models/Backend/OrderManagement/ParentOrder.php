@@ -174,7 +174,7 @@ class ParentOrder extends Model
                 'order_invoice_number'      => $request->tran_id,
                 'ordered_for'               => 'product',
                 'payment_method'            => $requestData->payment_method,
-                'paid_amount'               => $request->amount,
+                'paid_amount'               => $request->amount ?? 0,
                 'total_amount'              => Cart::getTotal() + $requestData->delivery_charge ?? 0,
 //                'coupon_code'               => $requestData->coupon_code,
 //                'coupon_amount'             => $requestData->coupon_amount,

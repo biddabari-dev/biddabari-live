@@ -55,13 +55,58 @@ class BkashController extends Controller
 
                 //                user create or old
                 $request['trxID']   = $response['trxID'];
-                return CheckoutController::createOrderAndAssignStudent($requestData, $request);
+                $request['tran_id']   = $response['paymentID'];
+                $request['amount']   = $response['amount'];
+                if (!empty($requestData))
+                {
+                    $userCreateAuth = CheckoutController::createUserAfterOrder($requestData);
 
-//                    if (str()->contains(url()->current(), '/api/'))
-//                    {
-//                        return response()->json(['message' => 'You Ordered the course successfully.'], 200);
-//                    }
-//                    return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
+
+                    if ($userCreateAuth['processStatus'] == 'success')
+                    {
+                        if ($requestData->ordered_for == 'product')
+                        {
+                            ParentOrder::orderProductThroughSSL($requestData, $request);
+                        } else {
+                            ParentOrder::placeOrderAfterGatewayPayment($request, $requestData);
+                            if ($requestData->ordered_for == 'course')
+                            {
+                                Course::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
+                            } elseif ($requestData->ordered_for == 'batch_exam')
+                            {
+                                BatchExam::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
+                            }
+                            if (isset($requestData->rc))
+                            {
+                                AffiliationHistory::createNewHistory($requestData, $requestData->model_name, $requestData->model_id, $requestData->affiliate_amount, 'insert');
+                            }
+                        }
+
+                        if (!$userCreateAuth['userStatus'])
+                        {
+                            return redirect()->back()->with('error', 'We got your payment but we faced problem during creating your account in our system. Please try again.');
+                        }
+                        if ($userCreateAuth['smsStatus'] == 'failed')
+                        {
+                            return redirect()->route('front.student.dashboard')->with('error', 'Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
+                        }
+
+                        if (str()->contains(url()->current(), '/api/'))
+                        {
+                            return response()->json(['message' => 'You Ordered the course successfully.'], 200);
+                        }
+                        return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
+                    } elseif ($userCreateAuth['processStatus'] == 'failed')
+                    {
+                        return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
+                    }
+
+
+
+//                    return self::createOrderAndAssignStudent($requestData, $request);
+                } else {
+                    return 'Data is missing from session';
+                }
 
             }else{
                 return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');;
