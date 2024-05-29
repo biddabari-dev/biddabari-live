@@ -329,14 +329,14 @@ class CheckoutController extends Controller
                     }
                         if ($userCreateAuth['smsStatus'] == 'failed')
                         {
-                            return redirect()->route('student.dashboard')->with('error', 'Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
+                            return redirect()->route('front.student.dashboard')->with('error', 'Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
                         }
 
                     if (str()->contains(url()->current(), '/api/'))
                     {
                         return response()->json(['message' => 'You Ordered the course successfully.'], 200);
                     }
-                    return redirect()->route('student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
+                    return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
                 } elseif ($userCreateAuth['processStatus'] == 'failed')
                 {
                     return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
@@ -369,7 +369,7 @@ class CheckoutController extends Controller
             }
             if ($userCreateAuth['smsStatus'] == 'failed')
             {
-                return redirect()->back()->with('error', 'Something went wrong during sending sms to your number. Please Contact with our support.');
+                return redirect()->route('front.student.dashboard')->with('error', 'Something went wrong during sending sms to your number. Please Contact with our support.');
             }
             if ($requestData->ordered_for == 'product')
             {
@@ -392,7 +392,7 @@ class CheckoutController extends Controller
             {
                 return response()->json(['message' => 'You Ordered the course successfully.'], 200);
             }
-            return redirect()->route('student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
+            return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
         } elseif ($userCreateAuth['processStatus'] == 'failed')
         {
             return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
