@@ -63,7 +63,7 @@ class BkashController extends Controller
                     $userCreateAuth = CheckoutController::createUserAfterOrder($requestData);
                     if ($userCreateAuth['processStatus'] == 'success')
                     {
-                        return Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id;
+                        $studentId =  Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id;
                         if ($requestData->ordered_for == 'product')
                         {
                             ParentOrder::orderProductThroughSSL($requestData, $request);
@@ -71,10 +71,10 @@ class BkashController extends Controller
                             ParentOrder::placeOrderAfterGatewayPayment($request, $requestData);
                             if ($requestData->ordered_for == 'course')
                             {
-                                Course::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
+                                Course::find($requestData->model_id)->students()->attach($studentId);
                             } elseif ($requestData->ordered_for == 'batch_exam')
                             {
-                                BatchExam::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
+                                BatchExam::find($requestData->model_id)->students()->attach($studentId);
                             }
                             if (isset($requestData->rc))
                             {
