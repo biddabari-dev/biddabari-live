@@ -208,14 +208,19 @@ class User extends Authenticatable
         {
             self::$user = User::find($id);
         } else {
-            self::$user = new User();
+            if (!empty($existUser = User::where('mobile', $request->mobile)->first()))
+            {
+                self::$user = $existUser;
+            } else {
+                self::$user = new User();
+            }
         }
         self::$user->name       = $request->name;
         self::$user->mobile       = $request->mobile;
-        if ($request->hasFile('image'))
-        {
-            self::$user->profile_photo_path       = imageUpload($request->file('image'), 'user-images/', 'user', '280', '350', (isset($id) ? static::find($id)->image : null));
-        }
+//        if ($request->hasFile('image'))
+//        {
+//            self::$user->profile_photo_path       = imageUpload($request->file('image'), 'user-images/', 'user', '280', '350', (isset($id) ? static::find($id)->image : null));
+//        }
         if (isset($password))
         {
             self::$user->password   = Hash::make($password);
@@ -228,7 +233,7 @@ class User extends Authenticatable
         }
         self::$user->status     = 1;
         self::$user->save();
-        if (empty($request->user_try_update) && $request->user_try_update != 1)
+        if (empty($existUser))
         {
             self::$user->roles()->sync(['4']);
         }
