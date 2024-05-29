@@ -52,7 +52,7 @@ class BkashController extends Controller
             }
 
             if (isset($response['statusCode']) && $response['statusCode'] == "0000" && $response['transactionStatus'] == "Completed"){
-                    $requestData = (object) \session()->get('requestData');
+                $requestData = (object) \session()->get('requestData');
 
                 //                user create or old
                 $request['trxID']   = $response['trxID'];
@@ -62,7 +62,7 @@ class BkashController extends Controller
                 {
                     $userCreateAuth = CheckoutController::createUserAfterOrder($requestData);
 
-
+return ViewHelper::loggedUser();
                     if ($userCreateAuth['processStatus'] == 'success')
                     {
                         if ($requestData->ordered_for == 'product')
