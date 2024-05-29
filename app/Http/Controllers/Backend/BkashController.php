@@ -61,7 +61,7 @@ class BkashController extends Controller
                 if (!empty($requestData))
                 {
                     $userCreateAuth = CheckoutController::createUserAfterOrder($requestData);
-
+return $requestData;
 return ViewHelper::loggedUser();
                     if ($userCreateAuth['processStatus'] == 'success')
                     {
