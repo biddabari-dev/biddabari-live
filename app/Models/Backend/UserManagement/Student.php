@@ -88,7 +88,7 @@ class Student extends Model
         ]);
     }
 
-    public function createStudentAfterPayment($request, $user)
+    public static function createStudentAfterPayment($request, $user)
     {
         $existStudent = Student::where('user_id', $user->id)->first();
         if (empty($existStudent))
