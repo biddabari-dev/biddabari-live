@@ -61,10 +61,9 @@ class BkashController extends Controller
                 if (!empty($requestData))
                 {
                     $userCreateAuth = CheckoutController::createUserAfterOrder($requestData);
-return $requestData;
-return ViewHelper::loggedUser();
                     if ($userCreateAuth['processStatus'] == 'success')
                     {
+                        return Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id;
                         if ($requestData->ordered_for == 'product')
                         {
                             ParentOrder::orderProductThroughSSL($requestData, $request);
