@@ -154,7 +154,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
         'auth:sanctum',
         config('jetstream.auth_session'),
         'verified',
-        'single.device'
+//        'single.device'
     ])->group(function (){
         Route::post('/place-course-order/{course_id}', [CheckoutController::class, 'placeCourseOrder'])->name('place-course-order');
         Route::post('/place-free-course-order/{course_id}', [CheckoutController::class, 'placeFreeCourseOrder'])->name('place-free-course-order');

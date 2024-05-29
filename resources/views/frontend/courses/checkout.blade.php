@@ -192,7 +192,7 @@
                                 <li>
                                     <div class="others_payment d-flex justify-content-between">
                                         <div class="d-flex">
-                                            <input type="radio" id="paypal" name="payment_method" class="me-2" value="ssl">
+                                            <input type="radio" id="paypal" name="payment_method" class="me-2" value="ssl" checked />
                                             <label for="paypal">অন্যান্য পেমেন্ট মেথড</label>
                                         </div>
                                         <div class="pay_method_icon text-align-end">
@@ -201,7 +201,7 @@
                                     </div>
                                 </li>
 
-                                <button type="submit" class="default-btn">পেমেন্ট করুন</button>
+                                <button type="submit" class="default-btn w-100 bg-danger">পেমেন্ট করুন</button>
                             </form>
                         </ul>
                     </div>
