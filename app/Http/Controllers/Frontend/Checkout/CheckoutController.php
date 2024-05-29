@@ -238,7 +238,7 @@ class CheckoutController extends Controller
         }
         elseif ($request->payment_method == 'bkash'){
 //                return $request;
-            return back()->with('Wr are not accepting payments from this gateway. Please use Other payment gateway to complete your payment');
+//            return back()->with('Wr are not accepting payments from this gateway. Please use Other payment gateway to complete your payment');
             $request['details_url'] = url()->previous();
             $request['model_name'] = $request->ordered_for;
 //                $request['model_id'] = $request->course_id;
