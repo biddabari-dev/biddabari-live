@@ -173,7 +173,7 @@ class CheckoutController extends Controller
 
     public function commonOrder (Request $request, $modelId = null)
     {
-//        try {
+        try {
 
         Validator::make($request->all(), [
             'name'  => 'required',
@@ -268,10 +268,10 @@ class CheckoutController extends Controller
 
             return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the course successfully.');
         }
-//        } catch (\Exception $exception)
-//        {
-//            return ViewHelper::returEexceptionError($exception->getMessage());
-//        }
+        } catch (\Exception $exception)
+        {
+            return ViewHelper::returEexceptionError($exception->getMessage());
+        }
 
     }
 
@@ -399,7 +399,7 @@ class CheckoutController extends Controller
 
     public static function createUserAfterOrder($requestData)
     {
-//        try {
+        try {
         if (!empty($requestData->name) && !empty($requestData->mobile))
         {
             $userStatus = false;
@@ -450,15 +450,15 @@ class CheckoutController extends Controller
         }
 
 
-//        } catch (\Exception $exception)
-//        {
-//            return [
-//                'smsStatus' => $smsStatus,
-//                'user'      => self::$user,
-//                'userStatus'    => $userStatus,
-//                'processStatus' => 'failed',
-//            ];
-//        }
+        } catch (\Exception $exception)
+        {
+            return [
+                'smsStatus' => $smsStatus,
+                'user'      => self::$user,
+                'userStatus'    => $userStatus,
+                'processStatus' => 'failed',
+            ];
+        }
     }
 
     public function paymentFailure (Request $request)

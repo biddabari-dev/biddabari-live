@@ -36,7 +36,6 @@ class BkashController extends Controller
         if (isset($response['bkashURL'])){
             return redirect()->away($response['bkashURL']);
         }else{
-            return 'prob';
             return redirect()->back()->with('error',$response['statusMessage']);
         }
     }
