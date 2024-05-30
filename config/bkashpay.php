@@ -1,6 +1,6 @@
 <?php
 return [
-    "sandbox"         => env("BKASH_SANDBOX", true),
+    "sandbox"         => env("BKASH_SANDBOX", false),
 
     "bkash_app_key"     => env("BKASH_APP_KEY", ""),
     "bkash_app_secret" => env("BKASH_APP_SECRET", ""),
