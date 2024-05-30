@@ -135,20 +135,21 @@
                                 <li>
                                     <div class="row checkout_log">
                                         <div class="col-md-12">
-                                            <label for="paidTo">Student Name</label>
-                                            <input type="text" id="paidTo" name="name" class="form-control"
+                                            <label for="paidTo">Your Name</label>
+                                            <input type="text" id="paidTo" required name="name" class="form-control"
                                                    placeholder="Enter your name" />
+                                            <span class="text-danger">YOur will be registered by this name if you don't have account.</span>
                                             @error('paid_to')<span class="text-danger"></span>@enderror
                                         </div>
                                         <div class="col-md-6">
                                             <label for="phone" >Phone No</label>
-                                            <input type="number" id="phone" name="mobile" class="form-control"
+                                            <input type="number" id="phone" name="mobile" required class="form-control"
                                                    placeholder="Enter your phone no" />
                                             @error('mobile')<span class="text-danger"></span>@enderror
                                         </div>
                                         <div class="col-md-6">
                                             <label for="confirmPhone" >Confirm Phone No</label>
-                                            <input type="number" id="confirmPhone" name="confirm_mobile" class="form-control"
+                                            <input type="number" id="confirmPhone" name="confirm_mobile" required class="form-control"
                                                    placeholder="Enter your phone no" />
                                             @error('confirm_mobile')<span class="text-danger"></span>@enderror
                                         </div>
@@ -176,19 +177,19 @@
                                         </div>
                                     </div>
                                 </li>
-{{--                                <li>--}}
-{{--                                    <div class="bkash_payment d-flex justify-content-between">--}}
+                                <li>
+                                    <div class="bkash_payment d-flex justify-content-between">
 
-{{--                                        <div class="d-flex">--}}
-{{--                                            <input type="radio" id="direct-bank-transfer" class="me-2" value="bkash"--}}
-{{--                                                   name="payment_method" checked>--}}
-{{--                                            <label for="direct-bank-transfer">বিকাশ পেমেন্ট মেথড</label>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="pay_method_icon ">--}}
-{{--                                            <img src="{{asset('frontend')}}/assets/images/bkash_logo.webp" style="height: 45px; width: 120px">--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
+                                        <div class="d-flex">
+                                            <input type="radio" id="direct-bank-transfer" class="me-2" value="bkash"
+                                                   name="payment_method" checked>
+                                            <label for="direct-bank-transfer">বিকাশ পেমেন্ট মেথড</label>
+                                        </div>
+                                        <div class="pay_method_icon ">
+                                            <img src="{{asset('frontend')}}/assets/images/bkash_logo.webp" style="height: 45px; width: 120px">
+                                        </div>
+                                    </div>
+                                </li>
                                 <li>
                                     <div class="others_payment d-flex justify-content-between">
                                         <div class="d-flex">
