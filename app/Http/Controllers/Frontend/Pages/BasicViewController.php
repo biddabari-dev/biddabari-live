@@ -258,7 +258,7 @@ class BasicViewController extends Controller
         {
             if ($type == 'course')
             {
-                if ($this->course->discount_end_date_timestamp < strtotime(currentDateTimeYmdHi()))
+                if ($this->course->discount_end_date_timestamp > strtotime(currentDateTimeYmdHi()))
                 {
                     if ($this->course->discount_type == 1)
                     {
