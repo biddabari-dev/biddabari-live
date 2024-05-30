@@ -31,10 +31,6 @@
                                             </div>
                                         </div>
 
-
-
-
-
                                     </div>
                                 </div>
                             </div>
@@ -196,29 +192,29 @@
 {{--                                                <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">--}}
 {{--                                            </form>--}}
 
-                                            <form action="" id="xmCardForm" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="total_amount" id="totalAmount" />
-                                                <input type="hidden" name="ordered_for" value="batch_exam" />
-                                                <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}" />
-                                                <div class="payment-box">
-                                                    <div class="payment-method">
-                                                        <h3>Payment Method</h3>
-                                                        <p>
-                                                            <input type="radio" id="paypal" name="payment_method" value="ssl">
-                                                            <label for="paypal">SSLCommerz</label>
-                                                        </p>
+{{--                                            <form action="" id="xmCardForm" method="post" enctype="multipart/form-data">--}}
+{{--                                                @csrf--}}
+{{--                                                <input type="hidden" name="total_amount" id="totalAmount" />--}}
+{{--                                                <input type="hidden" name="ordered_for" value="batch_exam" />--}}
+{{--                                                <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}" />--}}
+{{--                                                <div class="payment-box">--}}
+{{--                                                    <div class="payment-method">--}}
+{{--                                                        <h3>Payment Method</h3>--}}
+{{--                                                        <p>--}}
+{{--                                                            <input type="radio" id="paypal" name="payment_method" value="ssl">--}}
+{{--                                                            <label for="paypal">SSLCommerz</label>--}}
+{{--                                                        </p>--}}
 {{--                                                        <p>--}}
 {{--                                                            <input type="radio" id="direct-bank-transfer" value="cod" name="payment_method" checked>--}}
 {{--                                                            <label for="direct-bank-transfer">Manual Payment</label>--}}
 {{--                                                        </p>--}}
-                                                    </div>
-                                                    <div class="mt-2">
-                                                        <h3>Select a Package</h3>
-                                                        <div class="" id="selectPackages">
+{{--                                                    </div>--}}
+{{--                                                    <div class="mt-2">--}}
+{{--                                                        <h3>Select a Package</h3>--}}
+{{--                                                        <div class="" id="selectPackages">--}}
 
-                                                        </div>
-                                                    </div>
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
 {{--                                                    <div class="payment-des-parent-div">--}}
 {{--                                                        <div class="payment-cod d-none xm-payment-div">--}}
 {{--                                                            <p>ম্যানুয়াল পেমেন্ট করলে আমাদের <span>বিকাশ মার্চেন্ট</span> নাম্বারে টাকা পাঠাতে হবে। <br><span>01896 060888</span></p>--}}
@@ -253,13 +249,15 @@
 {{--                                                            </div>--}}
 {{--                                                        </div>--}}
 {{--                                                    </div>--}}
-                                                    @if(auth()->check())
-                                                        <button type="submit" class="default-btn">Place Order</button>
-                                                    @else
-                                                        <button type="button" onclick="toastr.error('Please Login First To Order this exam.')" class="default-btn">Place Order</button>
-                                                    @endif
-                                                </div>
-                                            </form>
+{{--                                                    @if(auth()->check())--}}
+{{--                                                        <button type="submit" class="default-btn">Place Order</button>--}}
+{{--                                                    @else--}}
+{{--                                                        <button type="button" onclick="toastr.error('Please Login First To Order this exam.')" class="default-btn">Place Order</button>--}}
+{{--                                                    @endif--}}
+{{--                                                </div>--}}
+{{--                                            </form>--}}
+                                            <input type="hidden" id="batchExamSlug">
+                                            <a href="#" id="placeOrderBtn" class="default-btn">Place Order</a>
                                         </div>
                                         <div class="msgPrint">
 
@@ -326,7 +324,7 @@
                 url: base_url+"category-exams/"+xmId,
                 method: "GET",
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     if ( data.exam.banner != null)
                     {
                         $('#xmImage').attr('src', data.exam.banner);
@@ -337,7 +335,8 @@
                     $('#price').text(data.exam.price);
                     $('#description').html(data.exam.description);
 
-                    $('#xmCardForm').attr('action', base_url+'student/order-exam/'+xmId);
+                    $('#batchExamSlug').val(data.exam.slug);
+                    // $('#xmCardForm').attr('action', base_url+'student/order-exam/'+xmId);
 
                     var div = '';
                     div += '<h3 class="text-center">Available Packages for this Exam</h3>\n' +
@@ -366,7 +365,9 @@
                         if (index == 0)
                         {
                             label += '<label for="pak'+index+'" class=""><input type="radio" class="select-package" checked name="batch_exam_subscription_id" data-package-sell-price="'+(value.price - value.discount_amount)+'" value="'+value.id+'" id="pak'+index+'"> <span class="f-s-23"> &nbsp;'+value.package_title+' ('+(value.price - value.discount_amount)+'tk for '+value.package_duration_in_days+' days)</span></label><br/>';
-                            $('#totalAmount').val(value.price - value.discount_amount);
+                            // $('#totalAmount').val(value.price - value.discount_amount);
+                            var batchExamSlug = $('#batchExamSlug').val();
+                            $('#placeOrderBtn').attr('href', base_url+'checkout/batch_exam/'+batchExamSlug+'?si='+value.id);
                         } else {
 
                             label += '<label for="pak'+index+'" class=""><input type="radio" class="select-package" name="batch_exam_subscription_id" data-package-sell-price="'+(value.price - value.discount_amount)+'" value="'+value.id+'" id="pak'+index+'"> <span class="f-s-23"> &nbsp;'+value.package_title+' ('+(value.price - value.discount_amount)+'tk for '+value.package_duration_in_days+' days)</span></label><br/>';
@@ -393,8 +394,12 @@
             })
         }
         $(document).on('click', '.select-package', function () {
-            var sellPrice = $(this).attr('data-package-sell-price');
-            $('#totalAmount').val(sellPrice);
+            // var sellPrice = $(this).attr('data-package-sell-price');
+            var subscriptionId = $('input[name="batch_exam_subscription_id"]').val();
+            var batchExamSlug = $('#batchExamSlug').val();
+            $('#placeOrderBtn').attr('href', base_url+'checkout/batch_exam/'+batchExamSlug+'?si='+subscriptionId);
+
+            // $('#totalAmount').val(sellPrice);
         })
     </script>
     <script>

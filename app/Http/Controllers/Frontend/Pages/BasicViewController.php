@@ -11,6 +11,7 @@ use App\Models\Backend\AdditionalFeatureManagement\OurTeam\OurTeam;
 use App\Models\Backend\AdditionalFeatureManagement\PopupNotification;
 use App\Models\Backend\AdditionalFeatureManagement\StudentOpinion\StudentOpinion;
 use App\Models\Backend\BatchExamManagement\BatchExam;
+use App\Models\Backend\BatchExamManagement\BatchExamSubscription;
 use App\Models\Backend\BlogManagement\Blog;
 use App\Models\Backend\BlogManagement\BlogCategory;
 use App\Models\Backend\CircularManagement\Circular;
@@ -223,7 +224,7 @@ class BasicViewController extends Controller
         return 'something went wrong';
     }
 
-    public function checkout ( $type = 'course',  $slug = null)
+    public function checkout (Request $request, $type = 'course',  $slug = null)
     {
         if ($type == 'course')
         {
@@ -270,11 +271,32 @@ class BasicViewController extends Controller
                 } else {
                     $this->course->total_amount_after_discount  = $this->course->price;
                 }
+            } elseif ($type == 'batch_exam')
+            {
+                if (empty($request->si))
+                {
+                    return ViewHelper::returEexceptionError('Please Select a Package First');
+                }
+                $batchExamSubscription = BatchExamSubscription::find($request->si);
+                if ($batchExamSubscription->discount_end_date_timestamp > strtotime(currentDateTimeYmdHi()))
+                {
+                    if ($batchExamSubscription->discount_type == 1)
+                    {
+                        $batchExamSubscription->total_amount_after_discount = $batchExamSubscription->price - $batchExamSubscription->discount_amount;
+                    } elseif ($batchExamSubscription->discount_type == 2)
+                    {
+                        $batchExamSubscription->total_amount_after_discount = $batchExamSubscription->price - (($batchExamSubscription->price * $batchExamSubscription->discount_amount)/100);
+                    }
+                } else {
+                    $batchExamSubscription->total_amount_after_discount  = $batchExamSubscription->price;
+                }
+                $this->course->total_amount_after_discount  = $batchExamSubscription->total_amount_after_discount;
             }
 
             $this->data = [
                 'reqFor'  => $type,
                 'course'    => $this->course,
+                'batch_exam_subscription_id'    => $request->si ?? ''
 //                    'discountStatus'   => dateTimeFormatYmdHi($this->course->discount_start_date) < currentDateTimeYmdHi() && dateTimeFormatYmdHi($this->course->discount_end_date) > currentDateTimeYmdHi() ? 'valid' : 'not-valid'
 //                'discountStatus'   => isset($this->course->discount_start_date) && !empty($this->course->discount_start_date) ? (dateTimeFormatYmdHi($this->course->discount_start_date) < currentDateTimeYmdHi() && dateTimeFormatYmdHi($this->course->discount_end_date) > currentDateTimeYmdHi() ? 'valid' : 'not-valid') : 'not-valid'
             ];

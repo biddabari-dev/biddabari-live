@@ -17,6 +17,7 @@ use App\Models\Frontend\CourseOrder\CourseOrder;
 use App\Models\User;
 use DGvai\SSLCommerz\SSLCommerz;
 use GuzzleHttp\Client;
+use Illuminate\Bus\Batch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -405,18 +406,26 @@ class CheckoutController extends Controller
             $userStatus = false;
             self::$user = User::where('mobile', $requestData->mobile)->first();
             $pass = rand(10000, 99999);
+            if ($requestData->ordered_for == 'course')
+            {
+                $model = Course::find($requestData->model_id);
+            } elseif ($requestData->ordered_for == 'batch_exam')
+            {
+                $model = BatchExam::find($requestData->model_id);
+            }
             if (!empty(self::$user))
             {
                 if (!\auth()->check())
                 {
                     Auth::login(self::$user);
                 }
+                $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01963929240/40/43.";
             } else {
 
                 self::$user = User::createOrUpdateUserAfterPayment($requestData, $pass);
                 $newStudent = Student::createStudentAfterPayment($requestData, self::$user);
-
                 Auth::login(self::$user);
+                $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01963929240/40/43.";
             }
             if (!empty(self::$user))
             {
@@ -424,7 +433,6 @@ class CheckoutController extends Controller
             }
             $smsStatus = 'failed';
             $client = new Client();
-            $message = "Congratulations!+You+are+successfully+enrolled+in+your+course.+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+Happy+preparing+&+stay+connected-Biddabari.+For+more+queries-01963929240/40/43.";
                 $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$message);
                 $responseCode = explode(':',$body->getBody()->getContents() )[1];
                 if (isset($responseCode) && !empty($responseCode))

@@ -773,7 +773,7 @@ class FrontExamController extends Controller
 
     public function categoryExams ($id, $name = null)
     {
-        $this->exam = BatchExam::whereId($id)->select('id', 'title', 'description', 'banner',  'status', 'is_paid')->with(['batchExamSubscriptions' => function ($package) {
+        $this->exam = BatchExam::whereId($id)->select('id', 'title', 'description', 'banner',  'status', 'is_paid', 'slug')->with(['batchExamSubscriptions' => function ($package) {
             $package->whereStatus(1)->select('id', 'batch_exam_id', 'price', 'package_duration_in_days', 'package_title', 'discount_amount', 'discount_start_date', 'discount_end_date')->get();
         }])->first();
 //        $this->examCategory->validity = Carbon::parse($this->examCategory->valid_from)->format('d-m-Y').' - '. Carbon::parse($this->examCategory->valid_to)->format('d-m-Y');

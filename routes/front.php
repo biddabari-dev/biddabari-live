@@ -39,65 +39,20 @@ Route::post('sslcommerz/cancel',[CheckoutController::class, 'paymentCancel'])->n
 Route::post('sslcommerz/ipn',[CheckoutController::class, 'ipn'])->name('payment.ipn');
 
 Route::as('front.')->group(function (){
-//     Route::middleware('previousUrlMiddleware')->group(function (){
-//         Route::get('/', [BasicViewController::class, 'home'])->name('home');
-//         Route::get('/all-courses', [BasicViewController::class, 'allCourses'])->name('all-courses');
-//         Route::get('/course-details/{id}/{slug?}', [BasicViewController::class, 'courseDetails'])->name('course-details');
-//         Route::get('/checkout/{id}/{slug?}', [BasicViewController::class, 'checkout'])->name('checkout');
-//         Route::get('/check-coupon', [BasicViewController::class, 'checkCoupon'])->name('check-coupon');
-//         Route::get('/category-courses/{id}/{slug?}', [BasicViewController::class, 'categoryCourses'])->name('category-courses');
-//         Route::get('/all-notices', [BasicViewController::class, 'allNotices'])->name('notices');
-//     });
-//     Route::post('/send-otp', [CustomAuthController::class, 'sendOtp'])->name('send-otp');
-//     Route::post('/verify-otp', [CustomAuthController::class, 'verifyOtp'])->name('verify-otp');
-//     Route::get('/free-courses', [BasicViewController::class, 'freeCourses'])->name('free-courses');
-//     Route::get('/all-exams', [FrontExamController::class, 'showAllExams'])->name('all-exams');
-//     Route::get('/view-exam-details/{xm_id}/{slug?}', [FrontExamController::class, 'viewExamDetails'])->name('view-exam');
-//     Route::get('/category-exams/{xm_cat_id}/{name?}', [FrontExamController::class, 'categoryExams'])->name('category-exams');
-//     Route::get('/subscription-details/{id}/{slug?}', [ExamSubscriptionPackageController::class, 'details'])->name('subscription-details');
-
-//     Route::get('/all-blogs', [FrontendViewController::class, 'allBLogs'])->name('all-blogs');
-//     Route::get('/category-blogs/{id}/{slug?}', [FrontendViewController::class, 'categoryBlogs'])->name('category-blogs');
-//     Route::get('/blog-details/{id}/{slug?}', [FrontendViewController::class, 'blogDetails'])->name('blog-details');
-//     Route::get('/all-products', [FrontendViewController::class, 'allProducts'])->name('all-products');
-//     Route::post('/place-product-order', [FrontendViewController::class, 'placeProductOrder'])->name('place-product-order');
-//     Route::get('/product-details/{id}/{slug?}', [FrontendViewController::class, 'productDetails'])->name('product-details');
-//     Route::get('/view-cart', [FrontendViewController::class, 'viewCart'])->name('view-cart');
-//     Route::post('/add-to-cart', [FrontendViewController::class, 'addToCart'])->name('add-to-cart');
-//      Route::post('/add-to-cart-home', [FrontendViewController::class, 'addToCarthome'])->name('add-to-cart-home');
-//     Route::get('/remove-from-cart/{id}', [FrontendViewController::class, 'removeFromCart'])->name('remove-from-cart');
-//     Route::get('/all-job-circulars', [FrontendViewController::class, 'allJobCirculars'])->name('all-job-circulars');
-//     Route::get('/job-circular-details/{id}/{slug?}', [FrontendViewController::class, 'jobCircularDetail'])->name('job-circular-details');
-//     Route::get('/all-instructors', [FrontendViewController::class, 'instructors'])->name('instructors');
-//     Route::get('/instructor-details/{id}/{slug?}', [FrontendViewController::class, 'instructorDetails'])->name('instructor-details');
-
-// //    basic page routes
-//     Route::get('/about-us', [BasicViewController::class, 'aboutUs'])->name('about-us');
-//     Route::get('/terms-conditions', [BasicViewController::class, 'termsConditions'])->name('terms-conditions');
-//     Route::get('/privacy-policy', [BasicViewController::class, 'privacy'])->name('privacy-policy');
-//     Route::get('/contact-us', [BasicViewController::class, 'contact'])->name('contact-us');
-//     Route::get('/guideline', [FrontViewTwoController::class, 'guideline'])->name('guideline');
-//     Route::get('/all-gallery-images', [FrontViewTwoController::class, 'GalleryImageView'])->name('all-gallery-images');
-//     Route::get('/gallery-images/{id}/{title?}', [FrontViewTwoController::class, 'GalleryImages'])->name('show-gallery-images');
-
-//     Route::post('/new-comment', [FrontendViewController::class, 'newComment'])->name('new-comment');
-
-//     Route::get('show-product-pdf/{content_id}', [StudentController::class, 'showProductPdf'])->name('show-product-pdf');
-//     Route::get('get-video-comments/{content_id}/{type?}', [StudentController::class, 'getVideoComments'])->name('get-video-comments');
 
 
 Route::middleware('previousUrlMiddleware')->group(function (){
         Route::get('/', [BasicViewController::class, 'home'])->name('home');
-        Route::get('/all-courses', [BasicViewController::class, 'allCourses'])->name('all-courses');
+        Route::get('/course', [BasicViewController::class, 'allCourses'])->name('all-courses');
         Route::get('/course-details/{id}/{slug?}', [BasicViewController::class, 'courseDetails'])->name('course-details');
         Route::get('/checkout/{type}/{slug}', [BasicViewController::class, 'checkout'])->name('checkout');
 
         Route::get('/category/{id}/{slug?}', [BasicViewController::class, 'categoryCourses'])->name('category-courses');
-        Route::get('/all-notices', [BasicViewController::class, 'allNotices'])->name('notices');
+        Route::get('/notice', [BasicViewController::class, 'allNotices'])->name('notices');
 
 
         Route::get('/free-courses', [BasicViewController::class, 'freeCourses'])->name('free-courses');
-        Route::get('/all-exams', [FrontExamController::class, 'showAllExams'])->name('all-exams');
+        Route::get('/exam', [FrontExamController::class, 'showAllExams'])->name('all-exams');
         Route::get('/view-exam-details/{xm_id}/{slug?}', [FrontExamController::class, 'viewExamDetails'])->name('view-exam');
 
         Route::get('/subscription-details/{id}/{slug?}', [ExamSubscriptionPackageController::class, 'details'])->name('subscription-details');

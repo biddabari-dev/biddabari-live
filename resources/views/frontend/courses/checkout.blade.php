@@ -130,6 +130,9 @@
                                 <input type="hidden" name="coupon_code" value="">
                                 <input type="hidden" name="coupon_amount" value="">
                                 <input type="hidden" name="ordered_for" value="{{ $reqFor ?? 'course' }}">
+                                @if(!empty($batch_exam_subscription_id))
+                                    <input type="hidden" name="batch_exam_subscription_id" value="{{ $batch_exam_subscription_id ?? '' }}">
+                                @endif
                                 <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">
 
                                 <li>
@@ -137,20 +140,21 @@
                                         <div class="col-md-12">
                                             <label for="paidTo">Your Name</label>
                                             <input type="text" id="paidTo" required name="name" class="form-control"
-                                                   placeholder="Enter your name" />
-                                            <span class="text-danger">YOur will be registered by this name if you don't have account.</span>
+                                                   placeholder="Enter your name" value="{{ auth()->check() ? auth()->user()->name : '' }}" {{--{{ auth()->check() && !empty(auth()->user()->name) ? 'readonly' : '' }}--}}  />
+                                            @if(!auth()->check()) <span class="text-danger f-s-18">আপনার এই নামে এ কোর্সটি রেজিস্টার করা হবে।</span> @endif
                                             @error('paid_to')<span class="text-danger"></span>@enderror
                                         </div>
                                         <div class="col-md-6">
                                             <label for="phone" >Phone No</label>
-                                            <input type="number" id="phone" name="mobile" required class="form-control"
-                                                   placeholder="Enter your phone no" />
+                                            <input type="text" id="phone" name="mobile" required class="form-control"
+                                                   placeholder="Enter your phone no" value="{{ auth()->check() ? auth()->user()->mobile : '' }}" {{--{{ auth()->check() && !empty(auth()->user()->mobile) ? 'readonly' : '' }}--}} />
+                                            @if(!auth()->check()) <span class="text-danger f-s-18">এই নম্বরটি হবে আপনার রেজিস্ট্রেশন নম্বর ।</span> @endif
                                             @error('mobile')<span class="text-danger"></span>@enderror
                                         </div>
                                         <div class="col-md-6">
                                             <label for="confirmPhone" >Confirm Phone No</label>
-                                            <input type="number" id="confirmPhone" name="confirm_mobile" required class="form-control"
-                                                   placeholder="Enter your phone no" />
+                                            <input type="text" id="confirmPhone" name="confirm_mobile" required class="form-control"
+                                                   placeholder="Enter your phone no" value="{{ auth()->check() ? auth()->user()->mobile : '' }}" {{--{{ auth()->check() && !empty(auth()->user()->mobile) ? 'readonly' : '' }}--}} />
                                             @error('confirm_mobile')<span class="text-danger"></span>@enderror
                                         </div>
                                     </div>
