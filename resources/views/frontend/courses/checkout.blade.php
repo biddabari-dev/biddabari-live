@@ -176,19 +176,19 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="bkash_payment d-flex justify-content-between">
+{{--                                <li>--}}
+{{--                                    <div class="bkash_payment d-flex justify-content-between">--}}
 
-                                        <div class="d-flex">
-                                            <input type="radio" id="direct-bank-transfer" class="me-2" value="bkash"
-                                                   name="payment_method" checked>
-                                            <label for="direct-bank-transfer">বিকাশ পেমেন্ট মেথড</label>
-                                        </div>
-                                        <div class="pay_method_icon ">
-                                            <img src="{{asset('frontend')}}/assets/images/bkash_logo.webp" style="height: 45px; width: 120px">
-                                        </div>
-                                    </div>
-                                </li>
+{{--                                        <div class="d-flex">--}}
+{{--                                            <input type="radio" id="direct-bank-transfer" class="me-2" value="bkash"--}}
+{{--                                                   name="payment_method" checked>--}}
+{{--                                            <label for="direct-bank-transfer">বিকাশ পেমেন্ট মেথড</label>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="pay_method_icon ">--}}
+{{--                                            <img src="{{asset('frontend')}}/assets/images/bkash_logo.webp" style="height: 45px; width: 120px">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
                                 <li>
                                     <div class="others_payment d-flex justify-content-between">
                                         <div class="d-flex">
