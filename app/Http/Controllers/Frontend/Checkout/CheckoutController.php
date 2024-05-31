@@ -174,7 +174,7 @@ class CheckoutController extends Controller
 
     public function commonOrder (Request $request, $modelId = null)
     {
-//        try {
+        try {
 
             Validator::make($request->all(), [
                 'name'  => 'required',
@@ -282,10 +282,10 @@ class CheckoutController extends Controller
 
                 return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the course successfully.');
             }
-//        } catch (\Exception $exception)
-//        {
-//            return ViewHelper::returEexceptionError($exception->getMessage());
-//        }
+        } catch (\Exception $exception)
+        {
+            return ViewHelper::returEexceptionError($exception->getMessage());
+        }
 
     }
 
@@ -305,7 +305,7 @@ class CheckoutController extends Controller
 
     public function paymentSuccess(Request $request)
     {
-//        try {
+        try {
         $validate = SSLCommerz::validate_payment($request);
         if($validate)
         {
@@ -363,10 +363,10 @@ class CheckoutController extends Controller
 
 
         }
-//        } catch (\Exception $exception)
-//        {
-//            return ViewHelper::returEexceptionError($exception->getMessage());
-//        }
+        } catch (\Exception $exception)
+        {
+            return ViewHelper::returEexceptionError($exception->getMessage());
+        }
     }
 
     public static function createOrderAndAssignStudent($requestData, $request)
@@ -415,7 +415,7 @@ class CheckoutController extends Controller
     {
         $smsStatus = 'failed';
         $userStatus = false;
-//        try {
+        try {
         if (!empty($requestData->name) && !empty($requestData->mobile))
         {
 
@@ -473,15 +473,15 @@ class CheckoutController extends Controller
         }
 
 
-//        } catch (\Exception $exception)
-//        {
-//            return [
-//                'smsStatus' => 'failed',
-//                'user'      => self::$user,
-//                'userStatus'    => false,
-//                'processStatus' => 'failed',
-//            ];
-//        }
+        } catch (\Exception $exception)
+        {
+            return [
+                'smsStatus' => 'failed',
+                'user'      => self::$user,
+                'userStatus'    => false,
+                'processStatus' => 'failed',
+            ];
+        }
     }
 
     public function paymentFailure (Request $request)
