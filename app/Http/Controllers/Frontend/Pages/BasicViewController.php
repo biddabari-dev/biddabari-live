@@ -157,9 +157,9 @@ class BasicViewController extends Controller
         {
             foreach ($courseCategory->courses as $course)
             {
-                 $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
                 if (strtotime($course->admission_last_date) > strtotime(currentDateTimeYmdHi()))
                 {
+                    $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
                     array_push($tempCourses, $course);
                 }
             }
