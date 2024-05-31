@@ -252,23 +252,23 @@
         })
     })
 </script>
-<script>
-    $(function () {
-        showHidePaymentMethod();
-    })
-    $(document).on('click', 'input[name="payment_method"]', function () {
-        showHidePaymentMethod();
-    });
-    function showHidePaymentMethod() {
-        var paymentMethod = $('input[name="payment_method"]:checked').val();
-        if (paymentMethod == 'cod') {
-            if ($('.payment-cod').hasClass('d-none')) {
-                $('.payment-cod').removeClass('d-none');
-            }
+{{--<script>--}}
+{{--    $(function () {--}}
+{{--        showHidePaymentMethod();--}}
+{{--    })--}}
+{{--    $(document).on('click', 'input[name="payment_method"]', function () {--}}
+{{--        // showHidePaymentMethod();--}}
+{{--    });--}}
+{{--    function showHidePaymentMethod() {--}}
+{{--        var paymentMethod = $('input[name="payment_method"]:checked').val();--}}
+{{--        if (paymentMethod == 'cod') {--}}
+{{--            if ($('.payment-cod').hasClass('d-none')) {--}}
+{{--                $('.payment-cod').removeClass('d-none');--}}
+{{--            }--}}
 
-        } else if (paymentMethod == 'ssl') {
-            $('.payment-cod').addClass('d-none');
-        }
-    }
-</script>
+{{--        } else if (paymentMethod == 'ssl') {--}}
+{{--            $('.payment-cod').addClass('d-none');--}}
+{{--        }--}}
+{{--    }--}}
+{{--</script>--}}
 @endsection

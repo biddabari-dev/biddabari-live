@@ -219,21 +219,21 @@
 
 <!-- Sweet Alert JS -->
 <script async src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
-@if(Session::has('success'))
+@if(session()->has('success'))
     <script>
-        toastr.success("{{ Session::get('success') }}");
+        toastr.success("{{ session()->get('success') }}");
     </script>
 @endif
-@if(Session::has('error'))
+@if(session()->has('error'))
     <script>
-        toastr.error("{{ Session::get('error') }}");
+        toastr.error("{{ session()->get('error') }}");
     </script>
 @endif
-@if(Session::has('customError'))
+@if(session()->has('customError'))
     <script>
         Swal.fire({
             title: 'Error!',
-            text: "{{ Session::get('customError') }}",
+            text: "{{ session()->get('customError') }}",
             icon: 'error',
             confirmButtonText: 'Ok'
         })

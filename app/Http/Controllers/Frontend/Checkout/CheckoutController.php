@@ -176,112 +176,112 @@ class CheckoutController extends Controller
     {
         try {
 
-        Validator::make($request->all(), [
-            'name'  => 'required',
-            'mobile'  => 'required',
-            'payment_method'  => 'required',
-        ]);
-        if (!empty($request->mobile))
-        {
-            $checkExistUser = User::where('mobile', $request->mobile)->firtst();
-            if (!empty($checkExistUser))
+            Validator::make($request->all(), [
+                'name'  => 'required',
+                'mobile'  => ['required', 'regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'],
+                'payment_method'  => 'required',
+            ]);
+            if (!empty($request->mobile))
             {
-                $checkExistOrder = ParentOrder::where(['user_id', $checkExistUser->id, 'parent_model_id' => $request->model_id, 'ordered_for' => $request->ordered_for])->first();
-                if (!empty($checkExistOrder))
+                $checkExistUser = User::where('mobile', $request->mobile)->firtst();
+                if (!empty($checkExistUser))
                 {
-                    return ViewHelper::returEexceptionError('You already ordered this. Please check your dashboard');
+                    $checkExistOrder = ParentOrder::where(['user_id', $checkExistUser->id, 'parent_model_id' => $request->model_id, 'ordered_for' => $request->ordered_for])->first();
+                    if (!empty($checkExistOrder))
+                    {
+                        return ViewHelper::returEexceptionError('You already ordered this. Please check your dashboard');
+                    }
                 }
             }
-        }
-        if ($request->mobile != $request->confirm_mobile)
-        {
-            return ViewHelper::returEexceptionError('Phone number didn\'t match. Please try again.');
-//            return back()->with('error', 'Phone number didn\'t match. Please try again.');
-        }
-        if (isset($request->rc) && auth()->check())
-        {
-            $existAffiliateUser = AffiliationRegistration::where('user_id', ViewHelper::loggedUser()->id)->first();
-            if (isset($existAffiliateUser) && $existAffiliateUser->affiliate_code == $request->rc)
+            if ($request->mobile != $request->confirm_mobile)
             {
-                return ViewHelper::returEexceptionError('You can not use your own referral code.');
+                return ViewHelper::returEexceptionError('Phone number didn\'t match. Please try again.');
+    //            return back()->with('error', 'Phone number didn\'t match. Please try again.');
             }
-        }
-        $userExistStatus = User::where('mobile', $request->mobile)->first();
-        if (!empty($userExistStatus))
-        {
-            $existUser = ParentOrder::where(['user_id' => $userExistStatus->id, 'ordered_for' => $request->ordered_for, 'parent_model_id' => $request->model_id])->first();
-            if (!empty($existUser))
+            if (isset($request->rc) && auth()->check())
+            {
+                $existAffiliateUser = AffiliationRegistration::where('user_id', ViewHelper::loggedUser()->id)->first();
+                if (isset($existAffiliateUser) && $existAffiliateUser->affiliate_code == $request->rc)
+                {
+                    return ViewHelper::returEexceptionError('You can not use your own referral code.');
+                }
+            }
+//            $userExistStatus = User::where('mobile', $request->mobile)->first();
+//            if (!empty($userExistStatus))
+//            {
+//                $existUser = ParentOrder::where(['user_id' => $userExistStatus->id, 'ordered_for' => $request->ordered_for, 'parent_model_id' => $request->model_id])->first();
+//                if (!empty($existUser))
+//                {
+//                    if (str()->contains(url()->current(), '/api/'))
+//                    {
+//                        return response()->json(['message' => 'Sorry. You already enrolled this course.'], 400);
+//                    }
+//                    return back()->with('error', 'Sorry. You already enrolled this course.');
+//                }
+//            }
+
+            if ($request->ordered_for == 'course')
+            {
+                if (isset($request->coupon_code))
+                {
+                    $courseCoupon = CourseCoupon::where(['code' => $request->coupon_code, 'course_id' => $request->model_id])->first();
+                    if (!empty($courseCoupon))
+                    {
+
+                        $request['total_amount']  = $request->total_amount - $courseCoupon->discount_amount;
+                    }
+                }
+            }
+    //                return $request;
+    //                CourseOrder::saveOrUpdateCourseOrder($request);
+            if ($request->payment_method == 'ssl')
             {
                 if (str()->contains(url()->current(), '/api/'))
                 {
-                    return response()->json(['message' => 'Sorry. You already enrolled this course.'], 400);
+                    $request['parent_model_id'] = $modelId;
+                    ParentOrder::createOrderAfterSsl($request);
+                    return response()->json(['success' => 'Payment completed successfully.']);
                 }
-                return back()->with('error', 'Sorry. You already enrolled this course.');
-            }
-        }
+                $request['details_url'] = url()->previous();
+                $request['model_name'] = $request->ordered_for;
+    //                $request['model_id'] = $request->model_id;
+                $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
+                \session()->put('requestData', $request->all());
 
-        if ($request->ordered_for == 'course')
-        {
-            if (isset($request->coupon_code))
+                return self::sendOrderRequestToSSLZ($request->total_amount, $request->ordered_for == 'course' ? Course::find($request->model_id)->title : BatchExam::find($request->model_id)->title, $request);
+            }
+            elseif ($request->payment_method == 'bkash'){
+    //                return $request;
+    //            return back()->with('Wr are not accepting payments from this gateway. Please use Other payment gateway to complete your payment');
+                $request['details_url'] = url()->previous();
+                $request['model_name'] = $request->ordered_for;
+    //                $request['model_id'] = $request->course_id;
+                $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
+                \session()->put('requestData', $request->all());
+                $bkash=new BkashController();
+                return $bkash->createPayment($request);
+
+            }
+            elseif ($request->payment_method == 'cod')
             {
-                $courseCoupon = CourseCoupon::where(['code' => $request->coupon_code, 'course_id' => $request->model_id])->first();
-                if (!empty($courseCoupon))
+                $this->validate($request, [
+                    'vendor'    => 'required',
+                    'paid_to'   => ['required', 'regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'],
+                    'paid_from' => ['required', 'regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'],
+                    'txt_id'    => 'required',
+                ]);
+                $order = ParentOrder::storeXmOrderInfo($request, $request->course_id);
+                if (isset($request->rc))
                 {
-
-                    $request['total_amount']  = $request->total_amount - $courseCoupon->discount_amount;
+                    AffiliationHistory::createNewHistory($request, 'course', $request->course_id, Course::find($request->course_id)->affiliate_amount, 'insert');
                 }
-            }
-        }
-//                return $request;
-//                CourseOrder::saveOrUpdateCourseOrder($request);
-        if ($request->payment_method == 'ssl')
-        {
-            if (str()->contains(url()->current(), '/api/'))
-            {
-                $request['parent_model_id'] = $modelId;
-                ParentOrder::createOrderAfterSsl($request);
-                return response()->json(['success' => 'Payment completed successfully.']);
-            }
-            $request['details_url'] = url()->previous();
-            $request['model_name'] = $request->ordered_for;
-//                $request['model_id'] = $request->model_id;
-            $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
-            \session()->put('requestData', $request->all());
+                if (str()->contains(url()->current(), '/api/'))
+                {
+                    return response()->json(['message' => 'You Ordered the course successfully.'], 200);
+                }
 
-            return self::sendOrderRequestToSSLZ($request->total_amount, $request->ordered_for == 'course' ? Course::find($request->model_id)->title : BatchExam::find($request->model_id)->title, $request);
-        }
-        elseif ($request->payment_method == 'bkash'){
-//                return $request;
-//            return back()->with('Wr are not accepting payments from this gateway. Please use Other payment gateway to complete your payment');
-            $request['details_url'] = url()->previous();
-            $request['model_name'] = $request->ordered_for;
-//                $request['model_id'] = $request->course_id;
-            $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
-            \session()->put('requestData', $request->all());
-            $bkash=new BkashController();
-            return $bkash->createPayment($request);
-
-        }
-        elseif ($request->payment_method == 'cod')
-        {
-            $this->validate($request, [
-                'vendor'    => 'required',
-                'paid_to'   => ['required', 'regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'],
-                'paid_from' => ['required', 'regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'],
-                'txt_id'    => 'required',
-            ]);
-            $order = ParentOrder::storeXmOrderInfo($request, $request->course_id);
-            if (isset($request->rc))
-            {
-                AffiliationHistory::createNewHistory($request, 'course', $request->course_id, Course::find($request->course_id)->affiliate_amount, 'insert');
+                return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the course successfully.');
             }
-            if (str()->contains(url()->current(), '/api/'))
-            {
-                return response()->json(['message' => 'You Ordered the course successfully.'], 200);
-            }
-
-            return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the course successfully.');
-        }
         } catch (\Exception $exception)
         {
             return ViewHelper::returEexceptionError($exception->getMessage());
@@ -336,22 +336,22 @@ class CheckoutController extends Controller
                     }
 
                     if (!$userCreateAuth['userStatus'])
-                    {
-                        return redirect()->back()->with('error', 'We got your payment but we faced problem during creating your account in our system. Please try again.');
+                    {   ViewHelper::returEexceptionError('We got your payment but we faced problem during creating your account in our system. Please try again.');
+//                        return redirect()->back()->with('error', 'We got your payment but we faced problem during creating your account in our system. Please try again.');
                     }
                         if ($userCreateAuth['smsStatus'] == 'failed')
-                        {
-                            return redirect()->route('front.student.dashboard')->with('error', 'Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
+                        {   ViewHelper::returEexceptionError('Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
+//                            return redirect()->route('front.student.dashboard')->with('error', 'Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
                         }
 
                     if (str()->contains(url()->current(), '/api/'))
-                    {
-                        return response()->json(['message' => 'You Ordered the course successfully.'], 200);
+                    {   ViewHelper::returEexceptionError('You Ordered the course successfully.');
+//                        return response()->json(['message' => 'You Ordered the course successfully.'], 200);
                     }
                     return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
                 } elseif ($userCreateAuth['processStatus'] == 'failed')
-                {
-                    return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
+                {   ViewHelper::returEexceptionError('Something went wrong during payment. Please try again.');
+//                    return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
                 }
 
 
