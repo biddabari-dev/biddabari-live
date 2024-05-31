@@ -174,7 +174,7 @@ class CheckoutController extends Controller
 
     public function commonOrder (Request $request, $modelId = null)
     {
-//        try {
+        try {
 
             Validator::make($request->all(), [
                 'name'  => 'required',
@@ -183,7 +183,7 @@ class CheckoutController extends Controller
             ]);
             if (!empty($request->mobile))
             {
-                $checkExistUser = User::where('mobile', $request->mobile)->firtst();
+                $checkExistUser = User::where('mobile', $request->mobile)->first();
                 if (!empty($checkExistUser))
                 {
                     $checkExistOrder = ParentOrder::where(['user_id', $checkExistUser->id, 'parent_model_id' => $request->model_id, 'ordered_for' => $request->ordered_for])->first();
@@ -282,10 +282,10 @@ class CheckoutController extends Controller
 
                 return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the course successfully.');
             }
-//        } catch (\Exception $exception)
-//        {
-//            return ViewHelper::returEexceptionError($exception->getMessage());
-//        }
+        } catch (\Exception $exception)
+        {
+            return ViewHelper::returEexceptionError($exception->getMessage());
+        }
 
     }
 
@@ -305,68 +305,68 @@ class CheckoutController extends Controller
 
     public function paymentSuccess(Request $request)
     {
-//        try {
-            $validate = SSLCommerz::validate_payment($request);
-            if($validate)
+        try {
+        $validate = SSLCommerz::validate_payment($request);
+        if($validate)
+        {
+            $requestData = (object) \session()->get('requestData');
+            if (!empty($requestData))
             {
-                $requestData = (object) \session()->get('requestData');
-                if (!empty($requestData))
+                $userCreateAuth = CheckoutController::createUserAfterOrder($requestData);
+
+
+                if ($userCreateAuth['processStatus'] == 'success')
                 {
-                    $userCreateAuth = CheckoutController::createUserAfterOrder($requestData);
-
-
-                    if ($userCreateAuth['processStatus'] == 'success')
+                    if ($requestData->ordered_for == 'product')
                     {
-                        if ($requestData->ordered_for == 'product')
+                        ParentOrder::orderProductThroughSSL($requestData, $request);
+                    } else {
+                        ParentOrder::placeOrderAfterGatewayPayment($request, $requestData);
+                        if ($requestData->ordered_for == 'course')
                         {
-                            ParentOrder::orderProductThroughSSL($requestData, $request);
-                        } else {
-                            ParentOrder::placeOrderAfterGatewayPayment($request, $requestData);
-                            if ($requestData->ordered_for == 'course')
-                            {
-                                Course::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
-                            } elseif ($requestData->ordered_for == 'batch_exam')
-                            {
-                                BatchExam::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
-                            }
-                            if (isset($requestData->rc))
-                            {
-                                AffiliationHistory::createNewHistory($requestData, $requestData->model_name, $requestData->model_id, $requestData->affiliate_amount, 'insert');
-                            }
+                            Course::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
+                        } elseif ($requestData->ordered_for == 'batch_exam')
+                        {
+                            BatchExam::find($requestData->model_id)->students()->attach(Student::whereUserId(ViewHelper::loggedUser()->id)->first()->id);
                         }
-
-                        if (!$userCreateAuth['userStatus'])
-                        {   ViewHelper::returEexceptionError('We got your payment but we faced problem during creating your account in our system. Please try again.');
-    //                        return redirect()->back()->with('error', 'We got your payment but we faced problem during creating your account in our system. Please try again.');
+                        if (isset($requestData->rc))
+                        {
+                            AffiliationHistory::createNewHistory($requestData, $requestData->model_name, $requestData->model_id, $requestData->affiliate_amount, 'insert');
                         }
-                            if ($userCreateAuth['smsStatus'] == 'failed')
-                            {   ViewHelper::returEexceptionError('Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
-    //                            return redirect()->route('front.student.dashboard')->with('error', 'Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
-                            }
-
-                        if (str()->contains(url()->current(), '/api/'))
-                        {   ViewHelper::returEexceptionError('You Ordered the course successfully.');
-    //                        return response()->json(['message' => 'You Ordered the course successfully.'], 200);
-                        }
-                        return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
-                    } elseif ($userCreateAuth['processStatus'] == 'failed')
-                    {   ViewHelper::returEexceptionError('Something went wrong during payment. Please try again.');
-    //                    return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
                     }
 
+                    if (!$userCreateAuth['userStatus'])
+                    {   ViewHelper::returEexceptionError('We got your payment but we faced problem during creating your account in our system. Please try again.');
+//                        return redirect()->back()->with('error', 'We got your payment but we faced problem during creating your account in our system. Please try again.');
+                    }
+                        if ($userCreateAuth['smsStatus'] == 'failed')
+                        {   ViewHelper::returEexceptionError('Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
+//                            return redirect()->route('front.student.dashboard')->with('error', 'Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
+                        }
 
-
-    //                    return self::createOrderAndAssignStudent($requestData, $request);
-                } else {
-                    return 'Data is missing from session';
+                    if (str()->contains(url()->current(), '/api/'))
+                    {   ViewHelper::returEexceptionError('You Ordered the course successfully.');
+//                        return response()->json(['message' => 'You Ordered the course successfully.'], 200);
+                    }
+                    return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
+                } elseif ($userCreateAuth['processStatus'] == 'failed')
+                {   ViewHelper::returEexceptionError('Something went wrong during payment. Please try again.');
+//                    return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
                 }
 
 
+
+//                    return self::createOrderAndAssignStudent($requestData, $request);
+            } else {
+                return 'Data is missing from session';
             }
-//        } catch (\Exception $exception)
-//        {
-//            return ViewHelper::returEexceptionError($exception->getMessage());
-//        }
+
+
+        }
+        } catch (\Exception $exception)
+        {
+            return ViewHelper::returEexceptionError($exception->getMessage());
+        }
     }
 
     public static function createOrderAndAssignStudent($requestData, $request)
@@ -415,73 +415,73 @@ class CheckoutController extends Controller
     {
         $smsStatus = 'failed';
         $userStatus = false;
-//        try {
-            if (!empty($requestData->name) && !empty($requestData->mobile))
+        try {
+        if (!empty($requestData->name) && !empty($requestData->mobile))
+        {
+
+            self::$user = User::where('mobile', $requestData->mobile)->first();
+            $pass = rand(10000, 99999);
+            if ($requestData->ordered_for == 'course')
             {
-
-                self::$user = User::where('mobile', $requestData->mobile)->first();
-                $pass = rand(10000, 99999);
-                if ($requestData->ordered_for == 'course')
+                $model = Course::find($requestData->model_id);
+            } elseif ($requestData->ordered_for == 'batch_exam')
+            {
+                $model = BatchExam::find($requestData->model_id);
+            }
+            if (!empty(self::$user))
+            {
+                if (!\auth()->check())
                 {
-                    $model = Course::find($requestData->model_id);
-                } elseif ($requestData->ordered_for == 'batch_exam')
-                {
-                    $model = BatchExam::find($requestData->model_id);
-                }
-                if (!empty(self::$user))
-                {
-                    if (!\auth()->check())
-                    {
-                        Auth::login(self::$user);
-                    }
-                    $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01963929240/40/43.";
-                } else {
-
-                    self::$user = User::createOrUpdateUserAfterPayment($requestData, $pass);
-                    $newStudent = Student::createStudentAfterPayment($requestData, self::$user);
                     Auth::login(self::$user);
-                    $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01963929240/40/43.";
                 }
-                if (!empty(self::$user))
-                {
-                    $userStatus = true;
-                }
-
-                $client = new Client();
-                    $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$message);
-                    $responseCode = explode(':',$body->getBody()->getContents() )[1];
-                    if (isset($responseCode) && !empty($responseCode))
-                    {
-                        $smsStatus   = 'success';
-                    }
-                return [
-                    'smsStatus' => $smsStatus,
-                    'user'      => self::$user,
-                    'userStatus'    => $userStatus,
-                    'processStatus' => 'success',
-                ];
-
+                $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01963929240/40/43.";
             } else {
-    //                return 'user not exist in db';
-                return [
-                    'smsStatus' => 'failed',
-                    'user'      => self::$user,
-                    'userStatus'    => false,
-                    'processStatus' => 'failed',
-                ];
-    //                return redirect('/')->with('error', 'We didn\'t find your name and mobile. Please contact with our service center.');
+
+                self::$user = User::createOrUpdateUserAfterPayment($requestData, $pass);
+                $newStudent = Student::createStudentAfterPayment($requestData, self::$user);
+                Auth::login(self::$user);
+                $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01963929240/40/43.";
+            }
+            if (!empty(self::$user))
+            {
+                $userStatus = true;
             }
 
+            $client = new Client();
+                $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$message);
+                $responseCode = explode(':',$body->getBody()->getContents() )[1];
+                if (isset($responseCode) && !empty($responseCode))
+                {
+                    $smsStatus   = 'success';
+                }
+            return [
+                'smsStatus' => $smsStatus,
+                'user'      => self::$user,
+                'userStatus'    => $userStatus,
+                'processStatus' => 'success',
+            ];
 
-//        } catch (\Exception $exception)
-//        {
-//            return [
-//                'smsStatus' => 'failed',
-//                'user'      => self::$user,
-//                'userStatus'    => false,
-//                'processStatus' => 'failed',
-//            ];
-//        }
+        } else {
+//                return 'user not exist in db';
+            return [
+                'smsStatus' => 'failed',
+                'user'      => self::$user,
+                'userStatus'    => false,
+                'processStatus' => 'failed',
+            ];
+//                return redirect('/')->with('error', 'We didn\'t find your name and mobile. Please contact with our service center.');
+        }
+
+
+        } catch (\Exception $exception)
+        {
+            return [
+                'smsStatus' => 'failed',
+                'user'      => self::$user,
+                'userStatus'    => false,
+                'processStatus' => 'failed',
+            ];
+        }
     }
 
     public function paymentFailure (Request $request)
