@@ -122,7 +122,7 @@
             <div class="col-md-3 col-m-6">
                 <div class="categories-item">
                     <a
-                        href="{{ route('front.category-courses', ['id' => $courseCategory->id, 'slug' => $courseCategory->slug]) }}">
+                        href="{{ route('front.category-courses', [ 'slug' => $courseCategory->slug]) }}">
                         <img loading="lazy" src="{{ asset(isset($courseCategory->image) ? $courseCategory->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
                             alt="Categories" class="w-100 border-0" style="height: 200px">
                     </a>
@@ -153,14 +153,14 @@
             @foreach($courses as $course)
             <div class="col-lg-4 col-md-6">
                 <div class="courses-item">
-                    <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
+                    <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
                         <img loading="lazy" src="{{ asset(file_exists($course->banner) ?$course->banner: 'frontend/logo/biddabari-card-logo.jpg') }}" alt="Courses"
                             class="w-100 p-2" style="height: 230px" />
                     </a>
-                    <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
+                    <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
                         <div class="content">
                             <h3 class="py-2"><a
-                                    href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">{{
+                                    href="{{ route('front.course-details', ['slug' => $course->slug]) }}">{{
                                     $course->title }}</a></h3>
 
 
@@ -201,7 +201,7 @@
 
                             <div class="bottom-content">
                                 @if($course->order_status != 'true')
-                                <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}"
+                                <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}"
                                     class="btn btn-warning">বিস্তারিত দেখুন</a>
                                 @else
                                 <a href="javascript:void(0)" class=""></a>

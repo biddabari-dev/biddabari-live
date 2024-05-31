@@ -45,7 +45,7 @@ class BasicViewController extends Controller
         {
             $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
         }
-        $this->products = Product::whereStatus(1)->latest()->select('id', 'title', 'image', 'slug', 'description','stock_amount','price')->take(8)->get();
+        $this->products = Product::whereStatus(1)->latest()->select('id', 'title', 'image', 'slug', 'description','stock_amount','price', 'slug')->take(8)->get();
 //        $this->homeSliderCourses = Course::where('show_home_slider', 1)->select('id', 'slug', 'title', 'banner', 'description')->get();
         $this->homeSliderCourses = Advertisement::whereStatus(1)->whereContentType('course')->select('id', 'title', 'content_type', 'description','link','image')->take(6)->get();
         $this->data = [
@@ -157,10 +157,12 @@ class BasicViewController extends Controller
         {
             foreach ($courseCategory->courses as $course)
             {
-                if (strtotime($course->admission_last_date) > strtotime(currentDateTimeYmdHi()))
+                if (strtotime(strtotime($course->admission_last_date)) > strtotime(currentDateTimeYmdHi()))
                 {
                     $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
                     array_push($tempCourses, $course);
+                } else {
+                    $course->order_status = 'false';
                 }
             }
         }
@@ -173,10 +175,10 @@ class BasicViewController extends Controller
         return ViewHelper::checkViewForApi($this->data, 'frontend.courses.courses');
     }
 
-    public function categoryCourses ($id, $slug = null)
+    public function categoryCourses ($slug)
     {
-        $this->courseCategory = CourseCategory::whereId($id)->select('id','name', 'parent_id', 'image', 'icon', 'slug', 'status')->with(['courses' => function($course){
-            $course->whereStatus(1)->latest()->select('*')->get()->makeHidden('updated_at');
+        $this->courseCategory = CourseCategory::whereSlug($slug)->select('id','name', 'parent_id', 'image', 'icon', 'slug', 'status')->with(['courses' => function($course){
+            $course->whereStatus(1)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug')->get()->makeHidden('updated_at');
         },
             'courseCategories' => function($courseCategories){
                 $courseCategories->whereStatus(1)->orderBy('order','ASC')->select('id', 'parent_id','name', 'image', 'icon', 'slug', 'status')->get();
@@ -189,15 +191,18 @@ class BasicViewController extends Controller
         return ViewHelper::checkViewForApi($this->data, 'frontend.courses.course-category', 'Category Not Found');
     }
 
-    public function courseDetails ($id,$slug = null)
+    public function courseDetails ($slug)
     {
-        $course = Course::find($id);
-        $courseEnrollStatus = ViewHelper::checkIfCourseIsEnrolled($course);
+        $course = Course::where('slug', $slug)->first();
+        if (!empty($course))
+        {
+            $courseEnrollStatus = ViewHelper::checkIfCourseIsEnrolled($course);
+        }
         if ($courseEnrollStatus == 'true')
         {
             return redirect()->route('front.student.course-contents', ['course_id' => $course->id, 'slug' => $course->slug]);
         } else {
-            $this->course = Course::whereId($id)->with([
+            $this->course = Course::where('slug', $slug)->with([
                 'teachers'   => function($teachers) {
                     $teachers->select('id', 'user_id', 'subject', 'first_name', 'last_name', 'description', 'image')->with(['user' => function($user){
 //                    $user->select('id', 'name', 'email')->first();
