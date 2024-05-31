@@ -157,7 +157,7 @@ class BasicViewController extends Controller
         {
             foreach ($courseCategory->courses as $course)
             {
-                // $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
+                 $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
                 if (strtotime($course->admission_last_date) > strtotime(currentDateTimeYmdHi()))
                 {
                     array_push($tempCourses, $course);
@@ -165,10 +165,10 @@ class BasicViewController extends Controller
             }
         }
         $this->courses  = collect($tempCourses)->unique('id');
-        foreach ($this->courses as $course)
-        {
-            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
-        }
+//        foreach ($this->courses as $course)
+//        {
+//            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
+//        }
         $this->data = ['courseCategories' => $this->courseCategories, 'allCourses' => $this->courses];
         return ViewHelper::checkViewForApi($this->data, 'frontend.courses.courses');
     }
