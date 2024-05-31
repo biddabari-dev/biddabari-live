@@ -296,7 +296,7 @@ class BasicViewController extends Controller
             $this->data = [
                 'reqFor'  => $type,
                 'course'    => $this->course,
-                'batch_exam_subscription_id'    => $request->si ?? ''
+                'batch_exam_subscription_id'    => $request->si
 //                    'discountStatus'   => dateTimeFormatYmdHi($this->course->discount_start_date) < currentDateTimeYmdHi() && dateTimeFormatYmdHi($this->course->discount_end_date) > currentDateTimeYmdHi() ? 'valid' : 'not-valid'
 //                'discountStatus'   => isset($this->course->discount_start_date) && !empty($this->course->discount_start_date) ? (dateTimeFormatYmdHi($this->course->discount_start_date) < currentDateTimeYmdHi() && dateTimeFormatYmdHi($this->course->discount_end_date) > currentDateTimeYmdHi() ? 'valid' : 'not-valid') : 'not-valid'
             ];

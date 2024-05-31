@@ -181,9 +181,22 @@ class CheckoutController extends Controller
             'mobile'  => 'required',
             'payment_method'  => 'required',
         ]);
+        if (!empty($request->mobile))
+        {
+            $checkExistUser = User::where('mobile', $request->mobile)->firtst();
+            if (!empty($checkExistUser))
+            {
+                $checkExistOrder = ParentOrder::where(['user_id', $checkExistUser->id, 'parent_model_id' => $request->model_id, 'ordered_for' => $request->ordered_for])->first();
+                if (!empty($checkExistOrder))
+                {
+                    return ViewHelper::returEexceptionError('You already ordered this. Please check your dashboard');
+                }
+            }
+        }
         if ($request->mobile != $request->confirm_mobile)
         {
-            return back()->with('error', 'Phone number didn\'t match. Please try again.');
+            return ViewHelper::returEexceptionError('Phone number didn\'t match. Please try again.');
+//            return back()->with('error', 'Phone number didn\'t match. Please try again.');
         }
         if (isset($request->rc) && auth()->check())
         {
@@ -400,10 +413,12 @@ class CheckoutController extends Controller
 
     public static function createUserAfterOrder($requestData)
     {
+        $smsStatus = 'failed';
+        $userStatus = false;
         try {
         if (!empty($requestData->name) && !empty($requestData->mobile))
         {
-            $userStatus = false;
+
             self::$user = User::where('mobile', $requestData->mobile)->first();
             $pass = rand(10000, 99999);
             if ($requestData->ordered_for == 'course')
@@ -431,7 +446,7 @@ class CheckoutController extends Controller
             {
                 $userStatus = true;
             }
-            $smsStatus = 'failed';
+
             $client = new Client();
                 $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$message);
                 $responseCode = explode(':',$body->getBody()->getContents() )[1];
@@ -461,9 +476,9 @@ class CheckoutController extends Controller
         } catch (\Exception $exception)
         {
             return [
-                'smsStatus' => $smsStatus,
+                'smsStatus' => 'failed',
                 'user'      => self::$user,
-                'userStatus'    => $userStatus,
+                'userStatus'    => false,
                 'processStatus' => 'failed',
             ];
         }
