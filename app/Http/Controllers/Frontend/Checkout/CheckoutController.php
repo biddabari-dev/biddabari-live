@@ -186,7 +186,7 @@ class CheckoutController extends Controller
                 $checkExistUser = User::where('mobile', $request->mobile)->first();
                 if (!empty($checkExistUser))
                 {
-                    $checkExistOrder = ParentOrder::where(['user_id', $checkExistUser->id, 'parent_model_id' => $request->model_id, 'ordered_for' => $request->ordered_for])->first();
+                    $checkExistOrder = ParentOrder::where(['user_id' => $checkExistUser->id, 'parent_model_id' => $request->model_id, 'ordered_for' => $request->ordered_for])->first();
                     if (!empty($checkExistOrder))
                     {
                         return ViewHelper::returEexceptionError('You already ordered this. Please check your dashboard');
