@@ -87,12 +87,13 @@
 										Login
 									</span>
                         <div class="wrap-input100 validate-input mobile-div" data-order="0" data-active="1" data-bs-validate="Valid email is required: ex@abc.xyz">
-                            <input class="input100" type="text" name="mobile" placeholder="Mobile Number">
+                            <input class="input100" type="text" name="mobile" placeholder="Mobile Number" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
-											<i class="fa-regular fa-envelope" aria-hidden="true"></i>
-										</span>
+                                <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                            </span>
                         </div>
+                        <span class="text-danger" style="display:none;">Mobile Number is Required!</span>
                         <div class="wrap-input100 validate-input otp-div d-none" data-order="1" data-bs-validate = "OTP is required: 1234">
                             <input class="input100" id="otpInput" type="number" placeholder="Enter OTP">
                             <span class="focus-input100"></span>
@@ -174,10 +175,21 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    $(document).keyup(function(event) {
+        if (event.keyCode === 13) {
+            $(".next").click();
+        }
+    });
     $(document).on('click', '.next', function () {
         event.preventDefault();
         var getClassDivOrder = $('.auth-div').find('[data-active="1"]').attr('data-order');
         var mobileNumber = $('.auth-div input[name="mobile"]').val();
+        if (mobileNumber == '') {
+            $('.auth-div input[name="mobile"]').focus();
+            $('.text-danger').show();
+            return;
+        }
         if (getClassDivOrder == 0)
         {
 
@@ -196,6 +208,7 @@
                     if (data.status == 'success')
                     {
                         $('.mobile-div').addClass('d-none').attr('data-active', '');
+                        $('.text-danger').hide();
 
                         if (data.user_status == 'exist')
                         {
@@ -279,7 +292,7 @@
                     // window.location.reload();
                 } else if (data.status == 'error')
                 {
-                    toastr.error('Something went wrong. Please try again');
+                    toastr.error('Email and Password does not match . Please try again.');
                 }
             },
             error: function (errors) {

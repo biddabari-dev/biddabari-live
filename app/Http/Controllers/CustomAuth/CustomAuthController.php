@@ -56,7 +56,7 @@ class CustomAuthController extends Controller
             {
                 return response()->json(['status' => 'error']);
             }
-            return redirect()->route('login')->with('error', 'Something went wrong. Please try again');
+            return redirect()->route('login')->with('error', 'Email and Password does not match . Please try again.');
         }
 
 //         if (auth()->attempt($request->only(['mobile', 'password']), $request->remember_me))

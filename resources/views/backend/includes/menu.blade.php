@@ -412,9 +412,9 @@
                             @can('app-version-module')
                                 <li><a href="{{ route('app-varsions.index') }}" class="slide-item {{ request()->is('app_varsion') || request()->is('app_varsion*') ? 'active' : '' }}">App Varsion</a></li>
                             @endcan
-                            @can('accounts-module')
+                            <!-- @can('accounts-module')
                                 <li><a href="{{ route('accounts.index') }}" class="slide-item {{ request()->is('accounts') || request()->is('accounts*') ? 'active' : '' }}">Accounts</a></li>
-                            @endcan
+                            @endcan -->
                         </ul>
                     </li>
                     <li class="slide">

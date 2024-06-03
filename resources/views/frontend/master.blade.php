@@ -11,6 +11,16 @@
         <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/plugins.css">--}}
 
+
+
+<!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PW2H9XF6');</script>
+<!-- End Google Tag Manager -->
+
     <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/assets/images/favicon.png">
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.min.css" />
 
@@ -150,6 +160,8 @@
     src="https://www.facebook.com/tr?id=1185093055952372&ev=PageView&noscript=1"
     /></noscript>
 <!-- End Meta Pixel Code -->
+
+
 </head>
 <body>
 
@@ -273,13 +285,7 @@
 
 @stack('script')
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KPW4PLD');</script>
-<!-- End Google Tag Manager -->
+
 
 {!! isset($siteSettings) ? $siteSettings->default_seo_code_on_footer : '' !!}
 </body>
