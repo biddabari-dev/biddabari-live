@@ -3,101 +3,47 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     {!! isset($siteSettings->default_seo_code_on_header) ? $siteSettings->default_seo_code_on_header : '' !!}
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/plugins.css">--}}
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
 
+<<<<<<< HEAD
 
 
 
 
     <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/assets/images/favicon.png">
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.min.css" />
+=======
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/iconplugins.css">
+>>>>>>> master
 
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/iconplugins.css">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
 
-{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.min.css">--}}
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.css">
 
-{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.min.css">--}}
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.css">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/theme-dark.css">
 
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/theme-dark.min.css">
-
-
-{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.min.css">--}}
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.css">
 
     <title>BiddaBari - The First Job Study Online Platform in Bangladesh</title>
 
     <!-- HELPER CSS -->
-        <link href="{{ asset('/') }}backend/assets/css/helper.css" rel="stylesheet" />
-{{--    <link href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/backend/assets/css/helper.min.css" rel="stylesheet" />--}}
+    <link href="{{ asset('/') }}backend/assets/css/helper.css" rel="stylesheet" />
 
-
-
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom-my-mod.min.css">
+    <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/assets/images/favicon.png">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.css">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom-my-mod.css">
 
 
     <!--font awesome link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-    <style>
-
-        /* ----------------messenger icon-------------------- */
-        .go-messenger {
-            position: fixed;
-            top: 50%;
-            right: 3%;
-            opacity: 1;
-            cursor: pointer;
-            text-decoration: none;
-            color: var(--whiteColor);
-            font-size: 30px;
-            font-weight: 700;
-            text-align: center;
-            background: #281367;
-            border-radius: 50px;
-            width: 50px;
-            height: 50px;
-            line-height: 35px;
-            z-index: 100;
-            -webkit-transition: .5s;
-            transition: .5s;
-            padding-top: 6px;
-        }
-
-        .go-messenger i {
-            -webkit-transition: .5s;
-            transition: .5s;
-            vertical-align: middle
-        }
-
-        .go-messenger:hover {
-            background-color: var(--titleColor)
-        }
-
-        /*.go-messenger:hover i {*/
-        /*    -webkit-transform: translateY(-5px);*/
-        /*    transform: translateY(-5px)*/
-        /*}*/
-
-        .go-messenger.active {
-            top: 95%;
-            -webkit-transform: translateY(-95%);
-            transform: translateY(-95%);
-            opacity: 1;
-            visibility: visible
-        }
-
-        /* ------------------------------------------- */
-    </style>
 
     <style>
         .box-shadow {
@@ -132,8 +78,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: black;
         }
-
-
 
     </style>
     @stack('style')
@@ -185,28 +129,29 @@
 
 
 <script src="{{ asset('/') }}frontend/assets/js/jquery.min.js"></script>
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/jquery.min.js"></script>--}}
 
-<script  src="{{ asset('/') }}frontend/assets/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-<script  src="{{ asset('/') }}frontend/assets/js/meanmenu.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/ajaxchimp.min.js" type="text/javascript"></script>
-<script  src="{{ asset('/') }}frontend/assets/js/form-validator.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/contact-form-script.min.js" type="text/javascript"></script>
-<script  src="{{ asset('/') }}frontend/assets/js/owl.carousel.min.js" type="text/javascript"></script>
-<script  src="{{ asset('/') }}frontend/assets/js/magnific-popup.min.js" type="text/javascript"></script>
-<script async src="{{ asset('/') }}frontend/assets/js/aos.min.js" type="text/javascript"></script>
-<script  src="{{ asset('/') }}frontend/assets/js/odometer.min.js" type="text/javascript"></script>
+<!--<script src="{{ asset('/') }}frontend/assets/js/plugins.js"></script>-->
+
+<script src="{{ asset('/') }}frontend/assets/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="{{ asset('/') }}frontend/assets/js/meanmenu.min.js" type="text/javascript"></script>
+<script src="{{ asset('/') }}frontend/assets/js/ajaxchimp.min.js" type="text/javascript"></script>
+<script src="{{ asset('/') }}frontend/assets/js/form-validator.min.js" type="text/javascript"></script>
+<script src="{{ asset('/') }}frontend/assets/js/contact-form-script.js" type="text/javascript"></script>
+<script src="{{ asset('/') }}frontend/assets/js/owl.carousel.min.js" type="text/javascript"></script>
+<script src="{{ asset('/') }}frontend/assets/js/magnific-popup.min.js" type="text/javascript"></script>
+<script src="{{ asset('/') }}frontend/assets/js/aos.js" type="text/javascript"></script>
+<script src="{{ asset('/') }}frontend/assets/js/odometer.min.js" type="text/javascript"></script>
 <script src="{{ asset('/') }}frontend/assets/js/appear.min.js" type="text/javascript"></script>
-<script  src="{{ asset('/') }}frontend/assets/js/tweenMax.min.js" type="text/javascript"></script>
+<script src="{{ asset('/') }}frontend/assets/js/tweenMax.min.js" type="text/javascript"></script>
 
 
-<script  src="{{ asset('/') }}frontend/assets/js/custom.js"></script>
+
+<script src="{{ asset('/') }}frontend/assets/js/custom.js"></script>
 
 
-<script  src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.js"></script>
-{{--<script async src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.min.js"></script>--}}
-<script  src="{{ asset('/') }}frontend/assets/js/multi-countdown.js"></script>
-{{--<script async src="{{ asset('/') }}frontend/assets/js/multi-countdown.min.js"></script>--}}
+<script src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.js"></script>
+<script src="{{ asset('/') }}frontend/assets/js/multi-countdown.js"></script>
+
 
 
 <script>
@@ -234,21 +179,21 @@
 
 <!-- Sweet Alert JS -->
 <script async src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
-@if(session()->has('success'))
+@if(Session::has('success'))
     <script>
-        toastr.success("{{ session()->get('success') }}");
+        toastr.success("{{ Session::get('success') }}");
     </script>
 @endif
-@if(session()->has('error'))
+@if(Session::has('error'))
     <script>
-        toastr.error("{{ session()->get('error') }}");
+        toastr.error("{{ Session::get('error') }}");
     </script>
 @endif
-@if(session()->has('customError'))
+@if(Session::has('customError'))
     <script>
         Swal.fire({
             title: 'Error!',
-            text: "{{ session()->get('customError') }}",
+            text: "{{ Session::get('customError') }}",
             icon: 'error',
             confirmButtonText: 'Ok'
         })
@@ -288,7 +233,25 @@
 
 @stack('script')
 
+<<<<<<< HEAD
 
+=======
+<!-- Google Tag Manager -->
+<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KPW4PLD');</script> -->
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PW2H9XF6');</script>
+<!-- End Google Tag Manager -->
+>>>>>>> master
 
 {!! isset($siteSettings) ? $siteSettings->default_seo_code_on_footer : '' !!}
 </body>
