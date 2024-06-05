@@ -3,45 +3,29 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {!! isset($siteSettings) ? $siteSettings->default_seo_code_on_header : '' !!}
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/plugins.css">--}}
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
 
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/iconplugins.css">
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/iconplugins.css">--}}
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/iconplugins.css">
 
-{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.min.css">--}}
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/style.min.css">--}}
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
 
-{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.min.css">--}}
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.css">
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/responsive.min.css">--}}
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.css">
 
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/theme-dark.css">
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/theme-dark.css">--}}
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/theme-dark.css">
 
-{{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.min.css">--}}
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.css">
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/custom.min.css">--}}
-
-   <!--font awesome link-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.css">
     <title>BiddaBari - The First Job Study Online Platform in Bangladesh</title>
 
     <!-- HELPER CSS -->
-        <link href="{{ asset('/') }}backend/assets/css/helper.min.css" rel="stylesheet" />
-{{--    <link href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/backend/assets/css/helper.min.css" rel="stylesheet" />--}}
+    <link href="{{ asset('/') }}backend/assets/css/helper.css" rel="stylesheet" />
 
     <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/assets/images/favicon.png">
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.min.css">
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/news-tinker/style.min.css">--}}
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom-my-mod.min.css">
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/custom-my-mod.min.css">--}}
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.css">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom-my-mod.css">
     {{--
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/mirazmac/bengali-webfont-cdn@master/solaimanlipi/style.css">--}}
@@ -105,7 +89,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: black;
         }
-
+        
           /* ------------------------------------ */
         .go-messenger {
             position: fixed;
@@ -128,22 +112,22 @@
             transition: .5s;
             padding-top: 6px;
         }
-
+        
         .go-messenger i {
             -webkit-transition: .5s;
             transition: .5s;
             vertical-align: middle
         }
-
+        
         .go-messenger:hover {
             background-color: var(--titleColor)
         }
-
+        
         /*.go-messenger:hover i {*/
         /*    -webkit-transform: translateY(-5px);*/
         /*    transform: translateY(-5px)*/
         /*}*/
-
+        
         .go-messenger.active {
             top: 95%;
             -webkit-transform: translateY(-95%);
@@ -151,7 +135,7 @@
             opacity: 1;
             visibility: visible
         }
-
+        
         /* ------------------------------------------- */
     </style>
     @stack('style')
@@ -296,9 +280,9 @@ src="https://www.facebook.com/tr?id=1185093055952372&ev=PageView&noscript=1"
                                                 <a class="nav-link" href="{{ route('front.student.my_service') }}">Service</a>
                                             </li>
                                         @endcan
-
-
-
+                                        
+                                        
+                                        
                                         <li class="nav-item border-1">
                                             <a class="nav-link" href="#"
                                                onclick="event.preventDefault();document.getElementById('logout').submit()">Logout</a>
@@ -326,13 +310,13 @@ src="https://www.facebook.com/tr?id=1185093055952372&ev=PageView&noscript=1"
 
 <script src="{{ asset('/') }}frontend/assets/js/jquery.min.js"></script>
 
-<!--<script src="{{ asset('/') }}frontend/assets/js/plugins.js"></script>-->
+    <!--<script src="{{ asset('/') }}frontend/assets/js/plugins.js"></script>-->
 
     <script src="{{ asset('/') }}frontend/assets/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script src="{{ asset('/') }}frontend/assets/js/meanmenu.min.js" type="text/javascript"></script>
     <script src="{{ asset('/') }}frontend/assets/js/ajaxchimp.min.js" type="text/javascript"></script>
     <script src="{{ asset('/') }}frontend/assets/js/form-validator.min.js" type="text/javascript"></script>
-    <script src="{{ asset('/') }}frontend/assets/js/contact-form-script.min.js" type="text/javascript"></script>
+    <script src="{{ asset('/') }}frontend/assets/js/contact-form-script.js" type="text/javascript"></script>
     <script src="{{ asset('/') }}frontend/assets/js/owl.carousel.min.js" type="text/javascript"></script>
     <script src="{{ asset('/') }}frontend/assets/js/magnific-popup.min.js" type="text/javascript"></script>
     <script src="{{ asset('/') }}frontend/assets/js/aos.js" type="text/javascript"></script>
@@ -340,28 +324,14 @@ src="https://www.facebook.com/tr?id=1185093055952372&ev=PageView&noscript=1"
     <script src="{{ asset('/') }}frontend/assets/js/appear.min.js" type="text/javascript"></script>
     <script src="{{ asset('/') }}frontend/assets/js/tweenMax.min.js" type="text/javascript"></script>
 
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/bootstrap.bundle.min.js" type="text/javascript"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/meanmenu.min.js" type="text/javascript"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/ajaxchimp.min.js" type="text/javascript"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/form-validator.min.js" type="text/javascript"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/contact-form-script.min.js" type="text/javascript"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/owl.carousel.min.js" type="text/javascript"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/magnific-popup.min.js" type="text/javascript"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/aos_check.js" type="text/javascript"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/odometer.min.js" type="text/javascript"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/appear.min.js" type="text/javascript"></script>--}}
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/tweenMax.min.js" type="text/javascript"></script>--}}
 
 
-
-<script src="{{ asset('/') }}frontend/assets/js/custom.min.js"></script>
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/custom.min.js"></script>--}}
+    <script src="{{ asset('/') }}frontend/assets/js/custom.js"></script>
 
 
-<script src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.min.js"></script>
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/news-tinker/acmeticker.min.js"></script>--}}
-<script src="{{ asset('/') }}frontend/assets/js/multi-countdown.min.js"></script>
-{{--<script src="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/js/multi-countdown.min.js"></script>--}}
+    <script src="{{ asset('/') }}frontend/assets/news-tinker/acmeticker.js"></script>
+    <script src="{{ asset('/') }}frontend/assets/js/multi-countdown.js"></script>
+
 
 
 @yield('js')
