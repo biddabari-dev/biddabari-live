@@ -13,13 +13,7 @@
 
 
 
-<!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PW2H9XF6');</script>
-<!-- End Google Tag Manager -->
+
 
     <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/assets/images/favicon.png">
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.min.css" />
@@ -160,6 +154,15 @@
     src="https://www.facebook.com/tr?id=1185093055952372&ev=PageView&noscript=1"
     /></noscript>
 <!-- End Meta Pixel Code -->
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PW2H9XF6');</script>
+<!-- End Google Tag Manager -->
 
 
 </head>
