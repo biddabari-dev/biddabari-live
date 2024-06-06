@@ -33,6 +33,10 @@
                                                     ?>
                                                 <p class="f-s-20">After Discount: {{ $totalAmount = $course->price - $discountPrice ?? 0 }} tk</p>
                                             @else
+                                                    <?php
+                                                        $discountPrice = 0;
+                                                        $totalAmount = $course->price;
+                                                    ?>
                                                 <p class="f-s-20">Price: {{ $course->is_paid == 1 ? $course->price.' tk' : 'Free' }} </p>
                                             @endif
                                         </div>
@@ -284,6 +288,9 @@
                                                     ?>
                                                 <p class="f-s-20">After Discount: {{ $totalAmount = $course->price - $discountPrice ?? 0 }} tk</p>
                                             @else
+                                                @php
+                                                    $totalAmount = $course->price;
+                                                @endphp
                                                 <p class="f-s-20">Price: {{ $course->is_paid == 1 ? $course->price.' tk' : 'Free' }} </p>
                                             @endif
                                         </div>

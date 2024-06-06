@@ -105,6 +105,8 @@ Route::middleware('previousUrlMiddleware')->group(function (){
     Route::post('/common-order/{model_id}', [CheckoutController::class, 'commonOrder'])->name('common-order');
 
 
+    
+
     Route::middleware([
         'auth:sanctum',
         config('jetstream.auth_session'),

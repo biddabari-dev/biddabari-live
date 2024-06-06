@@ -221,11 +221,12 @@
                                                                                 $date = date('Y-m-d H:i')
                                                                             @endphp
                                                                             @if($course->admission_last_date > $date)
-                                                                                {{-- <a
-                                                                                    href="{{ route('front.checkout', ['id' => $course->id, 'slug' => $course->slug]) }}"
-                                                                                    --}} {{-- class="btn btn-warning">কোর্সটি কিনুন</a>--}}
+                                                                                <a
+                                                                                {{-- {{ dd($course) }} --}}
+                                                                                    href="{{ route('front.checkout', ['type' => 'course', 'slug' => $course->slug]) }}"
+                                                                                    class="btn btn-warning">কোর্সটি কিনুন</a>
 
-                                                                                <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}"
+                                                                                {{-- <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}"
                                                                                     method="post">
                                                                                     @csrf
                                                                                     <input type="hidden" name="course_id" value="{{ $course->id }}" />
@@ -237,7 +238,7 @@
                                                                                     <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">
                                                                                     <input type="hidden" name="payment_method" value="ssl">`
                                                                                     <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">
-                                                                                </form>
+                                                                                </form> --}}
                                                                             @else
                                                                                 <a class="btn btn-warning">ভর্তির সময় শেষ</a>
                                                                             @endif
