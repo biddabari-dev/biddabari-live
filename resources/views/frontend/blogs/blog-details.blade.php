@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <div class="blog-details-content pr-20">
-                        <h2 class="text-center f-s-36 ">{{ $blog->title }}</h2>
+                        <h1 class="text-center f-s-36 ">{{ $blog->title }}</h1>
                         <div class="blog-preview-img text-center">
                             @if(!empty($blog->video_url))
 

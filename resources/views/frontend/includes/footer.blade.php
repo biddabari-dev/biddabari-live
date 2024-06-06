@@ -9,7 +9,8 @@
                         </a>
                     </div>
                     <p>
-                        "Biddabari" is such a different and unique online platform where you can rely yourself. You just keep your faith on Biddabari, believe it, it will do the rest.
+                        "Biddabari" is such a different and unique online platform where you can rely yourself. You just
+                        keep your faith on Biddabari, believe it, it will do the rest.
                     </p>
                 </div>
             </div>
@@ -76,8 +77,9 @@
                             <div class="content">
                                 <h4>Location:</h4>
                                 <span>
-         4th-5th Floor, Jashore Malik Shamiti Vobon, Gausul Azam Super Market, Nilkhat, Kataban Rd 1205 Dhaka, Dhaka Division, Bangladesh
-        </span>
+                                    4th-5th Floor, Jashore Malik Shamiti Vobon, Gausul Azam Super Market, Nilkhat,
+                                    Kataban Rd 1205 Dhaka, Dhaka Division, Bangladesh
+                                </span>
                             </div>
                         </li>
                     </ul>
@@ -89,7 +91,8 @@
         <div class="container">
             <div class="copy-right-text text-center">
                 <p class="mb-0">
-                    Copyright @ <script>document.write(new Date().getFullYear())</script> <b>BiddaBari</b> All Rights Reserved
+                    Copyright @
+                    <script>document.write(new Date().getFullYear())</script> <b>BiddaBari</b> All Rights Reserved
                     <a href="https://biddabari.com" target="_blank">BiddaBari</a>
                 </p>
             </div>
@@ -116,7 +119,7 @@
                                 <span class="text-danger" id="name"></span>
                             </div>
                         </div>
-                        <div class="row otp-div d-none" data-order="1" >
+                        <div class="row otp-div d-none" data-order="1">
                             <label for="" class="col-md-4">Enter OTP</label>
                             <div class="col-md-8">
                                 <input type="number" id="otpInput" class="form-control" placeholder="Enter OTP" />
