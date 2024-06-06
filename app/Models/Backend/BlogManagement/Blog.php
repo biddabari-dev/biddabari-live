@@ -32,11 +32,23 @@ class Blog extends Model
 
     public static function saveOrUpdateBlog ($request, $id = null)
     {
+        
+        if (isset($request->video_url)) {
+            # code...
+            if ($request->video_url != 'https://youtu.be/') {
+                # code...
+                $check = 1;
+            }
+        }else {
+            # code...
+            $check=0;
+        }
+            
         Blog::updateOrCreate(['id' => $id], [
             'blog_category_id'          => $request->blog_category_id,
             'title'                     => $request->title,
             'sub_title'                 => $request->sub_title,
-            'video_url'                 => isset($request->video_url) ? explode('https://www.youtube.com/watch?v=', $request->video_url)[1] : '',
+            'video_url'                 => $check == 1 ? explode('https://www.youtube.com/watch?v=', $request->video_url)[1] : '',
             'image'                     => imageUpload($request->file('image'), 'blog-management/blogs/', 'blog-', '300', '200', (isset($id) ? Blog::find($id)->image : null) ),
             'body'                      => $request->body,
             'slug'                      => str_replace(' ', '-', $request->title),

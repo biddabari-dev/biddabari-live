@@ -179,7 +179,7 @@
             event.preventDefault();
             var categoryId = $(this).attr('data-category-id');
             $.ajax({
-                url: base_url+"blog-categories/"+categoryId+"/edit",
+                url: "/blog-categories/"+categoryId+"/edit",
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
@@ -197,7 +197,7 @@
                     {
                         $('#imagePreview').attr('src', data.image).css({height: '150px', width: '150px', marginTop: '5px', display: 'block'});
                     }
-                    $('#courseCategoryForm').attr('action', base_url+'blog-categories/update/'+data.id);
+                    $('#courseCategoryForm').attr('action', '/blog-categories/update/'+data.id);
                     $('#courseCategoryModal').modal('show');
                 }
             })

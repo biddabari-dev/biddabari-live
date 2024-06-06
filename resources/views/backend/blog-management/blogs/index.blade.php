@@ -127,7 +127,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-blog-id');
             $.ajax({
-                url: base_url+"blogs/"+courseId+"/edit",
+                url: "/blogs/"+courseId+"/edit",
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -147,7 +147,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-blog-id');
             $.ajax({
-                url: base_url+"blogs/"+courseId,
+                url: "/blogs/"+courseId,
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
