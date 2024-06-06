@@ -15,7 +15,7 @@
                                 </li>
                                 <li id="couponLi" class="d-none">Coupon <span>BDT <b id="couponAmount"></b></span></li>
 
-                                <form action="{{ route('common-order', ['model_id' => $course->id]) }}" method="post"
+                                <form action="{{ route('front.common-order', ['model_id' => $course->id]) }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
 
