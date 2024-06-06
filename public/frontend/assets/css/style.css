@@ -5742,7 +5742,7 @@ img {
 }
 
 .blog-card .content {
-    padding: 27px 25px 30px
+    padding: 10px 25px 30px
 }
 
 .blog-card .content ul {
@@ -7958,6 +7958,11 @@ img {
 
 .details_custom_mobile_block{
     display: none;
+}
+
+.categories-item a img {
+    height: 200px;
+    width: 100%;
 }
 
 @media only screen and (min-width : 280px) and (max-width: 420px) {
