@@ -38,6 +38,9 @@ class Blog extends Model
             if ($request->video_url != 'https://youtu.be/') {
                 # code...
                 $check = 1;
+            }else {
+                # code...
+                $check=0;
             }
         }else {
             # code...
