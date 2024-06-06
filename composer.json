@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.1|^8.2|^8.3",
+        "php": "^7.3|^8.1|^8.2|^8.3",
         "darryldecode/cart": "^4.2",
         "dgvai/laravel-sslcommerz": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -21,7 +21,9 @@
         "mathjax/mathjax": "^3.2",
         "xenon/laravelbdsms": "v1.0.50.5",
         "yajra/laravel-datatables": "^10.1",
-        "yajra/laravel-datatables-oracle": "^10.11"
+        "yajra/laravel-datatables-oracle": "^10.11",
+        "zing/flysystem-obs": "^3.1",
+        "zing/laravel-flysystem-obs": "^2.7"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

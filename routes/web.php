@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CustomAuth\CustomAuthController;
 use App\Http\Controllers\PaymentController;
+use League\Flysystem\Filesystem;
+use Obs\ObsClient;
+use Zing\Flysystem\Obs\ObsAdapter;
+use Illuminate\Http\Request;
 
 
 /*
@@ -16,6 +20,44 @@ use App\Http\Controllers\PaymentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('fff', function(){
+
+    return view('file');
+});
+
+route::post('/ttt', function(Request $request){
+    $prefix = '';
+    $config = [
+        'key' => '7NBPYLX5IMJMXEVUAMJR',
+        'secret' => 'k8PDyRPK94ZXjtoZExxCqqEXD8HI4jN63qCtJW0Z',
+        'bucket' => 'biddabari-bucket',
+        'endpoint' => 'obs.as-south-208.rcloud.reddotdigitalit.com',
+    ];
+    
+    $config['options'] = [
+        'url' => '',
+        'endpoint' => $config['endpoint'], 
+        'bucket_endpoint' => 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com',
+        'temporary_url' => '',
+    ];
+    
+    $client = new ObsClient($config);
+    $adapter = new ObsAdapter($client, $config['bucket'], $prefix, null, null, $config['options']);
+    $flysystem = new Filesystem($adapter);
+
+    $file = $request->file('file');
+    $filePath = $file->getRealPath();
+    $fileName = 'backend/assets/uploaded-files/'.$file->getClientOriginalName();
+    $result = $client->putObject([
+    'Bucket' => env('OBS_BUCKET'),
+    'Key' => $fileName,
+    'SourceFile' => $filePath,
+    ]);
+    return response()->json(['url' => $result['ObjectURL']]);
+
+
+});
 
 Route::post('/register', [CustomAuthController::class, 'register'])->name('register');
 Route::post('/login', [CustomAuthController::class, 'login'])->name('login');

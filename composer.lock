@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbdf9709996878493bda81562d86b025",
+    "content-hash": "2ade827244b0c9e3570599a29cfa3f07",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -2772,7 +2772,6 @@
             "time": "2024-05-22T10:09:12+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "league/flysystem-aws-s3-v3",
             "version": "3.0.0",
             "source": {
@@ -2838,17 +2837,6 @@
             },
             "dist": {
                 "type": "zip",
-=======
-            "name": "league/flysystem-local",
-            "version": "3.28.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/flysystem-local.git",
-                "reference": "13f22ea8be526ea58c2ddff9e158ef7c296e4f40"
-            },
-            "dist": {
-                "type": "zip",
->>>>>>> master
                 "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/13f22ea8be526ea58c2ddff9e158ef7c296e4f40",
                 "reference": "13f22ea8be526ea58c2ddff9e158ef7c296e4f40",
                 "shasum": ""
@@ -5477,18 +5465,6 @@
         },
         {
             "name": "symfony/css-selector",
-<<<<<<< HEAD
-            "version": "v7.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/css-selector.git",
-                "reference": "843f2f7ac5e4c5bf0ec77daef23ca6d4d8922adc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/843f2f7ac5e4c5bf0ec77daef23ca6d4d8922adc",
-                "reference": "843f2f7ac5e4c5bf0ec77daef23ca6d4d8922adc",
-=======
             "version": "v7.1.1",
             "source": {
                 "type": "git",
@@ -5499,7 +5475,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/css-selector/zipball/1c7cee86c6f812896af54434f8ce29c8d94f9ff4",
                 "reference": "1c7cee86c6f812896af54434f8ce29c8d94f9ff4",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -5535,11 +5510,7 @@
             "description": "Converts CSS selectors to XPath expressions",
             "homepage": "https://symfony.com",
             "support": {
-<<<<<<< HEAD
-                "source": "https://github.com/symfony/css-selector/tree/v7.1.0"
-=======
                 "source": "https://github.com/symfony/css-selector/tree/v7.1.1"
->>>>>>> master
             },
             "funding": [
                 {
@@ -5555,11 +5526,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2024-04-18T09:32:20+00:00"
-=======
             "time": "2024-05-31T14:57:53+00:00"
->>>>>>> master
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -5705,18 +5672,6 @@
         },
         {
             "name": "symfony/event-dispatcher",
-<<<<<<< HEAD
-            "version": "v7.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "522d2772d6c7bab843b0c52466dc7844622bacc2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/522d2772d6c7bab843b0c52466dc7844622bacc2",
-                "reference": "522d2772d6c7bab843b0c52466dc7844622bacc2",
-=======
             "version": "v7.1.1",
             "source": {
                 "type": "git",
@@ -5727,7 +5682,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/9fa7f7a21beb22a39a8f3f28618b29e50d7a55a7",
                 "reference": "9fa7f7a21beb22a39a8f3f28618b29e50d7a55a7",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -5778,11 +5732,7 @@
             "description": "Provides tools that allow your application components to communicate with each other by dispatching events and listening to them",
             "homepage": "https://symfony.com",
             "support": {
-<<<<<<< HEAD
-                "source": "https://github.com/symfony/event-dispatcher/tree/v7.1.0"
-=======
                 "source": "https://github.com/symfony/event-dispatcher/tree/v7.1.1"
->>>>>>> master
             },
             "funding": [
                 {
@@ -5798,11 +5748,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2024-04-18T09:32:20+00:00"
-=======
             "time": "2024-05-31T14:57:53+00:00"
->>>>>>> master
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -7240,18 +7186,6 @@
         },
         {
             "name": "symfony/string",
-<<<<<<< HEAD
-            "version": "v7.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/string.git",
-                "reference": "6f41b185e742737917e6f2e3eca37767fba5f17a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/6f41b185e742737917e6f2e3eca37767fba5f17a",
-                "reference": "6f41b185e742737917e6f2e3eca37767fba5f17a",
-=======
             "version": "v7.1.1",
             "source": {
                 "type": "git",
@@ -7262,7 +7196,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/string/zipball/60bc311c74e0af215101235aa6f471bcbc032df2",
                 "reference": "60bc311c74e0af215101235aa6f471bcbc032df2",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -7320,11 +7253,7 @@
                 "utf8"
             ],
             "support": {
-<<<<<<< HEAD
-                "source": "https://github.com/symfony/string/tree/v7.1.0"
-=======
                 "source": "https://github.com/symfony/string/tree/v7.1.1"
->>>>>>> master
             },
             "funding": [
                 {
@@ -7340,11 +7269,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2024-05-17T10:55:18+00:00"
-=======
             "time": "2024-06-04T06:40:14+00:00"
->>>>>>> master
         },
         {
             "name": "symfony/translation",
@@ -8520,6 +8445,189 @@
                 }
             ],
             "time": "2024-02-28T05:00:23+00:00"
+        },
+        {
+            "name": "zing/esdk-obs-php",
+            "version": "3.23.11.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zingimmick/huaweicloud-sdk-php-obs.git",
+                "reference": "25f26383bedf3a9b361d9ab36927aa550dd5cb9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zingimmick/huaweicloud-sdk-php-obs/zipball/25f26383bedf3a9b361d9ab36927aa550dd5cb9d",
+                "reference": "25f26383bedf3a9b361d9ab36927aa550dd5cb9d",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3.0 || ^7.0",
+                "guzzlehttp/psr7": "^1.4.2 || ^2.0",
+                "monolog/monolog": "^1.23.0 || ^2.0 || ^3.0",
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Obs\\": "Obs/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "OBS PHP SDK",
+            "keywords": [
+                "OBS",
+                "php"
+            ],
+            "support": {
+                "source": "https://github.com/zingimmick/huaweicloud-sdk-php-obs/tree/3.23.11.4"
+            },
+            "time": "2024-04-25T16:39:09+00:00"
+        },
+        {
+            "name": "zing/flysystem-obs",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zingimmick/flysystem-obs.git",
+                "reference": "cb156dbfc221c794dc41e15f30a56f18500887f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zingimmick/flysystem-obs/zipball/cb156dbfc221c794dc41e15f30a56f18500887f8",
+                "reference": "cb156dbfc221c794dc41e15f30a56f18500887f8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "league/flysystem": "^3.10",
+                "php": "^8.0",
+                "zing/esdk-obs-php": "^3.19"
+            },
+            "require-dev": {
+                "league/flysystem-adapter-test-utilities": "^3.7",
+                "mockery/mockery": "~1.3.3 || ^1.4.2",
+                "phpstan/phpstan-mockery": "^1.0",
+                "phpunit/phpunit": "^9.3.3 || ^10.0",
+                "zing/coding-standard": "^6.4 || ^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zing\\Flysystem\\Obs\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "zingimmick",
+                    "email": "zingimmick@outlook.com",
+                    "homepage": "https://github.com/zingimmick"
+                }
+            ],
+            "description": "OBS filesystem adapter for Flysystem.",
+            "homepage": "https://github.com/zingimmick/flysystem-obs",
+            "keywords": [
+                "Flysystem",
+                "OBS",
+                "file",
+                "files",
+                "filesystem",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/zingimmick/flysystem-obs/issues",
+                "source": "https://github.com/zingimmick/flysystem-obs"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/zingimmick",
+                    "type": "custom"
+                }
+            ],
+            "time": "2023-11-22T14:57:42+00:00"
+        },
+        {
+            "name": "zing/laravel-flysystem-obs",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zingimmick/laravel-flysystem-obs.git",
+                "reference": "4d1a1417b7b4c65accc022748b7a806e9be5adfd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zingimmick/laravel-flysystem-obs/zipball/4d1a1417b7b4c65accc022748b7a806e9be5adfd",
+                "reference": "4d1a1417b7b4c65accc022748b7a806e9be5adfd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^9.30 || ^10.0 || ^11.0",
+                "illuminate/support": "^9.0 || ^10.0 || ^11.0",
+                "php": "^8.0",
+                "zing/esdk-obs-php": "^3.21.6",
+                "zing/flysystem-obs": "^2.2 || ^3.0"
+            },
+            "require-dev": {
+                "league/flysystem-path-prefixing": "^3.3",
+                "league/flysystem-read-only": "^3.3",
+                "mockery/mockery": "~1.3.3 || ^1.4.2",
+                "nunomaduro/larastan": "^1.0 || ^2.0",
+                "orchestra/testbench": "^7.0 || ^8.0 || ^9.0",
+                "phpunit/phpunit": "^9.5 || ^10.0",
+                "zing/coding-standard": "^6.4 || ^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Zing\\LaravelFlysystem\\Obs\\ObsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zing\\LaravelFlysystem\\Obs\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "zingimmick",
+                    "email": "zingimmick@outlook.com",
+                    "homepage": "https://github.com/zingimmick"
+                }
+            ],
+            "description": "Flysystem Adapter for OBS",
+            "homepage": "https://github.com/zingimmick/laravel-flysystem-obs",
+            "keywords": [
+                "Flysystem",
+                "OBS",
+                "file",
+                "files",
+                "filesystem",
+                "laravel",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/zingimmick/laravel-flysystem-obs/issues",
+                "source": "https://github.com/zingimmick/laravel-flysystem-obs"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/zingimmick",
+                    "type": "custom"
+                }
+            ],
+            "time": "2024-03-18T14:31:54+00:00"
         }
     ],
     "packages-dev": [
@@ -10840,18 +10948,6 @@
         },
         {
             "name": "symfony/yaml",
-<<<<<<< HEAD
-            "version": "v7.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "c5f718c94e3c37dd77b77484e6cf0b524b2d405e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/c5f718c94e3c37dd77b77484e6cf0b524b2d405e",
-                "reference": "c5f718c94e3c37dd77b77484e6cf0b524b2d405e",
-=======
             "version": "v7.1.1",
             "source": {
                 "type": "git",
@@ -10862,7 +10958,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/yaml/zipball/fa34c77015aa6720469db7003567b9f772492bf2",
                 "reference": "fa34c77015aa6720469db7003567b9f772492bf2",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -10904,11 +10999,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-<<<<<<< HEAD
-                "source": "https://github.com/symfony/yaml/tree/v7.1.0"
-=======
                 "source": "https://github.com/symfony/yaml/tree/v7.1.1"
->>>>>>> master
             },
             "funding": [
                 {
@@ -10924,11 +11015,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2024-04-28T18:29:00+00:00"
-=======
             "time": "2024-05-31T14:57:53+00:00"
->>>>>>> master
         },
         {
             "name": "theseer/tokenizer",
@@ -10987,7 +11074,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1|^8.2|^8.3"
+        "php": "^7.3|^8.1|^8.2|^8.3"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
