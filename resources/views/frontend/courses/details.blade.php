@@ -33,6 +33,10 @@
                                                     ?>
                                                 <p class="f-s-20">After Discount: {{ $totalAmount = $course->price - $discountPrice ?? 0 }} tk</p>
                                             @else
+                                                    <?php
+                                                        $discountPrice = 0;
+                                                        $totalAmount = $course->price;
+                                                    ?>
                                                 <p class="f-s-20">Price: {{ $course->is_paid == 1 ? $course->price.' tk' : 'Free' }} </p>
                                             @endif
                                         </div>
@@ -64,7 +68,7 @@
                                                 <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="course_id" value="{{ $course->id }}" />
-                                                    <input type="hidden" name="total_amount" value="{{ $course->price - $discountPrice ?? 0 }}" />
+                                                    <input type="hidden" name="total_amount" value="{{ $totalAmount }}" />
                                                     <input type="hidden" name="used_coupon" value="0">
                                                     <input type="hidden" name="coupon_code" value="">
                                                     <input type="hidden" name="coupon_amount" value="">
@@ -284,6 +288,9 @@
                                                     ?>
                                                 <p class="f-s-20">After Discount: {{ $totalAmount = $course->price - $discountPrice ?? 0 }} tk</p>
                                             @else
+                                                @php
+                                                    $totalAmount = $course->price;
+                                                @endphp
                                                 <p class="f-s-20">Price: {{ $course->is_paid == 1 ? $course->price.' tk' : 'Free' }} </p>
                                             @endif
                                         </div>
@@ -315,7 +322,7 @@
                                                 <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="course_id" value="{{ $course->id }}" />
-                                                    <input type="hidden" name="total_amount" value="{{ $course->price - $discountPrice ?? 0 }}" />
+                                                    <input type="hidden" name="total_amount" value="{{ $totalAmount }}" />
                                                     <input type="hidden" name="used_coupon" value="0">
                                                     <input type="hidden" name="coupon_code" value="">
                                                     <input type="hidden" name="coupon_amount" value="">
