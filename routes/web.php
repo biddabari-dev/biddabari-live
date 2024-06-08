@@ -61,7 +61,7 @@ route::post('/ttt', function(Request $request){
 
 Route::post('/register', [CustomAuthController::class, 'register'])->name('register');
 Route::post('/login', [CustomAuthController::class, 'login'])->name('login');
-Route::get('/login-page', function (){
+Route::get('/login', function (){
     return view('backend.auth.admin-login');
 })->name('custom-login');
 Route::get('/register-page', function (){

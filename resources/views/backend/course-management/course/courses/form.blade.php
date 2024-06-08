@@ -1,7 +1,7 @@
 <form action="{{ route('courses.store') }}" method="post" enctype="multipart/form-data" id="coursesForm">
     <input type="hidden" name="_token" id="formToken" value="{{ csrf_token() }}" />
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create Courses</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Create a Courses</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
     </div>
     {{--                    <input type="hidden" name="category_id" >--}}
@@ -69,7 +69,7 @@
                     <span class="text-danger" id="featured_video_url"></span>
                 </div>
                 <div class="col-md-6 mt-2">
-                      <label for="">Featured Banner <span class="">(300 X 200 + WEBP)</span></label>
+                      <label for="">Featured Banner <span class="">(300 x 200) pixels (WEBP format)</span></label>
                     <input type="file" class="form-control" name="banner" id="courseImage" accept="images/*" placeholder="Featured Banner" />
                     <span class="text-danger" id="banner"></span>
                 </div>

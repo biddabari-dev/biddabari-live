@@ -75,11 +75,6 @@
         <div class="container-login100">
             <div class="wrap-login100 p-0">
 
-
-
-
-
-
                 <div class="card-body">
                     <form class="login100-form validate-form auth-div" id="authModalForm" action="{{ route('login') }}" method="post">
                         @csrf
@@ -90,15 +85,15 @@
                             <input class="input100" type="text" name="mobile" placeholder="Mobile Number" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
-                                <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
                             </span>
                         </div>
-                        <span class="text-danger" style="display:none;">Mobile Number is Required!</span>
+                        <span class="text-danger mobilereq" style="display:none;">Mobile number is required!</span>
                         <div class="wrap-input100 validate-input otp-div d-none" data-order="1" data-bs-validate = "OTP is required: 1234">
                             <input class="input100" id="otpInput" type="number" placeholder="Enter OTP">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
-											<i class="fa-regular fa-envelope" aria-hidden="true"></i>
+											<i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
 										</span>
                         </div>
                         <div class="wrap-input100 validate-input name-div d-none" data-order="2" data-bs-validate="Input Your Name">
@@ -109,16 +104,20 @@
 										</span>
                         </div>
                         <div class="wrap-input100 validate-input password-div d-none" data-order="3" data-bs-validate = "Password is required">
-                            <input class="input100" type="password" name="password" placeholder="Password">
+                            <input class="input100 password" type="password" name="password" placeholder="Password">
                             <span id="viewPass" class="btn btn-sm border show-pass"><i class="fa-solid fa-eye"></i></span>
                             <span class="focus-input100"></span>
+
                             <span class="symbol-input100">
 											<i class="fa-solid fa-lock" aria-hidden="true"></i>
 										</span>
+                                        
                             <div class="mt-3">
                                 <a href="{{ route('forgot-user-password') }}" class="float-end" style="color: black; ">Forgot Password?</a>
                             </div>
                         </div>
+                        <span class="text-danger passreq" style="display:none;">Password is required!</span>
+                        
 
                     </form>
                 </div>
@@ -179,15 +178,17 @@
     $(document).keyup(function(event) {
         if (event.keyCode === 13) {
             $(".next").click();
+            $(".submit").click();
         }
     });
+
     $(document).on('click', '.next', function () {
         event.preventDefault();
         var getClassDivOrder = $('.auth-div').find('[data-active="1"]').attr('data-order');
         var mobileNumber = $('.auth-div input[name="mobile"]').val();
         if (mobileNumber == '') {
             $('.auth-div input[name="mobile"]').focus();
-            $('.text-danger').show();
+            $('.mobilereq').show();
             return;
         }
         if (getClassDivOrder == 0)
@@ -266,11 +267,29 @@
             })
         }
     })
+
+
+    function IsMobileNumber(txtMobId) {
+    var mob = /^[1-9]{1}[0-9]{9}$/;
+    var txtMobile = document.getElementById(txtMobId);
+    if (mob.test(txtMobile.value) == false) {
+        alert("Please enter valid mobile number.");
+        txtMobile.focus();
+        return false;
+    }
+    return true;
+}
     $(document).on('click', '.submit', function () {
         event.preventDefault();
         var formData = $('#authModalForm').serialize();
         var authStatus = $(this).attr('data-status');
         var ajaxUrl = '';
+        var password = $('.password').val();
+        if (password == '') {
+            $('.password').focus();
+            $('.passreq').show();
+            return;
+        }
         if (authStatus == 'login')
         {
             ajaxUrl = "{{ route('login') }}";
@@ -292,7 +311,7 @@
                     // window.location.reload();
                 } else if (data.status == 'error')
                 {
-                    toastr.error('Email and Password does not match . Please try again.');
+                    toastr.error('Mobile no and Password does not match . Please try again.');
                 }
             },
             error: function (errors) {

@@ -22,6 +22,11 @@ class CustomAuthController extends Controller
     public function login(Request $request)
     {
 
+        // $this->validate($request, [
+        //     'mobile'   => ['required','numeric|regex:/^(?:\+88|88)?(01[3-9]\d{8})$/']
+           
+        // ]);
+
         if (auth()->attempt($request->only(['mobile', 'password']), $request->remember_me))
         {
             $this->user = auth()->user();
@@ -50,13 +55,13 @@ class CustomAuthController extends Controller
             }
         }
         if (str()->contains(url()->current(), '/api/')) {
-            return response()->json(['error' => 'Email and Password does not match . Please try again.'],500);
+            return response()->json(['error' => 'Phone no and Password does not match . Please try again.'],500);
         } else {
             if ($request->ajax())
             {
                 return response()->json(['status' => 'error']);
             }
-            return redirect()->route('login')->with('error', 'Email and Password does not match . Please try again.');
+            return redirect()->route('login')->with('error', 'Phone no and Password does not match . Please try again.');
         }
 
 //         if (auth()->attempt($request->only(['mobile', 'password']), $request->remember_me))
@@ -107,6 +112,11 @@ class CustomAuthController extends Controller
     public function register (UserRegisterRequest $request)
     {
 
+
+        // $this->validate($request, [
+        //     'mobile'   => ['required','numeric|regex:/^(?:\+88|88)?(01[3-9]\d{8})$/']
+           
+        // ]);
 
             $request['roles'] = 4;
         $request['request_form'] = 'student';

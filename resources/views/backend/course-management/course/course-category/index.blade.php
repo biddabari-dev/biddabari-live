@@ -23,16 +23,16 @@
                                         <div class="dd-option-handle">
                                             <a href="{{ route('courses.index', ['category_id' => $category['id']]) }}" class="btn btn-sm  btn-secondary" title="View Course"><i class="fa-solid fa-book"></i></a>
                                             @can('create-course-category')
-                                                <a href="" data-category-id="{{ $category['id'] }}" class="btn btn-primary btn-sm category-add-btn" ><i class="fa-solid fa-plus"></i></a>
+                                                <a href="" data-category-id="{{ $category['id'] }}" class="btn btn-primary btn-sm category-add-btn" title="Add Course Category"><i class="fa-solid fa-plus"></i></a>
                                             @endcan
                                             @can('edit-course-category')
-                                                <a href="{{ route('course-categories.edit', $category['id']) }}" data-category-id="{{ $category['id'] }}" class="btn btn-success btn-sm category-edit-btn" ><i class="fa-solid fa-edit"></i></a>
+                                                <a href="{{ route('course-categories.edit', $category['id']) }}" data-category-id="{{ $category['id'] }}" class="btn btn-success btn-sm category-edit-btn" title="Edit Category" ><i class="fa-solid fa-edit"></i></a>
                                             @endcan
                                             @can('delete-course-category')
                                                 <form action="{{ route('course-categories.destroy', $category['id']) }}" method="post" class="d-inline " {{--onsubmit="return confirm('Are you sure to delete this?')"--}} >
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" data-category-id="{{ $category['id'] }}" class="btn btn-danger btn-sm data-delete-form" ><i class="fa-solid fa-trash"></i></button>
+                                                    <button type="submit" data-category-id="{{ $category['id'] }}" class="btn btn-danger btn-sm data-delete-form" title="Delete Category" ><i class="fa-solid fa-trash"></i></button>
                                                 </form>
                                             @endcan
 {{--                                            <a href="{{ route('course-categories.edit', ['id' => $category['id'] ]) }}" class="btn btn-success btn-sm" >Edit</a>--}}

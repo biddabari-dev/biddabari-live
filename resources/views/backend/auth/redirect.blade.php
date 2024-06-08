@@ -10,7 +10,7 @@
 <body>
 
 <script>
-    window.location.href = "{{ url('/login-page') }}";
+    window.location.href = "{{ url('/login') }}";
 </script>
 </body>
 </html>

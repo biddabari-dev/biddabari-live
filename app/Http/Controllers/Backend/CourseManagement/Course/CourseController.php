@@ -58,7 +58,7 @@ class CourseController extends Controller
 
             $this->courses = ViewHelper::paginateContentByCollectionFormat($request, $courseCategory->coursesDescOrder, 15, 'category_id');
         } else {
-            $this->courses = Course::where('parent_id', 0)->orderBy('id', 'DESC')->select('id','title','price','banner','is_featured','is_paid','status')->paginate(15);
+            $this->courses = Course::where('parent_id', 0)->orderBy('id', 'DESC')->select('id','title','price','duration_in_month','discount_amount', 'banner','is_featured','is_paid','status')->paginate(15);
         }
 
         return view('backend.course-management.course.courses.index', [
