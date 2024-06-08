@@ -110,10 +110,10 @@
         padding-right: 15px !important
     }
 
-    /* .p-0 {
+    .p-0 {
         padding-left: 15px !important;
         padding-right: 15px !important
-    } */
+    }
 
     h3 {
         font-size: 21px
@@ -2983,7 +2983,7 @@
 
 @media only screen and (min-width:1800px) {
 
-    
+
     .container-fluid {
         max-width: 1640px !important;
         margin-left: auto !important;

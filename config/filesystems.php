@@ -55,6 +55,13 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+        'obs' => [
+            'driver' => 'obs',
+            'key' => env('OBS_KEY'),
+            'secret' => env('OBS_SECRET'),
+            'endpoint' => env('OBS_ENDPOINT'),
+            'bucket' => env('OBS_BUCKET'),
+        ],
 
     ],
 

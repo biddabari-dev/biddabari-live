@@ -137,7 +137,12 @@ body{
 .our-speech li{
     font-size: 20px;
 }
-
+/*.facility h2{*/
+/*    font-size: 38px;*/
+/*}*/
+/*.facility p{*/
+/*    font-size: 22px;*/
+/*}*/
 .blog-card .content p {
     font-size: 19px;
     line-height: 19px;
@@ -179,7 +184,7 @@ body{
     border: none !important ;
     background: none !important;
     top: -9px !important;
-    font-size: 25px;
+    font-size: 25px !important;
 }
 .acme-news-ticker-box ul li a {
     color: #fff !important;
@@ -228,7 +233,10 @@ body{
     max-height: 360px;
     overflow-y: scroll;
 }
-
+/*.facility img{*/
+/*    height: 167px;*/
+/*    width: 60%;*/
+/*}*/
 .blog-card {
     position: relative;
     transition: 2s;
@@ -985,7 +993,17 @@ body{
         right: 5px;
         top: -5px;
     }
-    .side-nav-responsive .dot-menu .side-item a {
+    /*.side-nav-responsive .dot-menu .side-item a{*/
+    /*    height: 40px;*/
+    /*    width: 41px;*/
+    /*    background: #F18345;*/
+    /*    font-size: 25px;*/
+    /*    text-align: center;*/
+    /*    border-radius: 50%;*/
+    /*    color: #fff;*/
+    /*}*/
+
+    .side-nav-responsive .dot-menu .side-item a{
         height: 35px;
         width: 100px;
         background: #f18345;
@@ -994,6 +1012,7 @@ body{
         border-radius: 20px;
         color: #fff;
     }
+
     .acme-news-ticker{
         margin-top: 0px !important;
     }
@@ -1009,7 +1028,9 @@ body{
     .counter-content {
         margin-left: 17%;
     }
-
+    /*.facility img {*/
+    /*    margin-left: 17%;*/
+    /*}*/
     .card-title {
         text-align: center;
     }
@@ -1038,7 +1059,7 @@ body{
 }
 
 @media only screen and (min-width : 521px) and (max-width : 767px) {
-    
+
     .mobile_res{
         display: none;
     }
