@@ -1,7 +1,7 @@
 <div class="col-md-4 col-sm-6 px-1">
     <div class="courses-item">
         <a href="{{ route('front.course-details', ['slug' => $course->slug, 'id' => $course->id]) }}">
-            <img src="{{ asset(file_exists($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}"
+            <img src="{{ asset(file_exists_obs($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}"
                 alt="Courses" class="w-100" style="height: 230px" />
         </a>
         <div class="content">

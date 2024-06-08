@@ -125,14 +125,14 @@
                     <div class="col-md-3 col-m-6">
                         <div class="categories-item">
                             <a
-                                href="{{ route('front.category-courses', ['id' => $courseCategory->id, 'slug' => $courseCategory->slug]) }}">
+                                href="{{ route('front.category-courses', ['slug' => $courseCategory->slug]) }}">
                                 <img loading="lazy"
                                     src="{{ asset(isset($courseCategory->image) ? $courseCategory->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
                                     alt="Categories" class="border-0">
                             </a>
                             <div class="content">
                                 <a
-                                    href="{{ route('front.category-courses', ['id' => $courseCategory->id, 'slug' => $courseCategory->slug]) }}">
+                                    href="{{ route('front.category-courses', ['slug' => $courseCategory->slug]) }}">
                                     <i class="{{ $courseCategory->icon ?? 'flaticon-web-development' }}"></i>
                                     <h3>{{ $courseCategory->name ?? 'No Title' }}</h3>
                                 </a>
@@ -162,7 +162,7 @@
                             <div class="courses-item">
                                 <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
                                     <img loading="lazy"
-                                        src="{{ asset(file_exists($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}"
+                                        src="{{ asset(file_exists_obs($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}"
                                         alt="Courses" class="w-100 p-2" style="height: 230px" />
                                 </a>
                                 <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
@@ -451,7 +451,7 @@
                 <div class="courses-item">
                     <div>
                         <video class="border-0" style="width: 100%!important;" height="240" controls>
-                            <source src="{{$ourTeam->video_file}}" type="video/mp4">
+                            <source src="{{asset($ourTeam->video_file)}}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -545,7 +545,7 @@
                 </div>
                 <div class="modal-body popup_card">
                     <div class="card border-0">
-                        <img src="{{asset(file_exists($poppup->image) ? $poppup->image : 'frontend/logo/biddabari-card-logo.jpg')}}"
+                        <img src="{{asset(file_exists_obs($poppup->image) ? $poppup->image : 'frontend/logo/biddabari-card-logo.jpg')}}"
                             alt="popup-img">
                         <p>{!! $poppup->description ?? '  ' !!}</p>
                         {{-- <div class="d-flex">--}}

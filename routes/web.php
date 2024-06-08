@@ -8,7 +8,44 @@ use League\Flysystem\Filesystem;
 use Obs\ObsClient;
 use Zing\Flysystem\Obs\ObsAdapter;
 use Illuminate\Http\Request;
-
+use App\Models\Backend\Course\Course;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\Backend\AdditionalFeatureManagement\Advertisement;
+use Illuminate\Http\File;
+use App\Models\Backend\ExamManagement\AssignmentFile;
+use App\Models\Backend\BatchExamManagement\BatchExam;
+use App\Models\Backend\BatchExamManagement\BatchExamCategory;
+use App\Models\Backend\BatchExamManagement\BatchExamSectionContent;
+use App\Models\Backend\BlogManagement\Blog;
+use App\Models\Backend\BlogManagement\BlogCategory;
+use App\Models\Backend\CircularManagement\Circular;
+use App\Models\Backend\CircularManagement\CircularCategory;
+use App\Models\Backend\Course\CourseCategory;
+use App\Models\Backend\ExamManagement\Exam;
+use App\Models\Backend\ExamManagement\ExamCategory;
+use App\Models\Backend\Gallery\Gallery;
+use App\Models\Backend\Gallery\GalleryImage;
+use App\Models\Learner;
+use App\Models\Backend\ModelTestManagement\ModelTest;
+use App\Models\Backend\ModelTestManagement\ModelTestCategory;
+use App\Models\Backend\NoticeManagement\Notice;
+use App\Models\Backend\NoticeManagement\NoticeCategory;
+use App\Models\Backend\AdditionalFeatureManagement\NumberCounter\NumberCounter;
+use App\Models\Backend\AdditionalFeatureManagement\OurService\OurService;
+use App\Models\Backend\AdditionalFeatureManagement\OurTeam\OurTeam;
+use App\Models\Backend\PdfManagement\PdfStore;
+// use DB;
+use App\Models\Backend\AdditionalFeatureManagement\PopupNotification;
+use App\Models\Backend\ProductManagement\Product;
+use App\Models\Backend\ProductManagement\ProductAuthor;
+use App\Models\Backend\ProductManagement\ProductCategory;
+use App\Models\Backend\ProductManagement\ProductDeliveryOption;
+use App\Models\Backend\QuestionManagement\QuestionStore;
+use App\Models\Backend\AdditionalFeatureManagement\SiteSetting;
+use App\Models\Backend\UserManagement\Student;
+use App\Models\Backend\AdditionalFeatureManagement\StudentOpinion\StudentOpinion;
+use App\Models\Backend\UserManagement\Teacher;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +58,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('fff', function(){
-
-    return view('file');
-});
-
-route::post('/ttt', function(Request $request){
+Route::get('/ttt', function(){
     $prefix = '';
     $config = [
         'key' => '7NBPYLX5IMJMXEVUAMJR',
@@ -41,20 +73,36 @@ route::post('/ttt', function(Request $request){
         'bucket_endpoint' => 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com',
         'temporary_url' => '',
     ];
-    
-    $client = new ObsClient($config);
-    $adapter = new ObsAdapter($client, $config['bucket'], $prefix, null, null, $config['options']);
-    $flysystem = new Filesystem($adapter);
 
-    $file = $request->file('file');
-    $filePath = $file->getRealPath();
-    $fileName = 'backend/assets/uploaded-files/'.$file->getClientOriginalName();
-    $result = $client->putObject([
-    'Bucket' => env('OBS_BUCKET'),
-    'Key' => $fileName,
-    'SourceFile' => $filePath,
-    ]);
-    return response()->json(['url' => $result['ObjectURL']]);
+    $data = User::all();
+
+    // dd($data[23]);
+
+    foreach ($data as $key => $value) {
+        # code...
+        $client = new ObsClient($config);
+        $adapter = new ObsAdapter($client, $config['bucket'], $prefix, null, null, $config['options']);
+        $flysystem = new Filesystem($adapter);
+
+        // $f = asset($value->image);
+        if ($value->profile_photo_path != null) {
+            # code...
+        
+        if (file_exists($value->profile_photo_path)) {
+            $result = $client->putObject([
+            'Bucket' => env('OBS_BUCKET'),
+            'Key' => $value->profile_photo_path,
+            'SourceFile' => $value->profile_photo_path,
+            ]);
+            }
+        }
+
+            
+            // return response()->json(['url' => $result['ObjectURL']]);
+
+
+        }
+    
 
 
 });

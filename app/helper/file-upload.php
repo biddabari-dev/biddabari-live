@@ -3,23 +3,27 @@
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Carbon;
+use League\Flysystem\Filesystem;
+use Obs\ObsClient;
+use Zing\Flysystem\Obs\ObsAdapter;
 
 function imageUpload ($image, $imageDirectory, $imageNameString = null, $width = null, $height = null, $modelFileUrl = null)
 {
     if ($image)
     {
-        if (isset($modelFileUrl))
-        {
-            if (file_exists($modelFileUrl))
-            {
-                unlink($modelFileUrl);
-            }
-        }
-        $folderPath = public_path('backend/assets/uploaded-files/'.rtrim($imageDirectory));
-        if (!File::isDirectory($folderPath))
-        {
-            File::makeDirectory($folderPath, 0777, true, true);
-        }
+        // if (isset($modelFileUrl))
+        // {
+        //     if (file_exists($modelFileUrl))
+        //     {
+        //         unlink($modelFileUrl);
+        //     }
+        // }
+        // $folderPath = public_path('backend/assets/uploaded-files/'.rtrim($imageDirectory));
+        // dd($folderPath);
+        // if (!File::isDirectory($folderPath))
+        // {
+        //     File::makeDirectory($folderPath, 0777, true, true);
+        // }
         $imageName = (isset($imageNameString) ? $imageNameString : '').'-'.time().rand(10,1000).'.'.$image->getClientOriginalExtension();
         $imageUrl = 'backend/assets/uploaded-files/'.$imageDirectory.$imageName;
         if ($image->getClientOriginalExtension() == 'ico')
@@ -27,7 +31,38 @@ function imageUpload ($image, $imageDirectory, $imageNameString = null, $width =
             $image->move($imageDirectory, $imageName);
         } else {
 
-               Image::make($image)->resize((isset($width) ? $width : ''), (isset($height) ? $height : ''))->encode('webp',65)->save($imageUrl,65);
+            $images = Image::make($image)->resize((isset($width) ? $width : ''), (isset($height) ? $height : ''))->encode('webp',65)->save($imageUrl,65);
+
+
+            $prefix = '';
+            $config = [
+                'key' => '7NBPYLX5IMJMXEVUAMJR',
+                'secret' => 'k8PDyRPK94ZXjtoZExxCqqEXD8HI4jN63qCtJW0Z',
+                'bucket' => 'biddabari-bucket',
+                'endpoint' => 'obs.as-south-208.rcloud.reddotdigitalit.com',
+            ];
+            
+            $config['options'] = [
+                'url' => '',
+                'endpoint' => $config['endpoint'], 
+                'bucket_endpoint' => 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com',
+                'temporary_url' => '',
+            ];
+
+            $client = new ObsClient($config);
+            $adapter = new ObsAdapter($client, $config['bucket'], $prefix, null, null, $config['options']);
+            $flysystem = new Filesystem($adapter);
+
+            $result = $client->putObject([
+                'Bucket' => env('OBS_BUCKET'),
+                'Key' => $imageUrl,
+                'SourceFile' => $imageUrl,
+                ]);
+            
+            if (file_exists($imageUrl))
+            {
+                unlink(public_path($imageUrl));
+            }
         }
     } else {
         $imageUrl = $modelFileUrl;
@@ -110,4 +145,17 @@ function dateTimeFormatYmdHi($date = null)
 function currentDateTimeYmdHi()
 {
     return Carbon::now()->format('Y-m-d H:i');
+}
+
+function file_exists_obs($url)
+{
+    if ($url != null) {
+        # code...
+        $exists = Storage::disk('obs')->has($url);
+        
+        return $exists;
+    }else{
+        return false;
+    }
+
 }
