@@ -576,7 +576,7 @@
         }
 
         .featured-item-two a h3 {
-            font-size: 18px
+            font-size: 24px
         }
     </style>
     <style>

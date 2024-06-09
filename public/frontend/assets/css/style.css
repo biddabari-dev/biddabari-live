@@ -8492,6 +8492,9 @@ img {
     .courses-details-tab-content .courses-details-accordion .accordion .accordion-title {
         padding: 5px 10px !important;
     }
+    .featured-item-two a h3 {
+        font-size: 18px !important;
+    }
     /* -----------Design Update Mizan  ---------------------- */
 
 }
@@ -8501,6 +8504,11 @@ img {
         width: 100%;
         height: 150px;
     }
+
+    .featured-item-two a h3 {
+        font-size: 18px !important;
+    }
+
     .popup_card{
         height: 200px;
         overflow: scroll;

@@ -41,10 +41,10 @@ function imageUpload ($image, $imageDirectory, $imageNameString = null, $width =
                 'bucket' => 'biddabari-bucket',
                 'endpoint' => 'obs.as-south-208.rcloud.reddotdigitalit.com',
             ];
-            
+
             $config['options'] = [
                 'url' => '',
-                'endpoint' => $config['endpoint'], 
+                'endpoint' => $config['endpoint'],
                 'bucket_endpoint' => 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com',
                 'temporary_url' => '',
             ];
@@ -58,7 +58,7 @@ function imageUpload ($image, $imageDirectory, $imageNameString = null, $width =
                 'Key' => $imageUrl,
                 'SourceFile' => $imageUrl,
                 ]);
-            
+
             if (file_exists($imageUrl))
             {
                 unlink(public_path($imageUrl));
@@ -97,6 +97,41 @@ function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl 
         $fileName       = $nameString.str_replace(' ', '-', pathinfo($fileObject->getClientOriginalName(), PATHINFO_FILENAME)).'_'.rand(100,100000).'.'.$fileObject->extension();
         $fileDirectory  = 'backend/assets/uploaded-files/'.$directory.'/';
         $fileObject->move($fileDirectory, $fileName);
+
+        $prefix = '';
+        $config = [
+            'key' => '7NBPYLX5IMJMXEVUAMJR',
+            'secret' => 'k8PDyRPK94ZXjtoZExxCqqEXD8HI4jN63qCtJW0Z',
+            'bucket' => 'biddabari-bucket',
+            'endpoint' => 'obs.as-south-208.rcloud.reddotdigitalit.com',
+        ];
+
+        $config['options'] = [
+            'url' => '',
+            'endpoint' => $config['endpoint'],
+            'bucket_endpoint' => 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com',
+            'temporary_url' => '',
+        ];
+
+        $client = new ObsClient($config);
+        $adapter = new ObsAdapter($client, $config['bucket'], $prefix, null, null, $config['options']);
+        $flysystem = new Filesystem($adapter);
+
+        // dd(env('OBS_BUCKET'));
+
+        $result = $client->putObject([
+            'Bucket' => 'biddabari-bucket',
+            'Key' => $fileDirectory.$fileName,
+            'SourceFile' => $fileDirectory.$fileName,
+            ]);
+
+            if (file_exists($fileDirectory.$fileName))
+            {
+                unlink($fileDirectory.$fileName);
+            }
+
+
+
         return $fileDirectory.$fileName;
     } else {
         if (isset($modelFileUrl))
@@ -152,7 +187,7 @@ function file_exists_obs($url)
     if ($url != null) {
         # code...
         $exists = Storage::disk('obs')->has($url);
-        
+
         return $exists;
     }else{
         return false;

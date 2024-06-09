@@ -14,7 +14,7 @@
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/iconplugins.css">--}}
 
 {{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.min.css">--}}
-        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
+        <link rel="stylesheet" href="/frontend/assets/css/style.css">
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/biddabari-dev/site-assets/frontend/assets/css/style.min.css">--}}
 
 {{--        <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.min.css">--}}

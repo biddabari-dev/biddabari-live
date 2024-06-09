@@ -475,7 +475,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-course-section-id'); //change value
             $.ajax({
-                url: base_url+"course-sections/"+courseId+"/edit",
+                url: "/course-sections/"+courseId+"/edit",
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -501,7 +501,7 @@
                     //     format: 'YYYY-MM-DD HH:mm'
                     // });
                     $("#dateTimexx").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
-                    $('#courseSectionForm').attr('action', base_url+"course-sections/"+data.id).append('<input type="hidden" name="_method" value="put">');
+                    $('#courseSectionForm').attr('action', "/course-sections/"+data.id).append('<input type="hidden" name="_method" value="put">');
                     $('#courseSectionModal').modal('show');
                 }
             })
@@ -555,7 +555,7 @@
             var sectionContentId = $(this).attr('data-section-id'); //change value
             $('input[name="course_section_id"]').val(sectionContentId);
             $.ajax({
-                url: base_url + "course-section-contents/create?section_id=" + sectionContentId ,
+                url: "/course-section-contents/create?section_id=" + sectionContentId ,
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -576,7 +576,7 @@
             event.preventDefault();
             var sectionContentId = $(this).attr('data-section-content-id'); //change value
             $.ajax({
-                url: base_url+"course-section-contents/"+sectionContentId+"/edit",
+                url: "/course-section-contents/"+sectionContentId+"/edit",
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -626,7 +626,7 @@
             event.preventDefault();
             var sectionContentId = $(this).attr('data-section-content-id'); //change value
             $.ajax({
-                url: base_url+"course-section-contents/"+sectionContentId,
+                url: "/course-section-contents/"+sectionContentId,
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -727,7 +727,7 @@
     <script>
         $(document).on('click', '.change-url', function () {
             var sectionId = $('#sectionId').val();
-            window.location = base_url+"course-section-contents?section_id="+sectionId+"&course_id={{ $_GET['course_id'] }}";
+            window.location = "/course-section-contents?section_id="+sectionId+"&course_id={{ $_GET['course_id'] }}";
         })
     </script>
 
@@ -749,7 +749,7 @@
         $(document).on('change', '#pdfStoreCategory', function () {
             var sectionContentId = $(this).val();
             $.ajax({
-                url: base_url+"get-pdf-by-cat/"+sectionContentId,
+                url: "/get-pdf-by-cat/"+sectionContentId,
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -771,7 +771,7 @@
             var sectionContentId = $(this).attr('data-section-content-id');
             var examType = $(this).attr('data-xm-type');
             $.ajax({
-                url: base_url+"get-content-for-add-question",
+                url: "/get-content-for-add-question",
                 method: "GET",
                 // dataType: "JSON",
                 data: {section_content_id:sectionContentId,exam_type:examType},
@@ -788,7 +788,7 @@
             var sectionContentId = $(this).attr('data-section-content-id');
             var examType = $(this).attr('data-xm-type');
             $.ajax({
-                url: base_url+"get-xm-participants/course/"+sectionContentId,
+                url: "/get-xm-participants/course/"+sectionContentId,
                 method: "GET",
                 // dataType: "JSON",
                 // data: {section_content_id:sectionContentId,exam_type:examType},
@@ -804,7 +804,7 @@
             var sectionContentId = $(this).attr('data-section-content-id');
             var examOf = $(this).attr('data-xm-of');
             $.ajax({
-                url: base_url+"get-content-for-add-class-question",
+                url: "/get-content-for-add-class-question",
                 method: "GET",
                 // dataType: "JSON",
                 data: {section_content_id:sectionContentId,exam_of:examOf},
@@ -821,7 +821,7 @@
             var questionTopicId = $('#questionTopic').val();
             var xmType = $('input[name="xm_type"]').val();
             $.ajax({
-                url: base_url+"get-ques-by-topic",
+                url: "/get-ques-by-topic",
                 method: "GET",
                 // dataType: "JSON",
                 data: {question_topic_ids:questionTopicId,exam_type:xmType},
@@ -889,7 +889,7 @@
             var questionId = $(this).attr('data-question-id');
             var contentId = $(this).attr('data-content-id');
             $.ajax({
-                url: base_url+"detach-question-from-course-content",
+                url: "/detach-question-from-course-content",
                 method: "GET",
                 // dataType: "JSON",
                 data: {question_id:questionId,content_id:contentId},
@@ -911,7 +911,7 @@
             var questionId = $(this).attr('data-question-id');
             var contentId = $(this).attr('data-content-id');
             $.ajax({
-                url: base_url+"detach-question-from-course-class-content",
+                url: "/detach-question-from-course-class-content",
                 method: "GET",
                 // dataType: "JSON",
                 data: {question_id:questionId,content_id:contentId},
