@@ -54,7 +54,7 @@ function imageUpload ($image, $imageDirectory, $imageNameString = null, $width =
             $flysystem = new Filesystem($adapter);
 
             $result = $client->putObject([
-                'Bucket' => env('OBS_BUCKET'),
+                'Bucket' => 'biddabari-bucket',
                 'Key' => $imageUrl,
                 'SourceFile' => $imageUrl,
                 ]);

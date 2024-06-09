@@ -125,7 +125,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
-                                                <button type="submit" @if(!auth()->check()) onclick="event.preventDefault(); toastr.error('Please Login First');" @endif class="default-btn">
+                                                <button type="submit"
+                                                    {{-- @if(!auth()->check()) onclick="event.preventDefault(); toastr.error('Please Login First');" @endif  --}}
+                                                    class="default-btn">
                                                     Post A Comment
                                                 </button>
                                             </div>

@@ -121,11 +121,13 @@
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <textarea name="message" class="form-control" id="" cols="30" rows="3" required placeholder="Comment..."></textarea>
+                                                    <textarea name="message" class="form-control" id="" cols="30" rows="3" required placeholder="Comment..." required></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
-                                                <button type="submit" @if(!auth()->check()) onclick="event.preventDefault(); toastr.error('Please Login First');" @endif class="default-btn">
+                                                <button type="submit"
+                                                {{-- @if(!auth()->check()) onclick="event.preventDefault(); toastr.error('Please Login First');" @endif  --}}
+                                                class="default-btn">
                                                     Post A Comment
                                                 </button>
                                             </div>
@@ -180,7 +182,7 @@
                                 @endif
                                 <div class="content">
                                     <h1>{!! $course->title !!}</h1>
-                                    <span class="f-s-22">{!! $course->sub_title !!}</span> <br>
+                                    <span class="f-s-22 sub-title">{!! $course->sub_title !!}</span> <br>
                                     <span class="f-s-22">{!! 'Admission Last Date - '.showDate($course->admission_last_date) !!}</span>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -221,7 +223,7 @@
                                                 $date=date('Y-m-d H:i');
                                             @endphp
                                             @if($course->admission_last_date > $date)
-                                                <a href="{{ route('front.checkout', ['type' => 'course', 'slug' => $course->slug, 'rc' => ($_GET['rc'] ?? '') ]) }}" class="default-btn bg-default-color">কোর্সটি কিনুন</a>
+                                                <a href="{{ route('front.checkout', ['type' => 'course', 'slug' => $course->slug, 'rc' => ($_GET['rc'] ?? '') ]) }}" class="default-btn bg-default-color mt-4">কোর্সটি কিনুন</a>
 {{--                                                <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">--}}
 {{--                                                    @csrf--}}
 {{--                                                    <input type="hidden" name="course_id" value="{{ $course->id }}" />--}}
@@ -235,7 +237,7 @@
 {{--                                                    <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">--}}
 {{--                                                </form>--}}
                                             @else
-                                                <a class="default-btn bg-default-color btn-block">ভর্তির সময় শেষ</a>
+                                                <a class="default-btn bg-default-color btn-block mt-4">ভর্তির সময় শেষ</a>
                                             @endif
 
                                             <ul class="social-link">
