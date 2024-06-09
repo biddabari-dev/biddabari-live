@@ -11,7 +11,7 @@
     <meta name="keywords" content="laravel admin template, bootstrap admin template, admin dashboard template, admin dashboard, admin template, admin, bootstrap 5, laravel admin, laravel admin dashboard template, laravel ui template, laravel admin panel, admin panel, laravel admin dashboard, laravel template, admin ui dashboard">
 
     <!-- TITLE -->
-    <title>BiddaBari - Admin Login</title>
+    <title>BiddaBari - Login</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- FAVICON -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/') }}frontend/logo/favicon/apple-icon-57x57.png">
@@ -38,7 +38,7 @@
 
 
     <!--- FONT-ICONS CSS -->
-    <link href="{{ asset('/') }}backend/assets/plugins/icons/icons.css" rel="stylesheet" />
+    <link href="backend/assets/plugins/icons/icons.css" rel="stylesheet" />
 
     <!-- INTERNAL Switcher css -->
     <link href="{{ asset('/') }}backend/assets/switcher/css/switcher.css" rel="stylesheet">
