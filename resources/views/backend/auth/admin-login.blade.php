@@ -11,7 +11,7 @@
     <meta name="keywords" content="laravel admin template, bootstrap admin template, admin dashboard template, admin dashboard, admin template, admin, bootstrap 5, laravel admin, laravel admin dashboard template, laravel ui template, laravel admin panel, admin panel, laravel admin dashboard, laravel template, admin ui dashboard">
 
     <!-- TITLE -->
-    <title>BiddaBari - Admin Login</title>
+    <title>BiddaBari - Login</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- FAVICON -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/') }}frontend/logo/favicon/apple-icon-57x57.png">
@@ -32,13 +32,13 @@
     <link id="style" href="{{ asset('/') }}backend/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- STYLE CSS -->
-    <link href="{{ asset('/') }}backend/assets/css/style.css" rel="stylesheet" />
+    <link href="backend/assets/css/style.css" rel="stylesheet" />
     <link href="{{ asset('/') }}backend/assets/css/skin-modes.css" rel="stylesheet" />
 
 
 
     <!--- FONT-ICONS CSS -->
-    <link href="{{ asset('/') }}backend/assets/plugins/icons/icons.css" rel="stylesheet" />
+    <link href="backend/assets/plugins/icons/icons.css" rel="stylesheet" />
 
     <!-- INTERNAL Switcher css -->
     <link href="{{ asset('/') }}backend/assets/switcher/css/switcher.css" rel="stylesheet">
@@ -111,13 +111,13 @@
                             <span class="symbol-input100">
 											<i class="fa-solid fa-lock" aria-hidden="true"></i>
 										</span>
-                                        
+
                             <div class="mt-3">
                                 <a href="{{ route('forgot-user-password') }}" class="float-end" style="color: black; ">Forgot Password?</a>
                             </div>
                         </div>
                         <span class="text-danger passreq" style="display:none;">Password is required!</span>
-                        
+
 
                     </form>
                 </div>

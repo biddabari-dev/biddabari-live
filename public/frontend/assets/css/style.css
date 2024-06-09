@@ -7838,12 +7838,20 @@ img {
     height: 300px;
 }
 
+.acme-news-ticker-box ul li a{
+    margin-left: 50px;
+}
+
 
 @media only screen and (min-width : 280px) and (max-width: 420px) {
 
     .quiz-wizard .position-sticky {
         top: 105px !important;
         z-index: 10;
+    }
+
+    .featured-item-two a h3 {
+        font-size: 18px !important;
     }
 
 
@@ -7928,6 +7936,11 @@ img {
         width: 100%;
         height: 150px;
     }
+
+    .featured-item-two a h3 {
+        font-size: 18px !important;
+    }
+
     .popup_card{
         height: 200px;
         overflow: scroll;
@@ -8221,6 +8234,11 @@ img {
         width: 100%;
         height: 150px;
     }
+
+    .featured-item-two a h3 {
+        font-size: 18px !important;
+    }
+
     .popup_card{
         height: 200px;
         overflow: scroll;
@@ -8496,6 +8514,9 @@ img {
     .courses-details-tab-content .courses-details-accordion .accordion .accordion-title {
         padding: 5px 10px !important;
     }
+    .featured-item-two a h3 {
+        font-size: 18px !important;
+    }
     /* -----------Design Update Mizan  ---------------------- */
 
 }
@@ -8505,6 +8526,15 @@ img {
         width: 100%;
         height: 150px;
     }
+
+    .featured-item-two a h3 {
+        font-size: 18px !important;
+    }
+
+    .featured-item-two a h3 {
+        font-size: 18px !important;
+    }
+
     .popup_card{
         height: 200px;
         overflow: scroll;
@@ -8772,6 +8802,10 @@ img {
         display: none;
     }
 
+    .featured-item-two a h3 {
+        font-size: 18px !important;
+    }
+
     .mobile_res_btn {
         display: block;
     }
@@ -8855,6 +8889,10 @@ img {
 @media only screen and (min-width : 768px) and (max-width: 991px) {
     .mobile_res {
         display: none;
+    }
+
+    .featured-item-two a h3 {
+        font-size: 18px !important;
     }
 
     .mobile_res_btn {
@@ -8987,4 +9025,12 @@ img {
     }
 
     /* -----------Design Update Mizan  ---------------------- */
+}
+
+.sub-title{
+    font-weight: unset !important;
+}
+
+.courses-details-tab ul li{
+    font-size: 20px !important;
 }

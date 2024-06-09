@@ -128,7 +128,7 @@
                                 href="{{ route('front.category-courses', ['slug' => $courseCategory->slug]) }}">
                                 <img loading="lazy"
                                     src="{{ asset(isset($courseCategory->image) ? $courseCategory->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
-                                    alt="Categories" class="border-0">
+                                    alt="Categories" class="w-100 border-0">
                             </a>
                             <div class="content">
                                 <a
@@ -576,7 +576,7 @@
         }
 
         .featured-item-two a h3 {
-            font-size: 18px
+            font-size: 24px
         }
     </style>
     <style>

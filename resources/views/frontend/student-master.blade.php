@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/iconplugins.css">
 
-    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
+    <link rel="stylesheet" href="/frontend/assets/css/style.css">
 
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.css">
 
@@ -89,7 +89,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: black;
         }
-        
+
           /* ------------------------------------ */
         .go-messenger {
             position: fixed;
@@ -112,22 +112,22 @@
             transition: .5s;
             padding-top: 6px;
         }
-        
+
         .go-messenger i {
             -webkit-transition: .5s;
             transition: .5s;
             vertical-align: middle
         }
-        
+
         .go-messenger:hover {
             background-color: var(--titleColor)
         }
-        
+
         /*.go-messenger:hover i {*/
         /*    -webkit-transform: translateY(-5px);*/
         /*    transform: translateY(-5px)*/
         /*}*/
-        
+
         .go-messenger.active {
             top: 95%;
             -webkit-transform: translateY(-95%);
@@ -135,7 +135,7 @@
             opacity: 1;
             visibility: visible
         }
-        
+
         /* ------------------------------------------- */
     </style>
     @stack('style')
@@ -287,9 +287,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                                 <a class="nav-link" href="{{ route('front.student.my_service') }}">Service</a>
                                             </li>
                                         @endcan
-                                        
-                                        
-                                        
+
+
+
                                         <li class="nav-item border-1">
                                             <a class="nav-link" href="#"
                                                onclick="event.preventDefault();document.getElementById('logout').submit()">Logout</a>

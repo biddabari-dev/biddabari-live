@@ -97,7 +97,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
 
 
 
-    Route::post('/new-comment', [FrontendViewController::class, 'newComment'])->name('new-comment');
+    Route::post('/new-comment', [FrontendViewController::class, 'newComment'])->middleware('auth')->name('new-comment');
 
     Route::get('show-product-pdf/{content_id}', [StudentController::class, 'showProductPdf'])->name('show-product-pdf');
     Route::get('get-video-comments/{content_id}/{type?}', [StudentController::class, 'getVideoComments'])->name('get-video-comments');
@@ -105,7 +105,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
     Route::post('/common-order/{model_id}', [CheckoutController::class, 'commonOrder'])->name('common-order');
 
 
-    
+
 
     Route::middleware([
         'auth:sanctum',

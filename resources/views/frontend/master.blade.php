@@ -18,14 +18,14 @@
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.min.css" />
     <link rel="stylesheet" href="/frontend/assets/css/iconplugins.css">
 
-    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
+    <link rel="stylesheet" href="/frontend/assets/css/style.css">
 
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/responsive.css">
 
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/theme-dark.css">
 
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.css">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 
