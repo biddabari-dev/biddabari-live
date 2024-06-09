@@ -1,7 +1,8 @@
 @extends('frontend.master')
 
 @section('body')
-  
+
+
     <div class="courses-area-two section-bg py-5 bg-white">
         <div class="container">
             <div class="col-md-12">
