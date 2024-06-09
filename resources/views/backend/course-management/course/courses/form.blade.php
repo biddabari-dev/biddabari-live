@@ -61,7 +61,7 @@
                             @endforeach
                         @endif
                     </select>
-                    <span class="text-danger" id="teachers_id[]"></span>
+                    <span class="text-danger" id="teachers_id"></span>
                 </div>
                 <div class="col-md-6 mt-2">
                     <label for="">Featured Video</label>
