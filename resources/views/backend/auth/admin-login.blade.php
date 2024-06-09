@@ -32,7 +32,7 @@
     <link id="style" href="{{ asset('/') }}backend/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- STYLE CSS -->
-    <link href="{{ asset('/') }}backend/assets/css/style.css" rel="stylesheet" />
+    <link href="backend/assets/css/style.css" rel="stylesheet" />
     <link href="{{ asset('/') }}backend/assets/css/skin-modes.css" rel="stylesheet" />
 
 
@@ -111,13 +111,13 @@
                             <span class="symbol-input100">
 											<i class="fa-solid fa-lock" aria-hidden="true"></i>
 										</span>
-                                        
+
                             <div class="mt-3">
                                 <a href="{{ route('forgot-user-password') }}" class="float-end" style="color: black; ">Forgot Password?</a>
                             </div>
                         </div>
                         <span class="text-danger passreq" style="display:none;">Password is required!</span>
-                        
+
 
                     </form>
                 </div>

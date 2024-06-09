@@ -24,7 +24,7 @@
 <link href="{{ asset('/') }}backend/assets/css/helper.css" rel="stylesheet" />
 
 <!-- STYLE CSS -->
-<link href="{{ asset('/') }}backend/assets/css/style.css" rel="stylesheet" /> {{--have to check later to reduce load time--}}
+<link href="backend/assets/css/style.css" rel="stylesheet" /> {{--have to check later to reduce load time--}}
 <link href="{{ asset('/') }}backend/assets/css/skin-modes.css" rel="stylesheet" />
 
 <!--- FONT-ICONS CSS -->
