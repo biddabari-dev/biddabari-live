@@ -72,27 +72,27 @@
 //                                                                                    @php($i = 0)
                                                                                      @endphp
                                                                                     @foreach($course->courseRoutines as $courseRoutine)
-                                                                                    @if($courseEnrollStatus == 'true')
-                                                                                        @if($courseRoutine->is_fack == 0)
-                                                                                            <tr>
-                                                                                                <td>{{ ++$i }}</td>
-                                                                                                <td>{{ $courseRoutine->content_name }}</td>
-                                                                                                <td>{{ showDate($courseRoutine->date_time) }}</td>
-                                                                                                <td>{{ $courseRoutine->day }}</td>
-                                                                                                <td>{{ showTime($courseRoutine->date_time) }}</td>
-                                                                                            </tr>
+                                                                                        @if($courseEnrollStatus == 'true')
+                                                                                            @if($courseRoutine->is_fack == 0)
+                                                                                                <tr>
+                                                                                                    <td>{{ ++$i }}</td>
+                                                                                                    <td>{{ $courseRoutine->content_name }}</td>
+                                                                                                    <td>{{ showDate($courseRoutine->date_time) }}</td>
+                                                                                                    <td>{{ $courseRoutine->day }}</td>
+                                                                                                    <td>{{ showTime($courseRoutine->date_time) }}</td>
+                                                                                                </tr>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            @if($courseRoutine->is_fack == 1)
+                                                                                                <tr>
+                                                                                                    <td>{{ ++$i }}</td>
+                                                                                                    <td>{{ $courseRoutine->content_name }}</td>
+                                                                                                    <td>{{ showDate($courseRoutine->date_time) }}</td>
+                                                                                                    <td>{{ $courseRoutine->day }}</td>
+                                                                                                    <td>{{ showTime($courseRoutine->date_time) }}</td>
+                                                                                                </tr>
+                                                                                            @endif
                                                                                         @endif
-                                                                                    @else
-                                                                                        @if($courseRoutine->is_fack == 1)
-                                                                                            <tr>
-                                                                                                <td>{{ ++$i }}</td>
-                                                                                                <td>{{ $courseRoutine->content_name }}</td>
-                                                                                                <td>{{ showDate($courseRoutine->date_time) }}</td>
-                                                                                                <td>{{ $courseRoutine->day }}</td>
-                                                                                                <td>{{ showTime($courseRoutine->date_time) }}</td>
-                                                                                            </tr>
-                                                                                        @endif
-                                                                                    @endif
                                                                                 @endforeach
                                                                                  @endif
                                                                             </tbody>

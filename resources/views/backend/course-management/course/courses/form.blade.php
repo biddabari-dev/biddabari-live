@@ -47,8 +47,8 @@
                     <span class="text-danger" id="description"></span>
                 </div>
                 <div class="col-md-12 mt-2 mb-2">
-                    <label for="">Why this course?</label>
-                    <textarea name="whythiscourse" class="form-control whythiscourse" id="whythiscourse" placeholder="Why this course?" cols="30" rows="5"></textarea>
+                    <label for="">What you'll learn</label>
+                    <textarea name="whythiscourse" class="form-control whythiscourse" id="whythiscourse" placeholder="What you'll learn ?" cols="30" rows="5"></textarea>
                     <span class="text-danger" id="descriptionwhythiscourse"></span>
                 </div>
                 <div class="col-md-6 mt-2 select2-div position-relative">
