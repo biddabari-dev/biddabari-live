@@ -127,6 +127,7 @@ $(document).on('click', '.update-btn', function () {
                 for (key in allErrors)
                 {
                     $('#'+key).empty().append(allErrors[key]);
+                    console.log(key);
                 }
                 $('.update-btn').attr('disabled', false);
             }
@@ -175,6 +176,13 @@ $(document).on('click', '.submit-btn', function () {
                 for (key in allErrors)
                 {
                     $('#'+key).empty().append(allErrors[key]);
+                    if (key == 'course_categories.0') {
+                        $('#course_categories').empty().append('The Course Category field is required.');
+                    }
+
+                    if (key == 'teachers_id.0') {
+                        $('#teachers_id').empty().append('The Teachers field is required.');
+                    }
                 }
                 $('.submit-btn').attr('disabled', false);
             }

@@ -24,8 +24,8 @@ class CourseCreateFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'teachers_id' => 'required',
-            'course_categories' => 'required',
+            'teachers_id.*' => 'required',
+            'course_categories.*' => 'required',
             'title' => 'required',
             'sub_title' => 'required',
             'price' => 'required',
