@@ -21,7 +21,7 @@
                             <th>Name</th>
 {{--                            <th>Email</th>--}}
                             <th>Phone</th>
-                            <th>Commission</th>
+                            <!-- <th>Commission</th> -->
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -33,7 +33,7 @@
                                     <td>{{ $teacher->user->name }}</td>
 {{--                                    <td>{{ $teacher->user->email }}</td>--}}
                                     <td>{{ $teacher->user->mobile }}</td>
-                                    <td></td>
+                                    <!-- <td></td> -->
                                     <td>{{ $teacher->status == 1 ? 'Active' : 'Inactive' }}</td>
                                     <td>
 {{--                                        <a href="" data-course-id="{{ $course->id }}" class="btn btn-sm btn-warning edit-btn" title="Edit Course">--}}

@@ -7914,6 +7914,10 @@ img {
     }
 
     /* --------------------Checkout page end-------------- */
+    .categories-item a img {
+        height: 200px !important;
+        width: 100% !important;
+    }
 
 }
 

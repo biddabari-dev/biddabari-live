@@ -178,7 +178,7 @@ class CourseController extends Controller
         $request->validate(['teachers' => 'required']);
         $this->course = Course::find($id);
         $this->course->teachers()->sync($request->teachers);
-        return back()->with('success', 'Trainer assigned to course Successfully.');
+        return back()->with('success', 'Trainer assigned to course successfully.');
     }
     public function detachTeacher (Request $request, $id)
     {
@@ -187,7 +187,7 @@ class CourseController extends Controller
         if (count($this->course->teachers) > 1)
         {
             $this->course->teachers()->detach($request->teacher_id);
-            return back()->with('success', 'Trainer assigned to course Successfully.');
+            return back()->with('success', 'Trainer assigned to course successfully.');
         }
         return back()->with('error', 'You must assign one teacher for this course.');
     }

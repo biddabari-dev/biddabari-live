@@ -10,7 +10,13 @@
     {!! isset($siteSettings->default_seo_code_on_header) ? $siteSettings->default_seo_code_on_header : '' !!}
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
 
-    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/iconplugins.css">
+
+
+
+
+    <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/assets/images/favicon.png">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.min.css" />
+    <link rel="stylesheet" href="/frontend/assets/css/iconplugins.css">
 
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/style.css">
 
