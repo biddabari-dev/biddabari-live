@@ -46,13 +46,13 @@
                                     @forelse($courseOrders as $courseOrder)
                                 <div class="col-lg-4 col-md-6">
                                     <div class="courses-item">
-                                        <a href="{{ route('front.course-details', ['id' => $courseOrder->course->id, 'slug' => $courseOrder->course->slug]) }}">
+                                        <a href="{{ route('front.course-details', [, 'slug' => $courseOrder->course->slug]) }}">
                                             <img src="{{ asset($courseOrder->course->banner) }}" alt="Courses" class="img-fluid" style="height: 230px" />
                                         </a>
                                         <div class="content">
-                                            <h3><a href="{{ route('front.course-details', ['id' => $courseOrder->course->id, 'slug' => $courseOrder->course->slug]) }}">{{ $courseOrder->course->title }}</a></h3>
+                                            <h3><a href="{{ route('front.course-details', ['slug' => $courseOrder->course->slug]) }}">{{ $courseOrder->course->title }}</a></h3>
                                             <div class="bottom-content">
-                                                <a href="{{ route('front.course-details', ['id' => $courseOrder->course->id, 'slug' => $courseOrder->course->slug]) }}" class="btn btn-warning">বিস্তারিত দেখুন</a>
+                                                <a href="{{ route('front.course-details', ['slug' => $courseOrder->course->slug]) }}" class="btn btn-warning">বিস্তারিত দেখুন</a>
                                             </div>
                                         </div>
                                     </div>

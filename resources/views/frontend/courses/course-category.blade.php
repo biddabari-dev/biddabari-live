@@ -20,11 +20,11 @@
                     @foreach($courseCategory->courseCategories as $courseCategoryx)
                         <div class="col-md-3">
                             <div class="categories-item rounded-0" >
-                                <a href="{{ route('front.category-courses', ['id' => $courseCategoryx->id, 'slug' => $courseCategoryx->slug]) }}">
+                                <a href="{{ route('front.category-courses', ['slug' => $courseCategoryx->slug]) }}">
                                     <img src="{{ asset(isset($courseCategoryx->image) ? $courseCategoryx->image : 'frontend/logo/biddabari-card-logo.jpg') }}" alt="Categories" class="w-100 border-0" style="height: 200px">
                                 </a>
                                 <div class="content">
-                                    <a href="{{ route('front.category-courses', ['id' => $courseCategoryx->id, 'slug' => $courseCategoryx->slug]) }}">
+                                    <a href="{{ route('front.category-courses', ['slug' => $courseCategoryx->slug]) }}">
                                         <i class="{{ $courseCategoryx->icon ?? 'flaticon-web-development' }}"></i>
                                         <h3>{{ $courseCategoryx->name ?? 'No Title' }}</h3>
                                     </a>

@@ -1,11 +1,11 @@
 <div class="col-md-4 col-sm-6 px-1">
     <div class="courses-item">
-        <a href="{{ route('front.course-details', ['slug' => $course->slug, 'id' => $course->id]) }}">
+        <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
             <img src="{{ asset(file_exists_obs($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}"
                 alt="Courses" class="w-100" style="height: 230px" />
         </a>
         <div class="content">
-            <h3><a href="{{ route('front.course-details', ['slug' => $course->slug, 'id' => $course->id]) }}">{{ $course->title ?? 'Course Title' }}</a></h3>
+            <h3><a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">{{ $course->title ?? 'Course Title' }}</a></h3>
             <ul class="course-list">
                 {{-- <li><i class="ri-time-fill"></i> 06 hr</li>--}}
                 <li><i class="ri-vidicon-fill"></i> {{ $course->total_note ?? 0 }} lectures</li>
@@ -38,7 +38,7 @@
 
             <div class="bottom-content">
                 @if($course->order_status != 'true')
-                <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}"
+                <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}"
                     class="btn btn-warning">বিস্তারিত দেখুন</a>
                 @endif
                 <div class="rating ">

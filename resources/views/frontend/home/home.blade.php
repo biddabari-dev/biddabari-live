@@ -160,15 +160,15 @@
                 @foreach($courses as $course)
                         <div class="col-lg-4 col-md-6">
                             <div class="courses-item">
-                                <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
+                                <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
                                     <img loading="lazy"
                                         src="{{ asset(file_exists_obs($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}"
                                         alt="Courses" class="w-100 p-2" style="height: 230px" />
                                 </a>
-                                <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">
+                                <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
                                     <div class="content">
                                         <h3 class="py-2"><a
-                                                href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}">{{
+                                                href="{{ route('front.course-details', ['slug' => $course->slug]) }}">{{
                         $course->title }}</a></h3>
 
                                         <ul class="course-list">
@@ -206,7 +206,7 @@
 
                                         <div class="bottom-content">
                                             @if($course->order_status != 'true')
-                                                <a href="{{ route('front.course-details', ['id' => $course->id, 'slug' => $course->slug]) }}"
+                                                <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}"
                                                     class="btn btn-warning">বিস্তারিত দেখুন</a>
                                             @else
                                                 <a href="javascript:void(0)" class=""></a>
