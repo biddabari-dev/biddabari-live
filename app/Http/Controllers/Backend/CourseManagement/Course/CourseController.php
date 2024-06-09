@@ -297,6 +297,7 @@ class CourseController extends Controller
         $validator = $request->validate([
             'student_id' => 'required',
             'paid_amount' => 'required',
+            'payment_status' => 'required',
         ]);
         $this->course = Course::find($id);
         foreach ($this->course->students as $student)
