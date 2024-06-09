@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="col-sm-6 mt-2 select2-div">
                                         <label for="paymentStatus">Payment Status</label>
-                                        <select name="payment_status" class="form-control select2" id="paymentStatus" data-placeholder="Set Payment Status">
+                                        <select name="payment_status" class="form-control select2" id="paymentStatus" data-placeholder="Set Payment Status" required>
                                             <option value=""></option>
                                             <option value="pending">Pending</option>
                                             <option value="partial">Partial</option>
