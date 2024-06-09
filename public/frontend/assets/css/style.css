@@ -7843,7 +7843,26 @@ img {
 }
 
 
+.details_custom_mobile_block{
+    display: none;
+}
+
+
 @media only screen and (min-width : 280px) and (max-width: 420px) {
+
+
+        /* -------------------Course Details Page Start --------------------- */
+        .details_custom_mobile_block{
+            display: block;
+        }
+        .details_custom_mobile_none{
+            display: none;
+        }
+        .courses-details-tab .tabs li {
+            padding: 10px 10px !important;
+        }
+        /* -------------------Course Details Page End --------------------- */
+    
 
     .bread{
         text-align: center !important;
@@ -7931,10 +7950,25 @@ img {
         width: 100% !important;
     }
 
+
+
 }
 
 
 @media only screen and (min-width : 280px) and (max-width: 420px) {
+
+        /* -------------------Course Details Page Start --------------------- */
+        .details_custom_mobile_block{
+            display: block;
+        }
+        .details_custom_mobile_none{
+            display: none;
+        }
+        .courses-details-tab .tabs li {
+            padding: 10px 10px !important;
+        }
+        /* -------------------Course Details Page End --------------------- */
+    
 
     .bread{
         text-align: center !important;
@@ -8238,6 +8272,19 @@ img {
 
 @media only screen and (min-width : 421px) and (max-width: 520px) {
 
+        /* -------------------Course Details Page Start --------------------- */
+        .details_custom_mobile_block{
+            display: block;
+        }
+        .details_custom_mobile_none{
+            display: none;
+        }
+        .courses-details-tab .tabs li {
+            padding: 10px 10px !important;
+        }
+        /* -------------------Course Details Page End --------------------- */
+    
+
     .bread{
         text-align: center !important;
     }
@@ -8534,6 +8581,19 @@ img {
 }
 
 @media only screen and (min-width : 521px) and (max-width : 767px) {
+
+        /* -------------------Course Details Page Start --------------------- */
+        .details_custom_mobile_block{
+            display: block;
+        }
+        .details_custom_mobile_none{
+            display: none;
+        }
+        .courses-details-tab .tabs li {
+            padding: 10px 10px !important;
+        }
+        /* -------------------Course Details Page End --------------------- */
+    
 
     .bread{
         text-align: center !important;

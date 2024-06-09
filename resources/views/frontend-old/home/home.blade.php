@@ -128,7 +128,7 @@
                     </a>
                     <div class="content">
                         <a
-                            href="{{ route('front.category-courses', ['id' => $courseCategory->id, 'slug' => $courseCategory->slug]) }}">
+                            href="{{ route('front.category-courses', ['slug' => $courseCategory->slug]) }}">
                             <i class="{{ $courseCategory->icon ?? 'flaticon-web-development' }}"></i>
                             <h3>{{ $courseCategory->name ?? 'No Title' }}</h3>
                         </a>

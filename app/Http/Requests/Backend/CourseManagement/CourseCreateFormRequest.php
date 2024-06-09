@@ -46,7 +46,7 @@ class CourseCreateFormRequest extends FormRequest
 //            'total_exam'    => 'nullable|numeric',
 //            'total_pdf'     => 'nullable|numeric',
 //            'total_note'    => 'nullable|numeric',
-//            'total_link'    => 'nullable|numeric',
+//            'total_link'    => 'nullable|numeric',s
 //            'total_live'    => 'nullable|numeric',
 //            'total_zip'     => 'nullable|numeric',
 //            'total_class'   => 'nullable|numeric',

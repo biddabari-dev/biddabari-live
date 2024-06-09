@@ -4,10 +4,111 @@
             <div class="courses-details-area pt-3 pb-70">
                 <div class="container">
                     <div class="row">
+
+
+                    <div class="col-lg-4 details_custom_mobile_block">
+                            <div class="courses-details-sidebar shadow">
+                                {{--                                <img src="{{ asset($course->banner) }}" alt="Courses" style="height: 240px" />--}}
+                                @if(!empty($course->featured_video_url))
+                                    <div class="video-container" >
+                                        <div class="video-foreground">
+                                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/{!! $course->featured_video_url !!}?rel=0&amp;modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                                        </div>
+                                    </div>
+                                @else
+                                    <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 315px" alt="banner">
+                                @endif
+                                <div class="content">
+                                    <h1>{!! $course->title !!}</h1>
+                                    <span class="f-s-22 sub-title">{!! $course->sub_title !!}</span> <br>
+                                    <span class="f-s-20">{!! 'Admission Last Date - '.showDate($course->admission_last_date) !!}</span>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            @if($course->discount_end_date > \Illuminate\Support\Carbon::today()->format('Y-m-d') && $course->discount_amount > 0)
+                                                <p class="f-s-20">Price: <del>{{ $course->is_paid == 1 ? $course->price : 'Free' }}</del> tk</p>
+                                                {{--                                                <p class="f-s-20">Discount Price: {{ $course->price - $course->discount_amount }} tk</p>--}}
+                                                {{--                                                <p class="f-s-20">Discount Price: {{ $discountPrice = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100 }} tk</p>--}}
+                                                    <?php
+                                                    $discountPrice = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100;
+                                                    ?>
+                                                <p class="f-s-20">After Discount: {{ $totalAmount = $course->price - $discountPrice ?? 0 }} tk</p>
+                                            @else
+                                                <p class="f-s-20">Price: {{ $course->is_paid == 1 ? $course->price.' tk' : 'Free' }} </p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    {{--                                    <p>Already Enrolled Student: {{ $course->fack_student_count }}</p>--}}
+                                    <span class="f-s-26">This course includes:</span>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="f-s-20"><i class="ri-time-fill"></i> {{ $course->total_hours ?? '' }} hr</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="f-s-20"><i class="ri-vidicon-fill"></i> {{ $course->total_class ?? '' }} lectures</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="f-s-20"><i class="ri-a-b"></i> {{ $course->total_exam ?? '' }} Exam</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="f-s-20"><i class="ri-store-3-line"></i>{{ $course->total_live ?? '' }} live class</div>
+                                        </div>
+                                    </div>
+
+                                    @if($course->is_paid == 1)
+                                        @if($courseEnrollStatus == 'false')
+                                            @php
+                                                $date=date('Y-m-d H:i');
+                                            @endphp
+                                            @if($course->admission_last_date > $date)
+                                                <a href="{{ route('front.checkout', ['type' => 'course', 'slug' => $course->slug, 'rc' => ($_GET['rc'] ?? '') ]) }}" class="default-btn bg-default-color mt-4">কোর্সটি কিনুন</a>
+{{--                                                <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">--}}
+{{--                                                    @csrf--}}
+{{--                                                    <input type="hidden" name="course_id" value="{{ $course->id }}" />--}}
+{{--                                                    <input type="hidden" name="total_amount" value="{{ $totalAmount ?? 0 }}" />--}}
+{{--                                                    <input type="hidden" name="used_coupon" value="0">--}}
+{{--                                                    <input type="hidden" name="coupon_code" value="">--}}
+{{--                                                    <input type="hidden" name="coupon_amount" value="">--}}
+{{--                                                    <input type="hidden" name="ordered_for" value="course">--}}
+{{--                                                    <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">--}}
+{{--                                                    <input type="hidden" name="payment_method" value="ssl">--}}
+{{--                                                    <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">--}}
+{{--                                                </form>--}}
+                                            @else
+                                                <a class="default-btn bg-default-color btn-block mt-4">ভর্তির সময় শেষ</a>
+                                            @endif
+
+                                            <ul class="social-link">
+                                            </ul>
+                                        @elseif($courseEnrollStatus == 'pending')
+                                            <a href="javascript:void(0)" class="default-btn bg-default-color mt-2">Your Order is Pending</a>
+                                        @endif
+                                    @else
+                                        @if($courseEnrollStatus == 'false')
+                                            @if(auth()->check())
+                                                <a href="" data-course-id="{{ $course->id }}" onclick="event.preventDefault(); document.getElementById('freeCourseOrderForm').submit()" class="default-btn bg-default-color order-free-course">কোর্সটি করুন</a>
+                                            @else
+                                                <a href="{{ route('login') }}" data-course-id="{{ $course->id }}"  class="default-btn bg-default-color order-free-course">কোর্সটি করুন</a>
+                                            @endif
+                                            <form action="{{ route('front.place-free-course-order', ['course_id' => $course->id]) }}" method="post" id="freeCourseOrderForm">
+                                                @csrf
+
+                                                <input type="hidden" name="ordered_for" value="course">
+                                            </form>
+                                        @endif
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
                         <div class="col-lg-8">
                             <div class="card content-shadow rounded-0">
                                 <div class="card-body">
-                                    <h1 class="text-center">{{strtoupper($course->title)}}</h1>
+                                    <h1 class="text-center">{{($course->title)}}</h1>
                                     <hr/>
                                     <div class="courses-details-contact">
                                         <div class="tab courses-details-tab">
@@ -110,7 +211,7 @@
                             {{--comment - has to work later--}}
                             <div class="comments-form">
                                 <div class="contact-form">
-                                    <h4>Leave a Reply</h4>
+                                    <h4>Leave A Reply</h4>
                                     <form id="" action="{{ route('front.new-comment') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="type" value="course">
@@ -121,14 +222,14 @@
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <textarea name="message" class="form-control" id="" cols="30" rows="3" required placeholder="Leave a comment..." required></textarea>
+                                                    <textarea name="message" class="form-control" id="" cols="30" rows="3" required placeholder="Comment..." required></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
                                                 <button type="submit"
                                                 {{-- @if(!auth()->check()) onclick="event.preventDefault(); toastr.error('Please Login First');" @endif  --}}
                                                 class="default-btn">
-                                                    Post a Comment
+                                                    Post A Comment
                                                 </button>
                                             </div>
                                         </div>
@@ -168,7 +269,7 @@
 
 
 
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 details_custom_mobile_none">
                             <div class="courses-details-sidebar shadow">
                                 {{--                                <img src="{{ asset($course->banner) }}" alt="Courses" style="height: 240px" />--}}
                                 @if(!empty($course->featured_video_url))
@@ -181,14 +282,14 @@
                                     <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 315px" alt="banner">
                                 @endif
                                 <div class="content">
-                                    {{-- <h1>{!! $course->title !!}</h1> --}}
+                                    <h1>{!! $course->title !!}</h1>
                                     <span class="f-s-22 sub-title">{!! $course->sub_title !!}</span> <br>
-                                    <span class="f-s-22">{!! 'Admission Last Date : '.showDate($course->admission_last_date) !!}</span>
+                                    <span class="f-s-20">{!! 'Admission Last Date - '.showDate($course->admission_last_date) !!}</span>
                                     <div class="row">
                                         <div class="col-md-6">
 
                                             @if($course->discount_end_date > \Illuminate\Support\Carbon::today()->format('Y-m-d') && $course->discount_amount > 0)
-                                                <p class="f-s-20 mb-0">Price: <del>{{ $course->is_paid == 1 ? $course->price : 'Free' }}</del> tk</p>
+                                                <p class="f-s-20">Price: <del>{{ $course->is_paid == 1 ? $course->price : 'Free' }}</del> tk</p>
                                                 {{--                                                <p class="f-s-20">Discount Price: {{ $course->price - $course->discount_amount }} tk</p>--}}
                                                 {{--                                                <p class="f-s-20">Discount Price: {{ $discountPrice = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100 }} tk</p>--}}
                                                     <?php
@@ -204,16 +305,16 @@
                                     <span class="f-s-26">This course includes:</span>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="f-s-20 fl"><i class="ri-time-fill"></i> {{ $course->total_hours ?? '' }} hr</div>
+                                            <div class="f-s-20"><i class="ri-time-fill"></i> {{ $course->total_hours ?? '' }} hr</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="f-s-20 fl"><i class="ri-vidicon-fill"></i> {{ $course->total_class ?? '' }} lectures</div>
+                                            <div class="f-s-20"><i class="ri-vidicon-fill"></i> {{ $course->total_class ?? '' }} lectures</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="f-s-20 fl"><i class="ri-a-b"></i> {{ $course->total_exam ?? '' }} Exam</div>
+                                            <div class="f-s-20"><i class="ri-a-b"></i> {{ $course->total_exam ?? '' }} Exam</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="f-s-20 fl"><i class="ri-store-3-line"></i>{{ $course->total_live ?? '' }} live class</div>
+                                            <div class="f-s-20"><i class="ri-store-3-line"></i>{{ $course->total_live ?? '' }} live class</div>
                                         </div>
                                     </div>
 
@@ -262,6 +363,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        
                     </div>
                 </div>
             </div>

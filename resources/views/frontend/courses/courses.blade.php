@@ -34,7 +34,7 @@
                                         <div class="row pb-5">
                                             @foreach($courseCategory->courseCategories as $courseSubCategory)
                                                 <div class="col-md-4">
-                                                    <a href="{{ route('front.category-courses', [ 'slug' => $courseSubCategory->slug]) }}" class="w-100">
+                                                    <a href="{{ route('front.category-courses', ['slug' => $courseSubCategory->slug]) }}" class="w-100">
                                                         <div class="categories-item rounded-0">
                                                             <img src="{{ asset(!empty($courseSubCategory->image) ? $courseSubCategory->image : 'frontend/logo/biddabari-card-logo.jpg') }}" alt="Categories" class="w-100 border-0" style="height: 240px">
                                                             <div class="content" style="min-height: 80px">
