@@ -110,7 +110,7 @@
                             {{--comment - has to work later--}}
                             <div class="comments-form">
                                 <div class="contact-form">
-                                    <h4>Leave A Reply</h4>
+                                    <h4>Leave a Reply</h4>
                                     <form id="" action="{{ route('front.new-comment') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="type" value="course">
@@ -121,14 +121,14 @@
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <textarea name="message" class="form-control" id="" cols="30" rows="3" required placeholder="Comment..." required></textarea>
+                                                    <textarea name="message" class="form-control" id="" cols="30" rows="3" required placeholder="Leave a comment..." required></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
                                                 <button type="submit"
                                                 {{-- @if(!auth()->check()) onclick="event.preventDefault(); toastr.error('Please Login First');" @endif  --}}
                                                 class="default-btn">
-                                                    Post A Comment
+                                                    Post a Comment
                                                 </button>
                                             </div>
                                         </div>
@@ -181,14 +181,14 @@
                                     <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 315px" alt="banner">
                                 @endif
                                 <div class="content">
-                                    <h1>{!! $course->title !!}</h1>
+                                    {{-- <h1>{!! $course->title !!}</h1> --}}
                                     <span class="f-s-22 sub-title">{!! $course->sub_title !!}</span> <br>
-                                    <span class="f-s-22">{!! 'Admission Last Date - '.showDate($course->admission_last_date) !!}</span>
+                                    <span class="f-s-22">{!! 'Admission Last Date : '.showDate($course->admission_last_date) !!}</span>
                                     <div class="row">
                                         <div class="col-md-6">
 
                                             @if($course->discount_end_date > \Illuminate\Support\Carbon::today()->format('Y-m-d') && $course->discount_amount > 0)
-                                                <p class="f-s-20">Price: <del>{{ $course->is_paid == 1 ? $course->price : 'Free' }}</del> tk</p>
+                                                <p class="f-s-20 mb-0">Price: <del>{{ $course->is_paid == 1 ? $course->price : 'Free' }}</del> tk</p>
                                                 {{--                                                <p class="f-s-20">Discount Price: {{ $course->price - $course->discount_amount }} tk</p>--}}
                                                 {{--                                                <p class="f-s-20">Discount Price: {{ $discountPrice = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100 }} tk</p>--}}
                                                     <?php
@@ -204,16 +204,16 @@
                                     <span class="f-s-26">This course includes:</span>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="f-s-20"><i class="ri-time-fill"></i> {{ $course->total_hours ?? '' }} hr</div>
+                                            <div class="f-s-20 fl"><i class="ri-time-fill"></i> {{ $course->total_hours ?? '' }} hr</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="f-s-20"><i class="ri-vidicon-fill"></i> {{ $course->total_class ?? '' }} lectures</div>
+                                            <div class="f-s-20 fl"><i class="ri-vidicon-fill"></i> {{ $course->total_class ?? '' }} lectures</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="f-s-20"><i class="ri-a-b"></i> {{ $course->total_exam ?? '' }} Exam</div>
+                                            <div class="f-s-20 fl"><i class="ri-a-b"></i> {{ $course->total_exam ?? '' }} Exam</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="f-s-20"><i class="ri-store-3-line"></i>{{ $course->total_live ?? '' }} live class</div>
+                                            <div class="f-s-20 fl"><i class="ri-store-3-line"></i>{{ $course->total_live ?? '' }} live class</div>
                                         </div>
                                     </div>
 

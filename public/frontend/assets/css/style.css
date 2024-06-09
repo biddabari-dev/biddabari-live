@@ -7845,6 +7845,10 @@ img {
 
 @media only screen and (min-width : 280px) and (max-width: 420px) {
 
+    .bread{
+        text-align: center !important;
+    }
+
     .quiz-wizard .position-sticky {
         top: 105px !important;
         z-index: 10;
@@ -7931,6 +7935,10 @@ img {
 
 
 @media only screen and (min-width : 280px) and (max-width: 420px) {
+
+    .bread{
+        text-align: center !important;
+    }
 
     .popup_card img{
         width: 100%;
@@ -8230,6 +8238,10 @@ img {
 
 @media only screen and (min-width : 421px) and (max-width: 520px) {
 
+    .bread{
+        text-align: center !important;
+    }
+
     .popup_card img{
         width: 100%;
         height: 150px;
@@ -8522,6 +8534,10 @@ img {
 }
 
 @media only screen and (min-width : 521px) and (max-width : 767px) {
+
+    .bread{
+        text-align: center !important;
+    }
     .popup_card img{
         width: 100%;
         height: 150px;
@@ -8798,6 +8814,10 @@ img {
 }
 
 @media only screen and (min-width : 576px) and (max-width : 767px) {
+
+    .bread{
+        text-align: center !important;
+    }
     .mobile_res {
         display: none;
     }
@@ -9024,6 +9044,10 @@ img {
         padding: 10px 10px !important;
     }
 
+    .bread{
+        text-align: center !important;
+    }
+
     /* -----------Design Update Mizan  ---------------------- */
 }
 
@@ -9033,4 +9057,12 @@ img {
 
 .courses-details-tab ul li{
     font-size: 20px !important;
+}
+
+.fl{
+    display: flex;
+}
+
+.fl i{
+    margin-right: 5px;
 }
