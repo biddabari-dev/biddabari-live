@@ -131,6 +131,7 @@ class Course extends Model
 
     public static function createOrUpdateCourse ($request, $id = null)
     {
+        dd($request->description);
         $lastOrder = Course::orderBy("c_order", "DESC")->first();
         if (isset($id))
         {
