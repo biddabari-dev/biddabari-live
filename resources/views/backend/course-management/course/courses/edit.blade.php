@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-md-12 mt-2 mb-2">
                     <label for="">Course Description</label>
-                    <textarea name="description" class="form-control" id="" placeholder="Course Description" cols="30" rows="5"></textarea>
+                    <textarea name="description" class="form-control" id="cksss" placeholder="Course Description" cols="30" rows="5"></textarea>
                     <span class="text-danger" id="description"></span>
                 </div>
                 <div class="col-md-12 mt-2 mb-2">
