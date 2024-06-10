@@ -7981,23 +7981,23 @@ img {
     height: 45px;
     line-height: 43px;
     z-index: 100;
-    -webkit-transition: .5s;
-    transition: .5s
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 
 .go-top i {
-    -webkit-transition: .5s;
-    transition: .5s;
-    vertical-align: middle
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    vertical-align: middle;
 }
 
 .go-top:hover {
-    background-color: var(--titleColor)
+    background-color: var(--titleColor);
 }
 
 .go-top:hover i {
     -webkit-transform: translateY(-5px);
-    transform: translateY(-5px)
+    transform: translateY(-5px);
 }
 
 .go-top.active {
@@ -8005,7 +8005,7 @@ img {
     -webkit-transform: translateY(-95%);
     transform: translateY(-95%);
     opacity: 1;
-    visibility: visible
+    visibility: visible;
 }
 
 .pagination-area {
@@ -8596,11 +8596,9 @@ img {
     margin-left: 50px;
 }
 
-.details_custom_mobile_block,
-.dn_block_sub_title {
+.details_custom_mobile_block {
     display: none;
 }
-
 
 /* ------------------------------------ */
 .go-messenger {
@@ -8620,19 +8618,19 @@ img {
     height: 50px;
     line-height: 35px;
     z-index: 100;
-    -webkit-transition: .5s;
-    transition: .5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
     padding-top: 6px;
 }
 
 .go-messenger i {
-    -webkit-transition: .5s;
-    transition: .5s;
-    vertical-align: middle
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    vertical-align: middle;
 }
 
 .go-messenger:hover {
-    background-color: var(--titleColor)
+    background-color: var(--titleColor);
 }
 
 /* .go-messenger:hover i {
@@ -8645,110 +8643,95 @@ img {
     -webkit-transform: translateY(-95%);
     transform: translateY(-95%);
     opacity: 1;
-    visibility: visible
+    visibility: visible;
 }
 
 /* ------------------------------------------- */
 
+.bread {
+    text-align: center !important;
+}
 
-        /* -------------------Course Details Page Start --------------------- */
-        .details_custom_mobile_block{
-            display: block;
-        }
-        .details_custom_mobile_none{
-            display: none;
-        }
-        .courses-details-tab .tabs li {
-            padding: 10px 10px !important;
-        }
-        /* -------------------Course Details Page End --------------------- */
+.quiz-wizard .position-sticky {
+    top: 105px !important;
+    z-index: 10;
+}
 
+.featured-item-two a h3 {
+    font-size: 18px !important;
+}
 
-    .bread {
-        text-align: center !important;
-    }
+/* --------------------Checkout page start-------------- */
+.checkout_log .form-control {
+    font-size: 1.5rem !important;
+}
 
-    .quiz-wizard .position-sticky {
-        top: 105px !important;
-        z-index: 10;
-    }
+.checkout_contact .contact-info-card {
+    padding: 10px 30px 10px 110px;
+}
 
-    .featured-item-two a h3 {
-        font-size: 18px !important;
-    }
+.checkout_contact .contact-info-card i {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 24px;
+    color: var(--whiteColor);
+    background-color: var(--mainColor);
+    text-align: center;
+    display: inline-block;
+    -webkit-transition: var(--transition);
+    transition: var(--transition);
+    border-radius: 50%;
+}
 
-    /* --------------------Checkout page start-------------- */
-    .checkout_log .form-control {
-        font-size: 1.5rem !important;
-    }
+.checkout_coupon .form-control {
+    font-size: 1.5rem !important;
+    margin-top: 5px;
+}
 
-    .checkout_contact .contact-info-card {
-        padding: 10px 30px 10px 110px;
-    }
+.checkout_coupon .input-group-text {
+    margin-top: 5px;
+}
 
-    .checkout_contact .contact-info-card i {
-        position: absolute;
-        top: 10px;
-        left: 30px;
-        width: 60px;
-        height: 60px;
-        line-height: 60px;
-        font-size: 24px;
-        color: var(--whiteColor);
-        background-color: var(--mainColor);
-        text-align: center;
-        display: inline-block;
-        -webkit-transition: var(--transition);
-        transition: var(--transition);
-        border-radius: 50%;
-    }
+.billing-totals .default-btn {
+    width: 100%;
+    padding: 4px 33px;
+    background-color: red;
+    margin-top: 20px;
+    font-size: 25px;
+}
 
-    .checkout_coupon .form-control {
-        font-size: 1.5rem !important;
-        margin-top: 5px;
-    }
+.pay_method_icon img {
+    width: 120px;
+    height: 45px;
+}
 
-    .checkout_coupon .input-group-text {
-        margin-top: 5px;
-    }
+.checkout_log label {
+    font-size: 25px;
+}
 
-    .billing-totals .default-btn {
-        width: 100%;
-        padding: 4px 33px;
-        background-color: red;
-        margin-top: 20px;
-        font-size: 25px;
-    }
+.checkout_contact {
+    margin-top: 10px;
+}
 
-    .pay_method_icon img {
-        width: 120px;
-        height: 45px;
-    }
+.custome_col_4 .bg-danger i,
+.custome_col_4 .bg-danger a {
+    padding: 0px 10px;
+}
 
-    .checkout_log label {
-        font-size: 25px;
-    }
+.billing-totals ul li {
+    font-size: 24px;
+    color: #000;
+    padding: 5px 12px;
+}
 
-    .checkout_contact {
-        margin-top: 10px;
-    }
-
-    .custome_col_4 .bg-danger i,
-    .custome_col_4 .bg-danger a {
-        padding: 0px 10px;
-    }
-
-    .billing-totals ul li {
-        font-size: 24px;
-        color: #000;
-        padding: 5px 12px;
-    }
-
-    /* --------------------Checkout page end-------------- */
-    .categories-item a img {
-        height: 200px !important;
-        width: 100% !important;
-    }
+/* --------------------Checkout page end-------------- */
+.categories-item a img {
+    height: 200px !important;
+    width: 100% !important;
 }
 
 @media only screen and (min-width: 280px) and (max-width: 420px) {
@@ -9076,20 +9059,19 @@ img {
     }
     /* -------------------Course Details Page End --------------------- */
 
-        /* -------------------Course Details Page Start --------------------- */
-        .details_custom_mobile_block{
-            display: block;
-        }
-        .details_custom_mobile_none{
-            display: none;
-        }
-        .courses-details-tab .tabs li {
-            padding: 10px 10px !important;
-        }
-        /* -------------------Course Details Page End --------------------- */
+    /* -------------------Course Details Page Start --------------------- */
+    .details_custom_mobile_block {
+        display: block;
+    }
+    .details_custom_mobile_none {
+        display: none;
+    }
+    .courses-details-tab .tabs li {
+        padding: 10px 10px !important;
+    }
+    /* -------------------Course Details Page End --------------------- */
 
-
-    .bread{
+    .bread {
         text-align: center !important;
     }
 
@@ -9396,20 +9378,19 @@ img {
     }
     /* -------------------Course Details Page End --------------------- */
 
-        /* -------------------Course Details Page Start --------------------- */
-        .details_custom_mobile_block{
-            display: block;
-        }
-        .details_custom_mobile_none{
-            display: none;
-        }
-        .courses-details-tab .tabs li {
-            padding: 10px 10px !important;
-        }
-        /* -------------------Course Details Page End --------------------- */
+    /* -------------------Course Details Page Start --------------------- */
+    .details_custom_mobile_block {
+        display: block;
+    }
+    .details_custom_mobile_none {
+        display: none;
+    }
+    .courses-details-tab .tabs li {
+        padding: 10px 10px !important;
+    }
+    /* -------------------Course Details Page End --------------------- */
 
-
-    .bread{
+    .bread {
         text-align: center !important;
     }
     .popup_card img {
@@ -9940,7 +9921,7 @@ img {
     margin-right: 5px;
 }
 
-.ud-container{
+.ud-container {
     text-align: center;
     padding: 4rem;
 }
