@@ -205,13 +205,6 @@
     //]]>
     </script>
 
-<script type="text/javascript">
-    //<![CDATA[
-
-        CKEDITOR.replace( 'cksss');
-    //]]>
-    </script>
-
 
 {{--    @include('backend.includes.assets.plugin-files.date-time-picker')--}}
     <script src="{{ asset('/') }}backend/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>

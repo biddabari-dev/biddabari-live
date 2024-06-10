@@ -24,15 +24,18 @@ $(document).on('click', '.edit-btn', function () {
     event.preventDefault();
     var courseId = $(this).attr('data-course-id');
     $.ajax({
-        url: base_url+"courses/"+courseId+"/edit",
+        url: "/courses/"+courseId+"/edit",
         method: "GET",
         // dataType: "JSON",
         success: function (data) {
+            console.log(data.course);
 
             $('#modalForm').empty().append(data);
-            $("#summernote").summernote({height:70, inheritPlaceholder: true});
+            // $("#summernote").summernote({height:70, inheritPlaceholder: true});
             // $("#summernote1").summernote({height:70, inheritPlaceholder: true});
-            // CKEDITOR.replace( 'description' );
+            description = $('#sss').val();
+            console.log(description);
+            CKEDITOR.replace( 'cksss' ).setData(data.description);
 
             $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
             $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});

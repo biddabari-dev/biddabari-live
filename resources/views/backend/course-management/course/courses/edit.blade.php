@@ -53,9 +53,10 @@
                 </div>
                 <div class="col-md-12 mt-2 mb-2">
                     <label for="">Course Description</label>
-                    <textarea name="descriptions" class="form-control" id="cksss" placeholder="Course Description" cols="30" rows="5"></textarea>
+                    <textarea name="description" class="form-control" id="cksss" placeholder="Course Description" cols="30" rows="5">{!! isset($course) ? $course->description : '' !!}</textarea>
                     <span class="text-danger" id="description"></span>
                 </div>
+                <input type="hidden" id="sss" value="{{ $course->description }}">
                 <div class="col-md-12 mt-2 mb-2">
                     <label for="">What you'll learn?</label>
                     <textarea name="whythiscourse" class="form-control" id="whythiscourse" placeholder="What you'll learn?" cols="30" rows="5">{!! isset($course) ? $course->whythiscourse : '' !!}</textarea>
