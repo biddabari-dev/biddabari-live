@@ -212,7 +212,7 @@
             {
                 fullPage : true,
                 uiColor : '#efe8ce'
-            });
+            }).setData({!! isset($course) ? $course->description : '' !!});;
     //]]>
     </script>
 
