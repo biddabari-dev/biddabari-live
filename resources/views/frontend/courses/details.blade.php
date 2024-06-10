@@ -21,7 +21,7 @@
                                 <div class="content">
                                     <h1>{!! $course->title !!}</h1>
                                     <span class="f-s-22 sub-title">{!! $course->sub_title !!}</span> <br>
-                                    <span class="f-s-20">{!! 'Admission Last Date - '.showDate($course->admission_last_date) !!}</span>
+                                    <span class="f-s-20">{!! 'Admission Last Date : '.showDate($course->admission_last_date) !!}</span>
                                     <div class="row">
                                         <div class="col-md-6">
 
@@ -352,7 +352,7 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
                 </div>
             </div>

@@ -155,7 +155,9 @@
                                             <label for="confirmPhone" >Confirm Phone No</label>
                                             <input type="text" onkeypress="return isNumberKey(event)" id="confirmPhone" name="confirm_mobile" required class="form-control"
                                                    placeholder="Enter your phone no" value="{{ auth()->check() ? auth()->user()->mobile : '' }}" {{--{{ auth()->check() && !empty(auth()->user()->mobile) ? 'readonly' : '' }}--}} />
-                                            @error('confirm_mobile')<span class="text-danger"></span>@enderror
+                                                   @if(Session::has('error'))
+                                                   <span class="text-danger f-s-18 float-start">{{ Session::get('error') }}</span>
+                                                    @endif
                                         </div>
                                     </div>
                                 </li>
