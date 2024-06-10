@@ -8658,7 +8658,7 @@ img {
 }
 
 .featured-item-two a h3 {
-    font-size: 18px !important;
+    font-size: 24px !important;
 }
 
 /* --------------------Checkout page start-------------- */
@@ -8734,6 +8734,10 @@ img {
     width: 100% !important;
 }
 
+.top-header {
+    padding-top: 10px !important;
+}
+
 @media only screen and (min-width: 280px) and (max-width: 420px) {
     /* -------------------Course Details Page Start --------------------- */
     .details_custom_mobile_block {
@@ -8785,7 +8789,7 @@ img {
     }
 
     .acme-news-ticker {
-        height: 25px !important;
+        height: 35px !important;
     }
     .acme-news-ticker-box {
         padding-top: 0px !important;

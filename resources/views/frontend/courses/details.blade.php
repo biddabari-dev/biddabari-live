@@ -293,16 +293,16 @@
                                     <span class="f-s-26">This course includes:</span>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="f-s-20"><i class="ri-time-fill"></i> {{ $course->total_hours ?? '' }} hr</div>
+                                            <div class="f-s-20 d-flex"><i class="ri-time-fill me-2"></i> {{ $course->total_hours ?? '' }} hr</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="f-s-20"><i class="ri-vidicon-fill"></i> {{ $course->total_class ?? '' }} lectures</div>
+                                            <div class="f-s-20 d-flex"><i class="ri-vidicon-fill me-2"></i> {{ $course->total_class ?? '' }} lectures</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="f-s-20"><i class="ri-a-b"></i> {{ $course->total_exam ?? '' }} Exam</div>
+                                            <div class="f-s-20 d-flex"><i class="ri-a-b me-2"></i> {{ $course->total_exam ?? '' }} Exam</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="f-s-20"><i class="ri-store-3-line"></i>{{ $course->total_live ?? '' }} live class</div>
+                                            <div class="f-s-20 d-flex"><i class="ri-store-3-line me-2"></i>{{ $course->total_live ?? '' }} live class</div>
                                         </div>
                                     </div>
 
