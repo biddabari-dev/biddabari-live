@@ -212,7 +212,7 @@
             {
                 fullPage : true,
                 uiColor : '#efe8ce'
-            }).setData('ss');
+            });
     //]]>
     </script>
 
