@@ -7843,7 +7843,7 @@ img {
 }
 
 
-.details_custom_mobile_block{
+.details_custom_mobile_block, .dn_block_sub_title{
     display: none;
 }
 

@@ -61,19 +61,7 @@
                                                 $date=date('Y-m-d H:i');
                                             @endphp
                                             @if($course->admission_last_date > $date)
-                                                <a href="{{ route('front.checkout', ['type' => 'course', 'slug' => $course->slug, 'rc' => ($_GET['rc'] ?? '') ]) }}" class="default-btn bg-default-color mt-4">কোর্সটি কিনুন</a>
-{{--                                                <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">--}}
-{{--                                                    @csrf--}}
-{{--                                                    <input type="hidden" name="course_id" value="{{ $course->id }}" />--}}
-{{--                                                    <input type="hidden" name="total_amount" value="{{ $totalAmount ?? 0 }}" />--}}
-{{--                                                    <input type="hidden" name="used_coupon" value="0">--}}
-{{--                                                    <input type="hidden" name="coupon_code" value="">--}}
-{{--                                                    <input type="hidden" name="coupon_amount" value="">--}}
-{{--                                                    <input type="hidden" name="ordered_for" value="course">--}}
-{{--                                                    <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">--}}
-{{--                                                    <input type="hidden" name="payment_method" value="ssl">--}}
-{{--                                                    <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">--}}
-{{--                                                </form>--}}
+                                                <a href="{{ route('front.checkout', ['type' => 'course', 'slug' => $course->slug, 'rc' => ($_GET['rc'] ?? '') ]) }}" class="default-btn bg-default-color mt-4">কোর্সটি কিনুন</a>      
                                             @else
                                                 <a class="default-btn bg-default-color btn-block mt-4">ভর্তির সময় শেষ</a>
                                             @endif
@@ -108,7 +96,7 @@
                         <div class="col-lg-8">
                             <div class="card content-shadow rounded-0">
                                 <div class="card-body">
-                                    <h1 class="text-center">{{($course->title)}}</h1>
+                                    <h1 class="text-center details_custom_mobile_none">{{($course->title)}}</h1>
                                     <hr/>
                                     <div class="courses-details-contact">
                                         <div class="tab courses-details-tab">
@@ -282,9 +270,9 @@
                                     <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 315px" alt="banner">
                                 @endif
                                 <div class="content">
-                                    <h1>{!! $course->title !!}</h1>
+                                    {{-- <h1>{!! $course->title !!}</h1> --}}
                                     <span class="f-s-22 sub-title">{!! $course->sub_title !!}</span> <br>
-                                    <span class="f-s-20">{!! 'Admission Last Date - '.showDate($course->admission_last_date) !!}</span>
+                                    <p class="f-s-20" style="color:red">{!! 'Admission Last Date : '.showDate($course->admission_last_date) !!}</p>
                                     <div class="row">
                                         <div class="col-md-6">
 
