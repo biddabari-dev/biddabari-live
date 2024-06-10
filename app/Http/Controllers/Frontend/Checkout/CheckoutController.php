@@ -178,7 +178,7 @@ class CheckoutController extends Controller
 
             Validator::make($request->all(), [
                 'name'  => 'required',
-                'mobile'  => ['required', 'regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'],
+                'mobile'  => ['required','confirmPhone', 'regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'],
                 'payment_method'  => 'required',
             ]);
             if (!empty($request->mobile))
