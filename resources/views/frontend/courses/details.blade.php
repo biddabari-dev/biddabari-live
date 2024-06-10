@@ -48,7 +48,7 @@
                                             <div class="f-s-20 d-flex"><i class="ri-vidicon-fill me-2"></i> {{ $course->total_class ?? '' }} lectures</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="f-s-20 d-flex"><i class="ri-a-b me-2"></i> {{ $course->total_exam ?? '' }} Exam</div>
+                                            <div class="f-s-20 d-flex" ><i class="ri-a-b me-2"></i> {{ $course->total_exam ?? '' }} Exam</div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="f-s-20 d-flex"><i class="ri-store-3-line me-2"></i>{{ $course->total_live ?? '' }} live class</div>
