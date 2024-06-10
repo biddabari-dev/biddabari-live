@@ -145,6 +145,10 @@ class Course extends Model
         self::$course->price                    = $request->price ?? 0;
         self::$course->banner                   = isset($id) ? imageUpload($request->file('banner'), 'course/course-banners/', 'courses', '300', '200', Course::find($id)->banner) : imageUpload($request->file('banner'), 'course/course-banners/', 'courses', '300', '200');
         self::$course->description              = $request->description ?? '';
+        if (isset($request->descriptions)) {
+            # code...
+            self::$course->description              = $request->descriptions ?? '';
+        }
         self::$course->whythiscourse              = $request->whythiscourse ?? '';
         self::$course->duration_in_month        = $request->duration_in_month;
         self::$course->starting_date_time       = $request->starting_date_time;
