@@ -7862,7 +7862,7 @@ img {
             padding: 10px 10px !important;
         }
         /* -------------------Course Details Page End --------------------- */
-    
+
 
     .bread{
         text-align: center !important;
@@ -7968,7 +7968,7 @@ img {
             padding: 10px 10px !important;
         }
         /* -------------------Course Details Page End --------------------- */
-    
+
 
     .bread{
         text-align: center !important;
@@ -8283,7 +8283,7 @@ img {
             padding: 10px 10px !important;
         }
         /* -------------------Course Details Page End --------------------- */
-    
+
 
     .bread{
         text-align: center !important;
@@ -8593,7 +8593,7 @@ img {
             padding: 10px 10px !important;
         }
         /* -------------------Course Details Page End --------------------- */
-    
+
 
     .bread{
         text-align: center !important;
@@ -9125,4 +9125,9 @@ img {
 
 .fl i{
     margin-right: 5px;
+}
+
+.ud-container{
+    text-align: center;
+    padding: 4rem;
 }
