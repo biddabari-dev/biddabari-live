@@ -208,7 +208,7 @@
 <script type="text/javascript">
     //<![CDATA[
 
-        CKEDITOR.replace( 'cks',
+        CKEDITOR.replace( 'cksss',
             {
                 fullPage : true,
                 uiColor : '#efe8ce'
