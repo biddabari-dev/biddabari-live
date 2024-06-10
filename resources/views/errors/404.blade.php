@@ -1,8 +1,7 @@
 @extends('frontend.master')
 
 @section('body')
-
-    <div class="error-area ptb-100">
+    {{-- <div class="error-area ptb-100">
         <div class="d-table">
             <div class="d-table-cell">
                 <div class="error-content">
@@ -18,6 +17,19 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
+    <div class="ud-main-content">
+        <div class="ud-container error__container">
+            <img src="https://s.udemycdn.com/error_page/error-desktop-v1.jpg"
+                srcset="https://s.udemycdn.com/error_page/error-desktop-v1.jpg 1x, https://s.udemycdn.com/error_page/error-desktop-2x-v1.jpg 2x"
+                alt="" width="480" height="360">
+            <h1 class="ud-heading-serif-xxl error__greeting">
+                We can’t find the page you’re looking for
+            </h1>
+            <p class="error__cta ud-text-with-links">
+                Visit our <a href="/contact-us">support page</a> for further assistance.
+            </p>
+        </div>
+    </div>
 @endsection

@@ -24,7 +24,7 @@ class CustomAuthController extends Controller
 
         // $this->validate($request, [
         //     'mobile'   => ['required','numeric|regex:/^(?:\+88|88)?(01[3-9]\d{8})$/']
-           
+
         // ]);
 
         if (auth()->attempt($request->only(['mobile', 'password']), $request->remember_me))
@@ -115,7 +115,7 @@ class CustomAuthController extends Controller
 
         // $this->validate($request, [
         //     'mobile'   => ['required','numeric|regex:/^(?:\+88|88)?(01[3-9]\d{8})$/']
-           
+
         // ]);
 
             $request['roles'] = 4;
@@ -221,7 +221,7 @@ class CustomAuthController extends Controller
     public function sendOtp (Request $request)
     {
 //        return $request;
-        $otpNumber = rand(100000, 999999);
+        $otpNumber = rand(1000, 9999);
         try {
             $existUser = User::whereMobile($request->mobile)->first();
 //            return $existUser;

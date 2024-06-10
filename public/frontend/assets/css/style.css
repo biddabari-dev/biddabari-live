@@ -8651,6 +8651,7 @@ img {
 /* ------------------------------------------- */
 
 
+<<<<<<< HEAD
 @media only screen and (min-width: 280px) and (max-width: 420px) {
     /* -------------------Course Details Page Start --------------------- */
     .details_custom_mobile_block {
@@ -8663,6 +8664,20 @@ img {
         padding: 10px 10px !important;
     }
     /* -------------------Course Details Page End --------------------- */
+=======
+        /* -------------------Course Details Page Start --------------------- */
+        .details_custom_mobile_block{
+            display: block;
+        }
+        .details_custom_mobile_none{
+            display: none;
+        }
+        .courses-details-tab .tabs li {
+            padding: 10px 10px !important;
+        }
+        /* -------------------Course Details Page End --------------------- */
+
+>>>>>>> 5325e420fff55f06023252f4d52242978b47c2d1
 
     .bread {
         text-align: center !important;
@@ -8764,7 +8779,26 @@ img {
     }
     /* -------------------Course Details Page End --------------------- */
 
+<<<<<<< HEAD
     .bread {
+=======
+@media only screen and (min-width : 280px) and (max-width: 420px) {
+
+        /* -------------------Course Details Page Start --------------------- */
+        .details_custom_mobile_block{
+            display: block;
+        }
+        .details_custom_mobile_none{
+            display: none;
+        }
+        .courses-details-tab .tabs li {
+            padding: 10px 10px !important;
+        }
+        /* -------------------Course Details Page End --------------------- */
+
+
+    .bread{
+>>>>>>> 5325e420fff55f06023252f4d52242978b47c2d1
         text-align: center !important;
     }
 
@@ -9076,7 +9110,24 @@ img {
     }
     /* -------------------Course Details Page End --------------------- */
 
+<<<<<<< HEAD
     .bread {
+=======
+        /* -------------------Course Details Page Start --------------------- */
+        .details_custom_mobile_block{
+            display: block;
+        }
+        .details_custom_mobile_none{
+            display: none;
+        }
+        .courses-details-tab .tabs li {
+            padding: 10px 10px !important;
+        }
+        /* -------------------Course Details Page End --------------------- */
+
+
+    .bread{
+>>>>>>> 5325e420fff55f06023252f4d52242978b47c2d1
         text-align: center !important;
     }
 
@@ -9383,7 +9434,24 @@ img {
     }
     /* -------------------Course Details Page End --------------------- */
 
+<<<<<<< HEAD
     .bread {
+=======
+        /* -------------------Course Details Page Start --------------------- */
+        .details_custom_mobile_block{
+            display: block;
+        }
+        .details_custom_mobile_none{
+            display: none;
+        }
+        .courses-details-tab .tabs li {
+            padding: 10px 10px !important;
+        }
+        /* -------------------Course Details Page End --------------------- */
+
+
+    .bread{
+>>>>>>> 5325e420fff55f06023252f4d52242978b47c2d1
         text-align: center !important;
     }
     .popup_card img {
@@ -9912,4 +9980,9 @@ img {
 
 .fl i {
     margin-right: 5px;
+}
+
+.ud-container{
+    text-align: center;
+    padding: 4rem;
 }
