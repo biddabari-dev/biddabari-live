@@ -33,9 +33,7 @@ $(document).on('click', '.edit-btn', function () {
             $('#modalForm').empty().append(data);
             // $("#summernote").summernote({height:70, inheritPlaceholder: true});
             // $("#summernote1").summernote({height:70, inheritPlaceholder: true});
-            description = $('#sss').val();
-            console.log(description);
-            CKEDITOR.replace( 'cksss' );
+            CKEDITOR.replace( 'description' );
 
             $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
             $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
