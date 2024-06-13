@@ -34,13 +34,23 @@ class CustomAuthController extends Controller
 
             if(isset($request->name)){
 
-                $add = new User;
-                $add->name = $request->name;
-                $add->mobile = $request->mobile;
-                $add->password = Hash::make($pass);
-                $add->save();
+                $check = User::where('mobile',$request->mobile)->first();
 
-                $user = Auth::loginUsingId($add->id);
+                if ($check != null) {
+                    # code...
+                    $user = Auth::loginUsingId($check->id);
+                } else {
+                    # code...
+                    $add = new User;
+                    $add->name = $request->name;
+                    $add->mobile = $request->mobile;
+                    $add->password = Hash::make($pass);
+                    $add->save();
+
+                    $user = Auth::loginUsingId($add->id);
+                }
+
+
 
                 return response()->json([
                     'user'  => $user,
