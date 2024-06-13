@@ -9,7 +9,7 @@
     {!! isset($siteSettings) ? $siteSettings->default_seo_code_on_header : '' !!}
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
 
-    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/iconplugins.css">
+    <link rel="stylesheet" href="/frontend/assets/css/iconplugins.css">
 
     <link rel="stylesheet" href="/frontend/assets/css/style.css">
 

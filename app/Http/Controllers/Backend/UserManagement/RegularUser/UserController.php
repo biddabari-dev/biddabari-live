@@ -55,6 +55,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+            'mobile' => 'required|unique:users',
+        ]);
+
         abort_if(Gate::denies('store-user'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $this->user = User::createOrUpdateUser($request);
         foreach ($request->roles as $role)
