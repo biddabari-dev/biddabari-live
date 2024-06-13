@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CustomAuth;
 use App\helper\ViewHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\UserManagement\Student;
+use App\Http\Controllers\Frontend\Checkout\CheckoutController;
 use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ use Xenon\LaravelBDSms\Facades\SMS;
 use Xenon\LaravelBDSms\Provider\MimSms;
 use Xenon\LaravelBDSms\Sender;
 use App\Http\Requests\Auth\UserRegisterRequest;
+use Hash;
 
 class CustomAuthController extends Controller
 {
@@ -26,6 +28,29 @@ class CustomAuthController extends Controller
         //     'mobile'   => ['required','numeric|regex:/^(?:\+88|88)?(01[3-9]\d{8})$/']
 
         // ]);
+        if (str()->contains(url()->current(), '/api/'))
+        {
+            $pass = rand(10000, 99999);
+
+            if(isset($request->name)){
+
+                $add = new User;
+                $add->name = $request->name;
+                $add->mobile = $request->mobile;
+                $add->password = Hash::make($pass);
+                $add->save();
+
+                $user = Auth::loginUsingId($add->id);
+
+                return response()->json([
+                    'user'  => $user,
+                    'auth_token' => $user->createToken('auth_token')->plainTextToken,
+                    'status'    => 200
+                ]);
+
+            }
+
+        }
 
         if (auth()->attempt($request->only(['mobile', 'password']), $request->remember_me))
         {
