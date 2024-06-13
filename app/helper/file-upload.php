@@ -31,7 +31,7 @@ function imageUpload ($image, $imageDirectory, $imageNameString = null, $width =
             $image->move($imageDirectory, $imageName);
         } else {
 
-            // $images = Image::make($image)->resize((isset($width) ? $width : ''), (isset($height) ? $height : ''))->encode('webp',65)->save($imageUrl,65);
+            $images = Image::make($image)->save($imageUrl,65);
 
 
             $prefix = '';
