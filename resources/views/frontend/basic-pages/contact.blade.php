@@ -37,7 +37,7 @@
     <div class="contact-widget-area pb-70">
         <div class="container">
             <div class="section-title text-center mb-45">
-                <span>SEND MESSAGE</span>
+                <span class="f-s-22">SEND MESSAGE</span>
                 <h2>Ready to get started?</h2>
             </div>
             <div class="contact-form">

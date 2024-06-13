@@ -47,9 +47,33 @@
                             @can('manage-role')
                             <li><a href="{{ route('roles.index') }}" class="slide-item {{ request()->is('roles') || request()->is('roles*') ? 'active' : '' }}">Role</a></li>
                             @endcan
-                            @can('manage-user')
+                            {{-- @can('manage-user')
                             <li><a href="{{ route('users.index') }}" class="slide-item {{ request()->is('users') || request()->is('users*') ? 'active' : '' }}">Users</a></li>
-                            @endcan
+                            @endcan --}}
+
+                            <li class="slide {{ request()->is('permission-categories*') || request()->is('permissions*')|| request()->is('roles*')|| request()->is('users') ? 'is-expanded' : '' }}">
+                                <a class="side-menu__item {{ request()->is('permission-categories*') || request()->is('permissions*')|| request()->is('roles*')|| request()->is('users') ? 'active is-expanded' : '' }}" data-bs-toggle="slide" href="#">
+                                    <span class="side-menu__label">Manage All Role</span>
+                                    <i class="angle fa fa-angle-right"></i>
+                                </a>
+
+                                <ul class="slide-menu">
+                                    <li class="side-menu-label1"><a href="javascript:void(0)">Role</a></li>
+                                    @can('manage-user')
+                                    <li><a href="" class="slide-item {{ request()->is('super-admin') || request()->is('super-admin*') ? 'active' : '' }}">Super Admin</a></li>
+                                    @endcan
+                                    @can('manage-user')
+                                    <li><a href="" class="slide-item {{ request()->is('admin') || request()->is('admin*') ? 'active' : '' }}">Admin</a></li>
+                                    @endcan
+                                    @can('manage-user')
+                                    <li><a href="" class="slide-item {{ request()->is('sub-admin') || request()->is('sub-admin*') ? 'active' : '' }}">Sub Admin</a></li>
+                                    @endcan
+                                    @can('manage-user')
+                                    <li><a href="{{ route('users.index') }}" class="slide-item {{ request()->is('users') || request()->is('users*') ? 'active' : '' }}">Users</a></li>
+                                    @endcan
+                                </ul>
+                            </li>
+
                         </ul>
                     </li>
                 @endcan

@@ -121,7 +121,7 @@
 
                             </div>
                             <div class="col-md-4 mt-2">
-                                <label for="">Image <span class="text-red">(300 X 200 + WEBP)</span> </label>
+                                <label for="">Image <span class="text-red"> [300 x 200 pixels (WEBP format)] </span> </label>
                                 <input type="file" name="image" id="categoryImage" accept="images/*">
                                 <span class="text-danger" id="image"></span>
                             </div>

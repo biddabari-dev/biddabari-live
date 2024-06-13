@@ -95,15 +95,17 @@
                                         @endif
                                         <div class="tab-pane fade" id="{{ 'id'.$key }}">
                                             <div class="row">
-                                                @forelse($examCategory->batchExams as $batchExam)
-                                                    @include('frontend.exams.xm.include-batch-exams', $batchExam)
-                                                @empty
-                                                    <div class="col-md-12">
-                                                        <div class="text-center" style="min-height: 300px">
-                                                            <h2>কোনো এক্সাম চালু হয়নি। খুব দ্রুত এক্সাম চালু হবে। </h2>
+                                                @if(count($examCategory->batchExams) < 0)
+                                                    @forelse($examCategory->batchExams as $batchExam)
+                                                        @include('frontend.exams.xm.include-batch-exams', $batchExam)
+                                                    @empty
+                                                        <div class="col-md-12">
+                                                            <div class="text-center" style="min-height: 300px">
+                                                                <h2>কোনো এক্সাম চালু হয়নি। খুব দ্রুত এক্সাম চালু হবে। </h2>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                @endforelse
+                                                    @endforelse
+                                                @endif
                                             </div>
                                         </div>
                                     @endforeach

@@ -45,19 +45,19 @@
                     </form>
                     <table class="table" id="{{--file-datatable--}}">
                         <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Title</th>
+                            <tr class="text-center">
+                                <th>SL No</th>
+                                <th>Course Title</th>
                                 <th>Links</th>
                                 <th>Price</th>
                                 <th>Duration</th>
                                 <th>Discount</th>
-                                <th>Partial Payment</th>
+                                {{-- <th>Partial Payment</th> --}}
                                 <th>Extra Features</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody  class="text-center">
                             @if(isset($courses))
                                 @foreach($courses as $course)
                                     <tr>
@@ -96,7 +96,7 @@
                                         <td>
                                             ৳ {{ $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100 }}
                                         </td>
-                                        <td> ৳ {{ $course->partial_payment }}</td>
+                                        {{-- <td> ৳ {{ $course->partial_payment }}</td> --}}
                                         <td>
                                             <a href="javascript:void(0)" class="badge badge-sm badge-orange-light text-dark">{{ $course->status == 1 ? 'Published' : 'Unpublished' }}</a>
                                             <br>

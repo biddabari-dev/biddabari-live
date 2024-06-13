@@ -15,7 +15,7 @@
                             <div class="form-check form-switch">
                                 <input class="form-check-input " name="status" type="radio" value="approved" id="acceptedId" {{isset($_GET['status']) && $_GET['status'] == 'approved'? 'checked':''}}>
                                 <label class="form-check-label" for="acceptedId">Accepted</label>
-                            </div>
+                            </div> 
                         </div>
                         <div class="col-md-1">
                             <div class="form-check form-switch">

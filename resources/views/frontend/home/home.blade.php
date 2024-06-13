@@ -141,9 +141,9 @@
                     </div>
                 @endforeach
             </div>
-            <div class="see_more_btn text-center">
+            {{-- <div class="see_more_btn text-center">
                 <a href="" class="btn btn-warning">See More</a>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endif

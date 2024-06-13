@@ -21,7 +21,7 @@
                                 <div class="content">
                                     <h1>{!! $course->title !!}</h1>
                                     <span class="f-s-22 sub-title">{!! $course->sub_title !!}</span> <br>
-                                    <p class="f-s-20" style="color:red">{!! 'Admission Last Date : '.showDate($course->admission_last_date) !!}</p>
+                                    <p class="f-s-20 pb-0" style="color:red">{!! 'Admission Last Date : '.showDate($course->admission_last_date) !!}</p>
                                     <div class="row">
                                         <div class="col-md-6">
 
@@ -32,9 +32,9 @@
                                                     <?php
                                                     $discountPrice = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100;
                                                     ?>
-                                                <p class="f-s-20">After Discount: {{ $totalAmount = $course->price - $discountPrice ?? 0 }} tk</p>
+                                                <p class="f-s-20 pb-0">After Discount: {{ $totalAmount = $course->price - $discountPrice ?? 0 }} tk</p>
                                             @else
-                                                <p class="f-s-20">Price: {{ $course->is_paid == 1 ? $course->price.' tk' : 'Free' }} </p>
+                                                <p class="f-s-20 pb-0">Price: {{ $course->is_paid == 1 ? $course->price.' tk' : 'Free' }} </p>
                                             @endif
                                         </div>
                                     </div>
@@ -128,8 +128,8 @@
                                                         <div class="courses-details-instructor">
                                                             <h3>About the instructors</h3>
                                                             @foreach($course->teachers as $teacher)
-                                                                <div class="details-instructor float-start ms-2">
-                                                                    <img src="{{ !empty($teacher->image) ? asset($teacher->image) : 'https://www.citypng.com/public/uploads/preview/hd-man-user-illustration-icon-transparent-png-11640168385tqosatnrny.png' }}" alt="instructor" style="height: 75px;" />
+                                                                <div class="details-instructor float-start ms-2 d-flex">
+                                                                    <img src="{{ !empty($teacher->image) ? asset($teacher->image) : 'https://www.citypng.com/public/uploads/preview/hd-man-user-illustration-icon-transparent-png-11640168385tqosatnrny.png' }}" alt="instructor" style="height: 60px; width:60px;" />
                                                                     <h3>{{ isset($teacher->first_name) ? $teacher->first_name.' '.$teacher->last_name : $teacher->user->name }}</h3>
                                                                     <span>{{ isset($teacher->subject) ? $teacher->subject : '' }}</span>
                                                                 </div>
@@ -199,7 +199,7 @@
                             {{--comment - has to work later--}}
                             <div class="comments-form">
                                 <div class="contact-form">
-                                    <h4>Leave A Reply</h4>
+                                    <h4>Leave a Reply</h4>
                                     <form id="" action="{{ route('front.new-comment') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="type" value="course">
@@ -210,14 +210,14 @@
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <textarea name="message" class="form-control" id="" cols="30" rows="3" required placeholder="Comment..." required></textarea>
+                                                    <textarea name="message" class="form-control" id="" cols="30" rows="3" required placeholder="Write here..." required></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
                                                 <button type="submit"
                                                 {{-- @if(!auth()->check()) onclick="event.preventDefault(); toastr.error('Please Login First');" @endif  --}}
                                                 class="default-btn">
-                                                    Post A Comment
+                                                    Submit
                                                 </button>
                                             </div>
                                         </div>
@@ -272,7 +272,7 @@
                                 <div class="content">
                                     {{-- <h1>{!! $course->title !!}</h1> --}}
                                     <span class="f-s-22 sub-title">{!! $course->sub_title !!}</span> <br>
-                                    <p class="f-s-20" style="color:red">{!! 'Admission Last Date : '.showDate($course->admission_last_date) !!}</p>
+                                    <p class="f-s-20 pb-0" style="color:red">{!! 'Admission Last Date : '.showDate($course->admission_last_date) !!}</p>
                                     <div class="row">
                                         <div class="col-md-6">
 
@@ -283,9 +283,9 @@
                                                     <?php
                                                     $discountPrice = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100;
                                                     ?>
-                                                <p class="f-s-20">After Discount: {{ $totalAmount = $course->price - $discountPrice ?? 0 }} tk</p>
+                                                <p class="f-s-20 pb-0">After Discount: {{ $totalAmount = $course->price - $discountPrice ?? 0 }} tk</p>
                                             @else
-                                                <p class="f-s-20">Price: {{ $course->is_paid == 1 ? $course->price.' tk' : 'Free' }} </p>
+                                                <p class="f-s-20 pb-0">Price: {{ $course->is_paid == 1 ? $course->price.' tk' : 'Free' }} </p>
                                             @endif
                                         </div>
                                     </div>

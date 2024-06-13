@@ -9,7 +9,11 @@
                 <form action="" method="get">
 {{--                    @csrf--}}
                     <div class="row" >
-                        <div class="col select2-div">
+                        <div class="col-md-3">
+                            <label for="">Date</label>
+                            <input type="date" name="date" value="{{isset($_GET['date']) && $_GET['date'] != ''? $_GET['date']:''}}" class="form-control" id="" data-placeholder="">
+                        </div>
+                        <div class="col-md-7 select2-div">
                             <label for="">Available Courses</label>
 {{--                            <input type="text" class="form-control" id="questionTopicInputField">--}}
 {{--                            <input type="hidden" class="form-control" name="category_id" id="questionTopic">--}}
@@ -30,6 +34,8 @@
             </div>
         </div>
     </div>
+
+
     @if(isset($courseOrders) && !empty($courseOrders))
         <div class="row">
             <div class="col-md-12">
