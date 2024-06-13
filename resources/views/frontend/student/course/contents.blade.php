@@ -546,7 +546,7 @@
             var sectionContentId = $(this).attr('data-content-id');
             $.ajax({
                 // url: base_url+"student/show-pdf/"+sectionContentId,
-                url: "https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/student/show-pdf/"+sectionContentId,
+                url: base_url+"/student/show-pdf/"+sectionContentId,
                 method: "GET",
                 success: function (data) {
                     console.log(data);
@@ -555,7 +555,7 @@
                     {
                         pdflink = data.sectionContent.pdf_link;
                     } else {
-                        pdflink = base_url+data.sectionContent.pdf_file;
+                        pdflink = 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com'+data.sectionContent.pdf_file;
                     }
                     $('#pdf-container').empty();
 
