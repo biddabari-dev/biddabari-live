@@ -428,7 +428,7 @@
             {
                 var contentId = $(this).attr('data-content-id');
                 $.ajax({
-                    url: base_url+'get-video-comments/'+contentId+'/course_content',
+                    url: 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/get-video-comments/'+contentId+'/course_content',
                     method: "GET",
                     // data: {content_id:elementObject.attr('data-content-id')},
                     success: function (data) {
@@ -555,7 +555,7 @@
                     {
                         pdflink = data.sectionContent.pdf_link;
                     } else {
-                        pdflink = base_url+data.sectionContent.pdf_file;
+                        pdflink = 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/'+data.sectionContent.pdf_file;
                     }
                     $('#pdf-container').empty();
 
