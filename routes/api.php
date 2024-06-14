@@ -94,6 +94,7 @@ Route::prefix('v1')->name('api.')->group(function (){
     Route::get('/favourite-question/{user_id}/{question_id}', [QuestionStoreController::class, 'setFavouriteQuestion'])->name('set-fav-que');
     Route::get('/delete-favourite-question/{user_id}/{question_id}', [QuestionStoreController::class, 'deleteFavouriteQuestion'])->name('del-fav-que');
     Route::get('/get-favourite-questions/{user_id}', [QuestionStoreController::class, 'getFavouriteQuestions'])->name('get-favourite-questions');
+    Route::post('/check-coupon', [BasicViewController::class, 'checkCoupon'])->name('check-coupon');
 
     Route::middleware([
         'auth:sanctum',
@@ -101,7 +102,6 @@ Route::prefix('v1')->name('api.')->group(function (){
         'verified',
     ])->group(function (){
         Route::post('place-course-order/{course_id}', [CheckoutController::class, 'placeCourseOrder'])->name('place-course-order');
-        Route::post('/check-coupon', [BasicViewController::class, 'checkCoupon'])->name('check-coupon');
 
         Route::post('/place-free-course-order/{course_id}', [CheckoutController::class, 'placeFreeCourseOrder']);
         Route::prefix('student')->name('student.')->group(function (){
