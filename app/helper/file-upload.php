@@ -24,7 +24,13 @@ function imageUpload ($image, $imageDirectory, $imageNameString = null, $width =
         // {
         //     File::makeDirectory($folderPath, 0777, true, true);
         // }
-        $imageName = (isset($imageNameString) ? $imageNameString : '').'-'.time().rand(10,1000).'.'.$image->getClientOriginalExtension();
+
+        $imageNameString = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+
+        $imageNameString = str_replace(' ','-', $imageNameString);
+
+        $imageName = $imageNameString.'-'.time().rand(10,1000000000000000).'.'.$image->getClientOriginalExtension();
+
         $imageUrl = 'backend/assets/uploaded-files/'.$imageDirectory.$imageName;
         if ($image->getClientOriginalExtension() == 'ico')
         {

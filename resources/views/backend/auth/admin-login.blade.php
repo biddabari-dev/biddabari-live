@@ -6,9 +6,7 @@
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Noa - Laravel Bootstrap 5 Admin & Dashboard Template">
-    <meta name="author" content="Spruko Technologies Private Limited">
-    <meta name="keywords" content="laravel admin template, bootstrap admin template, admin dashboard template, admin dashboard, admin template, admin, bootstrap 5, laravel admin, laravel admin dashboard template, laravel ui template, laravel admin panel, admin panel, laravel admin dashboard, laravel template, admin ui dashboard">
+    <meta name="robots" content="noindex">
 
     <!-- TITLE -->
     <title>BiddaBari - Login</title>
@@ -105,7 +103,7 @@
                         </div>
                         <div class="wrap-input100 validate-input password-div d-none" data-order="3" data-bs-validate = "Password is required">
                             <input class="input100 password" type="password" name="password" placeholder="Password">
-                            <span id="viewPass" class="btn btn-sm border show-pass"><i class="fa-solid fa-eye"></i></span>
+                            <span id="viewPass" class="btn btn-sm border show-pass"><i class="ic fa-solid fa-eye"></i></span>
                             <span class="focus-input100"></span>
 
                             <span class="symbol-input100">
@@ -216,6 +214,7 @@
                             $('.password-div').removeClass('d-none').attr('data-active', 1);
                               $('.next').attr('disabled',false);
                             $('.next').removeClass('next').addClass('submit').text('Login').attr('data-status', 'login');
+                            $('.password').focus();
                         } else if (data.user_status == 'not_exist')
                         {
                             $('.otp-div').removeClass('d-none').attr('data-active', 1);
@@ -230,6 +229,7 @@
                         // $('.mobile-div').addClass('d-none').attr('data-active', '');
                         // $('.otp-div').removeClass('d-none').attr('data-active', 1);
                     } else {
+                        $('.next').attr('disabled',false);
                         toastr.error('something went wrong. Please check your mobile Number & try again.');
                     }
                 }
@@ -334,10 +334,15 @@
         {
             $('input[name="password"]').attr('type', 'text');
             $(this).removeClass('show-pass').addClass('hide-pass');
+
+            $('.ic').removeClass('fa-eye').addClass('fa-eye-slash');
+
         } else if ($(this).hasClass('hide-pass'))
         {
             $('input[name="password"]').attr('type', 'password');
             $(this).removeClass('hide-pass').addClass('show-pass');
+
+            $('.ic').removeClass('fa-eye-slash').addClass('fa-eye');
         }
     })
 </script>

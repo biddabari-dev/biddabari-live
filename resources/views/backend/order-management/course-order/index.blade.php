@@ -77,7 +77,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td><a href="" data-order-id="{{ $courseOrder->id }}" class="show-order-details">#{{ $courseOrder->order_invoice_number }}</a></td>
-                                        <td>{{ $courseOrder->course->title }}</td>
+                                        <td>{{ $courseOrder->course->title ?? null}}</td>
 
                                         <td>{{ $courseOrder->user->name }} <br> {{ $courseOrder->user->mobile }}</td>
                                         <td>
