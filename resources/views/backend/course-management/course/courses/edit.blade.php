@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-md-12 mt-2 mb-2">
                     <label for="">Course Description</label>
-                    <textarea name="description" class="form-control" id="description" placeholder="Course Description" cols="30" rows="5">{!! isset($course) ? $course->description : '' !!}</textarea>
+                    <textarea name="description" class="form-control" id="description" placeholder="Course Description" cols="30" rows="5"></textarea>
                     <span class="text-danger" id="description"></span>
                 </div>
                 <div class="col-md-12 mt-2 mb-2">
@@ -80,7 +80,7 @@
                     <span class="text-danger" id="featured_video_url"></span>
                 </div>
                 <div class="col-md-6 mt-2">
-                      <label for="">Featured Banner <span class="text-red">(300 x 200) pixels (WEBP format)</span></label>
+                      <label for="">Featured Banner <span class="text-red">(450 x 350) pixels</span></label>
                     <input type="file" class="form-control" name="banner" id="courseImage" accept="images/*" placeholder="Featured Banner">
                     <span class="text-danger" id="banner"></span>
 
@@ -91,6 +91,18 @@
                             <img src="{{ asset($course->banner) }}" id="courseImagePreview" style="height: 60px; width: 70px" />
                         </div>
                     @endif
+                </div>
+                <div class="col-md-6 mt-2">
+                    <label for="">Banner Image ALT text</label>
+                  <input type="text" class="form-control" name="alt_text" value="{{ $course->alt_text }}" placeholder="Banner Image ALT Text">
+                  <span class="text-danger" id="alt_text"></span>
+
+                </div>
+                <div class="col-md-6 mt-2">
+                    <label for="">Banner Image Title</label>
+                  <input type="text" class="form-control" name="banner_title" value="{{ $course->banner_title }}" placeholder="Banner Image Title">
+                  <span class="text-danger" id="banner_title"></span>
+
                 </div>
             </div>
         </div>
@@ -310,3 +322,16 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+    var sites = {!! json_encode( isset($course) ? $course->description : '') !!};
+
+    CKEDITOR.replace( 'description',
+                {
+                    fullPage : true,
+                    uiColor : '#efe8ce'
+                });
+    CKEDITOR.instances['description'].setData(sites);
+</script>

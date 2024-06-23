@@ -16,7 +16,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 315px" alt="banner">
+                                    <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 315px" alt="{{ $course->alt_text }}" title="{{ $course->banner_title }}">
                                 @endif
                                 <div class="content">
                                     <h1>{!! $course->title !!}</h1>
@@ -267,7 +267,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 315px" alt="banner">
+                                    <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 315px" alt="{{ $course->alt_text }}" title="{{ $course->banner_title }}">
                                 @endif
                                 <div class="content">
                                     {{-- <h1>{!! $course->title !!}</h1> --}}

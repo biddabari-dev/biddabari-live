@@ -28,12 +28,12 @@ $(document).on('click', '.edit-btn', function () {
         method: "GET",
         // dataType: "JSON",
         success: function (data) {
-            console.log(data.course);
+            // console.log(data);
 
             $('#modalForm').empty().append(data);
             // $("#summernote").summernote({height:70, inheritPlaceholder: true});
             // $("#summernote1").summernote({height:70, inheritPlaceholder: true});
-            CKEDITOR.replace( 'description' );
+            // CKEDITOR.replace( 'description' );
 
             $("#dateTime").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
             $("#dateTime1").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0});
@@ -98,6 +98,9 @@ $(document).on('click', '.update-btn', function () {
 
     var form = $('#coursesForm')[0];
     var formData = new FormData(form);
+    var des = CKEDITOR.instances['description'].getData();
+    formData.append('description',des);
+    console.log(formData);
     $.ajax({
         url: $('#coursesForm').attr('action'),
         method: "POST",
@@ -152,6 +155,8 @@ $(document).on('click', '.submit-btn', function () {
 
     var form = $('#coursesForm')[0];
     var formData = new FormData(form);
+    var des = CKEDITOR.instances['ck'].getData();
+    formData.append('description',des);
     $.ajax({
         url: base_url+"courses",
         method: "POST",

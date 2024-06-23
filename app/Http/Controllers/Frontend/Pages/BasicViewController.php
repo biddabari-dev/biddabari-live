@@ -40,7 +40,7 @@ class BasicViewController extends Controller
     {
         // $this->batchExams  = BatchExam::where(['status' => 1, 'is_master_exam' => 0, 'is_paid' => 1])->select('id', 'title', 'banner', 'slug')->take(6)->get();
         $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->orderBy('order', 'ASC')->select('id', 'name', 'image', 'slug', 'icon', 'order', 'status')->take(8)->get();
-        $this->courses = Course::whereStatus(1)->where(['is_featured' => 1])->latest()->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link','total_file','total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time','admission_last_date')->take(9)->get();
+        $this->courses = Course::whereStatus(1)->where(['is_featured' => 1])->latest()->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link','total_file','total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time','admission_last_date','alt_text','banner_title')->take(9)->get();
         foreach ($this->courses as $course)
         {
             $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
@@ -65,7 +65,7 @@ class BasicViewController extends Controller
     public function appHome ()
     {
         $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->latest()->orderBy('order', 'ASC')->select('id', 'name', 'image', 'slug')->get();
-        $this->courses = Course::whereStatus(1)->latest()->select('id', 'title', 'sub_title', 'price', 'banner')->take(8)->get();
+        $this->courses = Course::whereStatus(1)->latest()->select('id', 'title', 'sub_title', 'price', 'banner','alt_text','banner_title')->take(8)->get();
         $this->products = Product::whereStatus(1)->latest()->select('id', 'title', 'image', 'price')->take(8)->get();
         $this->notices = Notice::whereStatus(1)->whereType('scroll')->latest()->select('id', 'title', 'image', 'body')->get();
         $this->homeSliderCourses = Advertisement::whereStatus(1)->whereContentType('course')->take(5)->select('id', 'title', 'image', 'link', 'description')->get();
@@ -91,7 +91,7 @@ class BasicViewController extends Controller
 
     public function appHomeCourses ()
     {
-        $data = Course::whereStatus(1)->where('is_featured', 1)->latest()->select('id', 'title', 'sub_title', 'price', 'banner', 'discount_type', 'discount_amount', 'discount_start_date', 'discount_end_date')->take(8)->get();
+        $data = Course::whereStatus(1)->where('is_featured', 1)->latest()->select('id', 'title', 'sub_title', 'price', 'banner', 'discount_type', 'discount_amount', 'discount_start_date', 'discount_end_date','alt_text','banner_title')->take(8)->get();
         foreach ($data as $datum)
         {
             $datum->banner = asset($datum->banner);
@@ -147,7 +147,7 @@ class BasicViewController extends Controller
     public function allCourses ()
     {
         $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->select('id', 'name', 'slug')->with(['courses' => function($course){
-            $course->whereStatus(1)->where('is_paid', 1)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug')->get();
+            $course->whereStatus(1)->where('is_paid', 1)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug','alt_text','banner_title')->get();
         },
             'courseCategories' => function($courseCategories) {
                 $courseCategories->select('id', 'parent_id', 'name', 'image', 'slug')->orderBy('order', 'ASC')->whereStatus(1)->get();
@@ -171,6 +171,7 @@ class BasicViewController extends Controller
 //        {
 //            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
 //        }
+        // dd($this->courses);
         $this->data = ['courseCategories' => $this->courseCategories, 'allCourses' => $this->courses];
         return ViewHelper::checkViewForApi($this->data, 'frontend.courses.courses');
     }
@@ -178,7 +179,7 @@ class BasicViewController extends Controller
     public function categoryCourses ($slug)
     {
         $this->courseCategory = CourseCategory::whereSlug($slug)->select('id','name', 'parent_id', 'image', 'icon', 'slug', 'status')->with(['courses' => function($course){
-            $course->whereStatus(1)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug')->get()->makeHidden('updated_at');
+            $course->whereStatus(1)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug','alt_text','banner_title')->get()->makeHidden('updated_at');
         },
             'courseCategories' => function($courseCategories){
                 $courseCategories->whereStatus(1)->orderBy('order','ASC')->select('id', 'parent_id','name', 'image', 'icon', 'slug', 'status')->get();
@@ -346,7 +347,7 @@ class BasicViewController extends Controller
 
     public function freeCourses ()
     {
-        $this->courses = Course::where('is_paid', 0)->whereStatus(1)->latest()->select('id','title','banner','slug')->get();
+        $this->courses = Course::where('is_paid', 0)->whereStatus(1)->latest()->select('id','title','banner','slug','alt_text','banner_title')->get();
         $this->batchExams = BatchExam::where(['is_paid' => 0, 'status' => 1])->select('id', 'title', 'slug', 'banner')->get();
         if (str()->contains(url()->current(), '/api/'))
         {
@@ -460,7 +461,7 @@ class BasicViewController extends Controller
 
     public function searchContentHome(Request $request)
     {
-        $this->courses  = Course::where("title", "LIKE", "%".$request->search_content."%")->whereStatus(1)->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link','total_file','total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time')->get();
+        $this->courses  = Course::where("title", "LIKE", "%".$request->search_content."%")->whereStatus(1)->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link','total_file','total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time','alt_text','banner_title')->get();
         $this->exams = $this->batchExams  = BatchExam::where("title", "LIKE", "%".$request->search_content."%")->where(['status' => 1, 'is_master_exam' => 0])->select('id', 'title', 'banner', 'slug')->get();;
         $this->data = [
             'courses'       => $this->courses,

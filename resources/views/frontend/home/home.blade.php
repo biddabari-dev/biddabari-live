@@ -163,7 +163,7 @@
                                 <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
                                     <img loading="lazy"
                                         src="{{ asset(file_exists_obs($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}"
-                                        alt="Courses" class="w-100 p-2" style="height: 230px" />
+                                        alt="{{ $course->alt_text }}" title="{{ $course->banner_title }}" class="w-100 p-2" style="height: 230px" />
                                 </a>
                                 <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
                                     <div class="content">

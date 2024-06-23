@@ -2,7 +2,7 @@
     <div class="courses-item">
         <a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">
             <img src="{{ asset(file_exists_obs($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}"
-                alt="Courses" class="w-100" style="height: 230px" />
+                alt="{{ $course->alt_text }}" title="{{ $course->banner_title }}" class="w-100" style="height: 230px" />
         </a>
         <div class="content">
             <h3><a href="{{ route('front.course-details', ['slug' => $course->slug]) }}">{{ $course->title ?? 'Course Title' }}</a></h3>
@@ -50,7 +50,7 @@
 {{--                            <a href="{{ route('front.checkout', ['id' => $course->id, 'slug' => $course->slug]) }}"--}}
 {{--                               class="btn btn-warning">কোর্সটি কিনুন</a>--}}
 
-                            <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">
+                            {{-- <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">
                                 @csrf
                                 <input type="hidden" name="course_id" value="{{ $course->id }}" />
                                 <input type="hidden" name="total_amount" value="{{ $totalAmount }}" />
@@ -61,7 +61,12 @@
                                 <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">
                                 <input type="hidden" name="payment_method" value="ssl">
                                 <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">
-                            </form>
+                            </form> --}}
+
+                            <a
+                            {{-- {{ dd($course) }} --}}
+                                href="{{ route('front.checkout', ['type' => 'course', 'slug' => $course->slug]) }}"
+                                class="btn btn-warning">কোর্সটি কিনুন</a>
 
 
                         @else

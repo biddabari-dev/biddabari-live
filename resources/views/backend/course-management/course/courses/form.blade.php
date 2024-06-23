@@ -69,12 +69,24 @@
                     <span class="text-danger" id="featured_video_url"></span>
                 </div>
                 <div class="col-md-6 mt-2">
-                      <label for="">Featured Banner <span class="">(300 x 200) pixels (WEBP format)</span></label>
+                      <label for="">Featured Banner <span class="">(450 x 350) pixels</span></label>
                     <input type="file" class="form-control" name="banner" id="courseImage" accept="images/*" placeholder="Featured Banner" />
                     <span class="text-danger" id="banner"></span>
                 </div>
                 <div class="col-md-6 mt-2">
                     <img src="" id="courseImagePreview" alt="">
+                </div>
+                <div class="col-md-6 mt-2">
+                    <label for="">Banner Image ALT text</label>
+                  <input type="text" class="form-control" name="alt_text" placeholder="Banner Image ALT Text">
+                  <span class="text-danger" id="alt_text"></span>
+
+                </div>
+                <div class="col-md-6 mt-2">
+                    <label for="">Banner Image Title</label>
+                  <input type="text" class="form-control" name="banner_title"  placeholder="Banner Image Title">
+                  <span class="text-danger" id="banner_title"></span>
+
                 </div>
             </div>
         </div>

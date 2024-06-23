@@ -254,7 +254,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="courses-details-sidebar">
-                        <img src="{{ asset($course->banner) }}" alt="Courses" style="height: 240px" />
+                        <img src="{{ asset($course->banner) }}" alt="{{ $course->alt_text }}" title="{{ $course->banner_title }}" style="height: 240px" />
                         <div class="content">
                             <h3>{{ $course->price }} tk</h3>
                             <span>This course includes:</span>

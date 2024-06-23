@@ -53,12 +53,12 @@ class CourseController extends Controller
         {
 
             $courseCategory = CourseCategory::where('id', $request->category_id)->with(['coursesDescOrder' => function ($courses) {
-                $courses->select('id','title','price','banner','is_featured','is_paid','status')->get();
+                $courses->select('id','title','price','banner','is_featured','is_paid','status','alt_text','banner_title')->get();
             }])->select('id')->first();
 
             $this->courses = ViewHelper::paginateContentByCollectionFormat($request, $courseCategory->coursesDescOrder, 15, 'category_id');
         } else {
-            $this->courses = Course::where('parent_id', 0)->orderBy('id', 'DESC')->select('id','title','price','duration_in_month','discount_amount', 'banner','is_featured','is_paid','status')->paginate(15);
+            $this->courses = Course::where('parent_id', 0)->orderBy('id', 'DESC')->select('id','title','price','duration_in_month','discount_amount', 'banner','is_featured','is_paid','status','alt_text','banner_title')->paginate(15);
         }
 
         return view('backend.course-management.course.courses.index', [
@@ -126,6 +126,7 @@ class CourseController extends Controller
      */
     public function update(CourseCreateFormRequest $request, string $id)
     {
+        // dd($request->all());
         abort_if(Gate::denies('update-course'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             $this->course = Course::createOrUpdateCourse($request, $id);
