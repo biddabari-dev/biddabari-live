@@ -96,7 +96,7 @@
                                 @forelse($scrollingNotices as $scrollingNotice)
                                     <li><p  class="text-white">{!! strip_tags($scrollingNotice->body) !!}</p></li>
                                 @empty
-                                    <li><p >এখনো কোন নোটিশ পাবলিশ করা হয় নি</p></li>
+                                    <li><p class="text-white">এখনো কোন নোটিশ পাবলিশ করা হয় নি</p></li>
                                 @endforelse
                             @endif
                         </ul>
