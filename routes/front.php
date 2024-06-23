@@ -12,10 +12,18 @@ use App\Http\Controllers\CustomAuth\CustomAuthController;
 use App\Http\Controllers\Frontend\FrontExam\FrontExamController;
 use App\Http\Controllers\Backend\ExamManagement\ExamSubscriptionPackageController;
 use App\Http\Controllers\Backend\UserManagement\RegularUser\UserController;
+use App\Http\Controllers\Backend\CourseManagement\Course\CourseController;
 
 use App\Http\Controllers\Backend\AdditionalFeatureManagement\Affiliation\AffiliationController;
 
 use App\Http\Controllers\SqlScriptController;
+
+
+Route::get('import', function(){
+    return view('import');
+});
+
+Route::post('imports',[CourseController::class,'import']);
 
 
 //sarowar sql script start

@@ -38,6 +38,7 @@ use Symfony\Component\HttpFoundation\Response;
 //use function PHPUnit\Runner\validate;
 use DataTable;
 use Yajra\DataTables\Facades\DataTables;
+use Hash;
 
 class CourseController extends Controller
 {
@@ -556,4 +557,72 @@ class CourseController extends Controller
     }
 
 
+    public function import(Request $request)
+    {
+        $name = '47th BCS Special Care Live Batch';
+        $id = Course::where('title',$name)->first();
+        $id = $id->id;
+
+        $xlArray = [];
+
+        $xlArray = Excel::toArray(new StudentTransferImport(), $request->file('student_file'))[0];
+
+            foreach ($xlArray as $key => $item)
+            {
+
+                    $check = User::where('mobile',$item[2])->first();
+
+                    if ($check) {
+                        # code...
+                        ParentOrder::create([
+                            'parent_model_id'           => $id,
+                            'user_id'                   => $check->id,
+                            'order_invoice_number'      => mt_rand(00000,8484986484),
+                            'ordered_for'               => 'course',
+                            'payment_method'            => 'cod',
+                            'vendor'                    => 'bkash',
+                            'paid_to'                   => '01896060828',
+                            'paid_from'                 => $item[3],
+                            'txt_id'                    => mt_rand(00000,8484986484),
+                            'paid_amount'               => $item[4],
+                            'total_amount'              => $item[4] + $item[5] ?? 0,
+                            'payment_status'            => 'complete',
+                            'status'                    => 'approved',
+                            'batch_exam_subscription_id' => isset($request->batch_exam_subscription_id) ?? null,
+                        ]);
+                    }else{
+                        $user = new User();
+
+                        $user->name       = $item[1];
+                        $user->mobile       = $item[2];
+
+                        $user->password   = Hash::make('123456789');
+                        $user->p_code     = $user->password;
+
+                        $user->status     = 1;
+                        $user->save();
+
+                        ParentOrder::create([
+                            'parent_model_id'           => $id,
+                            'user_id'                   => $user->id,
+                            'order_invoice_number'      => mt_rand(00000,8484986484),
+                            'ordered_for'               => 'course',
+                            'payment_method'            => 'cod',
+                            'vendor'                    => 'bkash',
+                            'paid_to'                   => '01896060828',
+                            'paid_from'                 => $item[3],
+                            'txt_id'                    => mt_rand(00000,8484986484),
+                            'paid_amount'               => $item[4],
+                            'total_amount'              => $item[4] + $item[5] ?? 0,
+                            'payment_status'            => 'complete',
+                            'status'                    => 'approved',
+                            'batch_exam_subscription_id' => isset($request->batch_exam_subscription_id) ?? null,
+                        ]);
+                    }
+
+
+            }
+
+
+    }
 }
