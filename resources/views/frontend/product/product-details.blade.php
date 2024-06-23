@@ -39,6 +39,7 @@
                         @else
                             <p class="text-danger f-s-19">Out Of Stock</p>
                         @endif
+                        {!! $product->description !!}
                         @if(!empty(\Cart::get($product->id)))
                             <a href="{{ route('front.view-cart') }}" class="default-btn ">এখনই কিনুন</a>
                         @else
@@ -59,22 +60,26 @@
                 <div class="col-md-3">
                     <h2 class="text-center">Latest Products</h2>
                     <div class="mt-3">
-                        @foreach($latestProducts as $latestProduct)
-                            <div class="mt-2">
-                                <a href="{{ route('front.product-details', ['id' => $latestProduct->id, 'slug' => $latestProduct->slug]) }}" class="w-100">
-                                    <div class="card border-0">
-                                        <div class="row">
-                                            <div class="col-md-4 ps-1 pd_padding">
-                                                <img src="{{ asset(isset($latestProduct->image) ? $latestProduct->image : 'frontend/logo/biddabari-card-logo.jpg') }}" alt="" class="img-fluid w-100" style="height: 100px" />
+                            <div class="row justify-content-center">
+                                @foreach($latestProducts as $latestProduct)
+                                <div class="col-5 col-md-12 ">
+                                    <div class="mt-2">
+                                        <a href="{{ route('front.product-details', ['id' => $latestProduct->id, 'slug' => $latestProduct->slug]) }}" class="">
+                                            <div class="card border-0">
+                                                <div class="row">
+                                                    <div class="col-md-4 ps-1 pd_padding">
+                                                        <img src="{{ asset(isset($latestProduct->image) ? $latestProduct->image : 'frontend/logo/biddabari-card-logo.jpg') }}" alt="" class="img-fluid" style="height: 100px" />
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <h4 class="mb-0 f-s-21">{{ $latestProduct->title }}</h4>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-8">
-                                                <h4 class="mb-0 f-s-21">{{ $latestProduct->title }}</h4>
-                                            </div>
+                                            </a>
                                         </div>
-                                    </div>
-                                </a>
+                                </div>
+                                @endforeach
                             </div>
-                        @endforeach
                     </div>
                 </div>
             </div>

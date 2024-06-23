@@ -17,6 +17,7 @@
                     <a href="https://play.google.com/store/apps/details?id=com.nextive.biddabari2021&pcampaignid=web_share"
                         target="blank"><span class="__cf_email__">Install Biddabari App</span></a>
                 </div>
+
             </div>
         </div>
     </div>
@@ -60,13 +61,18 @@
                                 <i class="ri-phone-fill"></i>
                                 <a href="tel:++8801896060809">+8801896060809</a>
                             </li>
-                            <li class="bg-danger">
+                            <li class="bg-danger" style="margin-right: 0px">
                                 <i class="fa-brands fa-google-play"></i>
                                 <!-- <a href="mailto:info@biddabari.com"><span class="__cf_email__">info@biddabari.com</span></a> -->
                                 <a href="https://play.google.com/store/apps/details?id=com.nextive.biddabari2021&pcampaignid=web_share"
                                     target="blank"><span class="__cf_email__">Install Biddabari App</span></a>
                             </li>
-                            <li class="bg-danger">
+                            <li class="bg-danger" style="margin-right: 0px; padding-left: 0px">
+                                <div class="">
+                                    <span style="padding: 0px 10px; font-size: 21px;">Notice</span>
+                                </div>
+                            </li>
+                            {{-- <li class="bg-danger">
                                 <!-- <span class="live-text TT4zv"><svg class="live-icon El47e"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -79,7 +85,7 @@
                                 <!-- <button id="runningButton" class="running-button">Click me!</button>
                                 <script src="script.js"></script> -->
 
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>
@@ -88,9 +94,9 @@
                         <ul class="my-news-ticker">
                             @if(!empty($scrollingNotices))
                                 @forelse($scrollingNotices as $scrollingNotice)
-                                    <li><a href="" class="text-white">{!! strip_tags($scrollingNotice->body) !!}</a></li>
+                                    <li><p  class="text-white">{!! strip_tags($scrollingNotice->body) !!}</p></li>
                                 @empty
-                                    <li><a href="">এখনো কোন নোটিশ পাবলিশ করা হয় নি</a></li>
+                                    <li><p >এখনো কোন নোটিশ পাবলিশ করা হয় নি</p></li>
                                 @endforelse
                             @endif
                         </ul>

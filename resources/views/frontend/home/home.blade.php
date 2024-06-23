@@ -10,11 +10,11 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-6 c-dnone">
                                     <div class="hero-content ms-3">
-                                        <h1 style="font-size: 36px">{{ \Illuminate\Support\Str::words(
+                                        <h2 style="font-size: 36px">{{ \Illuminate\Support\Str::words(
                 $homeSliderCourse->title,
                 8,
                 '....'
-            ) }}</h1>
+            ) }}</h2>
                                         <p>
                                             {!! str()->words(strip_tags($homeSliderCourse->description), 25) !!}
                                         </p>

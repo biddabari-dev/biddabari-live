@@ -208,7 +208,7 @@
                                         <div class="courses-details-instructor">
                                             <h3>About the instructor</h3>
                                             <div class="details-instructor">
-                                                <img src="{{ !empty($course->teachers->image) ? asset($course->teachers->image) : 'https://www.citypng.com/public/uploads/preview/hd-man-user-illustration-icon-transparent-png-11640168385tqosatnrny.png' }}" alt="instructor" style="height: 75px;" />
+                                                <img src="{{ !empty($course->teachers->image) ? asset($course->teachers->image) : asset('user-avatar.png') }}" alt="instructor" style="height: 75px;" />
                                                 <h3>{{ isset($course->teachers->first_name) ? $course->teachers->first_name.' '.$course->teachers->last_name : 'Trainer' }}</h3>
                                                 <span>{{ isset($course->teachers->subject) ? $course->teachers->subject : 'Unknown' }}</span>
                                             </div>
