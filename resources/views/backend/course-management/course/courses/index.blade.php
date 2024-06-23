@@ -208,7 +208,7 @@
 
 {{--    @include('backend.includes.assets.plugin-files.date-time-picker')--}}
     <script src="{{ asset('/') }}backend/assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
-    <script src="/backend/assets/js/page-js/manage-course.js"></script>
+    <script src="{{ asset('backend/assets/js/page-js/manage-course.js') }}"></script>
     <script>
         $(document).on('blur', '#courseTitle', function () {
             var courseTitle = $(this).val();
