@@ -251,9 +251,14 @@
                         </div>
                 @endforeach
             </div>
-            <div class="see_more_btn text-center">
-                <a href="{{route('front.all-courses')}}" class="btn btn-warning">See More.</a>
-            </div>
+            @php
+                $course_count = DB::table('courses')->count();
+            @endphp
+            @if ($course_count > 9)
+                <div class="see_more_btn text-center">
+                    <a href="{{route('front.all-courses')}}" class="btn btn-warning">See More.</a>
+                </div>
+            @endif
         </div>
     </div>
 @endif
@@ -324,9 +329,14 @@
                         </div>
                 @endforeach
             </div>
-            <div class="see_more_btn text-center">
-                <a href="{{route('front.all-products')}}" class="btn btn-warning">See More.</a>
-            </div>
+            @php
+                $count_product = DB::table('products')->count();
+            @endphp
+            @if ($count_product > 8)
+                <div class="see_more_btn text-center">
+                    <a href="{{route('front.all-products')}}" class="btn btn-warning">See More.</a>
+                </div>
+            @endif
         </div>
     </div>
 @endif
