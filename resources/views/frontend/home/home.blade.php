@@ -256,7 +256,7 @@
             @endphp
             @if ($course_count > 9)
                 <div class="see_more_btn text-center">
-                    <a href="{{route('front.all-courses')}}" class="btn btn-warning">See More.</a>
+                    <a href="{{route('front.all-courses')}}" class="btn btn-warning">আরও দেখুন</a>
                 </div>
             @endif
         </div>
@@ -334,7 +334,7 @@
             @endphp
             @if ($count_product > 8)
                 <div class="see_more_btn text-center">
-                    <a href="{{route('front.all-products')}}" class="btn btn-warning">See More.</a>
+                    <a href="{{route('front.all-products')}}" class="btn btn-warning">আরও দেখুন</a>
                 </div>
             @endif
         </div>
