@@ -66,10 +66,10 @@ Route::get('/ttt', function(){
         'bucket' => 'biddabari-bucket',
         'endpoint' => 'obs.as-south-208.rcloud.reddotdigitalit.com',
     ];
-    
+
     $config['options'] = [
         'url' => '',
-        'endpoint' => $config['endpoint'], 
+        'endpoint' => $config['endpoint'],
         'bucket_endpoint' => 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com',
         'temporary_url' => '',
     ];
@@ -87,7 +87,7 @@ Route::get('/ttt', function(){
         // $f = asset($value->image);
         if ($value->profile_photo_path != null) {
             # code...
-        
+
         if (file_exists($value->profile_photo_path)) {
             $result = $client->putObject([
             'Bucket' => env('OBS_BUCKET'),
@@ -97,12 +97,12 @@ Route::get('/ttt', function(){
             }
         }
 
-            
+
             // return response()->json(['url' => $result['ObjectURL']]);
 
 
         }
-    
+
 
 
 });

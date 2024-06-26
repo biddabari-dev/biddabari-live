@@ -211,7 +211,7 @@
             event.preventDefault();
             var categoryId = $(this).attr('data-category-id');
             $.ajax({
-                url: base_url+"course-categories/"+categoryId+"/edit",
+                url: "/course-categories/"+categoryId+"/edit",
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
