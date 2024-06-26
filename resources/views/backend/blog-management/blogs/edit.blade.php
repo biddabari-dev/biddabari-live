@@ -56,6 +56,19 @@
                     </div>
                 </div>
                 <div class="row mt-2">
+                    <div class="col-md-6 mt-2">
+                        <label for="">Banner Image ALT text</label>
+                    <input type="text" class="form-control" name="alt_text" value="{{ $blog->alt_text }}" placeholder="Banner Image ALT Text">
+                    <span class="text-danger" id="alt_text"></span>
+    
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <label for="">Banner Image Title</label>
+                    <input type="text" class="form-control" name="banner_title" value="{{ $blog->banner_title }}"  placeholder="Banner Image Title">
+                    <span class="text-danger" id="banner_title"></span>
+                    </div>
+                </div>
+                <div class="row mt-2">
                     <div class="col-sm-3 mt-2">
                         <label for="">Featured</label>
                         <div class="material-switch">

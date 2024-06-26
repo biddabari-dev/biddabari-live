@@ -177,7 +177,7 @@
                                         <div class="col-md-6 checkout_contact">
                                             <div class="contact-info-card">
                                                 <i class="ri-phone-fill"></i>
-                                                <h5>এজেন্ট এর সাথে কথা বলুন</h5>
+                                                <h5>প্রয়োজনে এজেন্ট এর সাথে কথা বলুন</h5>
                                                 <p><a href="tel:+8801896060800">+8801896060800</a></p>
                                             </div>
                                         </div>
@@ -218,6 +218,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 @endsection
 

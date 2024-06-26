@@ -153,7 +153,7 @@
         $(document).on('click', '.edit-notice-category-btn', function () {
             var noticeCategoryId = $(this).attr('data-notice-category-id');
             $.ajax({
-                url: base_url+"notice-categories/"+noticeCategoryId+"/edit",
+                url: "/notice-categories/"+noticeCategoryId+"/edit",
                 method: "GET",
                 success: function (data) {
                     console.log(data);
@@ -177,7 +177,7 @@
         $(document).on('click', '.add-sub-category-btn', function () {
             var noticeCategoryId = $(this).attr('data-notice-category-id');
             $.ajax({
-                url: base_url+"notice-categories/add-sub-categories/"+noticeCategoryId,
+                url: "/notice-categories/add-sub-categories/"+noticeCategoryId,
                 method: "GET",
                 success: function (data) {
                     console.log(data);

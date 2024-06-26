@@ -26,6 +26,8 @@ class Blog extends Model
         'slug',
         'hit_count',
         'status',
+        'alt_text',
+        'banner_title'
     ];
 
     protected static $blog;
@@ -56,6 +58,8 @@ class Blog extends Model
             'body'                      => $request->body,
             'slug'                      => str_replace(' ', '-', $request->title),
             'author_id'                 => auth()->id(),
+            'alt_text'          => $request->alt_text,
+            'banner_title'          => $request->banner_title,
             'is_featured'               => $request->is_featured == 'on' ? 1 : 0,
             'status'                    => $request->status == 'on' ? 1 : 0,
         ]);

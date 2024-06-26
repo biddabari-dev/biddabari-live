@@ -117,6 +117,21 @@
                                     <span class="text-danger">{{ $errors->has('image') ? $errors->first('image') : '' }}</span>
                                     <img src="" id="imagePreview" alt="">
                                 </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Banner Image ALT Text</label>
+                                    <input type="text" class="form-control" name="alt_text" placeholder="Banner Image ALT Text">
+                                    <span class="text-danger" id="alt_text"></span>
+                    
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Banner Image Title</label>
+                                    <input type="text" class="form-control" name="banner_title"  placeholder="Banner Image Title">
+                                    <span class="text-danger" id="banner_title"></span>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-4 mt-2">
                                     <label for="">Featured PDF</label>
                                     <input type="file"  name="featured_pdf" class="form-control" placeholder="Featured PDF" accept="application/pdf" />
@@ -174,6 +189,7 @@
                                     <textarea name="about" id="summernote3"  placeholder="about" class="form-control" cols="30" rows="5"></textarea>
                                     <span class="text-danger">{{ $errors->has('about') ? $errors->first('about') : '' }}</span>
                                 </div>
+
                                 <div class="col-md-12 mt-2 mb-2">
                                     <label for="">Description</label>
                                     <textarea name="description" class="form-control" id="summernote" placeholder="Description" cols="30" rows="5"></textarea>
@@ -272,7 +288,7 @@
             event.preventDefault();
             var productCategoryId = $(this).attr('data-product-category-id'); //change value
             $.ajax({
-                url: base_url+"products/"+productCategoryId+"/edit",
+                url: "/products/"+productCategoryId+"/edit",
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -298,6 +314,8 @@
                     $('#bookPdfPreview').attr('href', base_url+data.pdf);
                     $('input[name="affiliate_amount"]').val(data.affiliate_amount);
                     $('input[name="price"]').val(data.price);
+                    $('input[name="alt_text"]').val(data.alt_text);
+                    $('input[name="banner_title"]').val(data.banner_title);
                     $('input[name="stock_amount"]').val(data.stock_amount);
                     $('input[name="discount_amount"]').val(data.discount_amount);
                     $('input[name="discount_start_date"]').val(data.discount_start_date);

@@ -86,7 +86,6 @@
                     <label for="">Banner Image Title</label>
                   <input type="text" class="form-control" name="banner_title"  placeholder="Banner Image Title">
                   <span class="text-danger" id="banner_title"></span>
-
                 </div>
             </div>
         </div>

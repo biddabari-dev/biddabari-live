@@ -100,6 +100,20 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row mt-2">
+                                <div class="col-md-6 mt-2">
+                                    <label for="">Banner Image ALT text</label>
+                                <input type="text" class="form-control" name="alt_text" placeholder="Banner Image ALT Text">
+                                <span class="text-danger" id="alt_text"></span>
+                
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <label for="">Banner Image Title</label>
+                                <input type="text" class="form-control" name="banner_title"  placeholder="Banner Image Title">
+                                <span class="text-danger" id="banner_title"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -186,6 +200,8 @@
                     console.log(data.note)
                     $('span[class="text-danger"]').empty();
                     $('input[name="name"]').val(data.name);
+                    $('input[name="alt_text"]').val(data.alt_text);
+                    $('input[name="banner_title"]').val(data.banner_title);
                     if (data.status == 1)
                     {
                         $('input[name="status"]').attr('checked', true);

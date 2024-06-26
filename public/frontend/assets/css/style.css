@@ -8667,13 +8667,13 @@ img {
 }
 
 .checkout_contact .contact-info-card {
-    padding: 10px 30px 10px 110px;
+    padding: 10px 15px 10px 90px;
 }
 
 .checkout_contact .contact-info-card i {
     position: absolute;
     top: 10px;
-    left: 30px;
+    left: 15px;
     width: 60px;
     height: 60px;
     line-height: 60px;
@@ -8817,7 +8817,7 @@ img {
     }
     .checkout_contact h5 {
         font-size: 15px;
-        line-height: 5px;
+        line-height: 15px;
     }
     .checkout_contact .contact-info-card {
         padding: 10px 5px 5px 45px;

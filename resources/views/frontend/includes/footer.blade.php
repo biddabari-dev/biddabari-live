@@ -77,7 +77,7 @@
                             <div class="content">
                                 <h4>Location:</h4>
                                 <span>
-                                    4th-5th Floor, Jashore Malik Shamiti Vobon, Gausul Azam Super Market, Nilkhat,
+                                    1th,5th-7th Floor, Jashore Malik Shamiti Vobon, Gausul Azam Super Market, Nilkhet,
                                     Kataban Rd 1205 Dhaka, Dhaka Division, Bangladesh
                                 </span>
                             </div>
