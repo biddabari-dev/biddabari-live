@@ -17,6 +17,8 @@ class NoticeCategory extends Model
         'image',
         'slug',
         'status',
+        'alt_text',
+        'banner_title'
     ];
 
     protected $searchableFields = ['*'];
@@ -62,6 +64,8 @@ class NoticeCategory extends Model
             self::$noticeCategory->notice_category_id = 0;
         }
         self::$noticeCategory->name = $request->name;
+        self::$noticeCategory->alt_text = $request->alt_text;
+        self::$noticeCategory->banner_title = $request->banner_title;
         self::$noticeCategory->image = isset($id) ? imageUpload($request->file('image'), 'notice-management/notice-categories/', 'notice-category-', '', '', NoticeCategory::find($id)->image) : imageUpload($request->file('image'), 'notice-management/notice-categories/', 'notice-category-', '', '');
         self::$noticeCategory->slug = str_replace(' ', '-', $request->name);
         self::$noticeCategory->status = $request->status == 'on' ? 1 : 0;

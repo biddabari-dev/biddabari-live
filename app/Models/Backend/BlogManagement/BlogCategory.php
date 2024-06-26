@@ -12,7 +12,8 @@ class BlogCategory extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['parent_id', 'name', 'image', 'order', 'slug', 'status'];
+    protected $fillable = ['parent_id', 'name', 'image', 'order', 'slug', 'status', 'alt_text',
+    'banner_title'];
 
     protected $searchableFields = ['*'];
 
@@ -43,6 +44,8 @@ class BlogCategory extends Model
             'slug'      => str_replace(' ', '-', $request->name),
             'image'     => imageUpload($request->file('image'), 'blog-management/blog-categories/', 'blog-category', '300', '200', (isset($id) ? BlogCategory::find($id)->image : null)),
             'order'     => !empty($request->order) ? $request->order : 1,
+            'alt_text'          => $request->alt_text,
+            'banner_title'          => $request->banner_title,
             'status'    => $request->status == 'on' ? 1 : 0
         ]);
     }

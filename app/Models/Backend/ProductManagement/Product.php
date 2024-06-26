@@ -38,6 +38,8 @@ class Product extends Model
         'discount_end_date',
         'discount_end_date_timestamp',
         'affiliate_amount',
+        'alt_text',
+        'banner_title'
     ];
 
     protected $searchableFields = ['*'];
@@ -80,6 +82,8 @@ class Product extends Model
             'pdf'                   => fileUpload($request->file('pdf'), 'product-management/product-pdf', 'product-pdf', (isset($id) ? Product::find($id)->pdf : null)),
             'price'                 => $request->price,
             'discount_type'         => $request->discount_type,
+            'alt_text'                 => $request->alt_text,
+            'banner_title'         => $request->banner_title,
             'discount_amount'       => $request->discount_amount,
             'discount_start_date'   => $request->discount_start_date,
             'discount_start_date_timestamp'       => strtotime($request->discount_start_date),
