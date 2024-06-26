@@ -559,7 +559,7 @@ class CourseController extends Controller
 
     public function import(Request $request)
     {
-        $name = '47th BCS Special Care Live Batch';
+        $name = '11-20th Grade Special Care Live Batch';
         $id = Course::where('title',$name)->first();
         $id = $id->id;
 
@@ -567,34 +567,44 @@ class CourseController extends Controller
 
         $xlArray = Excel::toArray(new StudentTransferImport(), $request->file('student_file'))[0];
 
+        // dd($xlArray);
+
             foreach ($xlArray as $key => $item)
             {
 
+                if ($item[2] != null) {
+                    # code...
                     $check = User::where('mobile',$item[2])->first();
 
                     if ($check) {
                         # code...
-                        ParentOrder::create([
-                            'parent_model_id'           => $id,
-                            'user_id'                   => $check->id,
-                            'order_invoice_number'      => mt_rand(00000,8484986484),
-                            'ordered_for'               => 'course',
-                            'payment_method'            => 'cod',
-                            'vendor'                    => 'bkash',
-                            'paid_to'                   => '01896060828',
-                            'paid_from'                 => $item[3],
-                            'txt_id'                    => mt_rand(00000,8484986484),
-                            'paid_amount'               => $item[4],
-                            'total_amount'              => $item[4] + $item[5] ?? 0,
-                            'payment_status'            => 'complete',
-                            'status'                    => 'approved',
-                            'batch_exam_subscription_id' => isset($request->batch_exam_subscription_id) ?? null,
-                        ]);
+                        $check_2 = ParentOrder::where('parent_model_id',$id)->where('user_id',$check->id)->first();
+
+                        if (empty($check_2) ) {
+
+                            ParentOrder::create([
+                                'parent_model_id'           => $id,
+                                'user_id'                   => $check->id,
+                                'order_invoice_number'      => mt_rand(00000,8484986484),
+                                'ordered_for'               => 'course',
+                                'payment_method'            => 'cod',
+                                'vendor'                    => 'bkash',
+                                'paid_to'                   => '01896060828',
+                                'paid_from'                 => $item[3],
+                                'txt_id'                    => mt_rand(00000,8484986484),
+                                'paid_amount'               => $item[4],
+                                'total_amount'              => $item[4] + $item[5] ?? 0,
+                                'payment_status'            => 'complete',
+                                'status'                    => 'approved',
+                                'batch_exam_subscription_id' => isset($request->batch_exam_subscription_id) ?? null,
+                            ]);
+                        }
+
                     }else{
                         $user = new User();
 
                         $user->name       = $item[1];
-                        $user->mobile       = $item[2];
+                        $user->mobile       = '0'.$item[2];
 
                         $user->password   = Hash::make('123456789');
                         $user->p_code     = $user->password;
@@ -619,10 +629,12 @@ class CourseController extends Controller
                             'batch_exam_subscription_id' => isset($request->batch_exam_subscription_id) ?? null,
                         ]);
                     }
+                }
 
 
             }
 
+            return "Success!";
 
     }
 }
