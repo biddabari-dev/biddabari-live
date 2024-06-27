@@ -559,7 +559,7 @@ class CourseController extends Controller
 
     public function import(Request $request)
     {
-        $name = '11-20th Grade Special Care Live Batch';
+        $name = 'Primary Advance Special Care Live Batch-3';
         $id = Course::where('title',$name)->first();
         $id = $id->id;
 
@@ -593,7 +593,7 @@ class CourseController extends Controller
                                 'paid_from'                 => $item[3],
                                 'txt_id'                    => mt_rand(00000,8484986484),
                                 'paid_amount'               => $item[4],
-                                'total_amount'              => $item[4] + $item[5] ?? 0,
+                                'total_amount'              => $item[4],
                                 'payment_status'            => 'complete',
                                 'status'                    => 'approved',
                                 'batch_exam_subscription_id' => isset($request->batch_exam_subscription_id) ?? null,
@@ -623,7 +623,7 @@ class CourseController extends Controller
                             'paid_from'                 => $item[3],
                             'txt_id'                    => mt_rand(00000,8484986484),
                             'paid_amount'               => $item[4],
-                            'total_amount'              => $item[4] + $item[5] ?? 0,
+                            'total_amount'              => $item[4],
                             'payment_status'            => 'complete',
                             'status'                    => 'approved',
                             'batch_exam_subscription_id' => isset($request->batch_exam_subscription_id) ?? null,
@@ -636,5 +636,31 @@ class CourseController extends Controller
 
             return "Success!";
 
+    }
+
+    public function assign_role()
+    {
+        $data = User::where('mobile', 'LIKE', '1%')->get();
+
+        dd($data);
+
+        foreach ($data as  $value) {
+            # code...
+            $check = User::where('mobile','0'.$value->mobile)->first();
+
+            if ($check) {
+                $check2 = ParentOrder::where('user_id', $value->id)->first();
+                $check2->user_id = $check->id;
+                $check2->update();
+            }else{
+                $update = User::find( $value->id );
+                $update->mobile = '0'.$value->mobile;
+                $update->update();
+            }
+
+
+        }
+
+        return 'done';
     }
 }

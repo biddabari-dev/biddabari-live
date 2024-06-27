@@ -18,6 +18,8 @@ use App\Http\Controllers\Backend\AdditionalFeatureManagement\Affiliation\Affilia
 
 use App\Http\Controllers\SqlScriptController;
 
+route::get('/assign-role',[CourseController::class,'assign_role']);
+
 
 Route::get('import', function(){
     return view('import');
