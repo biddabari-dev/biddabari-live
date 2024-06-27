@@ -166,6 +166,11 @@
             } else if (noticeType == 'scroll')
             {
                 $('.image-row').addClass('d-none');
+                $('.banner-text-title-row').addClass('d-none');
+            }else if (noticeType == 'discount')
+            {
+                $('.image-row').addClass('d-none');
+                $('.banner-text-title-row').addClass('d-none');
             }
         })
     </script>

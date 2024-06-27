@@ -24,6 +24,7 @@
                         <option value=""></option>
                         <option value="normal" {{ $notice->type == 'normal' ? 'selected' : '' }}>Normal</option>
                         <option value="scroll" {{ $notice->type == 'scroll' ? 'selected' : '' }}>Scroll</option>
+                        <option value="discount" {{ $notice->type == 'discount' ? 'selected' : '' }}>Discount</option>
                     </select>
                     <span class="text-danger" id="type">{{ $errors->has('type') ? $errors->first('type') : '' }}</span>
                 </div>
@@ -45,7 +46,7 @@
                     <textarea name="body" id="summernote" placeholder="Notice Content" cols="30" rows="10">{!! $notice->body !!}</textarea>
                 </div>
             </div>
-            <div class="row mt-2 image-row {{ $notice->type == 'scroll' ? 'd-none' : '' }}">
+            <div class="row mt-2 image-row {{ $notice->type == 'normal' ? '' : 'd-none' }}">
                 <div class="col-md-4 mt-2">
                     <label for="">Image</label>
                     <input type="file" name="image" class="form-control" id="imagex" accept="image/*" placeholder="Image" />
@@ -63,7 +64,7 @@
                 </div>
             </div>
 
-            <div class="row mt-2">
+            <div class="row mt-2 banner-text-title-row {{ $notice->type == 'normal' ? '' : 'd-none' }}">
                 <div class="col-md-6 mt-2">
                     <label for="">Banner Image ALT text</label>
                 <input type="text" class="form-control" name="alt_text" value="{{ $notice->alt_text }}" placeholder="Banner Image ALT Text">

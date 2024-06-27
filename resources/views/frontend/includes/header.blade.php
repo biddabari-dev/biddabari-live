@@ -107,7 +107,18 @@
                     <div class="header-right">
                         <ul class="social-list">
                             <li>
-                                <button id="runningButton" class="running-button">সব কোর্সে ৬০% ছাড় চলছে </button>
+                                {{-- @if(!empty($discountNotices))
+                                @forelse($discountNotices as $discountNotices)
+                                     <button id="runningButton" class="running-button">{!! strip_tags($discountNotices->body) !!}</button>
+                                @empty
+                                    <button id="runningButton" class="running-button">Discount OFF</button>
+                                @endforelse
+                                @endif --}}
+
+                                @php
+                                    $nfff = DB::table('notices')->where('type','discount')->first();
+                                @endphp
+                                <button id="runningButton" class="running-button">{{ $nfff}} </button>
                             </li>
                             <li>
                                 <a href="https://www.facebook.com/biddaabari" target="_blank">

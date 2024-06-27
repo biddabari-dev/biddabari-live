@@ -23,6 +23,7 @@
                         <option value=""></option>
                         <option value="normal" {{ $notice->type == 'normal' ? 'selected' : '' }}>Normal</option>
                         <option value="scroll" {{ $notice->type == 'scroll' ? 'selected' : '' }}>Scroll</option>
+                        <option value="discount" {{ $notice->type == 'discount' ? 'selected' : '' }}>Discount</option>
                     </select>
                 </div>
                 <div class="col-md-6 mt-2">
