@@ -22,6 +22,8 @@ class CourseCategory extends Model
         'meta_description',
         'slug',
         'order',
+        'alt_text',
+        'banner_title',
         'is_featured',
         'status',
     ];
@@ -62,6 +64,8 @@ class CourseCategory extends Model
             'image'         => isset($id) ? imageUpload($request->file('image'), 'course/course-images/', 'course-category', '300', '200', static::find($id)->image) : imageUpload($request->file('image'), 'course/course-images/', 'course-category', '300', '200'),
 //            'slug'          => str_replace(' ', '-', $request->name),
             'slug'          => $request->slug ?? str_replace(' ', '-', $request->name),
+            'alt_text'          => $request->alt_text,
+            'banner_title'          => $request->banner_title,
             'order'         => isset($id) ? CourseCategory::find($id)->order : 1,
             'is_featured'   => $request->is_featured == 'on' ? 1 : 0,
             'status'        => $request->status == 'on' ? 1 : 0,

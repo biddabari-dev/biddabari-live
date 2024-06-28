@@ -112,7 +112,7 @@
         $(document).on('click', '.edit-notice-btn', function () {
             var noticeId = $(this).attr('data-notice-id');
             $.ajax({
-                url: base_url+"notices/"+noticeId+"/edit",
+                url: "/notices/"+noticeId+"/edit",
                 method: "GET",
                 success: function (data) {
                     console.log(data);
@@ -136,7 +136,7 @@
         $(document).on('click', '.show-notice-btn', function () {
             var noticeId = $(this).attr('data-notice-id');
             $.ajax({
-                url: base_url+"notices/"+noticeId,
+                url: "/notices/"+noticeId,
                 method: "GET",
                 success: function (data) {
                     console.log(data);
@@ -166,6 +166,11 @@
             } else if (noticeType == 'scroll')
             {
                 $('.image-row').addClass('d-none');
+                $('.banner-text-title-row').addClass('d-none');
+            }else if (noticeType == 'discount')
+            {
+                $('.image-row').addClass('d-none');
+                $('.banner-text-title-row').addClass('d-none');
             }
         })
     </script>
