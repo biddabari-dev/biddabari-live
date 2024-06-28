@@ -625,4 +625,32 @@ class CourseController extends Controller
 
 
     }
+
+
+
+    public function merge()
+    {
+        $user = DB::connection('mysql2')->table('users')->get();
+
+        foreach($user as $u)
+        {
+            $check = DB::connection('mysql')->table('users')->first();
+
+            if (empty($check)) {
+                # code...
+
+                $password = hash::make('123456789');
+
+                $user = DB::connection('mysql')->table('users')->insert([
+                    'name'=>$u->name,
+                    'mobile'=>$u->mobile,
+                    'password'=>$password,
+                    'p_code'=>$password,
+                    'status'=>1,
+                ]);
+            }
+        }
+
+        return 'success';
+    }
 }
