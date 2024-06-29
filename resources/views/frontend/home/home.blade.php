@@ -85,7 +85,8 @@
             <div class="col-lg-3 col-sm-6 col-6 col-m-6">
                 <div class="featured-item-two">
                     <a href="#StudentsComments" class="p-2">
-                        <i class="flaticon-camera"></i>
+                        {{-- <i class="flaticon-camera"></i> --}}
+                        <i class="fa-solid fa-comment-dots"></i>
                         <h3>শিক্ষার্থীর মন্তব্য</h3>
                     </a>
                 </div>
@@ -93,7 +94,8 @@
             <div class="col-lg-3 col-sm-6 col-6 col-m-6">
                 <div class="featured-item-two">
                     <a href="{{ route('front.all-gallery-images') }}" class="p-2">
-                        <i class="flaticon-user"></i>
+                        {{-- <i class="flaticon-user"></i> --}}
+                        <i class="fa-solid fa-photo-film"></i>
                         <h3>ফটো গ্যালারি</h3>
                     </a>
                 </div>
@@ -153,7 +155,7 @@
             <div class="section-title text-center mb-45">
                 <!--   <span>কোর্স সমূহ</span>-->
                 <h2>চলমান কোর্স সমূহ</h2>
-                <h5>ভর্তি চলছে ... !!!</h5>
+                <p>ভর্তি চলছে ... !!!</p>
                 <hr class="w-25 mx-auto bg-danger" />
             </div>
             <div class="row cat_mobile_res">
@@ -410,7 +412,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body text-end">
-                                        <h2 class="card-title mb-2">{{ $ourService->title ?? '' }}</h2>
+                                        <h3 class="card-title mb-2">{{ $ourService->title ?? '' }}</h3>
                                         <p class="card-text text-muted">
                                             {!! $ourService->content !!}
                                         </p>
@@ -426,7 +428,7 @@
                             <div class="row g-0">
                                 <div class="col-md-8">
                                     <div class="card-body text-start">
-                                        <h2 class="card-title mb-2">{{ $ourService->title ?? '' }}</h2>
+                                        <h3 class="card-title mb-2">{{ $ourService->title ?? '' }}</h3>
                                         <p class="card-text text-muted">
                                             {!! $ourService->content !!}
                                         </p>
@@ -507,7 +509,7 @@
                                         <img loading="lazy"
                                             src="{{ asset($successStudentOpinion->image) ?? 'frontend/assets/images/testimonials/s-1.jpg' }}"
                                             alt="testimonials" />
-                                        <h3>{{ $successStudentOpinion->name ?? 'Student Name' }}</h3>
+                                        <p>{{ $successStudentOpinion->name ?? 'Student Name' }}</p>
                                         <span>Student</span>
                                     </div>
                                     <div class="quote"> <i class="flaticon-quote"></i></div>
@@ -528,7 +530,7 @@
                                         <img loading="lazy"
                                             src="{{ asset($runningStudentOpinion->image) ?? 'frontend/assets/images/testimonials/s-1.jpg' }}"
                                             alt="testimonials" />
-                                        <h3>{{ $runningStudentOpinion->name ?? 'Student Name' }}</h3>
+                                        <p>{{ $runningStudentOpinion->name ?? 'Student Name' }}</p>
                                         <span>Student</span>
                                     </div>
                                     <div class="quote"> <i class="flaticon-quote"></i></div>

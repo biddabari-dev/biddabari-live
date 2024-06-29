@@ -20,10 +20,11 @@
                 </div>
                 <div class="col-md-6 mt-2 select2-div">
                     <label for="">Notice Type</label>
-                    <select name="type" required class="form-control select2" data-placeholder="Select A Type" >
+                    <select name="type" required class="form-control select2" data-placeholder="Select a Type" >
                         <option value=""></option>
                         <option value="normal" selected>Normal</option>
                         <option value="scroll">Scroll</option>
+                        <option value="discount">Discount</option>
                     </select>
                     <span class="text-danger" id="type">{{ $errors->has('type') ? $errors->first('type') : '' }}</span>
                 </div>
@@ -57,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-2 banner-text-title-row">
                 <div class="col-md-6 mt-2">
                     <label for="">Banner Image ALT text</label>
                 <input type="text" class="form-control" name="alt_text" placeholder="Banner Image ALT Text">
