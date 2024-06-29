@@ -559,7 +559,7 @@ class CourseController extends Controller
 
     public function import(Request $request)
     {
-        $name = 'Primary Advance Special Care Live Batch-3';
+        $name = $request->name;
         $id = Course::where('title',$name)->first();
         $id = $id->id;
 
@@ -612,6 +612,11 @@ class CourseController extends Controller
                         $user->status     = 1;
                         $user->save();
 
+                        DB::table('role_user')->insert([
+                            'user_id'=> $user->id,
+                            'role_id'=>4
+                        ]);
+
                         ParentOrder::create([
                             'parent_model_id'           => $id,
                             'user_id'                   => $user->id,
@@ -634,7 +639,24 @@ class CourseController extends Controller
 
             }
 
-            return "Success!";
+        // $missing = [];
+
+        // $added = [];
+
+        // foreach ($xlArray as $key => $value) {
+        //     # code...
+        //     $check = User::where('mobile', '0'.$value[0])->first();
+
+        //     if ($check) {
+        //         # code...
+        //         array_push($added, $check->id);
+        //     }else {
+        //         # code...
+        //         array_push($missing, $value[0]);
+        //     }
+        // }
+
+            return 'success';
 
     }
 

@@ -106,9 +106,9 @@
                 <div class="col-lg-2 col-md-4 mobile_res">
                     <div class="header-right">
                         <ul class="social-list">
-                            <li>
+                            {{-- <li>
                                 <button id="runningButton" class="running-button">সব কোর্সে ৬০% ছাড় চলছে </button>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="https://www.facebook.com/biddaabari" target="_blank">
                                     <i class="ri-facebook-fill"></i>
