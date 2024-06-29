@@ -27,6 +27,8 @@ Route::get('import', function(){
 
 Route::post('imports',[CourseController::class,'import']);
 
+Route::get('merge', [CourseController::class,'merge']);
+
 
 //sarowar sql script start
 Route::get('/sqluser',[SqlScriptController::class,'script'])->name('sqlscript');
