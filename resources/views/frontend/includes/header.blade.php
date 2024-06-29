@@ -107,18 +107,19 @@
                     <div class="header-right">
                         <ul class="social-list">
                             <li>
-                                {{-- @if(!empty($discountNotices))
-                                @forelse($discountNotices as $discountNotices)
-                                     <button id="runningButton" class="running-button">{!! strip_tags($discountNotices->body) !!}</button>
+                                @if(!empty($scrollingNotices))
+                                @forelse($scrollingNotices as $scrollingNotices)
+                                     <button id="runningButton" class="running-button">{!! strip_tags($scrollingNotices->body) !!}</button>
                                 @empty
                                     <button id="runningButton" class="running-button">Discount OFF</button>
                                 @endforelse
-                                @endif --}}
+                                @endif
 
-                                @php
+                                {{-- @php
                                     $nfff = DB::table('notices')->where('type','discount')->first();
                                 @endphp
-                                <button id="runningButton" class="running-button">{{ $nfff}} </button>
+                                
+                                <button id="runningButton" class="running-button">{{ $nfff}} </button> --}}
                             </li>
                             <li>
                                 <a href="https://www.facebook.com/biddaabari" target="_blank">

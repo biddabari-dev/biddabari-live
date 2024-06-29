@@ -8738,7 +8738,21 @@ img {
     padding-top: 10px !important;
 }
 
+.details_custom_mobile_none .custom_fixed {
+    position: fixed;
+    top: 170px;
+    margin-right: 16%;
+    z-index: 1000;
+}
+
 @media only screen and (min-width: 280px) and (max-width: 420px) {
+
+    .details_custom_mobile_none .custom_fixed {
+        position: static;
+        top: 0px;
+        margin-right: 0%;
+        z-index: 0;
+    }
     /* -------------------Course Details Page Start --------------------- */
     .details_custom_mobile_block {
         display: block;
@@ -9051,6 +9065,13 @@ img {
 }
 
 @media only screen and (min-width: 421px) and (max-width: 520px) {
+
+    .details_custom_mobile_none .custom_fixed {
+        position: static;
+        top: 0px;
+        margin-right: 0%;
+        z-index: 0;
+    }
     /* -------------------Course Details Page Start --------------------- */
     .details_custom_mobile_block {
         display: block;
@@ -9370,6 +9391,13 @@ img {
 }
 
 @media only screen and (min-width: 521px) and (max-width: 767px) {
+
+    .details_custom_mobile_none .custom_fixed {
+        position: static;
+        top: 0px;
+        margin-right: 0%;
+        z-index: 0;
+    }
     /* -------------------Course Details Page Start --------------------- */
     .details_custom_mobile_block {
         display: block;
@@ -9674,6 +9702,13 @@ img {
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
+
+    .details_custom_mobile_none .custom_fixed {
+        position: static;
+        top: 0px;
+        margin-right: 0%;
+        z-index: 0;
+    }
     .bread {
         text-align: center !important;
     }
@@ -9766,6 +9801,13 @@ img {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .details_custom_mobile_none .custom_fixed {
+        position: static;
+        top: 0px;
+        margin-right: 0%;
+        z-index: 0;
+    }
     .mobile_res {
         display: none;
     }
