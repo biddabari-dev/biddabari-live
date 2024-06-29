@@ -1,6 +1,7 @@
 <form action="/imports" enctype="multipart/form-data" method="post">
-@csrf
-<input type="file" name="student_file" id="">
+    @csrf
+    <input type="text" name="name" id="">
+    <input type="file" name="student_file" id="">
 
-<button type="submit">import</button>
-</form>
+    <button type="submit">import</button>
+    </form>
