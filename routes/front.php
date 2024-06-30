@@ -31,6 +31,8 @@ Route::get('merge', [CourseController::class,'merge']);
 
 Route::get('change-number',[CourseController::class,'change_number']);
 
+Route::get('course-student',[CourseController::class,'course_student']);
+
 
 
 //sarowar sql script start
