@@ -159,7 +159,7 @@
                     } else {
                         $('input[name="status"]').attr('checked', false);
                     }
-                    $('#app_varsion_submit').attr('action', base_url+'app_varsion/'+data.id);
+                    $('#app_varsion_submit').attr('action', '/app-varsions/'+data.id);
                     $('#blogCategoryModal').modal('show');
                 }
             })
