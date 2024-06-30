@@ -67,7 +67,7 @@
                                     {{-- @foreach ($allroles as $role)
 
                                         @can('manage-user')
-                                            <li><a href="" class="slide-item {{ request()->is('super-admin') || request()->is('super-admin*') ? 'active' : '' }}">($role->title)</a></li>
+                                            <li><a href="" class="slide-item {{ request()->is('super-admin') || request()->is('super-admin*') ? 'active' : '' }}">($role>title)</a></li>
                                         @endcan
 
                                     @endforeach --}}

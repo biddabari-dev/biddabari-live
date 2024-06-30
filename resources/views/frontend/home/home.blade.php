@@ -171,7 +171,7 @@
                                     <div class="content">
                                         <h3 class="py-2"><a
                                                 href="{{ route('front.course-details', ['slug' => $course->slug]) }}">{{
-                        $course->title }}</a></h3>
+                        Str::limit($course->title , 38) }}</a></h3>
 
                                         <ul class="course-list">
                                             {{-- <li><i class="ri-time-fill"></i> 06 hr</li>--}}
@@ -319,7 +319,7 @@
                                 <div class="content">
                                     <h3><a
                                             href="{{ route('front.product-details', ['id' => $product->id, 'slug' => $product->slug]) }}">{{
-                        $product->title ?? '' }}</a></h3>
+                        Str::limit($product->title, 40) ?? '' }}</a></h3>
                                     @if($stockStatus == true)
                                         <p class="text-success f-s-19">In Stock</p>
                                     @else
