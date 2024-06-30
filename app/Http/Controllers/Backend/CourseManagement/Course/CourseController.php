@@ -749,10 +749,10 @@ class CourseController extends Controller
 
             if (empty($check)) {
                 # code...
-                $add = new CourseStudent;
-                $add->student_id = $value->user_id;
-                $add->course_id = $value->parent_model_id;
-                $add->save();
+                $add = DB::table('course_student')->insert([
+                    'student_id'=>$value->user_id,
+                    'course_id'=> $value->parent_model_id,
+                ]);
             }
 
 
