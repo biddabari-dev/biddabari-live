@@ -145,7 +145,7 @@
             event.preventDefault();
             var categoryId = $(this).attr('data-appvarsion-id');
             $.ajax({
-                url: "/app-varsion/"+categoryId+"/edit",
+                url: "/app-varsions/"+categoryId+"/edit",
                 method: "get",
                 dataType: "JSON",
                 success: function (data) {
