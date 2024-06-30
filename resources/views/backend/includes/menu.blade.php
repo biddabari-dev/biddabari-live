@@ -41,7 +41,7 @@
                             @can('manage-permission-category')
                             <li><a href="{{ route('permission-categories.index') }}" class="slide-item {{ request()->is('permission-categories') ||request()->is('permission-categories*') ? 'active' : '' }}">Permission Category</a></li>
                             @endcan
-                            @can('manage-permission')
+                            @can('manage-permission') 
                             <li><a href="{{ route('permissions.index') }}" class="slide-item {{ request()->is('permissions') || request()->is('permissions*') ? 'active' : '' }}">Permission</a></li>
                             @endcan
                             @can('manage-role')
@@ -58,18 +58,30 @@
                                 </a>
 
                                 <ul class="slide-menu">
-                                    <li class="side-menu-label1"><a href="javascript:void(0)">Role</a></li>
+
+                                   {{-- @php
+                                    $allrole = DB::table('roles')->where('id')->get();
+                                    dd($allrole);
+                                    @endphp --}}
+
+                                    @foreach ($allroles as $role)
+                                   
+                                        @can('manage-user')
+                                            <li><a href="" class="slide-item {{ request()->is('super-admin') || request()->is('super-admin*') ? 'active' : '' }}">($role->title)</a></li>
+                                        @endcan
+                                        
+                                    @endforeach
+
+
+
                                     @can('manage-user')
-                                    <li><a href="" class="slide-item {{ request()->is('super-admin') || request()->is('super-admin*') ? 'active' : '' }}">Super Admin</a></li>
+                                        <li><a href="" class="slide-item {{ request()->is('admin') || request()->is('admin*') ? 'active' : '' }}">Admin</a></li>
                                     @endcan
                                     @can('manage-user')
-                                    <li><a href="" class="slide-item {{ request()->is('admin') || request()->is('admin*') ? 'active' : '' }}">Admin</a></li>
+                                        <li><a href="" class="slide-item {{ request()->is('sub-admin') || request()->is('sub-admin*') ? 'active' : '' }}">Sub Admin</a></li>
                                     @endcan
                                     @can('manage-user')
-                                    <li><a href="" class="slide-item {{ request()->is('sub-admin') || request()->is('sub-admin*') ? 'active' : '' }}">Sub Admin</a></li>
-                                    @endcan
-                                    @can('manage-user')
-                                    <li><a href="{{ route('users.index') }}" class="slide-item {{ request()->is('users') || request()->is('users*') ? 'active' : '' }}">Users</a></li>
+                                        <li><a href="{{ route('users.index') }}" class="slide-item {{ request()->is('users') || request()->is('users*') ? 'active' : '' }}">Users</a></li>
                                     @endcan
                                 </ul>
                             </li>

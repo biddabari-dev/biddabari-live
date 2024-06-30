@@ -258,7 +258,7 @@
 
 
                         <div class="col-lg-4 details_custom_mobile_none">
-                            <div class="courses-details-sidebar shadow">
+                            <div class="courses-details-sidebar shadow custom_fixed">
                                 {{--                                <img src="{{ asset($course->banner) }}" alt="Courses" style="height: 240px" />--}}
                                 @if(!empty($course->featured_video_url))
                                     <div class="video-container" >
