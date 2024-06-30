@@ -41,7 +41,7 @@
                             @can('manage-permission-category')
                             <li><a href="{{ route('permission-categories.index') }}" class="slide-item {{ request()->is('permission-categories') ||request()->is('permission-categories*') ? 'active' : '' }}">Permission Category</a></li>
                             @endcan
-                            @can('manage-permission') 
+                            @can('manage-permission')
                             <li><a href="{{ route('permissions.index') }}" class="slide-item {{ request()->is('permissions') || request()->is('permissions*') ? 'active' : '' }}">Permission</a></li>
                             @endcan
                             @can('manage-role')
@@ -64,13 +64,13 @@
                                     dd($allrole);
                                     @endphp --}}
 
-                                    @foreach ($allroles as $role)
-                                   
+                                    {{-- @foreach ($allroles as $role)
+
                                         @can('manage-user')
                                             <li><a href="" class="slide-item {{ request()->is('super-admin') || request()->is('super-admin*') ? 'active' : '' }}">($role>title)</a></li>
                                         @endcan
-                                        
-                                    @endforeach
+
+                                    @endforeach --}}
 
 
 

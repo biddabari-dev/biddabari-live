@@ -685,4 +685,30 @@ class CourseController extends Controller
 
         return 'done';
     }
+
+    public function change_number()
+    {
+        $data = ParentOrder::latest()->take(20000)->get();
+        foreach ($data as $key => $value) {
+            # code...
+            $user = User::where('id', $value->user_id)->first();
+
+
+            if (empty($user)) {
+                # code...
+                $delete = ParentOrder::where('id',$value->id)->delete();
+            }else{
+                if ($value->paid_from != $user->mobile) {
+                    # code...
+                    $change = ParentOrder::find($value->id);
+                    $change->paid_from = $user->mobile;
+                    $change->update();
+                }
+            }
+        }
+
+
+        return 'success';
+
+    }
 }
