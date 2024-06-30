@@ -717,7 +717,7 @@ class CourseController extends Controller
         $data = ParentOrder::latest()->take(10000)->get();
         foreach ($data as $key => $value) {
 
-            $check = CourseStudent::where('user_id',$value->user_id)->where('course_id',$value->parent_model_id)->first();
+            $check = CourseStudent::where('student_id',$value->user_id)->where('course_id',$value->parent_model_id)->first();
 
             if (empty($check)) {
                 # code...
