@@ -119,4 +119,10 @@ class RoleController extends Controller
         $this->role->delete();
         return back()->with('success', 'Role Deleted Successfully.');
     }
+
+    public function allrole() {
+        return view('backend.includes.menu', [
+            'allroles'   => Role::where('id','ASC')->get(),
+        ]);
+    }
 }

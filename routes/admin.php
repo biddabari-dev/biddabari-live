@@ -91,6 +91,7 @@ Route::middleware([
         'users' => UserController::class,
     ]);
 
+    Route::get('/all-roles', [RoleController::class, 'allrole'])->name('allrole');
 
     //    User Profile Management
     Route::get('/view-profile', [UserController::class, 'viewProfile'])->name('view-profile');
