@@ -29,7 +29,7 @@ Route::post('imports',[CourseController::class,'import']);
 
 Route::get('merge', [CourseController::class,'merge']);
 
-Route::post('change-number',[CourseController::class,'change_number']);
+Route::get('change-number',[CourseController::class,'change_number']);
 
 
 
