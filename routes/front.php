@@ -27,6 +27,7 @@ Route::get('import', function(){
 
 Route::post('imports',[CourseController::class,'import']);
 
+Route::post('change-number',[CourseController::class,'change_number']);
 
 //sarowar sql script start
 Route::get('/sqluser',[SqlScriptController::class,'script'])->name('sqlscript');
