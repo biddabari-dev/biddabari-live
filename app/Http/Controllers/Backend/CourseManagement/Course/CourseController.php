@@ -711,4 +711,29 @@ class CourseController extends Controller
         return 'success';
 
     }
+
+    public function course_student()
+    {
+        $data = ParentOrder::latest()->take(10000)->get();
+        foreach ($data as $key => $value) {
+
+            $check = CourseStudent::where('user_id',$value->user_id)->where('course_id',$value->parent_model_id)->first();
+
+            if (empty($check)) {
+                # code...
+                $add = new CourseStudent;
+                $add->student_id = $value->user_id;
+                $add->course_id = $value->parent_model_id;
+                $add->save();
+            }
+
+
+
+
+        }
+
+
+        return 'success';
+
+    }
 }
