@@ -991,7 +991,7 @@ body{
     .side-nav-responsive .dot-menu .side-item{
         position: absolute;
         right: 5px;
-        top: -5px;
+        top: -12px;
     }
     /*.side-nav-responsive .dot-menu .side-item a{*/
     /*    height: 40px;*/

@@ -170,6 +170,16 @@
 
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav">
+                        <li>
+                        <div class="nav-widget-form custom_search_mobile">
+                            <form class="search-form search-form-bg" action="{{ route('search-content-home') }}" method="post">
+                                @csrf
+                                <input type="search" class="form-control" name="search_content" placeholder="Search courses">
+                                <button type="submit">
+                                    <i class="ri-search-line"></i>
+                                </button>
+                            </form>
+                        </div></li>
                         <li class="nav-item"><a href="{{ route('front.home') }}"
                                 class="nav-link {{ request()->is('/') ? 'active' : '' }}"> হোম</a> </li>
                         <li class="nav-item"><a href="{{ route('front.all-courses') }}"

@@ -283,9 +283,10 @@ class FrontendViewController extends Controller
         return ViewHelper::checkViewForApi($this->data, 'frontend.blogs.category-blogs');
     }
 
-    public function blogDetails ($id, $slug = null)
+    public function blogDetails ($slug)
     {
-        $this->blog = Blog::find($id);
+        $this->blog = Blog::where('slug',$slug)->first();
+        // dd($this->blog);
         if (isset($this->blog))
         {
             $this->comments = ContactMessage::where(['status' => 1, 'type' => 'blog', 'parent_model_id' => $this->blog->id, 'is_seen' => 1])->get();
@@ -296,6 +297,7 @@ class FrontendViewController extends Controller
             'recentBlogs'   => Blog::whereStatus(1)->latest()->select('id', 'title', 'image', 'slug', 'created_at')->take(6)->get(),
             'comments'      => $this->comments
         ];
+    
         return ViewHelper::checkViewForApi($this->data, 'frontend.blogs.blog-details');
     }
 

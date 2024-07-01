@@ -72,7 +72,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
 
         Route::get('/blog', [FrontendViewController::class, 'allBLogs'])->name('all-blogs');
         Route::get('/category-blogs/{id}/{slug?}', [FrontendViewController::class, 'categoryBlogs'])->name('category-blogs');
-        Route::get('/blog-details/{id}/{slug?}', [FrontendViewController::class, 'blogDetails'])->name('blog-details');
+        Route::get('/blog-details/{slug?}', [FrontendViewController::class, 'blogDetails'])->name('blog-details');
         Route::get('/product', [FrontendViewController::class, 'allProducts'])->name('all-products');
 
         Route::get('/view-cart', [FrontendViewController::class, 'viewCart'])->name('view-cart');

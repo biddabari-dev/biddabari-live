@@ -84,7 +84,7 @@
                             <div class="agree-label">
                                 <input type="checkbox" id="chb1" checked>
                                 <label for="chb1">
-                                    Accept <a href="terms-condition.html">Terms &amp; Conditions</a> And <a href="privacy-policy.html">Privacy Policy.</a>
+                                    Accept <a href="{{ route('front.terms-conditions') }}">Terms &amp; Conditions</a> And <a href="{{ route('front.privacy-policy') }}">Privacy Policy.</a>
                                 </label>
                             </div>
                         </div>
