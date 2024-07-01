@@ -764,4 +764,12 @@ class CourseController extends Controller
         return 'success';
 
     }
+
+
+    public function clean()
+    {
+        $id = 688;
+
+        $delete = ParentOrder::where('parent_model_id',$id)->delete();
+    }
 }
