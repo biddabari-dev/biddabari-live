@@ -29,11 +29,19 @@ class CourseOrderController extends Controller
             $this->courseOrders = ParentOrder::where('ordered_for', 'course')->whereParentModelId($request->course_id)->get();
 //            $this->courseOrders = ParentOrder::where('status', 'approved')->whereParentModelId($request->course_id)->latest()->paginate(20);
 //            return $this->courseOrders;
-        } else {
+        }
+        else {
 //            $this->courseOrders = CourseOrder::latest()->take(30)->get();
             $this->courseOrders = ParentOrder::where('ordered_for', 'course')->latest()->paginate(100);
 //            $this->courseOrders = ParentOrder::where('status','approved')->latest()->paginate(20);
 //            dd($this->courseOrders) ;
+        }
+
+        if (isset($request->date))
+        {
+            $this->courseOrders= $this->courseOrders->whereBetween('created_at',[$request->date.' 00:00:00',$request->date.' 23:59:59']);
+
+            // dd($this->courseOrders);
         }
 //        $this->courseOrders=$this->courseOrders->where('status','pending')->get();
         return view('backend.order-management.course-order.index', [

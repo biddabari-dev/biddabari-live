@@ -250,6 +250,11 @@ class ParentOrder extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function students()
+    {
+        return $this->hasMany(Student::class, 'id', 'user_id');
+    }
+
     public function course()
     {
         return $this->belongsTo(Course::class, 'parent_model_id');

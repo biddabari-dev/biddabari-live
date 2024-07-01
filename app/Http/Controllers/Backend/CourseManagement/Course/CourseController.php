@@ -200,9 +200,7 @@ class CourseController extends Controller
 
         $this->course = Course::select('id', 'title')->find($courseId);
         $students = [];
-        $students =  CourseStudent::where('course_id', $courseId)->with(['students' => function($students) {
-            $students->select('id', 'first_name', 'last_name', 'email', 'mobile', 'status')->with('user')->get();
-        }])->paginate(5000);
+        $students =  ParentOrder::where('parent_model_id', $courseId)->with('user')->paginate(5000);
 //        if ($request->ajax())
 //        {
 //            return \view('backend.course-management.course.courses.ajax-assign-student', ['students' => $students, 'course' => $this->course]);
@@ -710,5 +708,40 @@ class CourseController extends Controller
 
         return 'success';
 
+    }
+
+    public function course_student()
+    {
+        $data = ParentOrder::latest()->take(20000)->get();
+
+        $missing = [];
+
+        foreach ($data as $key => $value) {
+
+            $check = CourseStudent::where('student_id',$value->user_id)->where('course_id',$value->parent_model_id)->first();
+
+            if (empty($check)) {
+                # code...
+                // $add = DB::table('course_student')->insert([
+                //     'student_id'=>$value->user_id,
+                //     'course_id'=> $value->parent_model_id,
+                // ]);
+
+                array_push($missing, $value->id);
+            }
+        }
+
+        dd($missing);
+
+        return 'success';
+
+    }
+
+
+    public function clean()
+    {
+        $id = 688;
+
+        $delete = ParentOrder::where('parent_model_id',$id)->delete();
     }
 }

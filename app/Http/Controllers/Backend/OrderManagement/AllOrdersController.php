@@ -39,12 +39,12 @@ class AllOrdersController extends Controller
                 $this->allOrders = $this->allOrders->where('payment_status',$request->payment);
             }
              if (isset($request->search)){
-                $user=User::where('mobile',$request->search)->first();
+                $user=User::where('mobile','LIKE','%'.$request->search.'%')->first();
                if (isset($user)){
-                   $this->allOrders = $this->allOrders->where('paid_from',$request->search)->orWhere('paid_to',$request->search)->orWhere('user_id',$user->id);
+                   $this->allOrders = $this->allOrders->where('paid_from','LIKE','%'.$request->search.'%')->orWhere('paid_to','LIKE','%'.$request->search.'%')->orWhere('user_id',$user->id);
 
                }else{
-                   $this->allOrders = $this->allOrders->where('paid_from',$request->search)->orWhere('paid_to',$request->search);
+                   $this->allOrders = $this->allOrders->where('paid_from','LIKE','%'.$request->search.'%')->orWhere('paid_to','LIKE','%'.$request->search.'%');
 
                }
             }
