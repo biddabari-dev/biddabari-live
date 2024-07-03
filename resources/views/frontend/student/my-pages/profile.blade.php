@@ -26,7 +26,7 @@
                                 <div class="col-md-4 mt-2">
                                     <div class="form-group">
                                         <label for="">First Name</label>
-                                        <input type="text" class="form-control"
+                                        <input type="text" id="profile-name" onkeydown="return /[a-zA-Z ]/i.test(event.key)" class="form-control"
                                             value="{{ isset($student) ? $student->first_name : '' }}" name="first_name"
                                             required data-error="FirstName" placeholder="First Name">
                                     </div>
@@ -34,7 +34,7 @@
                                 <div class="col-md-4 mt-2">
                                     <div class="form-group">
                                         <label for="">Last Name</label>
-                                        <input type="text" class="form-control"
+                                        <input type="text" id="profile-name1" onkeydown="return /[a-zA-Z ]/i.test(event.key)"class="form-control"
                                             value="{{ isset($student) ? $student->last_name : '' }}" name="last_name"
                                             required data-error="LastName" placeholder="Last Name">
                                     </div>
@@ -145,5 +145,12 @@
             });
         });
     });
+</script>
+
+<script>
+    window.onload = () => {
+        const myInput = document.getElementById('profile-name');
+        myInput.onpaste = e => e.preventDefault();
+    }
 </script>
 @endpush

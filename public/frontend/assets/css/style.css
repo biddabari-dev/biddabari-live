@@ -8745,7 +8745,22 @@ img {
     z-index: 1000;
 }
 
+.custom_search_mobile{
+    display: none;
+}
+
+
 @media only screen and (min-width: 280px) and (max-width: 420px) {
+
+    .side-nav-responsive .dot-menu .side-item {
+        position: absolute;
+        right: 5px;
+        top: -12px !important;
+    }
+
+    .custom_search_mobile{
+        display: block;
+    }
 
     .details_custom_mobile_none .custom_fixed {
         position: static;

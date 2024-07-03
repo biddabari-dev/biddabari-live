@@ -12,7 +12,7 @@
                         <div class="col-lg-4 col-md-4 mt-3">
 
                             <div class="blog-card">
-                                <a href="{{ route('front.blog-details', ['id' => $blog->id, 'slug' => $blog->slug]) }}"
+                                <a href="{{ route('front.blog-details', ['slug' => $blog->slug]) }}"
                                     class="w-100" style="height:280px">
                                     <img src="{{ asset(isset($blog->image) ? $blog->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
                                         alt="Blog" class="w-100 img-fluid" style="height: 280px" /> </a>
@@ -27,7 +27,7 @@
                                             <span>{{ $blog->blogCategory->name }}</span>
                                         </li>
                                     </ul>
-                                    <a href="{{ route('front.blog-details', ['id' => $blog->id, 'slug' => $blog->slug]) }}"
+                                    <a href="{{ route('front.blog-details', ['slug' => $blog->slug]) }}"
                                         class="w-100" style="height:280px">
                                         <h2>
                                             <!-- {{ $blog->title }} --> 

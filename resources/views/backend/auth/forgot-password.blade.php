@@ -71,9 +71,9 @@
                 <div class="card-body">
                     <form class="login100-form validate-form auth-div" id="authModalForm" action="{{ route('send-password-reset-otp') }}" method="post">
                         @csrf
-									<span class="login100-form-title">
+									<h1 class="login100-form-title">
 										Login
-									</span>
+                                    </h1>
                         <div>
                             <p style="text-align: justify">Forgot your password? No problem. Just let us know your <b>Mobile Number</b> and we will send you an OTP that will allow you to choose a new one.</p>
                         </div>
