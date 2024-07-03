@@ -8742,7 +8742,7 @@ img {
     position: fixed;
     top: 170px;
     margin-right: 16%;
-    z-index: 1000;
+    /* z-index: 1000; */
 }
 
 .custom_search_mobile{
@@ -8751,6 +8751,17 @@ img {
 
 
 @media only screen and (min-width: 280px) and (max-width: 420px) {
+
+    .courses-area-two .owl-nav .owl-prev {
+        position: absolute;
+        z-index: 5;
+        top: 35%;
+    }
+    .courses-area-two .owl-nav .owl-next {
+        position: absolute;
+        z-index: 5;
+        top: 35%;
+    }
 
     .side-nav-responsive .dot-menu .side-item {
         position: absolute;
@@ -9045,8 +9056,17 @@ img {
 
     /* -----------Design Update Mizan  ---------------------- */
     .owl-theme .owl-nav {
-        display: none;
+        /* display: none; */
     }
+    .hero-slider .owl-nav .owl-prev {
+        position: absolute !important;
+        top: 35% !important;
+    }
+    .hero-slider .owl-nav .owl-next {
+        position: absolute !important;
+        top: 35% !important;
+    }
+
     .hero-slider-area {
         padding: 0px !important;
     }
@@ -9080,6 +9100,10 @@ img {
 }
 
 @media only screen and (min-width: 421px) and (max-width: 520px) {
+
+    .custom_search_mobile{
+        display: block;
+    }
 
     .details_custom_mobile_none .custom_fixed {
         position: static;
@@ -9374,8 +9398,18 @@ img {
 
     /* -----------Design Update Mizan  ---------------------- */
     .owl-theme .owl-nav {
-        display: none;
+        /* display: none; */
     }
+
+    .hero-slider .owl-nav .owl-prev {
+        position: absolute !important;
+        top: 41% !important;
+    }
+    .hero-slider .owl-nav .owl-next {
+        position: absolute !important;
+        top: 41% !important;
+    }
+
     .hero-slider-area {
         padding: 0px !important;
     }
@@ -9688,7 +9722,16 @@ img {
 
     /* -----------Design Update Mizan  ---------------------- */
     .owl-theme .owl-nav {
-        display: none;
+        /* display: none; */
+    }
+
+    .hero-slider .owl-nav .owl-prev {
+        position: absolute !important;
+        top: 41% !important;
+    }
+    .hero-slider .owl-nav .owl-next {
+        position: absolute !important;
+        top: 41% !important;
     }
     .hero-slider-area {
         padding: 0px !important;
@@ -9946,8 +9989,20 @@ img {
     }
     /* -----------Design Update Mizan  ---------------------- */
     .owl-theme .owl-nav {
-        display: none;
+        /* display: none; */
     }
+
+    .hero-slider .owl-nav .owl-prev {
+        position: absolute !important;
+        top: 41% !important;
+        left: 10px;
+    }
+    .hero-slider .owl-nav .owl-next {
+        position: absolute !important;
+        top: 41% !important;
+        
+    }
+    
     .hero-slider-area {
         padding: 0px !important;
     }
