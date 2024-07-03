@@ -25,6 +25,8 @@ Route::get('import', function(){
     return view('import');
 });
 
+route::get('files',[CourseController::class,'fileUpload']);
+
 Route::post('imports',[CourseController::class,'import']);
 
 Route::get('merge', [CourseController::class,'merge']);

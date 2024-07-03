@@ -39,6 +39,8 @@ use Symfony\Component\HttpFoundation\Response;
 use DataTable;
 use Yajra\DataTables\Facades\DataTables;
 use Hash;
+use Obs\ObsClient;
+use Zing\Flysystem\Obs\ObsAdapter;
 
 class CourseController extends Controller
 {
@@ -773,4 +775,64 @@ class CourseController extends Controller
 
         $delete = ParentOrder::where('parent_model_id',$id)->delete();
     }
+
+    public function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl = null)
+    {
+        // if ($fileObject)
+        // {
+            // if (isset($modelFileUrl))
+            // {
+            //     if (file_exists($modelFileUrl))
+            //     {
+            //         unlink($modelFileUrl);
+            //     }
+            // }
+
+            $files = Storage::allFiles('D:\pdf');
+
+            dd($files);
+
+            $fileName       = $nameString.str_replace(' ', '-', pathinfo($fileObject->getClientOriginalName(), PATHINFO_FILENAME)).'_'.rand(100,100000).'.'.$fileObject->extension();
+            $fileDirectory  = 'pdf/'.$directory;
+            $fileObject->move($fileDirectory, $fileName);
+
+            $prefix = '';
+            $config = [
+                'key' => '7NBPYLX5IMJMXEVUAMJR',
+                'secret' => 'k8PDyRPK94ZXjtoZExxCqqEXD8HI4jN63qCtJW0Z',
+                'bucket' => 'biddabari-bucket',
+                'endpoint' => 'obs.as-south-208.rcloud.reddotdigitalit.com',
+            ];
+
+            $config['options'] = [
+                'url' => '',
+                'endpoint' => $config['endpoint'],
+                'bucket_endpoint' => 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com',
+                'temporary_url' => '',
+            ];
+
+            $client = new ObsClient($config);
+            $adapter = new ObsAdapter($client, $config['bucket'], $prefix, null, null, $config['options']);
+            $flysystem = new Filesystem($adapter);
+
+            // dd(env('OBS_BUCKET'));
+
+            $result = $client->putObject([
+                'Bucket' => 'biddabari-bucket',
+                'Key' => $fileDirectory.$fileName,
+                'SourceFile' => $fileDirectory.$fileName,
+                ]);
+
+                if (file_exists($fileDirectory.$fileName))
+                {
+                    unlink($fileDirectory.$fileName);
+                }
+
+
+
+        //     return $fileDirectory.$fileName;
+        // }
+    }
+
+
 }
