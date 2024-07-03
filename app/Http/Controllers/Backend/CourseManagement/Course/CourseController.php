@@ -157,6 +157,7 @@ class CourseController extends Controller
         {
             if ($role->id == 1)
             {
+                $delete_user = ParentOrder::where('parent_model_id',$id)->delete();
                 $this->course = Course::find($id)->delete();
                 return back()->with('success', 'Course deleted Successfully.');
             }
