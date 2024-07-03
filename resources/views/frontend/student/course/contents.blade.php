@@ -173,7 +173,7 @@
             <div class="modal-content" >
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Watch Class Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="close_video()" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-0">
                     <div class="card card-body p-0">
@@ -487,6 +487,8 @@
                                     // width: $(this).parent().height(),
                                     height: $(this).parent().width(),
                                     poster: "",
+                                    forward: true, // video forward button
+                                    forwardValue: 10,
                                 });
                             }
                         }
@@ -518,6 +520,15 @@
                 return false;
             }
         })
+    </script>
+
+    <script>
+        function close_video(){
+
+            $("#video").empty()
+
+
+        }
     </script>
 
     <script>

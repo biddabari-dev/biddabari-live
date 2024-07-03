@@ -54,6 +54,18 @@ class StudentController extends Controller
         $totalEnrolledExams = 0;
         $totalPurchasedProducts = 0;
         $totalPendingOrders = 0;
+
+        $check = '';
+
+        foreach ($this->orders as $key => $value) {
+            # code...
+            $checks = Course::where('id',$value->parent_model_id)->first();
+
+            if (!$checks) {
+                ParentOrder::where('id',$value->id)->delete();
+            }
+        }
+
         foreach ($this->orders as $order)
         {
             if ($order->ordered_for == 'course' && $order->status == 'approved')

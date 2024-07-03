@@ -101,7 +101,7 @@ function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl 
             }
         }
         $fileName       = $nameString.str_replace(' ', '-', pathinfo($fileObject->getClientOriginalName(), PATHINFO_FILENAME)).'_'.rand(100,100000).'.'.$fileObject->extension();
-        $fileDirectory  = 'backend/assets/uploaded-files/'.$directory.'/';
+        $fileDirectory  = 'backend/assets/uploaded-files/'.$directory;
         $fileObject->move($fileDirectory, $fileName);
 
         $prefix = '';
