@@ -529,4 +529,30 @@
         })
     </script>
 
+
+<script>
+    $(function() {
+    const $header = $('.custom_fixed');
+    let prevScroll = 0;
+    height = document.body.offsetHeight-window.innerHeight;
+    footer = height - 450;
+
+    console.log(footer);
+
+    $(window).scroll(function() {
+        let scroll = $(window).scrollTop();
+        console.log(scroll);
+        if (scroll > footer) {
+        $header.css('bottom','475px');
+        $header.css( 'top', 'unset');
+        }else{
+        $header.css('top', '167px');
+        $header.css('bottom','unset');
+
+        }
+        prevScroll = scroll;
+    });
+    });
+    </script>
+
 @endpush
