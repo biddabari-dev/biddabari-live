@@ -92,4 +92,10 @@ class BatchExamSection extends Model
     {
         return $this->hasMany(BatchExamSectionContent::class)->orderBy('id', 'ASC');
     }
+
+
+    public function content()
+    {
+        return $this->hasMany(BatchExamSectionContent::class,'batch_exam_section_id','id');
+    }
 }
