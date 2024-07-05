@@ -8904,8 +8904,8 @@ img {
         width: 30px !important;
     }
 
-    .custome_mobile_null {
-        display: none;
+    .sticky-submit-btn {
+        width: unset !important;
     }
     .mobile_res {
         display: none;
@@ -9582,8 +9582,8 @@ img {
         width: 35px !important;
     }
 
-    .custome_mobile_null {
-        display: none;
+    .sticky-submit-btn {
+        width: unset !important;
     }
 
     .mobile_res {
@@ -10000,9 +10000,9 @@ img {
     .hero-slider .owl-nav .owl-next {
         position: absolute !important;
         top: 41% !important;
-        
+
     }
-    
+
     .hero-slider-area {
         padding: 0px !important;
     }

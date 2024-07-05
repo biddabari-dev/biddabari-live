@@ -1,4 +1,18 @@
 @extends('frontend.master')
+@push('style')
+    <style>
+        .sticky-submit-btn{
+            text-align: center;
+            width: 500px;
+            position: fixed;
+            bottom: 0px;
+            margin-bottom: 2rem;
+            background: #ffc107;
+            color: #fff;
+            font-size: 1rem;
+        }
+    </style>
+@endpush
 
 @section('body')
 <div class="container-fluid" id="grad1">
@@ -11,9 +25,6 @@
                             <h2 class="quiz-name">Exam - {{ $exam->title }}</h2>
                             <span class="course-name d-block">{{ count($exam->questionStores) }} Questions</span>
                         </div>
-                    </div>
-                    <div class="mx-auto custome_mobile_null">
-                        <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a>
                     </div>
                     <div class="ms-auto">
                         <a href="" class="btn btn-lg start-btn btn-success" data-xm-type="{{ isset($exam) ? $exam->content_type : 'null' }}" >Start</a>
@@ -123,6 +134,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-8 text-center">
+            <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a>
         </div>
     </div>
 </div>
@@ -242,107 +256,10 @@
     var pdfUrl = $('#pdf-container').attr('data-pdf-url');
 
     $('#pdf-container').pdfViewer(pdfUrl);
-    {{--        var pdf = new PDFAnnotate("pdf-container", "{{ !empty($sectionContent->pdf_link) ? $sectionContent->pdf_link : asset($sectionContent->pdf_file) }}", {--}}
-    // var pdf = new PDFAnnotate("pdf-container", pdfUrl, {
-    //     onPageUpdated(page, oldData, newData) {
-    //         console.log(page, oldData, newData);
-    //     },
-    //     ready() {
-    //         console.log("Plugin initialized successfully");
-    //     },
-    //     scale: 1.5,
-    //     pageImageCompression: "MEDIUM", // FAST, MEDIUM, SLOW(Helps to control the new PDF file size)
-    // });
-    //
-    // function changeActiveTool(event) {
-    //     var element = $(event.target).hasClass("tool-button")
-    //         ? $(event.target)
-    //         : $(event.target).parents(".tool-button").first();
-    //     $(".tool-button.active").removeClass("active");
-    //     $(element).addClass("active");
-    // }
-    //
-    // function enableSelector(event) {
-    //     event.preventDefault();
-    //     changeActiveTool(event);
-    //     pdf.enableSelector();
-    // }
-    //
-    // function enablePencil(event) {
-    //     event.preventDefault();
-    //     changeActiveTool(event);
-    //     pdf.enablePencil();
-    // }
-    //
-    // function enableAddText(event) {
-    //     event.preventDefault();
-    //     changeActiveTool(event);
-    //     pdf.enableAddText();
-    // }
-    //
-    // function enableAddArrow(event) {
-    //     event.preventDefault();
-    //     changeActiveTool(event);
-    //     pdf.enableAddArrow();
-    // }
-    //
-    // function addImage(event) {
-    //     event.preventDefault();
-    //     pdf.addImageToCanvas()
-    // }
-    //
-    // function enableRectangle(event) {
-    //     event.preventDefault();
-    //     changeActiveTool(event);
-    //     pdf.setColor('rgba(255, 0, 0, 0.3)');
-    //     pdf.setBorderColor('blue');
-    //     pdf.enableRectangle();
-    // }
-    //
-    // function deleteSelectedObject(event) {
-    //     event.preventDefault();
-    //     pdf.deleteSelectedObject();
-    // }
-    //
-    // function savePDF() {
-    //     // pdf.savePdf();
-    //     pdf.savePdf("written-ans"); // save with given file name
-    // }
-    //
-    // function clearPage() {
-    //     pdf.clearActivePage();
-    // }
-    //
-    // function showPdfData() {
-    //     var string = pdf.serializePdf();
-    //     $('#dataModal .modal-body pre').first().text(string);
-    //     PR.prettyPrint();
-    //     $('#dataModal').modal('show');
-    // }
-    //
-    // $(function () {
-    //     $('.color-tool').click(function () {
-    //         $('.color-tool.active').removeClass('active');
-    //         $(this).addClass('active');
-    //         color = $(this).get(0).style.backgroundColor;
-    //         pdf.setColor(color);
-    //     });
-    //
-    //     $('#brush-size').change(function () {
-    //         var width = $(this).val();
-    //         pdf.setBrushSize(width);
-    //     });
-    //
-    //     $('#font-size').change(function () {
-    //         var font_size = $(this).val();
-    //         pdf.setFontSize(font_size);
-    //     });
-    // });
 
 </script>
 
-
-    <script>
+<script>
 
         const beforeUnloadHandler = (event) => {
             var form = $('#quizForm')[0];
@@ -421,6 +338,25 @@
                     $('#questionsCard').removeClass('d-none');
                     $('.finish-div').removeClass('d-none');
                     $('.sticky-submit-btn').removeClass('d-none');
+
+                    $(function() {
+                    const $header = $('.sticky-submit-btn');
+                    let prevScroll = 0;
+                    height = document.body.offsetHeight-window.innerHeight;
+                    footer = height - 500;
+
+                    console.log(height);
+
+                    $(window).scroll(function() {
+                        let scroll = $(window).scrollTop();
+                        if (scroll > footer) {
+                        $header.css('bottom','470px');
+                        }else{
+                        $header.css('bottom','0px');
+                        }
+                        prevScroll = scroll;
+                    });
+                    });
 // timmer calling start
 
                         var currentTime = new Date();

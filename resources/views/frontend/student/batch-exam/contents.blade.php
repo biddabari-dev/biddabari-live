@@ -198,7 +198,7 @@
     <style>
         .canvas-container, canvas { /*width: 100%!important;*/ margin-top: 10px!important;}
     </style>
-    
+
     <link rel="stylesheet" href="{{ asset('/') }}backend/ppdf/css/pdfviewer.jquery.css" />
     <style>
         .pdf-toolbar {display: none;}

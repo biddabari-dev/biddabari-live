@@ -465,7 +465,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-course-section-id'); //change value
             $.ajax({
-                url: base_url+"batch-exam-sections/"+courseId+"/edit",
+                url: "/batch-exam-sections/"+courseId+"/edit",
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -491,7 +491,7 @@
                     //     format: 'YYYY-MM-DD HH:mm'
                     // });
                     $("#dateTimezz").datetimepicker({format: "yyyy-mm-dd hh:ii", autoclose: !0})
-                    $('#courseSectionForm').attr('action', base_url+"batch-exam-sections/"+data.id).append('<input type="hidden" name="_method" value="put">');
+                    $('#courseSectionForm').attr('action', "/batch-exam-sections/"+data.id).append('<input type="hidden" name="_method" value="put">');
                     $('#courseSectionModal').modal('show');
                 }
             })
@@ -545,7 +545,7 @@
             event.preventDefault();
             var sectionContentId = $(this).attr('data-section-content-id'); //change value
             $.ajax({
-                url: base_url+"batch-exam-section-contents/"+sectionContentId+"/edit",
+                url: "/batch-exam-section-contents/"+sectionContentId+"/edit",
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -595,7 +595,7 @@
             event.preventDefault();
             var sectionContentId = $(this).attr('data-section-content-id'); //change value
             $.ajax({
-                url: base_url+"batch-exam-section-contents/"+sectionContentId,
+                url: "/batch-exam-section-contents/"+sectionContentId,
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -681,7 +681,7 @@
     <script>
         $(document).on('click', '.change-url', function () {
             var sectionId = $('#sectionId').val();
-            window.location = base_url+"batch-exam-section-contents?section_id="+sectionId+"&batch_exam_id={{ $_GET['batch_exam_id'] }}";
+            window.location = "/batch-exam-section-contents?section_id="+sectionId+"&batch_exam_id={{ $_GET['batch_exam_id'] }}";
         })
     </script>
 
@@ -703,7 +703,7 @@
         $(document).on('change', '#pdfStoreCategory', function () {
             var sectionContentId = $(this).val();
             $.ajax({
-                url: base_url+"get-pdf-by-cat/"+sectionContentId,
+                url: "/get-pdf-by-cat/"+sectionContentId,
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -725,7 +725,7 @@
             var sectionContentId = $(this).attr('data-section-content-id');
             var examType = $(this).attr('data-xm-type');
             $.ajax({
-                url: base_url+"get-batch-exam-content-for-add-question",
+                url: "/get-batch-exam-content-for-add-question",
                 method: "GET",
                 // dataType: "JSON",
                 data: {section_content_id:sectionContentId,exam_type:examType},
@@ -742,7 +742,7 @@
             var questionTopicId = $('#questionTopic').val();
             var xmType = $('input[name="xm_type"]').val();
             $.ajax({
-                url: base_url+"get-ques-by-topic",
+                url: "/get-ques-by-topic",
                 method: "GET",
                 // dataType: "JSON",
                 data: {question_topic_ids:questionTopicId,exam_type:xmType},
@@ -810,7 +810,7 @@
             var questionId = $(this).attr('data-question-id');
             var contentId = $(this).attr('data-content-id');
             $.ajax({
-                url: base_url+"detach-question-from-content",
+                url: "/detach-question-from-content",
                 method: "GET",
                 // dataType: "JSON",
                 data: {question_id:questionId,content_id:contentId},

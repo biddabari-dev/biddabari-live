@@ -227,7 +227,6 @@ class BatchExamSectionController extends Controller
                     return back()->with('error', 'This is already at bottom.');
                 }
             }
-//            $sectionContent->save();
             return back()->with('success', 'Order Changed Successfully.');
         }
         return back()->with('error', 'Something went wrong buddy. Please try again.');
