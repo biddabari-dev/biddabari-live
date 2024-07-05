@@ -27,7 +27,7 @@
 
                         <div class="comments-form">
                             <div class="contact-form">
-                                <h4>Leave A Reply</h4>
+                                <h4>Leave a Reply</h4>
                                 <form id="" action="{{ route('front.new-comment') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="type" value="blog">
@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12">
                                             <button type="submit" @if(!auth()->check()) onclick="event.preventDefault(); toastr.error('Please Login First');" @endif class="default-btn">
-                                                Post A Comment
+                                                Submit
                                             </button>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header py-0" style="background-color: #F18345;">
-                            <p class="text-center text-white f-s-38 mb-0">Latest Blogs</p>
+                            <h3 class="text-center text-white f-s-38 mb-0">Latest Blogs</h3>
                         </div>
                         @forelse($recentBlogs as $recentBlog)
                             <div class="card-body py-2 border-bottom">

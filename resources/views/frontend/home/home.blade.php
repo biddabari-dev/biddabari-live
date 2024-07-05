@@ -325,7 +325,7 @@
                                     @else
                                         <p class="text-danger f-s-19">Out Of Stock</p>
                                     @endif
-                                    <h5>TK {{$product->price}} </h5>
+                                    <p>TK {{$product->price}} </p>
                                 </div>
                             </div>
                         </div>

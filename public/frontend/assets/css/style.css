@@ -10041,3 +10041,7 @@ img {
     text-align: center;
     padding: 4rem;
 }
+.blog-card .content p {
+    color: black;
+    font-weight: 600;
+}
