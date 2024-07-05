@@ -28,6 +28,7 @@ class Users extends DataTable
             ->addColumn('action', function ($user){
                 $btn = '';
                 $btn .= '<a href="'.route("users.edit", $user->id) .'" class="btn btn-sm btn-warning"><i class="fa-solid fa-edit"></i></a>';
+                $btn .= '<a href="'.route("dashboard", $user->id) .'" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>';
                 $btn .= '<form class="d-inline" action="'. route('users.destroy', $user->id).'" method="post" ><input type="hidden" name="_token" value="'.csrf_token().'" /><input type="hidden" name="_method" value="delete" /><button type="submit" class="btn btn-sm btn-danger data-delete-form ms-2"><i class="fa-solid fa-trash"></i></button></form>';
                 return $btn;
             })

@@ -24,7 +24,7 @@
                                                 href="{{ route('front.category-blogs', ['id' => $blog->blogCategory->id,'slug' => $blog->blogCategory->slug]) }}">{{
                                                 $blog->blogCategory->name }}</a></li>--}}
                                         <li><i class="ri-price-tag-3-fill"></i>
-                                            <span>{{ $blog->blogCategory->name }}</span>
+                                            <a href="{{ route('front.blog-details', ['id' => $blog->id, 'slug' => $blog->slug]) }}"><span>{{ $blog->blogCategory->name }}</span></a>
                                         </li>
                                     </ul>
                                     <a href="{{ route('front.blog-details', ['slug' => $blog->slug]) }}"

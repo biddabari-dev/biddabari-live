@@ -5,7 +5,7 @@
                 <div class="footer-widget">
                     <div class="footer-logo">
                         <a href="{{ route('front.home') }}">
-                            <img src="{{ asset('/') }}frontend/assets/images/logos/logo-2.png" alt="Images">
+                            <img src="{{ asset('/') }}frontend/assets/images/logos/logo-bidda.jpg" alt="Images">
                         </a>
                     </div>
                     <p>
