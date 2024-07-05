@@ -295,7 +295,7 @@
             }
 
             $.ajax({
-                url: base_url+'exams/get-questions-for-exam',
+                url: '/exams/get-questions-for-exam',
                 method: "POST",
                 data: {question_type: xmType},
                 dataType: "JSON",
@@ -358,7 +358,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-course-section-id'); //change value
             $.ajax({
-                url: base_url+"exams/"+courseId+"/edit",
+                url: "/exams/"+courseId+"/edit",
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -434,7 +434,7 @@
             var sectionContentId = $(this).attr('data-section-content-id');
             var examType = $(this).attr('data-xm-type');
             $.ajax({
-                url: base_url+"get-xm-for-add-question",
+                url: "/get-xm-for-add-question",
                 method: "GET",
                 // dataType: "JSON",
                 data: {exam_id:sectionContentId,exam_type:examType},
@@ -451,7 +451,7 @@
             var questionTopicId = $('#questionTopic').val();
             var xmType = $('input[name="xm_type"]').val();
             $.ajax({
-                url: base_url+"get-ques-by-topic",
+                url: "/get-ques-by-topic",
                 method: "GET",
                 // dataType: "JSON",
                 data: {question_topic_ids:questionTopicId,exam_type:xmType},

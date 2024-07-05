@@ -59,10 +59,13 @@ class StudentController extends Controller
 
         foreach ($this->orders as $key => $value) {
             # code...
-            $checks = Course::where('id',$value->parent_model_id)->first();
+            if ($value->order_for == 'course') {
+                # code...
+                $checks = Course::where('id',$value->parent_model_id)->first();
 
-            if (!$checks) {
-                ParentOrder::where('id',$value->id)->delete();
+                if (!$checks) {
+                    ParentOrder::where('id',$value->id)->delete();
+                }
             }
         }
 

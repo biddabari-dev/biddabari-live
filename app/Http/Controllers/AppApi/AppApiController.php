@@ -69,12 +69,20 @@ class AppApiController extends Controller
                 $courseSections->whereStatus(1)->select('id', 'course_id', 'title', 'available_at', 'is_paid', 'status')->get()->except(['created_at', 'updated_at']);
             }
         ])->first();
+        // $this->course->push('t_class',(int) $this->course->total_class);
+
+        $collection = collect($this->course);
+
+        $collection->put('total_class', (int) $this->course->total_class);
+
+        $collection->all();
+
         $courseEnrollStatus = ViewHelper::checkIfCourseIsEnrolled($this->course);
         if (isset($this->course))
         {
             $this->comments = ContactMessage::where(['status' => 1, 'type' => 'course', 'parent_model_id' => $this->course->id, 'is_seen' => 1])->get();
         }
-        return response()->json(['course' => $this->course, 'courseEnrollStatus' => $courseEnrollStatus, 'comments'  => $this->comments]);
+        return response()->json(['course' => $collection, 'courseEnrollStatus' => $courseEnrollStatus, 'comments'  => $this->comments]);
     }
 
     public function allCourses()
@@ -231,6 +239,6 @@ class AppApiController extends Controller
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.student.my-pages.exams');
     }
-    
-    
+
+
 }

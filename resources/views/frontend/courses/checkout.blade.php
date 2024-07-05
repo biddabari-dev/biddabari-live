@@ -165,15 +165,6 @@
 
                                 <li>
                                     <div class="row">
-{{--                                        <div class="col-md-6 checkout_coupon">--}}
-{{--                                            <label for="couponCode" >Coupon Code</label>--}}
-
-{{--                                            <div class="input-group">--}}
-{{--                                                <input type="text" placeholder="Coupon Code" id="couponCode" class="form-control" />--}}
-{{--                                                <label for="couponCode" class="input-group-text" id="checkBtn" style="cursor: pointer">Apply</label>--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
                                         <div class="col-md-6 checkout_contact">
                                             <div class="contact-info-card">
                                                 <i class="ri-phone-fill"></i>

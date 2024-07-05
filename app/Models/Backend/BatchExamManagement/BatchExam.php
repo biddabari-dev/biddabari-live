@@ -234,4 +234,9 @@ class BatchExam extends Model
         return $this->hasMany(AffiliationHistory::class, 'model_id');
 //        return $this->hasMany(AffiliationHistory::class, 'model_id')->where('model_type', 'batch_exam');
     }
+
+    public function section()
+    {
+        return $this->hasMany(BatchExamSection::class,'batch_exam_id','id');
+    }
 }

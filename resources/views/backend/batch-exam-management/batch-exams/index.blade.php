@@ -224,7 +224,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-course-id');
             $.ajax({
-                url: base_url+"batch-exams/"+courseId+"/edit",
+                url: "/batch-exams/"+courseId+"/edit",
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -258,7 +258,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-course-id');
             $.ajax({
-                url: base_url+"batch-exams/"+courseId,
+                url: "/batch-exams/"+courseId,
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
