@@ -5,10 +5,10 @@
         <img src="{{ !empty($batchExam->banner) ? asset($batchExam->banner) : asset('/frontend/logo/biddabari-card-logo.jpg') }}" alt="Batch Exams" class="w-100" style="height: 230px"/>
         <div class="courses-item">
             <div class="content">
-                <div class="px-3 pt-3">
+                <div class=" pt-3">
                     <h3>{{ $batchExam->title }}</h3>
                 </div>
-                <li class="course-list">
+                <ul class="course-list">
                     {{-- <li><i class="ri-time-fill"></i> 06 hr</li>--}}
                     @php
                         $total_pdf = 0;
@@ -47,7 +47,7 @@
                 @elseif($batchExam->purchase_status == 'pending')
                     <button type="button" class="btn text-success ms-auto">Pending</button>
                 @else
-                <button type="button" class="btn btn-outline-success btn-sm ms-auto " >কোর্সটি কিনুন</button>
+                <button type="button" class="btn btn-outline-success btn-sm ms-auto " >বিস্তারিত দেখুন</button>
                     <!--<button type="button" class="btn btn-outline-success btn-sm ms-auto " >View</button>-->
                 @endif
             </div>
