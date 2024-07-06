@@ -128,20 +128,20 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Order Exams</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Purcase Exams</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="printHere">
                     <div class="courses-details-area p-b-20">
                         <div class="container">
                             <div class="row">
-                                <div class="col-sm-7">
+                                <div class="col-sm-12">
                                     <div class="card card-body">
-                                        <div class="text-center">
+                                        <!-- <div class="text-center">
                                             <img style="max-height: 250px" id="xmImage" src="{{ asset('frontend/logo/biddabari-card-logo.jpg') }}" alt="exam-image-text" class="img-fluid" />
-                                        </div>
+                                        </div> -->
                                         <div class="mt-3">
-                                            <h2 id="catName">catName</h2>
+                                            <!-- <h2 id="catName">catName</h2> -->
                                             <div class="row mt-2 xm-details-row">
 
                                                 <div class="col-md-12">
@@ -177,93 +177,6 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class="card card-body" >
-                                        <div id="checkEnroll">
-
-{{--                                            <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">--}}
-{{--                                                @csrf--}}
-{{--                                                <input type="hidden" name="course_id" value="{{ $course->id }}" />--}}
-{{--                                                <input type="hidden" name="total_amount" id="totalAmount" />--}}
-{{--                                                <input type="hidden" name="used_coupon" value="0">--}}
-{{--                                                <input type="hidden" name="coupon_code" value="">--}}
-{{--                                                <input type="hidden" name="coupon_amount" value="">--}}
-{{--                                                <input type="hidden" name="ordered_for" value="batch_exam">--}}
-{{--                                                <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">--}}
-{{--                                                <input type="hidden" name="payment_method" value="ssl">--}}
-{{--                                                <input type="submit" class="btn btn-warning" value="কোর্সটি কিনুন">--}}
-{{--                                            </form>--}}
-
-                                            <form action="" id="xmCardForm" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="total_amount" id="totalAmount" />
-                                                <input type="hidden" name="ordered_for" value="batch_exam" />
-                                                <input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}" />
-                                                <div class="payment-box">
-                                                    <div class="payment-method">
-                                                        <h3>Payment Method</h3>
-                                                        <p>
-                                                            <input type="radio" id="paypal" name="payment_method" value="ssl">
-                                                            <label for="paypal">SSLCommerz</label>
-                                                        </p>
-                                                        <p>
-                                                            <input type="radio" id="direct-bank-transfer" value="cod" name="payment_method" checked>
-                                                            <label for="direct-bank-transfer">Manual Payment</label>
-                                                        </p>
-                                                    </div>
-                                                    <div class="mt-2">
-                                                        <h3>Select a Package</h3>
-                                                        <div class="" id="selectPackages">
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="payment-des-parent-div">
-                                                        <div class="payment-cod d-none xm-payment-div">
-                                                            <p>ম্যানুয়াল পেমেন্ট করলে আমাদের <span>বিকাশ মার্চেন্ট</span> নাম্বারে টাকা পাঠাতে হবে। <br><span>01896 060888</span></p>
-                                                            <p>রকেট এ পাঠাতে চাইলে <span>রকেট মার্চেন্ট</span> পাঠাতে হবে। <br><span>01963 929208</span></p>
-                                                            <p>নগদ এ পাঠাতে চাইলে <span>নগদ মার্চেন্ট</span> নাম্বারে টাকা পাঠাতে হবে। <br><span>01896 060828</span></p>
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="paidTo">Paid To</label>
-                                                                    <input type="number" id="paidTo"  name="paid_to" class="form-control" placeholder="Paid To" />
-                                                                    <span class="text-danger">{{ $errors->has('paid_to') ? $errors->first('paid_to') : '' }}</span>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label for="paidForm">Paid Form</label>
-                                                                    <input type="number" id="paidForm"  name="paid_from" class="form-control" placeholder="Paid Form" />
-                                                                    <span class="text-danger">{{ $errors->has('paid_from') ? $errors->first('paid_from') : '' }}</span>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label for="transactionId">Transaction Id</label>
-                                                                    <input type="text" id="transactionId"  name="txt_id" class="form-control" placeholder="Transaction Id" />
-                                                                    <span class="text-danger">{{ $errors->has('txt_id') ? $errors->first('txt_id') : '' }}</span>
-                                                                </div>
-                                                                <div class="col-md-6 select2-div">
-                                                                    <label for="vendor">Vendor</label>
-                                                                    <select name="vendor" id="vendor" class="form-control">
-                                                                        <option value="" selected disabled>Select a Vendor</option>
-                                                                        <option value="bkash">Bkash</option>
-                                                                        <option value="nagad">Nagad</option>
-                                                                        <option value="rocket">Rocket</option>
-                                                                    </select>
-                                                                    <span class="text-danger">{{ $errors->has('vendor') ? $errors->first('vendor') : '' }}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    @if(auth()->check())
-                                                        <button type="submit" class="default-btn">Place Order</button>
-                                                    @else
-                                                        <button type="button" onclick="toastr.error('Please Login First To Order this exam.')" class="default-btn">Place Order</button>
-                                                    @endif
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="msgPrint">
-
                                         </div>
                                     </div>
                                 </div>
@@ -328,15 +241,15 @@
                 method: "GET",
                 success: function (data) {
                     console.log(data);
-                    if ( data.exam.banner != null)
-                    {
-                        $('#xmImage').attr('src', data.exam.banner);
-                    } else {
-                        $('#xmImage').attr('src', base_url+'frontend/logo/biddabari-card-logo.jpg');
-                    }
-                    $('#catName').text(data.exam.title);
+                    // if ( data.exam.banner != null)
+                    // {
+                    //     $('#xmImage').attr('src', data.exam.banner);
+                    // } else {
+                    //     $('#xmImage').attr('src','/frontend/logo/biddabari-card-logo.jpg');
+                    // }
+                    // $('#catName').text(data.exam.title);
                     $('#price').text(data.exam.price);
-                    $('#description').html(data.exam.description);
+                    // $('#description').html(data.exam.description);
 
                     $('#xmCardForm').attr('action', base_url+'student/order-exam/'+xmId);
 
@@ -344,9 +257,9 @@
                     div += '<h3 class="text-center">Available Packages for this Exam</h3>\n' +
                         '                                                    <div class="row">\n';
                     $.each(data.exam.batch_exam_subscriptions, function (key, val) {
-                        div += '<div class="col-md-6 mt-3">\n' +
+                        div += '<div class="col-md-4 mt-3">\n' +
                             '<div class="card card-body">\n' +
-                            '<img src="'+base_url+'frontend/logo/biddabari-card-logo.jpg" alt="" class="card-img-top" style="height: 150px">\n'+
+                            '<img src="/frontend/logo/biddabari-card-logo.jpg" alt="" class="card-img-top" style="height: 150px">\n'+
                             '       <h3 class="f-s-30">'+val.package_title+'</h3>\n' +
                             '       <p class="f-s-20 p-0 m-0">RegularPrice: <span class="f-s-24">'+val.price+'</span> Tk</p>\n' +
                             '       <p class="f-s-20 p-0 m-0">Duration: <span class="f-s-24">'+val.package_duration_in_days+'</span> Days</p>\n';
@@ -357,7 +270,10 @@
                                 '       <p class="f-s-20 p-0 m-0">Valid Till: '+val.discount_end_date.split(" ")[0]+'</p>\n' ;
                         }
 
-                        div += '   </div>\n'+
+                        div += '<div class="bottom-content">'+
+                            '<a href="checkout/batch_exam/'+data.exam.title.replace(" ", "-")+'?si='+val.id+'" class="btn btn-warning" style="float: right;">বিস্তারিত দেখুন</a>'+
+                        '</div>'+
+                        '   </div>\n'+    
                             '   </div>\n';
                     })
                     div += '                                                    </div>';
