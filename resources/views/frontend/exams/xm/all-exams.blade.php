@@ -271,7 +271,7 @@
                         }
 
                         div += '<div class="bottom-content">'+
-                            '<a href="checkout/batch_exam/'+data.exam.title.replace(" ", "-")+'?si='+val.id+'" class="btn btn-warning" style="float: right;">বিস্তারিত দেখুন</a>'+
+                            '<a href="checkout/batch_exam/'+data.exam.title.replaceAll(" ", "-")+'?si='+val.id+'" class="btn btn-warning" style="float: right;">বিস্তারিত দেখুন</a>'+
                         '</div>'+
                         '   </div>\n'+    
                             '   </div>\n';
