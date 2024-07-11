@@ -190,6 +190,10 @@ class CourseSectionContent extends Model
                 self::$courseSectionContent->has_class_xm                               = $request->has_class_xm == 'on' ? 1 : 0;
                 self::$courseSectionContent->course_section_content_id                  = $request->has_class_xm == 'on' ? $request->course_section_content_id : null;
                 self::$courseSectionContent->class_xm_duration_in_minutes                  = $request->has_class_xm == 'on' ? $request->class_xm_duration_in_minutes : null;
+                self::$courseSectionContent->exam_total_questions                  = $request->has_class_xm == 'on' ? $request->exam_total_questionss : null;
+                self::$courseSectionContent->exam_per_question_mark                  = $request->has_class_xm == 'on' ? $request->exam_per_question_marks : null;
+                self::$courseSectionContent->exam_negative_mark                  = $request->has_class_xm == 'on' ? $request->exam_negative_marks : null;
+                self::$courseSectionContent->exam_pass_mark                  = $request->has_class_xm == 'on' ? $request->exam_pass_marks : null;
             } else {
                 self::$courseSectionContent->has_class_xm                               =  0;
                 self::$courseSectionContent->course_section_content_id                  = null;

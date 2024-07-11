@@ -115,7 +115,7 @@ class CourseSectionContentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+        // dd($request->all());
         abort_if(Gate::denies('update-course-section-content'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         CourseSectionContent::saveOrUpdateCourseSectionContent($request, $id);
         if ($request->ajax())

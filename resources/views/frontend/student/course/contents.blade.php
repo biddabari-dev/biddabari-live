@@ -549,6 +549,8 @@
     <!--ppdf-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
     <script src="{{ asset('/') }}backend/ppdf/js/pdfviewer.jquery.js"></script>
+    <script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
+
 
     <script>
         $(document).on('click', '.show-pdf', function () {
@@ -570,8 +572,24 @@
                     }
                     $('#pdf-container').empty();
 
+                    k = 'bf8a4943b5194d16ab2870cbfb4ee5e9';
 
-                    $('#pdf-container').pdfViewer(pdflink);
+
+                    // $('#pdf-container').pdfViewer(pdflink);
+                    var adobeDCView = new AdobeDC.View({clientId: k, divId: "pdf-container"});
+                    adobeDCView.previewFile(
+                    {
+                        content:   {location: {url: pdflink}},
+                        metaData: {fileName: "pdfviewer.pdf"},
+                    },
+                    {
+                        embedMode: "FULL_WINDOW",
+                        showAnnotationTools: false, 
+                        showDownloadPDF: false,
+                        showPrintPDF: false
+
+                    }
+);
 
                     if(data.sectionContent.can_download_pdf == 1 )
                     {

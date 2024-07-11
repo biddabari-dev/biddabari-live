@@ -706,7 +706,7 @@
             event.preventDefault();
             var categoryId = $(this).attr('data-topic-id');
             $.ajax({
-                url: base_url+"question-stores/"+categoryId+"/edit",
+                url: "/question-stores/"+categoryId+"/edit",
                 method: "GET",
                 success: function (data) {
                     $('#editModalBody').empty().append(data);
@@ -714,7 +714,7 @@
                         minimumResultsForSearch: "",
                         width: "100%",
                     })
-                    $('#questionUpdateForm').attr('action', base_url+'question-stores/'+categoryId);
+                    $('#questionUpdateForm').attr('action', '/question-stores/'+categoryId);
                     $('#summernote111').summernote({minHeight:150,inheritPlaceholder: true});
                     $('#summernote222').summernote({minHeight:150,inheritPlaceholder: true});
                     $('#summernote333').summernote({minHeight:150,inheritPlaceholder: true});

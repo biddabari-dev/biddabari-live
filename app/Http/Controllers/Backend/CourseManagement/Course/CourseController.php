@@ -691,24 +691,21 @@ class CourseController extends Controller
     }
     public function assign_role()
     {
-        $data = User::where('mobile', 'LIKE', '1%')->get();
-
-        dd($data);
+        $data = User::get();
 
         foreach ($data as  $value) {
             # code...
-            $check = User::where('mobile','0'.$value->mobile)->first();
+            $check = DB::table('role_user')->where('user_id',$value->id)->first();
 
-            if ($check) {
-                $check2 = ParentOrder::where('user_id', $value->id)->first();
-                $check2->user_id = $check->id;
-                $check2->update();
-            }else{
-                $update = User::find( $value->id );
-                $update->mobile = '0'.$value->mobile;
-                $update->update();
+            if (empty($check)) {
+                # code...
+                $add = DB::table('role_user')->insert([
+                    'user_id' => $value->id,
+                    'role_id' => 4
+                ]);
             }
 
+            echo $value->id;
 
         }
 
