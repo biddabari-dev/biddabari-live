@@ -37,8 +37,7 @@ function imageUpload ($image, $imageDirectory, $imageNameString = null, $width =
             $image->move($imageDirectory, $imageName);
         } else {
 
-            $images = Image::make($image)->save($imageUrl,65);
-
+            // $images = Image::make($image)->save($imageUrl,65);
 
             $prefix = '';
             $config = [
@@ -62,7 +61,7 @@ function imageUpload ($image, $imageDirectory, $imageNameString = null, $width =
             $result = $client->putObject([
                 'Bucket' => 'biddabari-bucket',
                 'Key' => $imageUrl,
-                'SourceFile' => $imageUrl,
+                'SourceFile' => $image,
                 ]);
 
             if (file_exists($imageUrl))

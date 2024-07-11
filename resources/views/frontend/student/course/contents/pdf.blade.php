@@ -46,7 +46,7 @@
                 console.log("Plugin initialized successfully");
             },
             scale: 1.5,
-            pageImageCompression: "MEDIUM", // FAST, MEDIUM, SLOW(Helps to control the new PDF file size)
+            pageImageCompression: "SLOW", // FAST, MEDIUM, SLOW(Helps to control the new PDF file size)
         });
 
         function changeActiveTool(event) {
