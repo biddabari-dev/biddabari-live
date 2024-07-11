@@ -1037,7 +1037,6 @@ class FrontExamController extends Controller
 // //              echo putenv("PATH=your_path_to_the_bin_folder");
 //                 $output = shell_exec('ls -lart');
 //                 echo "<pre>$output</pre>";
-//                 echo 'sarowar';
 //                 return 0;
 //                 AssignmentFile::create([
 //                     'course_section_content_id' => $request->course_content_id,

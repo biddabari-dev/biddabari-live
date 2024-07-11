@@ -17,7 +17,7 @@ class SqlScriptController extends Controller
 {
     public function script()
     {
-//        return 'sarowar';
+
 
 
 //        $users=User::select(['mobile'])->where('mobile','like','1%')->get();
@@ -64,7 +64,7 @@ class SqlScriptController extends Controller
     
     public function sqlcours_section()
     {
-//        $users = DB::select('select * from courses_test_sarowar ');
+
         $course=Course::where('id','604')->first();
         $users = DB::table('courses_new_test_sar')->where('id','445')->first();
         $sections=DB::table('sections')->where('course_id',$users->id)->get();
@@ -182,7 +182,6 @@ class SqlScriptController extends Controller
 //return $id;
 
         $student=[];
-//        array_push($student,'sarowar');
 //        return $student;
 //        $users=User::all();
 //        $co=Course::find($id);

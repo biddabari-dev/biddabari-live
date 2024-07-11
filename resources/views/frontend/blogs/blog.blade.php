@@ -30,10 +30,11 @@
                                     <a href="{{ route('front.blog-details', ['slug' => $blog->slug]) }}"
                                         class="w-100" style="height:280px">
                                         <h2>
-                                            <!-- {{ $blog->title }} --> 
-                                            {!! str()->words(strip_tags($blog->title), 4) !!}
+                                            {{-- {!! str()->words(strip_tags($blog->title), 4) !!} --}}
+                                            {{Str::limit($blog->title, 30) }}
                                         </h2>
-                                        <p>{!! str()->words(strip_tags($blog->body), 8) !!}</p>
+                                        <p>{!! str()->words(strip_tags($blog->body), 6) !!}</p>
+                                        
                                         <button type="button" class="read-btn">Read More</button>
                                     </a>
                                 </div>

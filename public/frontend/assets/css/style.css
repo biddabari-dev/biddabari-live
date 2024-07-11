@@ -8729,10 +8729,10 @@ img {
 }
 
 /* --------------------Checkout page end-------------- */
-.categories-item a img {
+/* .categories-item a img {
     height: 200px !important;
     width: 100% !important;
-}
+} */
 
 .top-header {
     padding-top: 10px !important;

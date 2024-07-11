@@ -97,7 +97,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label for="">Action Button Link</label>
+                                    <label for="">Action Button Text</label>
                                     <input type="text" class="form-control" name="action_btn_text" placeholder="Action Button Link" title="Action Button Link" />
                                 </div>
                                 <div class="col-sm-6">
@@ -108,7 +108,7 @@
                             <div class="row mt-2">
                                 <div class="col-sm-6">
                                     @csrf
-                                     <label for="">Image <span class="text-red">(400 X 400 + WEBP)</span> </label>
+                                     <label for="">Image <span class="text-red">(750 X 300 + WEBP)</span> </label>
                                     <input type="file" class="form-control" id="image" name="image" placeholder="Image" title="Image" />
                                 </div>
                                 <div class="col-sm-6">
@@ -200,7 +200,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-blog-category-id'); //change value
             $.ajax({
-                url: base_url+"popup-notifications/"+courseId+"/edit",
+                url: "/popup-notifications/"+courseId+"/edit",
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
@@ -228,7 +228,7 @@
                     } else {
                         $('input[name="status"]').attr('checked', false);
                     }
-                    $('#courseSectionForm').attr('action', base_url+"popup-notifications/"+data.id).append('<input type="hidden" name="_method" value="put">');
+                    $('#courseSectionForm').attr('action', "/popup-notifications/"+data.id).append('<input type="hidden" name="_method" value="put">');
                     $('#blogCategoryModal').modal('show');
                 }
             })

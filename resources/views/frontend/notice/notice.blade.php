@@ -6,7 +6,7 @@
         <div class="container">
             <div class="section-title text-center mb-3">
                 <!--   <span>কোর্স সমূহ</span>-->
-                <h2> সকল নোটিশ  সমূহ</h2>
+                <h1> সকল নোটিশ  সমূহ</h1>
                 <hr class="w-25 mx-auto bg-danger"/>
             </div>
             <div class="row">
@@ -17,7 +17,7 @@
                                 @if($notice->id == $_GET['notice-id'])
                                     <div class="courses-item notice-content">
                                         <div class="content ">
-                                            <h3><a href="javascript:void(0)">{{ $notice->title }}</a></h3>
+                                            <h2><a href="javascript:void(0)">{{ $notice->title }}</a></h2>
                                             @if(isset($notice->image))
                                                 <div class="row">
                                                     <div class="col-md-6 mx-auto">
@@ -58,7 +58,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header py-0" style="background-color: #F18345;">
-                            <p class="text-center text-white f-s-38 mb-0">Latest Notices</p>
+                            <h2 class="text-center text-white f-s-38 mb-0">Latest Notices</h2>
                         </div>
                         @forelse($notices as $notice)
                             <div class="card-body py-2 border-bottom">
@@ -70,7 +70,7 @@
                                         <div class="col-md-8">
                                             <div>
                                                 <span class="text-muted">{{ showDateFormatTwo($notice->created_at) }}</span>
-                                                <p class="f-s-20 p-0">{{ $notice->title }}</p>
+                                                <h3 class="f-s-20 p-0">{{ $notice->title }}</h3>
                                             </div>
                                         </div>
                                     </div>

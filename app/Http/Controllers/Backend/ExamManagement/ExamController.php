@@ -195,7 +195,6 @@ class ExamController extends Controller
 
     public function updateExamResult(Request $request)
     {
-//      return  isset($request->written_xm_file)?'sarowar':'mizan';
 //        return $request;
        $data= ExamResult::updateXmResult($request);
         return $data;

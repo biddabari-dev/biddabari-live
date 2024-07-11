@@ -295,10 +295,9 @@
 @endsection
 @section('js')
     <script>
-        // console.log('sarowar');
+
         // $('#complainbtn').addclass('d-none').attr('data-active', '');
         $(document).on('click', '#search', function () {
-            // console.log('sarowar');
             var serarch=$('#search').val();
             if(serarch !=0){
                 $('#complainbtn').removeClass('d-none').attr('data-active', '');

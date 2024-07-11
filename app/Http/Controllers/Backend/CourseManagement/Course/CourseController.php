@@ -85,7 +85,7 @@ class CourseController extends Controller
      */
     public function store(CourseCreateFormRequest $request)
     {
-//        return 'sarowar';
+
         abort_if(Gate::denies('store-course'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $this->course = Course::createOrUpdateCourse($request);
         $this->course->courseCategories()->sync(explode(',', $request->course_categories[0]));

@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="inner-title text-center">
-            <p style="margin: 30px 0; font-size: 50px; color: black;"> <span style="padding: 5px 10px; border: 1px solid #f38344; border-radius: 20px;">জব সার্কুলার </span></p>
+            <h1 style="margin: 30px 0; color: black;"> <span style="padding: 5px 10px; border: 1px solid #f38344; border-radius: 20px;">জব সার্কুলার </span></h1>
         </div>
     </div>
 
@@ -19,7 +19,7 @@
                         <div>
                             <ul class="nav nav-pills all-course-page-nav-pills text-center">
                                 @foreach($circularCategories as $index => $circularCategoryx)
-                                    <li class="nav-item mb-3"><button type="button" class="nav-link border-danger btn py-0 mx-2 text-dark" style="border: 1px solid #F18C53" data-bs-toggle="pill" data-bs-target="#{{ 'id'.$index }}"><span class="f-s-35">{{ $circularCategoryx->title }}</span></button></li>
+                                    <li class="nav-item mb-3"><button type="button" class="nav-link border-danger btn py-0 mx-2 text-dark" style="border: 1px solid #F18C53" data-bs-toggle="pill" data-bs-target="#{{ 'id'.$index }}"><h2 class="f-s-35">{{ $circularCategoryx->title }}</h2></button></li>
                                 @endforeach
                             </ul>
                         </div>

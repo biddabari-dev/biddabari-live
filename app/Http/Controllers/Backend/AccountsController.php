@@ -18,7 +18,6 @@ class AccountsController extends Controller
 //        return $request;
              if (!empty($request->course_id))
              {
-//                 return 'sarowar';
 //            $this->courseOrders = CourseOrder::whereCourseId($request->course_id)->get();
                  $this->courseOrders = ParentOrder::where('ordered_for', 'course')->whereParentModelId($request->course_id)->get();
                  $totalamount=$this->courseOrders->sum('total_amount');

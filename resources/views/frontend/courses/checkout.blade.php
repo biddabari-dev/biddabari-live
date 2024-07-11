@@ -115,8 +115,24 @@
                     <div class="billing-totals">
                         <h3 class="text-center py-3">Checkout Summary</h3>
                         <ul>
-                            <li>Course Name : <span>{{ $course->title }}</span></li>
-                            <li>Course Price <span>BDT {{ $reqFor == 'course' ? ($course->total_amount_after_discount ?? $course->price) : 0 }}</span></li>
+                            <li>
+                                @if ($course->id)
+                                Course Name:
+                                @else
+                                Exam Name
+                                @endif
+                       
+                                <span>{{ $course->title }}</span>
+
+                            </li>
+                            <li>
+                                @if ($course->id)
+                                Course Price:
+                                @else
+                                Exam Price:
+                                @endif
+                                <span>BDT {{ $reqFor == 'course' ? ($course->total_amount_after_discount ?? $course->price) : 0 }}</span>
+                            </li>
                             <li id="couponLi" class="d-none">Coupon <span>BDT <b id="couponAmount"></b></span></li>
 
                             <form action="{{ route('front.common-order', ['model_id' => $course->id]) }}"

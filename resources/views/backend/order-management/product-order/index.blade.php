@@ -21,10 +21,10 @@
                                 <th>S. Name</th>
                                 <th>Payment</th>
                                 <th>Payment Info</th>
-                                <th>Txt Id</th>
+                                {{-- <th>Txt Id</th> --}}
                                 <th>Enroll Date</th>
                                 <th>Shipping</th>
-                                <th>Notes</th>
+                                {{-- <th>Notes</th> --}}
                                 <th>Payment & Contact Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -36,20 +36,19 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td><a href="" data-order-id="{{ $productOrder->id }}" class="show-order-details">#{{ $productOrder->order_invoice_number }}</a></td>
                                         <td>{{ $productOrder->product->title }}</td>
-                                        {{--                                        <td>--}}
-                                        {{--                                            <img src="{{ asset($productOrder->course->banner) }}" alt="" style="height: 70px" />--}}
-                                        {{--                                        </td>--}}
-                                        {{--                                        <td>{{ $productOrder->course->price }}</td>--}}
-                                        {{--                                        <td>{{ $totalDiscount = $productOrder->course->discount_type == 1 ? $productOrder->course->discount_amount : ($productOrder->course->discount_amount * $productOrder->course->price)/100 }}</td>--}}
-                                        {{--                                        @php($totalDiscount = $productOrder->course->discount_type == 1 ? $productOrder->course->discount_amount : ($productOrder->course->discount_amount * $productOrder->course->price)/100)--}}
-                                        <td>{{ $productOrder->user->name }}</td>
+                                      
+                                        {{-- <td>{{ $productOrder->user->name }} <br> {{ $productOrder->user->mobile }}</td> --}}
+
+                                        <td>
+                                            @if(isset($productOrder->user->name)&& isset($productOrder->user->mobile))
+                                               {{ $productOrder->user->name }} <br> {{ $productOrder->user->mobile }}
+                                           @endif
+                                       </td>
                                         <td>
                                             Total: {{ $productOrder->total_amount }} <br>
                                             Paid: {{ $productOrder->paid_amount ?? 0 }} <br>
                                             Due: {{ $productOrder->total_amount - $productOrder->paid_amount }}
                                         </td>
-                                        {{--                                        <td>{{ $productOrder->paid_amount ?? 0 }}</td>--}}
-                                        {{--                                        <td>{{ $productOrder->total_amount - $productOrder->paid_amount }}</td>--}}
                                         <td>
                                             @if($productOrder->payment_method == 'cod')
                                                 Vendor- {{ $productOrder->vendor }} <br>
@@ -61,15 +60,12 @@
                                                 GtStatus: {{ $productOrder->gateway_status }} <br>
                                             @endif
                                         </td>
-                                        <td>{{ $productOrder->txt_id }}</td>
+                                        {{-- <td>{{ $productOrder->txt_id }}</td> --}}
                                         <td>{{ $productOrder->created_at->format('d M, Y') }}</td>
                                         <td>{{ $productOrder->shipping_address }}</td>
-                                        <td>{{ $productOrder->notes }}</td>
-                                        {{--                                        <td>{{ $productOrder->payment_status }}</td>--}}
+                                        {{-- <td>{{ $productOrder->notes }}</td> --}}
                                         <td>
-{{--                                            <a href="javascript:void(0)" class="badge bg-primary m-1">Payment {{ $productOrder->payment_status }}</a><br>--}}
-{{--                                            <a href="javascript:void(0)" class="badge bg-primary m-1">Contact {{ $productOrder->contact_status }}</a><br>--}}
-{{--                                            <a href="javascript:void(0)" class="badge bg-primary m-1">Order {{ $productOrder->status }}</a>--}}
+
                                             <a href="javascript:void(0)" class="badge bg-{{$productOrder->status=='approved' ? 'success':'danger'}} m-1">Order {{ $productOrder->status }}</a>
                                         </td>
 
@@ -97,7 +93,6 @@
                             @endif
                             </tbody>
                         </table>
-{{--                        {{ $productOrders->links() }}--}}
                     </div>
                 </div>
             </div>

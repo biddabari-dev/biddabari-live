@@ -37,7 +37,7 @@ Route::get('course-student',[CourseController::class,'course_student']);
 
 
 
-//sarowar sql script start
+
 Route::get('/sqluser',[SqlScriptController::class,'script'])->name('sqlscript');
 Route::get('/sqlbatchstudent/{id}',[SqlScriptController::class,'getbatchstudent'])->name('getbatchstudent');
 Route::get('/sqlcours_section',[SqlScriptController::class,'sqlcours_section'])->name('sqlcours_section');
@@ -45,13 +45,13 @@ Route::get('/course_section_data',[SqlScriptController::class,'course_section_da
 Route::get('/studentdelete',[SqlScriptController::class,'studentdelete'])->name('studentdelete');
 Route::get('/coursecreate',[SqlScriptController::class,'coursecreate'])->name('coursecreate');
 Route::get('/course_content_delete/{id?}',[SqlScriptController::class,'course_content_delete'])->name('course_content_delete');
-//sarowar sql script end
+
 
 Route::post('/search-content-home', [BasicViewController::class, 'searchContentHome'])->name('search-content-home');
 Route::get('/exam-test', [FrontExamController::class, 'xmTestForDev'])->name('exm-test-for-dev');
 Route::get('/pdf-view-test', [FrontExamController::class, 'pdfViewTest'])->name('pdf-view-test');
 
-//payment gateway routes
+
 Route::post('sslcommerz/success',[CheckoutController::class, 'paymentSuccess'])->name('payment.success');
 Route::post('sslcommerz/failure',[CheckoutController::class, 'paymentFailure'])->name('payment.failure');
 Route::post('sslcommerz/cancel',[CheckoutController::class, 'paymentCancel'])->name('payment.cancel');
@@ -98,7 +98,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
         Route::get('/gallery', [FrontViewTwoController::class, 'GalleryImageView'])->name('all-gallery-images');
         Route::get('/gallery-images/{id}/{title?}', [FrontViewTwoController::class, 'GalleryImages'])->name('show-gallery-images');
 
-        Route::get('/product-details/{id}/{slug?}', [FrontendViewController::class, 'productDetails'])->name('product-details');
+        Route::get('/product-details/{slug?}', [FrontendViewController::class, 'productDetails'])->name('product-details');
     });
 
     Route::get('/check-coupon', [BasicViewController::class, 'checkCoupon'])->name('check-coupon');

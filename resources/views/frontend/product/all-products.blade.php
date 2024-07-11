@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-12 mt-5">
                 <div class="text-center mb-5">
-                    <a href="javascript:void(0)" class="btn border-main-color"><span class="fw-bolder fs-2">আমাদের বই
-                            সমূহ</span></a>
+                    <a href="javascript:void(0)" class="btn border-main-color"><h1 class="fw-bolder fs-2">আমাদের বই
+                            সমূহ</h1></a>
                 </div>
                 <div class="row product_mobile_res pro_book_mobile_res">
                     @foreach($products as $product)
@@ -56,7 +56,7 @@
                                 @else
                                 <p class="text-danger f-s-19">Out Of Stock</p>
                                 @endif
-                                <h5>TK {{$product->price}} </h5>
+                                <p>TK {{$product->price}} </p>
                             </div>
                         </div>
                     </div>
