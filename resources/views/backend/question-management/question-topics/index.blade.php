@@ -128,7 +128,7 @@
             event.preventDefault();
             var categoryId = $(this).attr('data-topic-id');
             $.ajax({
-                url: base_url+"question-topics/"+categoryId+"/edit",
+                url: "/question-topics/"+categoryId+"/edit",
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {

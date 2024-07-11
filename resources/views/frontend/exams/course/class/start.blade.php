@@ -1,5 +1,20 @@
 @extends('frontend.master')
 
+@push('style')
+    <style>
+        .sticky-submit-btn{
+            text-align: center;
+            width: 500px;
+            position: fixed;
+            bottom: 0px;
+            margin-bottom: 2rem;
+            background: #ffc107;
+            color: #fff;
+            font-size: 1rem;
+        }
+    </style>
+@endpush
+
 @section('body')
 
 <div class="container-fluid" id="grad1">
@@ -13,9 +28,6 @@
                             <span class="course-name d-block">{{ count($exam->questionStoresForClassXm) }} Questions</span>
 
                         </div>
-                    </div>
-                    <div class="mx-auto">
-                        <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a>
                     </div>
                     <div class="ms-auto">
                         <a href="javascript:void(0)" class="btn btn-lg start-btn btn-success">Start</a>
@@ -89,6 +101,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-8 text-center">
+            <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a>
         </div>
     </div>
 </div>

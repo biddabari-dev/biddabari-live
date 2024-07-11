@@ -163,6 +163,22 @@
                         <input type="number" name="class_xm_duration_in_minutes" value="{{ $sectionContent->class_xm_duration_in_minutes }}" class="form-control" />
                         <span class="text-danger" id="class_xm_duration_in_minutes">{{ $errors->has('class_xm_duration_in_minutes') ? $errors->first('class_xm_duration_in_minutes') : '' }}</span>
                     </div>
+                    <div class="col-sm-3 mt-2 classContentOf common {{ $sectionContent->has_class_xm == 0 ? 'd-none' : '' }}">
+                        <label for="">Total Questions</label>
+                        <input type="text" placeholder="Total Questions" value="{{ $sectionContent->exam_total_questions }}" name="exam_total_questionss" class="form-control">
+                    </div>
+                    <div class="col-sm-3 mt-2 classContentOf common {{ $sectionContent->has_class_xm == 0 ? 'd-none' : '' }} ">
+                        <label for="">Per Question Mark</label>
+                        <input type="number" placeholder="Per Question Mark" value="{{ $sectionContent->exam_per_question_mark }}" name="exam_per_question_marks" class="form-control">
+                    </div>
+                    <div class="col-sm-3 mt-2 classContentOf common {{ $sectionContent->has_class_xm == 0 ? 'd-none' : '' }}">
+                        <label for="">Negative Mark</label>
+                        <input type="text" placeholder="Negative Mark" name="exam_negative_marks" value="{{ $sectionContent->exam_negative_mark }}" class="form-control">
+                    </div>
+                    <div class="col-sm-3 mt-2 classContentOf common {{ $sectionContent->has_class_xm == 0 ? 'd-none' : '' }}">
+                        <label for="">Pass Mark</label>
+                        <input type="number" placeholder="Pass Mark" name="exam_pass_marks" value="{{ $sectionContent->exam_pass_mark }}" class="form-control">
+                    </div>
                 </div>
             </div>
 

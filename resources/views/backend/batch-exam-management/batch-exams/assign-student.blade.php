@@ -264,7 +264,7 @@
         $('.js-example-basic-single').select2({
             dropdownParent: $('#coursesModal'),
             ajax: {
-                url: "{{ route('search-student-ajax') }}",
+                url: "/search-student-ajax",
                 datatype: "json",
                 delay: 250,
                 data: function (params) {
