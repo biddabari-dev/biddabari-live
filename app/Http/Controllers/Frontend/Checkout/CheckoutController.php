@@ -27,7 +27,6 @@ use Illuminate\Support\Facades\Validator;
 class CheckoutController extends Controller
 {
     public static $user;
-//    public function placeCourseOrder (OrderSubmitRequest $request)
     public function placeCourseOrder (Request $request, $modelId = null)
     {
         try {
@@ -196,7 +195,7 @@ class CheckoutController extends Controller
             if ($request->mobile != $request->confirm_mobile)
             {
                 return ViewHelper::returEexceptionError('Phone number didn\'t match. Please try again.');
-    //            return back()->with('error', 'Phone number didn\'t match. Please try again.');
+                return back()->with('error', 'Phone number didn\'t match. Please try again.');
             }
             if (isset($request->rc) && auth()->check())
             {
@@ -206,19 +205,6 @@ class CheckoutController extends Controller
                     return ViewHelper::returEexceptionError('You can not use your own referral code.');
                 }
             }
-//            $userExistStatus = User::where('mobile', $request->mobile)->first();
-//            if (!empty($userExistStatus))
-//            {
-//                $existUser = ParentOrder::where(['user_id' => $userExistStatus->id, 'ordered_for' => $request->ordered_for, 'parent_model_id' => $request->model_id])->first();
-//                if (!empty($existUser))
-//                {
-//                    if (str()->contains(url()->current(), '/api/'))
-//                    {
-//                        return response()->json(['message' => 'Sorry. You already enrolled this course.'], 400);
-//                    }
-//                    return back()->with('error', 'Sorry. You already enrolled this course.');
-//                }
-//            }
 
             if ($request->ordered_for == 'course')
             {
@@ -232,8 +218,6 @@ class CheckoutController extends Controller
                     }
                 }
             }
-    //                return $request;
-    //                CourseOrder::saveOrUpdateCourseOrder($request);
             if ($request->payment_method == 'ssl')
             {
                 if (str()->contains(url()->current(), '/api/'))
@@ -244,18 +228,15 @@ class CheckoutController extends Controller
                 }
                 $request['details_url'] = url()->previous();
                 $request['model_name'] = $request->ordered_for;
-    //                $request['model_id'] = $request->model_id;
                 $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
                 \session()->put('requestData', $request->all());
 
                 return self::sendOrderRequestToSSLZ($request->total_amount, $request->ordered_for == 'course' ? Course::find($request->model_id)->title : BatchExam::find($request->model_id)->title, $request);
             }
             elseif ($request->payment_method == 'bkash'){
-    //                return $request;
-    //            return back()->with('Wr are not accepting payments from this gateway. Please use Other payment gateway to complete your payment');
+
                 $request['details_url'] = url()->previous();
                 $request['model_name'] = $request->ordered_for;
-    //                $request['model_id'] = $request->course_id;
                 $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
                 \session()->put('requestData', $request->all());
                 $bkash=new BkashController();
@@ -337,26 +318,21 @@ class CheckoutController extends Controller
 
                     if (!$userCreateAuth['userStatus'])
                     {   ViewHelper::returEexceptionError('We got your payment but we faced problem during creating your account in our system. Please try again.');
-//                        return redirect()->back()->with('error', 'We got your payment but we faced problem during creating your account in our system. Please try again.');
                     }
                         if ($userCreateAuth['smsStatus'] == 'failed')
                         {   ViewHelper::returEexceptionError('Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
-//                            return redirect()->route('front.student.dashboard')->with('error', 'Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
                         }
 
                     if (str()->contains(url()->current(), '/api/'))
                     {   ViewHelper::returEexceptionError('You Ordered the course successfully.');
-//                        return response()->json(['message' => 'You Ordered the course successfully.'], 200);
                     }
                     return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
                 } elseif ($userCreateAuth['processStatus'] == 'failed')
                 {   ViewHelper::returEexceptionError('Something went wrong during payment. Please try again.');
-//                    return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
                 }
 
 
 
-//                    return self::createOrderAndAssignStudent($requestData, $request);
             } else {
                 return 'Data is missing from session';
             }
@@ -462,14 +438,12 @@ class CheckoutController extends Controller
             ];
 
         } else {
-//                return 'user not exist in db';
             return [
                 'smsStatus' => 'failed',
                 'user'      => self::$user,
                 'userStatus'    => false,
                 'processStatus' => 'failed',
             ];
-//                return redirect('/')->with('error', 'We didn\'t find your name and mobile. Please contact with our service center.');
         }
 
 

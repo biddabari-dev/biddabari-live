@@ -90,6 +90,7 @@ function userCertificateUpload ($fileObject, $directory, $nameString = null)
 
 function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl = null)
 {
+
     if ($fileObject)
     {
         if (isset($modelFileUrl))
@@ -127,8 +128,8 @@ function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl 
         $result = $client->putObject([
             'Bucket' => 'biddabari-bucket',
             'Key' => $fileDirectory.$fileName,
-            'SourceFile' => $fileDirectory.$fileName,
-            ]);
+            'SourceFile' => $fileObject,
+        ]);
 
             if (file_exists($fileDirectory.$fileName))
             {
