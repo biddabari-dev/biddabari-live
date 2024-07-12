@@ -254,24 +254,24 @@
                     $('#xmCardForm').attr('action', base_url+'student/order-exam/'+xmId);
 
                     var div = '';
-                    div += '<h3 class="text-center">Available Packages for this Exam</h3>\n' +
+                    div += '<h3 class="text-center">Available Packages for This Exam</h3>\n' +
                         '                                                    <div class="row">\n';
                     $.each(data.exam.batch_exam_subscriptions, function (key, val) {
                         div += '<div class="col-md-4 mt-3">\n' +
                             '<div class="card card-body">\n' +
                             '<img src="/frontend/logo/biddabari-card-logo.jpg" alt="" class="card-img-top" style="height: 150px">\n'+
                             '       <h3 class="f-s-30">'+val.package_title+'</h3>\n' +
-                            '       <p class="f-s-20 p-0 m-0">RegularPrice: <span class="f-s-24">'+val.price+'</span> Tk</p>\n' +
-                            '       <p class="f-s-20 p-0 m-0">Duration: <span class="f-s-24">'+val.package_duration_in_days+'</span> Days</p>\n';
+                            '       <p class="f-s-20 p-0 m-0 "> <span class="fw-bold">.Regular Price: </span> <span class="f-s-24">'+val.price+'</span> Tk</p>\n' +
+                            '       <p class="f-s-20 p-0 m-0 "> <span class="fw-bold">.Duration: </span> <span class="f-s-24">'+val.package_duration_in_days+'</span> Days</p>\n';
                         if(val.discount_amount > 0 && val.discount_amount != null)
                         {
-                            div += '       <p class="f-s-20 p-0 m-0">Discount: <span class="f-s-24">'+val.discount_amount+'</span> Tk</p>\n' +
-                                '       <p class="f-s-20 p-0 m-0">Current Price: <span class="f-s-24">'+(val.price - val.discount_amount)+'</span> Tk</p>\n' +
-                                '       <p class="f-s-20 p-0 m-0">Valid Till: '+val.discount_end_date.split(" ")[0]+'</p>\n' ;
+                            div += '       <p class="f-s-20 p-0 m-0 "> <span class="fw-bold">.Discount: </span> <span class="f-s-24">'+val.discount_amount+'</span> Tk</p>\n' +
+                                '       <p class="f-s-20 p-0 m-0 "> <span class="fw-bold">.Current Price: </span> <span class="f-s-24">'+(val.price - val.discount_amount)+'</span> Tk</p>\n' +
+                                '       <p class="f-s-20 p-0 m-0 "> <span class="fw-bold">.Valid Till: </span>'+val.discount_end_date.split(" ")[0]+'</p>\n' ;
                         }
 
                         div += '<div class="bottom-content">'+
-                            '<a href="checkout/batch_exam/'+data.exam.title.replaceAll(" ", "-")+'?si='+val.id+'" class="btn btn-warning" style="float: right;">বিস্তারিত দেখুন</a>'+
+                            '<a href="checkout/batch_exam/'+data.exam.title.replaceAll(" ", "-")+'?si='+val.id+'" class="btn btn-warning" style="float: right;">প্যাকেজটি কিনুন</a>'+
                         '</div>'+
                         '   </div>\n'+    
                             '   </div>\n';

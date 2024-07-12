@@ -32,7 +32,7 @@ class FrontendViewController extends Controller
         {
             $this->products = Product::whereStatus(1)->select('id','product_author_id', 'stock_amount','title','image','price', 'discount_amount', 'discount_start_date', 'discount_end_date', 'slug')->get();
         } else {
-            $this->products = Product::whereStatus(1)->select('id','product_author_id', 'stock_amount','title','image','price', 'discount_amount', 'discount_start_date', 'discount_end_date', 'slug')->paginate(9);
+            $this->products = Product::whereStatus(1)->select('id','product_author_id', 'stock_amount','title','image','price', 'discount_amount', 'discount_start_date', 'discount_end_date', 'slug')->latest()->paginate(8);
         }
         foreach ($this->products as $product)
         {

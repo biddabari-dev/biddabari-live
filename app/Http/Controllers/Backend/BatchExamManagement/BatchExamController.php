@@ -211,19 +211,6 @@ class BatchExamController extends Controller
     public function assignStudent (Request $request, $id)
     {
         abort_if(Gate::denies('assign-batch-exam-student'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-//        $validator = $request->validate(['students' => 'required']);
-//        $this->batchExam = BatchExam::find($id);
-//        foreach ($this->batchExam->students as $student)
-//        {
-//            foreach ($request->students as $inputStudentId)
-//            {
-//                if ($student->id == $inputStudentId)
-//                {
-//                    return back()->with('error', 'Student Already assigned this Exam.');
-//                }
-//            }
-//        }
-//        $this->batchExam->students()->attach($request->students);
 
         $validator = $request->validate([
             'students' => 'required',
@@ -235,7 +222,6 @@ class BatchExamController extends Controller
         {
             foreach ($request->students as $inputStudentId)
             {
-//                if ($student->id == $inputStudentId)
                 if ($student->id != $inputStudentId)
                 {
                     $oldBatchExam->students()->detach($inputStudentId);
@@ -260,7 +246,6 @@ class BatchExamController extends Controller
 
     public function getBatchExamsByCategory($id)
     {
-//        abort_if(Gate::denies('manage-batch-exam'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return response()->json(BatchExamCategory::find($id)->batchExams);
     }
 
