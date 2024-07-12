@@ -54,13 +54,13 @@
                                         <div class="">
                                             <label for="">Shipping Address</label>
                                             <div>
-                                                <textarea name="shipping_address" class="form-control" id="shippingInputField" cols="30" rows="5"></textarea>
+                                                <textarea name="shipping_address" class="form-control" id="shippingInputField" cols="30" rows="5" required></textarea>
                                             </div>
                                         </div>
                                         <div class="mt-2">
                                             <label for="">Notes</label>
                                             <div>
-                                                <textarea name="notes" class="form-control" id="notesInputField" cols="30" rows="5"></textarea>
+                                                <textarea name="notes" class="form-control" id="notesInputField" cols="30" rows="5" required></textarea>
                                             </div>
                                         </div>
                                     </div>

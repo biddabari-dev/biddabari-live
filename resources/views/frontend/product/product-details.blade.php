@@ -25,7 +25,7 @@
                             <p class="f-s-20 mb-0" style="margin-right: 15px;">Price: <del class="text-danger">{{$product->price}} tk</del></p>
                             <p class="f-s-20 mb-0" style="">Discounted Price: {{$grandPrice = $product->price - $product->discount_amount}} tk</p>
                         @else
-                            <h3 class="mb-0">{{$product->price}} tk</h3>
+                            <p class="mb-0 f-s-25 fw-bold">{{$product->price}} tk</p>
                         @endif
                         @php
                         $stockStatus = false;
@@ -64,14 +64,14 @@
                                 @foreach($latestProducts as $latestProduct)
                                 <div class="col-5 col-md-12 ">
                                     <div class="mt-2">
-                                        <a href="{{ route('front.product-details', ['id' => $latestProduct->id, 'slug' => $latestProduct->slug]) }}" class="">
+                                        <a href="{{ route('front.product-details', ['slug' => $latestProduct->slug]) }}" class="">
                                             <div class="card border-0">
                                                 <div class="row">
                                                     <div class="col-md-4 ps-1 pd_padding">
                                                         <img src="{{ asset(isset($latestProduct->image) ? $latestProduct->image : 'frontend/logo/biddabari-card-logo.jpg') }}" alt="" class="img-fluid" style="height: 100px" />
                                                     </div>
                                                     <div class="col-md-7">
-                                                        <h4 class="mb-0 f-s-21">{{ $latestProduct->title }}</h4>
+                                                        <h3 class="mb-0 f-s-21">{{ $latestProduct->title }}</h3>
                                                     </div>
                                                 </div>
                                             </div>

@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="card card-body border-0 rounded-0">
                     <div class="text-center mb-5">
-                        <a href="" class="btn border-main-color"><span class="fw-bolder fs-2">আমাদের কোর্সসমূহ</span></a>
+                        <a href="" class="btn border-main-color"><h1 class="fw-bolder fs-2">আমাদের কোর্সসমূহ</h1></a>
                     </div>
                     <div>
                         <ul class="nav nav-pills all-course-page-nav-pills text-center">

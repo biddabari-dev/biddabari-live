@@ -3,9 +3,31 @@
 @section('body')
     <div class="container">
         <div class="row">
+            {{-- <div class="col-md-12 mt-4">
+                <p class="bread">Home / 
+                    @if(!$courseCategory->courseCategories->isEmpty())
+                        {{ $courseCategory->name }}</p>
+                   
+                    @else
+                    @if(count($courseCategory->courses)>0)
+                        <p class="bread">{{ $courseCategory->name }} / {{ $courseCategory->name }}</p>
+                    @endif
+                    @endif
+            </div> --}}
+
             <div class="col-md-12 mt-4">
-                <h2 class="bread">Course-Category/{{ $courseCategory->name }}</h2>
+                <p class="">
+                    Home / 
+                    @if(!$courseCategory->courseCategories->isEmpty())
+                        {{ $courseCategory->name }}
+                    @else
+                        @if(count($courseCategory->courses) > 0)
+                            {{ $courseCategory->name }} / {{ $courseCategory->name }} কোর্স সমূহ
+                        @endif
+                    @endif
+                </p>
             </div>
+            
         </div>
     </div>
     @if(!$courseCategory->courseCategories->isEmpty())
@@ -13,7 +35,7 @@
             <div class="container">
                 <div class="section-title mb-45 text-center">
                     <!--   <h2>কোর্স  <b>ক্যাটাগরি</b></h2>-->
-                    <h2>কোর্স  <b>সমূহ</b></h2>
+                    <h2>কোর্স <b>সমূহ</b></h2>
                     <hr class="w-25 mx-auto bg-danger"/>
                 </div>
                 <div class="row">
@@ -83,19 +105,6 @@
                                                 @if($course->admission_last_date > $date)
 												                 <a href="{{ route('front.checkout', ['type' => 'course', 'slug' => $course->slug]) }}"
 												class="btn btn-warning btn-block" >কোর্সটি কিনুন</a>
-
-{{--													   <form action="{{ route('front.place-course-order', ['course_id' => $course->id]) }}" method="post">--}}
-{{--														@csrf--}}
-{{--														<input type="hidden" name="course_id" value="{{ $course->id }}" />--}}
-{{--														<input type="hidden" name="total_amount" value="{{ $totalAmount }}" />--}}
-{{--														<input type="hidden" name="used_coupon" value="0">--}}
-{{--														<input type="hidden" name="coupon_code" value="">--}}
-{{--														<input type="hidden" name="coupon_amount" value="">--}}
-{{--														<input type="hidden" name="ordered_for" value="course">--}}
-{{--														<input type="hidden" name="rc" value="{{ $_GET['rc'] ?? '' }}">--}}
-{{--														<input type="hidden" name="payment_method" value="ssl">--}}
-{{--														<input type="submit" class="btn btn-warning btn-block" value="কোর্সটি কিনুন">--}}
-{{--														</form>--}}
 
                                                 @else
                                                     <a class="btn btn-warning">ভর্তির সময় শেষ</a>

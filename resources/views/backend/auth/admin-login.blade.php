@@ -244,7 +244,6 @@
                 dataType: "JSON",
                 data: {otp:otpNumber, mobile_number:mobileNumber},
                 success: function (data) {
-                    // console.log('sarowar');
                     // console.log(data);
                     if (data.status == 'success')
                     {

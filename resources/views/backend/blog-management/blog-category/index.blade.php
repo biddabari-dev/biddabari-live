@@ -65,7 +65,14 @@
                 <form action="" method="post" enctype="multipart/form-data" id="courseCategoryForm">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Blog Category</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            {{-- @if(isset($category->id))
+                            Create Blog Category
+                        @elseif(isset($sub_category->id))
+                            Add Blog Category
+                        @endif --}}
+                        Create Blog Category
+                        </h5>
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
 

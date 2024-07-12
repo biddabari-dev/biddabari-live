@@ -32,7 +32,7 @@ class FrontendViewController extends Controller
         {
             $this->products = Product::whereStatus(1)->select('id','product_author_id', 'stock_amount','title','image','price', 'discount_amount', 'discount_start_date', 'discount_end_date', 'slug')->get();
         } else {
-            $this->products = Product::whereStatus(1)->select('id','product_author_id', 'stock_amount','title','image','price', 'discount_amount', 'discount_start_date', 'discount_end_date', 'slug')->paginate(9);
+            $this->products = Product::whereStatus(1)->select('id','product_author_id', 'stock_amount','title','image','price', 'discount_amount', 'discount_start_date', 'discount_end_date', 'slug')->latest()->paginate(8);
         }
         foreach ($this->products as $product)
         {
@@ -56,9 +56,9 @@ class FrontendViewController extends Controller
         return ViewHelper::checkViewForApi($this->data, 'frontend.product.all-products');
     }
 
-    public function productDetails($id, $slug = null)
+    public function productDetails($slug)
     {
-        $this->product = Product::where('id',$id)->select('id', 'product_author_id', 'title', 'image', 'featured_pdf', 'pdf', 'slug', 'description','price','discount_amount','discount_start_date','discount_end_date','about','specification','other_details' , 'stock_amount', 'is_featured', 'status')->first();
+        $this->product = Product::where('slug',$slug)->select('id', 'product_author_id', 'title', 'image', 'featured_pdf', 'pdf', 'slug', 'description','price','discount_amount','discount_start_date','discount_end_date','about','specification','other_details' , 'stock_amount', 'is_featured', 'status')->first();
         if (!empty($this->product->discount_start_date) && !empty($this->product->discount_end_date))
         {
             if (Carbon::now()->between(dateTimeFormatYmdHi($this->product->discount_start_date), dateTimeFormatYmdHi($this->product->discount_end_date)))

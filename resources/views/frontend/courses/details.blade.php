@@ -1,6 +1,14 @@
 @extends('frontend.master')
 
 @section('body')
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <a href="/"> Home /</a> {{ $course->title }}
+        </div>
+    </div>
+</div>
             <div class="courses-details-area pt-3 pb-70">
                 <div class="container">
                     <div class="row">
@@ -12,11 +20,11 @@
                                 @if(!empty($course->featured_video_url))
                                     <div class="video-container" >
                                         <div class="video-foreground">
-                                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/{!! $course->featured_video_url !!}?rel=0&amp;modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/{!! $course->featured_video_url !!}?rel=0&amp;modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
                                         </div>
                                     </div>
                                 @else
-                                    <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 315px" alt="{{ $course->alt_text }}" title="{{ $course->banner_title }}">
+                                    <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 200px" alt="{{ $course->alt_text }}" title="{{ $course->banner_title }}">
                                 @endif
                                 <div class="content">
                                     <h1>{!! $course->title !!}</h1>
@@ -27,8 +35,8 @@
 
                                             @if($course->discount_end_date > \Illuminate\Support\Carbon::today()->format('Y-m-d') && $course->discount_amount > 0)
                                                 <p class="f-s-20">Price: <del>{{ $course->is_paid == 1 ? $course->price : 'Free' }}</del> tk</p>
-                                                {{--                                                <p class="f-s-20">Discount Price: {{ $course->price - $course->discount_amount }} tk</p>--}}
-                                                {{--                                                <p class="f-s-20">Discount Price: {{ $discountPrice = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100 }} tk</p>--}}
+                                                {{--<p class="f-s-20">Discount Price: {{ $course->price - $course->discount_amount }} tk</p>--}}
+                                                {{--<p class="f-s-20">Discount Price: {{ $discountPrice = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100 }} tk</p>--}}
                                                     <?php
                                                     $discountPrice = $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100;
                                                     ?>
@@ -267,7 +275,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 315px" alt="{{ $course->alt_text }}" title="{{ $course->banner_title }}">
+                                    <img src="{{ asset(isset($course->banner) ? $course->banner : 'frontend/logo/biddabari-card-logo.jpg') }}" class="w-100 img-fluid" style="height: 200px" alt="{{ $course->alt_text }}" title="{{ $course->banner_title }}">
                                 @endif
                                 <div class="content">
                                     {{-- <h1>{!! $course->title !!}</h1> --}}
@@ -546,7 +554,7 @@
         $header.css('bottom','475px');
         $header.css( 'top', 'unset');
         }else{
-        $header.css('top', '167px');
+        $header.css('top', '215px');
         $header.css('bottom','unset');
 
         }

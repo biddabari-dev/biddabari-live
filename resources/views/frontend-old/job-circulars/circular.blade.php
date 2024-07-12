@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="inner-title text-center">
-            <p style="margin: 30px 0; font-size: 50px; color: black;"> <span style="padding: 5px 10px; border: 1px solid #f38344; border-radius: 20px;">জব সার্কুলার </span></p>
+            <h1 style="margin: 30px 0; color: black;"> <span style="padding: 5px 10px; border: 1px solid #f38344; border-radius: 20px;">জব সার্কুলার </span></h1>
         </div>
     </div>
 

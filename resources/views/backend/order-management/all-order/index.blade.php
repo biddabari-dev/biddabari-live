@@ -122,7 +122,7 @@
 {{--                                        <td><a href="javascript:void(0)" data-order-id="{{ $allOrder->id }}" class="">#{{ $allOrder->order_invoice_number }}</a></td>--}}
                                         <td>
                                              @if(isset($allOrder->user->name)&& isset($allOrder->user->mobile))
-                                                {{ $allOrder->user->name }} {{ $allOrder->user->mobile }}
+                                                {{ $allOrder->user->name }} <br> {{ $allOrder->user->mobile }}
                                             @endif
                                         </td>
                                        @if(isset($allOrder->ordered_for))
