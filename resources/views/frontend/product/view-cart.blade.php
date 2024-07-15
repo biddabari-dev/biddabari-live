@@ -51,7 +51,7 @@
                                         </div>
                                         <div class="col-md-12 ">
                                             <label for="paidTo">Full Address</label>
-                                            <input type="text" required name="address" class="form-control"
+                                            <input type="text" required name="shipping_address" class="form-control"
                                                    placeholder="জেলার নাম: থানার নাম: এবং সম্পূর্ণ ঠিকানা দিন। গ্রাম/শহর, বাসা নং (পাশে কোন বাজার থাকলে নাম লিখুন)"/>
                                         </div>
                                         <div class="col-md-6">
