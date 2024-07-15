@@ -10,6 +10,7 @@ use App\Models\Backend\AdditionalFeatureManagement\Affiliation\AffiliationHistor
 use App\Models\Backend\AdditionalFeatureManagement\Affiliation\AffiliationRegistration;
 use App\Models\Backend\BatchExamManagement\BatchExam;
 use App\Models\Backend\Course\Course;
+use App\Models\Backend\ProductManagement\Product;
 use App\Models\Backend\Course\CourseCoupon;
 use App\Models\Backend\OrderManagement\ParentOrder;
 use App\Models\Backend\UserManagement\Student;
@@ -233,8 +234,14 @@ class CheckoutController extends Controller
                     $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
                 }
                 \session()->put('requestData', $request->all());
-
-                return self::sendOrderRequestToSSLZ($request->total_amount, $request->ordered_for == 'course' ? Course::find($request->model_id)->title : BatchExam::find($request->model_id)->title, $request);
+                if ($request->ordered_for == 'product') {
+                    # code...
+                    return self::sendOrderRequestToSSLZ($request->total_amount, Product::find($request->model_id)->title, $request);
+                } else {
+                    # code...
+                    return self::sendOrderRequestToSSLZ($request->total_amount, $request->ordered_for == 'course' ? Course::find($request->model_id)->title : BatchExam::find($request->model_id)->title, $request);
+                }
+                
             }
             elseif ($request->payment_method == 'bkash'){
 
