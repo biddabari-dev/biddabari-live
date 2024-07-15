@@ -271,7 +271,7 @@ class CustomAuthController extends Controller
                 //echo '<pre>'; print_r( explode(':',$body->getBody()->getContents() )[1] ); die();
                 //die($body->getBody()->getContents())[0])[1]);
 
-                dd('https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$request->mobile.'&senderid=8809601011181&msg=Biddabari+otp+is+'.$otpNumber');
+                dd('https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$request->mobile.'&senderid=8809601011181&msg=Biddabari+otp+is+'.$otpNumber);
 
                 $responseCode = explode(':',$body->getBody()->getContents() )[1];
 
