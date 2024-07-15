@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend\CourseManagement\Course;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\CourseManagement\CourseCategoryFormRequest;
-use App\Http\Requests\Backend\CourseManagement\CourseCreateFormRequest;
 use App\Models\Backend\Course\CourseCategory;
 use Illuminate\Http\Request;
 use DB;

@@ -25,8 +25,9 @@ class CourseCategoryFormRequest extends FormRequest
     {
         return [
             'name'  => 'required',
+            'slug'  => 'required',
             'parent_id' => '',
-            'note'  => '',
+            'note'  => 'required',
             'icon'  => '',
             'image' => 'nullable|image',
             'meta_title'    => '',

@@ -54,7 +54,7 @@
                                                 @if($masterExam->purchase_status == 'true' || $masterExam->purchase_status == 'pending')
                                                     <button type="button" class="btn btn-block w-100 btn-outline-success" >{{ $masterExam->purchase_status == 'true' ? 'Purchased' : 'Pending' }}</button>
                                                 @else
-                                                    <button type="button" class="btn btn-block w-100 btn-outline-success open-modal" data-xm-id="{{ $masterExam->id }}">Order Now</button>
+                                                    <button type="button" class="btn btn-block w-100 btn-outline-success open-modal f-s-28" data-xm-id="{{ $masterExam->id }}">Order Now</button>
                                                 @endif
                                             </div>
                                         </div>
