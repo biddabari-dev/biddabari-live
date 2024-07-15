@@ -177,14 +177,18 @@ class FrontendViewController extends Controller
 
     }
 
-    public function viewCart ()
+    public function viewCart ($id)
     {
+        $data = Product::find($id);
+        // dd($data);
         $this->data = [
-            'cartContents'  => Cart::getContent(),
-            'subTotal'      => Cart::getSubTotal(),
-            'total'         => Cart::getTotal(),
+            'cartContents'  => $data,
+            'subTotal'      => $data->price,
+            'total'         => $data->price,
             'deliveryCharge'=> ProductDeliveryOption::where('status', 1)->first()
         ];
+
+        // dd($this->data);
         return ViewHelper::checkViewForApi($this->data, 'frontend.product.view-cart');
     }
 
@@ -297,7 +301,7 @@ class FrontendViewController extends Controller
             'recentBlogs'   => Blog::whereStatus(1)->latest()->select('id', 'title', 'image', 'slug', 'created_at')->take(6)->get(),
             'comments'      => $this->comments
         ];
-    
+
         return ViewHelper::checkViewForApi($this->data, 'frontend.blogs.blog-details');
     }
 

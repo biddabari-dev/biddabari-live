@@ -56,7 +56,7 @@
                                     <div class="mt-2 que-ele-div" id="questionDiv{{ $question->id }}">
                                         <div class="form-card " id="fildset{{ $question->id }}">
                                             <div class="question-title" id="loop{{ $question->id }}" data-loop="{{ $loop->iteration }}" style="margin-top: 10px">
-                                                <span class="float-start f-s-26">{{ $loop->iteration }}.  &nbsp;</span>
+                                                <span class="float-start f-s-26"> &nbsp;</span>
                                                 <span class="float-start f-s-26"> {!! $question->question !!}</span>
                                             </div>
                                             @if(!empty($question->question_image))
@@ -72,7 +72,7 @@
                                                             <input class="asw{{ $questionOption->id }}" type="checkbox" name="question[{{ $question->id }}][answer]" value="{{ $questionOption->id }}">
 
                                                             <label class="answer-label" id="ali{{ $questionOption->id }}" data-que-id="{{ $question->id }}" data-ans-id="{{ $questionOption->id }}" for="asw{{ $questionOption->id }}">
-                                                                <span class="answer-title mx-0">{{$loop->iteration .' . '. $questionOption->option_title }}</span>
+                                                                <span class="answer-title mx-0">{{ $questionOption->option_title }}</span>
                                                             </label>
                                                             <span class="ps-1 d-none cont" id="ansCheck{{ $questionOption->id }}">
                                                                     <span class="check-ans" data-option-id="{{ $questionOption->id }}" style="cursor: pointer; color: black"><i class="fa-solid fa-check"></i></span>

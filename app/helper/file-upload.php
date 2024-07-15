@@ -125,7 +125,16 @@ function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl 
 
         // dd(env('OBS_BUCKET'));
 
+        // dd($nameString);
+
         if ($nameString == 'question') {
+            # code...
+            $result = $client->putObject([
+                'Bucket' => 'biddabari-bucket',
+                'Key' => $fileDirectory.'/'.$fileName,
+                'SourceFile' => $fileObject,
+                ]);
+        }elseif($nameString == 'section-content'){
             # code...
             $result = $client->putObject([
                 'Bucket' => 'biddabari-bucket',
@@ -149,6 +158,8 @@ function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl 
 
 
             if ($nameString == 'question') {
+                return $fileDirectory.'/'.$fileName;
+            }elseif ($nameString == 'section-content') {
                 return $fileDirectory.'/'.$fileName;
             }else {
                 # code...

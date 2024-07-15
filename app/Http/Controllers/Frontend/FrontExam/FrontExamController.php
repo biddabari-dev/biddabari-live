@@ -100,6 +100,7 @@ class FrontExamController extends Controller
     {
         if (ViewHelper::authCheck())
         {
+            $this->submitFormIfPageReloaded();
             $existExam = CourseExamResult::where(['user_id' => ViewHelper::loggedUser()->id, 'course_section_content_id' => $contentId])->first();
             if (isset($existExam) && !empty($existExam))
             {
@@ -122,11 +123,11 @@ class FrontExamController extends Controller
                 }
             }
 
-//            $existExamResult = CourseExamResult::where(['course_section_content_id' => $contentId, 'user_id' => ViewHelper::loggedUser()->id])->first();
-//            if (!empty($existExamResult))
-//            {
-//                return back()->with('error', 'You already participate in this exam.');
-//            }
+           $existExamResult = CourseExamResult::where(['course_section_content_id' => $contentId, 'user_id' => ViewHelper::loggedUser()->id])->first();
+           if (!empty($existExamResult))
+           {
+               return back()->with('error', 'You already participate in this exam.');
+           }
             $this->exam = CourseSectionContent::whereId($contentId)->with(['questionStores'])->first();
             $this->data = [
                 'exam'   => $this->exam
@@ -160,7 +161,7 @@ class FrontExamController extends Controller
     {
         if (ViewHelper::authCheck())
         {
-//            $this->submitFormIfPageReloaded();
+           $this->submitFormIfPageReloaded();
             $existExamResult = BatchExamResult::where(['batch_exam_section_content_id' => $contentId, 'user_id' => ViewHelper::loggedUser()->id])->first();
             // if (isset($existExamResult) && !empty($existExamResult))
             // {
@@ -181,10 +182,10 @@ class FrontExamController extends Controller
             //         }
             //     }
             // }
-//            if (!empty($existExamResult))
-//            {
-//                return back()->with('error', 'You already participate in this exam.');
-//            }
+           if (!empty($existExamResult))
+           {
+               return back()->with('error', 'You already participate in this exam.');
+           }
             $this->exam = BatchExamSectionContent::whereId($contentId)->with(['questionStores'])->first();
             $this->data = [
                 'exam'   => $this->exam
@@ -902,6 +903,61 @@ class FrontExamController extends Controller
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.exams.course.show-ans');
     }
+
+    public function showCourseClassExamAnswers($contentId)
+    {
+        $this->sectionContent = CourseSectionContent::whereId($contentId)->select('id', 'course_section_id', 'parent_id', 'content_type', 'title', 'status', 'exam_end_time_timestamp')->with(['questionStoresForClassXm' => function($questionStores){
+            $questionStores->select('id', 'question_type', 'question', 'question_description', 'question_image', 'question_video_link', 'written_que_ans', 'written_que_ans_description', 'has_all_wrong_ans', 'status', 'mcq_ans_description')->with('questionOptions')->get();
+        }])->first();
+
+        // dd($this->sectionContent);
+
+        //        student xm perticipant check
+        $xmAllResults   = CourseExamResult::where('course_section_content_id', $contentId)->get();
+        $userXmPerticipateStatus = false;
+        foreach ($xmAllResults as $xmSingleResult)
+        {
+            if ($xmSingleResult->user_id == ViewHelper::loggedUser()->id )
+            {
+                $userXmPerticipateStatus    = true;
+                break;
+            }
+        }
+        if (strtotime(currentDateTimeYmdHi()) > $this->sectionContent->exam_end_time_timestamp)
+        {
+            $userXmPerticipateStatus = true;
+        }
+        if (!$userXmPerticipateStatus)
+        {
+            return ViewHelper::returEexceptionError('You can\'t view the answers till exam ends.');
+        }
+        //        student xm perticipant check ends
+
+
+
+        if ($this->sectionContent->content_type == 'exam')
+        {
+            $getProvidedAnswers = CourseExamResult::where(['course_section_content_id' => $contentId, 'user_id' => ViewHelper::loggedUser()->id])->first();
+            if (isset($getProvidedAnswers->provided_ans))
+            {
+                $this->ansLoop($this->sectionContent, (array) json_decode($getProvidedAnswers->provided_ans));
+            }
+        } elseif ($this->sectionContent->content_type == 'written_exam')
+        {
+            $writtenXmFile = CourseExamResult::where(['xm_type' => 'written_exam', 'course_section_content_id' => $contentId,'user_id'=>ViewHelper::loggedUser()->id])->select('id', 'course_section_content_id', 'xm_type', 'user_id', 'written_xm_file')->first();
+            if (str()->contains(url()->current(), '/api/'))
+            {
+                $writtenXmFile = $writtenXmFile->written_xm_file;
+            }
+        }
+
+        $this->data = [
+            'content'   => $this->sectionContent,
+            'writtenFile' => $writtenXmFile ?? null
+        ];
+        return ViewHelper::checkViewForApi($this->data, 'frontend.exams.course.class.show-ans');
+    }
+
     public function showBatchExamAnswers($contentId)
     {
         $this->sectionContent = BatchExamSectionContent::whereId($contentId)->select('id', 'batch_exam_section_id', 'parent_id', 'content_type', 'title', 'status')->with(['questionStores' => function($questionStores){

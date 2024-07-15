@@ -173,6 +173,7 @@ class CheckoutController extends Controller
 
     public function commonOrder (Request $request, $modelId = null)
     {
+        // dd($request->all());
         try {
 
             Validator::make($request->all(), [
@@ -228,7 +229,9 @@ class CheckoutController extends Controller
                 }
                 $request['details_url'] = url()->previous();
                 $request['model_name'] = $request->ordered_for;
-                $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
+                if ($request->ordered_for == 'course'){
+                    $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
+                }
                 \session()->put('requestData', $request->all());
 
                 return self::sendOrderRequestToSSLZ($request->total_amount, $request->ordered_for == 'course' ? Course::find($request->model_id)->title : BatchExam::find($request->model_id)->title, $request);
@@ -237,11 +240,12 @@ class CheckoutController extends Controller
 
                 $request['details_url'] = url()->previous();
                 $request['model_name'] = $request->ordered_for;
-                $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
+                if ($request->ordered_for == 'course'){
+                    $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
+                }
                 \session()->put('requestData', $request->all());
                 $bkash=new BkashController();
                 return $bkash->createPayment($request);
-
             }
             elseif ($request->payment_method == 'cod')
             {
