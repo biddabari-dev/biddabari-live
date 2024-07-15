@@ -49,6 +49,11 @@
                                             @if(!auth()->check()) <span class="text-danger f-s-18 float-start">আপনার এই নাম এ কোর্সটি রেজিস্টার করা হবে।</span> @endif
                                             @error('paid_to')<span class="text-danger"></span>@enderror
                                         </div>
+                                        <div class="col-md-12 ">
+                                            <label for="paidTo">Full Address</label>
+                                            <input type="text" required name="address" class="form-control"
+                                                   placeholder="জেলার নাম: থানার নাম: এবং সম্পূর্ণ ঠিকানা দিন। গ্রাম/শহর, বাসা নং (পাশে কোন বাজার থাকলে নাম লিখুন)"/>
+                                        </div>
                                         <div class="col-md-6">
                                             <label for="phone" >Phone No</label>
                                             <input type="text" pattern="^01[3-9]\d{8}$" title="Please enter a valid phone number"  onkeypress="return isNumberKey(event)" id="phone" name="mobile" required class="form-control"
@@ -72,9 +77,16 @@
                                     <div class="row">
                                         <div class="col-md-6 checkout_contact">
                                             <div class="contact-info-card">
+                                                <i class="ri-whatsapp-line"></i>
+                                                <h5>প্রয়োজনে WhatsApp করুন।</h5>
+                                                <p><a href="https://wa.me/8801896060860">+8801896060860</a></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 checkout_contact">
+                                            <div class="contact-info-card">
                                                 <i class="ri-phone-fill"></i>
                                                 <h5>প্রয়োজনে এজেন্ট এর সাথে কথা বলুন</h5>
-                                                <p><a href="tel:+8801896060800">+8801896060800-15</a></p>
+                                                <p><a href="tel:+8801896060800">+8801896060860-65</a></p>
                                             </div>
                                         </div>
                                     </div>
