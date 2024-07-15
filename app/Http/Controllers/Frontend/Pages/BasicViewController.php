@@ -62,6 +62,36 @@ class BasicViewController extends Controller
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.home.home');
     }
+    public function home2 ()
+    {
+        $this->batchExams  = BatchExam::where(['status' => 1, 'is_master_exam' => 0, 'is_paid' => 1])->select('id', 'title', 'banner', 'slug')->take(6)->get();
+        $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->orderBy('order', 'ASC')->select('id', 'name', 'image', 'slug', 'icon', 'order', 'status')->take(8)->get();
+        $this->courses = Course::whereStatus(1)->where(['is_featured' => 1])->latest()->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link','total_file','total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time','admission_last_date','alt_text','banner_title')->take(9)->get();
+        foreach ($this->courses as $course)
+        {
+            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
+        }
+        $this->products = Product::whereStatus(1)->latest()->select('id', 'title', 'image', 'slug', 'description','stock_amount','price', 'slug')->take(8)->get();
+//        $this->homeSliderCourses = Course::where('show_home_slider', 1)->select('id', 'slug', 'title', 'banner', 'description')->get();
+        $this->homeSliderCourses = Advertisement::whereStatus(1)->whereContentType('course')->select('id', 'title', 'content_type', 'description','link','image')->take(6)->get();
+        $this->data = [
+            'courseCategories'  => $this->courseCategories,
+            'courses'           => $this->courses,
+            'products'          => $this->products,
+            'homeSliderCourses' => $this->homeSliderCourses,
+            // 'batchExams'        => $this->batchExams,
+            'numberCounters'    => NumberCounter::whereStatus(1)->select('id', 'label', 'icon_code', 'total_number','image')->get(),
+            'ourServices'       => OurService::whereStatus(1)->select('id', 'icon_code', 'image', 'title','content')->get(),
+            'ourTeams'          => OurTeam::whereStatus(1)->where(['content_show_type' => 'home_page'])->select('id', 'name', 'designation', 'image','content_show_type','video_link','video_file')->get(),
+            'studentOpinions'   => StudentOpinion::whereStatus(1)->select('id', 'show_type', 'name', 'image','comment')->get(),
+            'poppup'            => PopupNotification::where('status', 1)->first(),
+        ];
+        return ViewHelper::checkViewForApi($this->data, 'frontend.home.home2');
+    }
+
+
+
+
     public function appHome ()
     {
         $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->latest()->orderBy('order', 'ASC')->select('id', 'name', 'image', 'slug')->get();

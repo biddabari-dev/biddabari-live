@@ -42,7 +42,7 @@
                 </div>
                 <!-- $quiz->questions->take(100)->shuffle(50)->random(50); -->
                 <div class="card-body d-none" id="questionsCard">
-                    <div class="row">
+                    <div class="row custom_start_exam_scroll">
                         <div class="col-md-12 px-0" id="dtBasicExample">
                             {{--                            <form id="quizForm" action="/user/quizzes/{{ $quiz->id }}/store_results-mega" method="post" class="quiz-form">--}}
                             <form id="quizForm" action="{{ route('front.student.get-course-exam-result', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" method="post" class="quiz-form" enctype="multipart/form-data">
@@ -98,9 +98,9 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                        <div class="card-actions d-flex align-items-center finish-div d-none">
+                                        {{-- <div class="card-actions d-flex align-items-center finish-div d-none">
                                             <button type="submit" class="action-button finish btn btn-danger">Finish Test</button>
-                                        </div>
+                                        </div> --}}
                                 @elseif($exam->content_type == 'written_exam')
                                     @foreach($exam->questionStores as $index => $question)
                                         <div class="row mt-2">
@@ -125,19 +125,24 @@
                                             <div class="ansFileUpload"></div>
                                         </div>
                                         <div class="col-md-4 mx-auto">
-                                            <input type="submit" class="btn btn-danger mt-4 finish-div d-none" value="Finish Test" />
+                                            <input type="submit" class=" btn btn-danger mt-4 finish-div d-none" value="Finish Test" />
                                         </div>
                                     </div>
                                 @endif
                             </form>
                         </div>
+
+                     
+                    </div>
+                    <div class="col-md-12 text-center" style="border-radius: 25px">
+                        <a href="" class="btn btn-danger w-100 f-s-26">Submit</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-8 text-center">
+        {{-- <div class="col-md-8 text-center">
             <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a>
-        </div>
+        </div> --}}
     </div>
 </div>
 

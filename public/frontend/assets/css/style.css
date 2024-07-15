@@ -8752,6 +8752,29 @@ img {
 
 @media only screen and (min-width: 280px) and (max-width: 420px) {
 
+
+    /* --------------Exam Page Start-------------- */
+    .quiz-wizard .quiz-name {
+        font-size: 15px !important;
+    }
+    .quiz-wizard .course-name {
+        font-size: 14px !important;
+    }
+    .quiz-wizard .quiz-time .time-title {
+        left: 25% !important;
+    }
+    .flipTimer {
+        font-size: 30px !important;
+        font-weight: bold;
+        line-height: 32px !important;
+        height: 30px !important;
+        color: #c62504 !important;
+    }
+    .flipTimer .digit-set {
+        height: 80% !important;
+    }
+    /* --------------Exam Page End-------------- */
+
     .courses-area-two .owl-nav .owl-prev {
         position: absolute;
         z-index: 5;
@@ -9100,6 +9123,28 @@ img {
 }
 
 @media only screen and (min-width: 421px) and (max-width: 520px) {
+
+        /* --------------Exam Page Start-------------- */
+        .quiz-wizard .quiz-name {
+            font-size: 15px !important;
+        }
+        .quiz-wizard .course-name {
+            font-size: 14px !important;
+        }
+        .quiz-wizard .quiz-time .time-title {
+            left: 25% !important;
+        }
+        .flipTimer {
+            font-size: 30px !important;
+            font-weight: bold;
+            line-height: 32px !important;
+            height: 30px !important;
+            color: #c62504 !important;
+        }
+        .flipTimer .digit-set {
+            height: 80% !important;
+        }
+        /* --------------Exam Page End-------------- */
 
     .custom_search_mobile{
         display: block;
@@ -10044,4 +10089,9 @@ img {
 .blog-card .content p {
     color: black;
     font-weight: 600;
+}
+
+.custom_start_exam_scroll{
+    overflow: scroll;
+    height: 600px;
 }
