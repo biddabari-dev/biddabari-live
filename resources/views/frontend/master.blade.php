@@ -185,7 +185,7 @@
     let base_url = {!! json_encode(url('/')) !!}+'/';
 </script>
 
-<script>
+{{-- <script>
     function addSimpleProCard(spid) {
         console.log(spid);
         var formcls = '.addSimpleCardFrom'+spid;
@@ -201,14 +201,14 @@
                 if(response.status == 'success'){
                     // console.log('success');
                     toastr.success(response.msg,'Success');
-                    $('.cart_count-'+spid).html(`<a href="{{ route('front.view-cart') }}" class="default-btn ">এখনই কিনুন</a>`);
+                    $('.cart_count-'+spid).html(`<a href="{{ route('front.view-cart',[`+spid+`]) }}" class="default-btn ">এখনই কিনুন</a>`);
                 }else{
                     toastr.error(response.msg,'Failed');
                 }
             }
         });
     }
-</script>
+</script> --}}
 
 @stack('script')
 

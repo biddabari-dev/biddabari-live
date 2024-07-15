@@ -57,6 +57,7 @@ class CourseSectionContentController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         abort_if(Gate::denies('store-course-section-content'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $request->validate([
             'content_type' => 'required',

@@ -65,7 +65,7 @@
                                             <h3>Go Back to :</h3>
                                             {{-- <a href="{{ route('front.home') }}" class="btn btn-outline-success">HomePage</a> --}}
                                             <a href="{{ route('front.student.course-contents', ['course_id' => $exam->courseSection->course->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Go Back</a>
-                                            <a href="{{ route('front.student.show-course-exam-answers', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Show Answer</a>
+                                            <a href="{{ route('front.student.show-course-class-exam-answers', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Show Answer</a>
                                         </div>
                                     </div>
                                 </div>

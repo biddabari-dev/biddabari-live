@@ -73,7 +73,7 @@ class BkashController extends Controller
                                 Course::find($requestData->model_id)->students()->attach($studentId);
                             } elseif ($requestData->ordered_for == 'batch_exam')
                             {
-                                BatchExam::find($requestData->model_id)->students()->attach($studentId);P
+                                BatchExam::find($requestData->model_id)->students()->attach($studentId);
                             }
                             if (isset($requestData->rc))
                             {

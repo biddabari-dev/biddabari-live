@@ -88,7 +88,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
         Route::get('/blog-details/{slug?}', [FrontendViewController::class, 'blogDetails'])->name('blog-details');
         Route::get('/product', [FrontendViewController::class, 'allProducts'])->name('all-products');
 
-        Route::get('/view-cart', [FrontendViewController::class, 'viewCart'])->name('view-cart');
+        Route::get('/view-cart/{id}', [FrontendViewController::class, 'viewCart'])->name('view-cart');
 
         Route::get('/remove-from-cart/{id}', [FrontendViewController::class, 'removeFromCart'])->name('remove-from-cart');
         Route::get('/job-circular', [FrontendViewController::class, 'allJobCirculars'])->name('all-job-circulars');
@@ -178,6 +178,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
             Route::post('order-exam/{xm_cat_id}', [FrontExamController::class, 'orderXm'])->name('order-exam');
             Route::post('order-subscription/{id}', [ExamSubscriptionPackageController::class, 'orderSubscription'])->name('order-subscription');
             Route::get('show-course-exam-answers/{content_id}/{slug?}', [FrontExamController::class, 'showCourseExamAnswers'])->name('show-course-exam-answers');
+            Route::get('show-course-class-exam-answers/{content_id}/{slug?}', [FrontExamController::class, 'showCourseClassExamAnswers'])->name('show-course-class-exam-answers');
             Route::get('show-batch-exam-answers/{content_id}/{slug?}', [FrontExamController::class, 'showBatchExamAnswers'])->name('show-batch-exam-answers');
             Route::get('show-course-exam-ranking/{content_id}/{slug?}', [FrontExamController::class, 'showCourseExamRanking'])->name('show-course-exam-ranking');
             Route::get('show-batch-exam-ranking/{content_id}/{slug?}', [FrontExamController::class, 'showBatchExamRanking'])->name('show-batch-exam-ranking');
