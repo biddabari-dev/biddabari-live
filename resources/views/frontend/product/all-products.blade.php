@@ -24,21 +24,8 @@
                                 }
                                 @endphp
                                 <p></p>
-                                @if(!empty(\Cart::get($product->id)))
-                                <a href="{{ route('front.view-cart') }}" class="default-btn ">এখনই কিনুন</a>
-                                @else
-                                @if($stockStatus == true)
-                                <form action="{{ route('front.add-to-cart-home') }}" method="post"
-                                    class="addSimpleCardFrom{{$product->id}}">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                                    <input type="hidden" name="price"
-                                        value="{{ $product->has_discount_validity == 'true' ? $grandPrice : $product->price }}" />
-                                    <a href="javascript:void(0)" onclick="addSimpleProCard({{$product->id}})"
-                                        class="read-btn btn btn-warning cart_count-{{$product->id}} mt-1"> Add To Cart </a>
-                                </form>
-                                @endif
-                                @endif
+                                <a href="{{ route('front.view-cart',[$product->id]) }}" class="default-btn ">এখনই কিনুন</a>
+                                
                             </div>
 
                             <div class="blog_card_img">
