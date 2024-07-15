@@ -135,9 +135,11 @@
                 </div>
             </div>
         </div>
+        @if($exam->content_type != 'written_exam')
         <div class="col-md-8 text-center">
             <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a>
         </div>
+        @endif
     </div>
 </div>
 

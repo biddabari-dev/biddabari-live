@@ -583,10 +583,10 @@
                         metaData: {fileName: "pdfviewer.pdf"},
                     },
                     {
-                        embedMode: "FULL_WINDOW",
-                        showAnnotationTools: false, 
+                        embedMode: "IN_LINE",
+                        showAnnotationTools: false,
                         showDownloadPDF: false,
-                        showPrintPDF: false
+                        showPrintPDF: false,
 
                     }
 );

@@ -69,8 +69,10 @@
                                         <div>
                                             <h3>Go Back to :</h3>
                                             <a href="{{ route('front.student.batch-exam-contents', ['xm_id' => $exam->batchExamSection->batchExam->id, 'master' => base64_encode($exam->batchExamSection->batchExam->is_master_exam), 'slug' => str_replace(' ', '-', $exam->batchExamSection->batchExam->title)]) }}" class="btn btn-outline-success">Go Back</a>
+                                            <a href="{{ route('front.student.show-batch-exam-answers', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Show Answer</a>
+                                            <a href="{{ route('front.student.show-course-exam-ranking', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Show Ranking</a>
+
                                             {{-- <a href="{{ route('front.student.dashboard') }}" class="btn btn-outline-success">Student Dashboard</a> --}}
-{{--                                            <a href="{{ route('front.student.show-course-exam-ranking', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Show Ranking</a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -81,8 +83,9 @@
                                     <div>
                                         <h3>Go Back to :</h3>
                                         {{-- <a href="{{ route('front.home') }}" class="btn btn-outline-success">HomePage</a> --}}
-                                        <a href="{{ route('front.student.batch-exam-contents', ['course_id' => $exam->courseSection->course->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Go Back</a>
-{{--                                        <a href="{{ route('front.student.show-course-exam-ranking', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Show Ranking</a>--}}
+                                        <a href="{{ route('front.student.batch-exam-contents', ['xm_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Go Back</a>
+                                        {{-- <a href="{{ route('front.student.show-batch-exam-answers', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Show Answer</a> --}}
+                                        {{-- <a href="{{ route('front.student.show-course-exam-ranking', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" class="btn btn-outline-success">Show Ranking</a> --}}
                                     </div>
                                 </div>
                             </div>

@@ -162,25 +162,25 @@ class FrontExamController extends Controller
         {
 //            $this->submitFormIfPageReloaded();
             $existExamResult = BatchExamResult::where(['batch_exam_section_content_id' => $contentId, 'user_id' => ViewHelper::loggedUser()->id])->first();
-            if (isset($existExamResult) && !empty($existExamResult))
-            {
-                if (str()->contains(url()->current(), '/api/'))
-                {
-                    return response()->json(['error' => 'You already participated in this exam.'], 400);
-                } else {
-                    return redirect('/student/dashboard')->with('success', 'You already participated in this exam.');
-                }
-            }
-            if (session()->has('getXmStartStatus'))
-            {
-                if (session('getXmStartStatus')['xmStartStatus'] == 1)
-                {
-                    if (session('getXmStartStatus')['xmType'] == 'batch_exam')
-                    {
-                        return  $this->commonGetBatchExamResult((object) session('getXmDataToSession'), session('getXmStartStatus')['xmContentId']);
-                    }
-                }
-            }
+            // if (isset($existExamResult) && !empty($existExamResult))
+            // {
+            //     if (str()->contains(url()->current(), '/api/'))
+            //     {
+            //         return response()->json(['error' => 'You already participated in this exam.'], 400);
+            //     } else {
+            //         return redirect('/student/dashboard')->with('success', 'You already participated in this exam.');
+            //     }
+            // }
+            // if (session()->has('getXmStartStatus'))
+            // {
+            //     if (session('getXmStartStatus')['xmStartStatus'] == 1)
+            //     {
+            //         if (session('getXmStartStatus')['xmType'] == 'batch_exam')
+            //         {
+            //             return  $this->commonGetBatchExamResult((object) session('getXmDataToSession'), session('getXmStartStatus')['xmContentId']);
+            //         }
+            //     }
+            // }
 //            if (!empty($existExamResult))
 //            {
 //                return back()->with('error', 'You already participate in this exam.');
@@ -594,7 +594,7 @@ class FrontExamController extends Controller
             {
                 $imageUrl = '';
                 $this->pdfFilePath = '';
-                if (!empty($request->file('ans_files')))
+                if (isset($request->ans_files))
                 {
                     foreach ($request->file('ans_files') as $ans_file)
                     {

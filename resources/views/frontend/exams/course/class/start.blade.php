@@ -25,12 +25,12 @@
                     <div>
                         <div>
                             <h2 class="quiz-name">Exam - {{ $exam->title }}</h2>
-                            <span class="course-name d-block">{{ count($exam->questionStoresForClassXm) }} Questions</span>
+                            <span class="course-name d-block">{{ $exam->exam_total_questions }} Questions</span>
 
                         </div>
                     </div>
                     <div class="ms-auto">
-                        <a href="javascript:void(0)" class="btn btn-lg start-btn btn-success">Start</a>
+                        <a href="#" class="btn btn-lg start-btn btn-success">Start</a>
                     </div>
                     <div class="quiz-time d-none" id="quizDiv">
 
@@ -116,14 +116,6 @@
 
 <link rel="stylesheet" href="{{ asset('/') }}backend/assets/plugins/clock-counter/flipTimer.css">
 <style>
-    /*.quiz-form .form-card .form-radio label .answer-title {*/
-    /*    padding: 5px!important;*/
-    /*    width: 100%;*/
-    /*    text-align: left;*/
-    /*}*/
-    /*input[type='checkbox'] + label > span {*/
-
-    /*}*/
     .now-active {
         /*display: block!important;*/
         /*background: #01a3a4!important;*/
@@ -150,9 +142,6 @@
 @push('script')
 
 <script type="application/javascript" src="{{ asset('/') }}backend/assets/plugins/clock-counter/jquery.flipTimer.js"></script>
-
-
-{{--    <script> var sliderTimer = 6000;</script>--}}
     <script>
         $(document).on('click', '.start-btn', function () {
             event.preventDefault()
@@ -172,17 +161,11 @@
                 confirmButtonText: 'Yes, Confirm!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Swal.fire(
-                    //     'Deleted!',
-                    //     'Your file has been deleted.',
-                    //     'success'
-                    // )
                     $(this).addClass('d-none');
                     $('#quizDiv').removeClass('d-none');
                     $('#questionsCard').removeClass('d-none');
                     $('.finish-div').removeClass('d-none');
                     $('.sticky-submit-btn').removeClass('d-none');
-// timmer calling start
 
 
                     var currentTime = new Date();
@@ -196,7 +179,6 @@
                             $('#quizForm').submit();
                         },
                     });
-                    // timmer calling end
                     var seconds = 1;
                     setInterval(function () {
                         $('input[name="required_time"]').val(seconds++);

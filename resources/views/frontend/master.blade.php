@@ -12,6 +12,7 @@
     <meta property="og:title"              content="Biddabari" />
     <meta property="og:description"        content="Biddabari is such a different and unique online platform where you can rely yourself. You just keep your faith on Biddabari, believe it, it will do the rest. " />
     <meta property="og:image"              content="https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/backend/assets/uploaded-files/additional-features-management/site-settings/logo-1717397688866.png" />
+    <meta name="facebook-domain-verification" content="g7t7phde3zn27hgjb1iaxlm67f8hdv" />
     {!! isset($siteSettings->default_seo_code_on_header) ? $siteSettings->default_seo_code_on_header : '' !!}
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
 

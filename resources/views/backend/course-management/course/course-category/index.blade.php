@@ -124,7 +124,7 @@
                                 <label for="">Banner Image ALT text</label>
                               <input type="text" class="form-control" name="alt_text" placeholder="Banner Image ALT Text">
                               <span class="text-danger" id="alt_text"></span>
-            
+
                             </div>
                             <div class="col-md-6 mt-2">
                                 <label for="">Banner Image Title</label>

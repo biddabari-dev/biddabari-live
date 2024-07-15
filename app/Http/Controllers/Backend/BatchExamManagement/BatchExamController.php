@@ -239,9 +239,9 @@ class BatchExamController extends Controller
     public function detachStudent (Request $request, $id)
     {
         abort_if(Gate::denies('detach-batch-exam-student'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return $this->batchExam = BatchExam::find($id)->students;
+        $this->batchExam = BatchExam::find($id);
         $this->batchExam->students()->detach($request->student_id);
-        return back()->with('success', 'Student assigned to Batch Exam Successfully.');
+        return back()->with('success', 'Student detached from Batch Exam Successfully.');
     }
 
     public function getBatchExamsByCategory($id)
