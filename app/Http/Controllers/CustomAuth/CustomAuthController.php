@@ -271,6 +271,8 @@ class CustomAuthController extends Controller
                 //echo '<pre>'; print_r( explode(':',$body->getBody()->getContents() )[1] ); die();
                 //die($body->getBody()->getContents())[0])[1]);
 
+                dd($body->getBody()->getContents());
+
                 $responseCode = explode(':',$body->getBody()->getContents() )[1];
 
                 //$responseCode = explode(':', explode(',', $body->getBody()->getContents())[0])[1];
