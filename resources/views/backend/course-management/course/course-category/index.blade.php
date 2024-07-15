@@ -74,12 +74,10 @@
                         <div class="row mt-2">
                             <div class="col-md-6">
                                 <label for="">Name</label>
-                                <input type="text" name="name" required id="nameInput" class="form-control" placeholder="Name" />
+                                <input type="text" name="name" id="nameInput" class="form-control" placeholder="Name" required />
                                 <span class="text-danger" id="name"></span>
                             </div>
                             <div class="col-md-6 position-relative">
-{{--                                <input type="checkbox" id="switch5" name="status" switch="warning" />--}}
-{{--                                <label for="switch5" class="f-s-16"></label>--}}
 
                                 <div class="float-start">
                                     <div class="material-switch">
@@ -89,10 +87,6 @@
                                     <label for="" class="switch-label">Active</label>
                                     <span class="text-danger" id="status"></span>
                                 </div>
-
-{{--                                <input type="checkbox" id="switch4" name="is_featured" switch="warning" />--}}
-{{--                                <label for="switch4" class="f-s-16"></label>--}}
-
 
                                 <div class="float-start ms-3">
                                     <div class="material-switch">
