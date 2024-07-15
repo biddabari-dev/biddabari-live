@@ -103,7 +103,7 @@ class BkashController extends Controller
                 }
 
             }else{
-                return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');;
+                return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
             }
         }else{
             return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');

@@ -166,38 +166,34 @@ class ParentOrder extends Model
 
     public static function orderProductThroughSSL($requestData, $request, $parentOrderId = null)
     {
-        foreach (Cart::getContent() as $item)
-        {
+        // foreach (Cart::getContent() as $item)
+        // {
             ParentOrder::updateOrCreate(['id' => $parentOrderId], [
-                'parent_model_id'           => $item->id,
+                'parent_model_id'           => $requestData->model_id,
                 'user_id'                   => ViewHelper::loggedUser()->id,
                 'order_invoice_number'      => $request->tran_id,
                 'ordered_for'               => 'product',
                 'payment_method'            => $requestData->payment_method,
                 'paid_amount'               => $request->amount ?? 0,
-                'total_amount'              => Cart::getTotal() + $requestData->delivery_charge ?? 0,
-//                'coupon_code'               => $requestData->coupon_code,
-//                'coupon_amount'             => $requestData->coupon_amount,
+                'total_amount'              => $request->amount,
                 'bank_tran_id'              => $requestData->payment_method == 'ssl' ? $request->bank_tran_id : ($requestData->payment_method == 'bkash' ? $request->trxID : ''),
-//                'bank_tran_id'              =>  $request->bank_tran_id ,
                 'gateway_val_id'             => $request->gateway_val_id ?? '',
                 'gateway_status'             => $request->gateway_status ?? '',
                 'status'                    => 'approved',
                 'payment_status'            => 'complete',
-//                'batch_exam_subscription_id' => isset($requestData->batch_exam_subscription_id) ?? null,
 
                 'shipping_address'          => $requestData->ordered_for == 'product' ? $requestData->shipping_address : null,
                 'notes'                     => $requestData->ordered_for == 'product' ? $requestData->notes : null,
                 'delivery_charge'           => $requestData->ordered_for == 'product' ? $requestData->delivery_charge : 0,
             ]);
-            $product = Product::find($item->id);
+            $product = Product::find($requestData->model_id);
             $product->stock_amount = $product->stock_amount -1;
             if ($product->stock_amount == 0)
             {
                 $product->is_stock = 0;
             }
             $product->save();
-        }
+        // }
         Cart::clear();
     }
 
