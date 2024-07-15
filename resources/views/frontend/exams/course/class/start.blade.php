@@ -25,7 +25,7 @@
                     <div>
                         <div>
                             <h2 class="quiz-name">Exam - {{ $exam->title }}</h2>
-                            <span class="course-name d-block">{{ count($exam->questionStoresForClassXm) }} Questions</span>
+                            <span class="course-name d-block">{{ $exam->exam_total_questions }} Questions</span>
 
                         </div>
                     </div>
