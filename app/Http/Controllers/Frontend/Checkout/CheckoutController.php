@@ -414,6 +414,9 @@ class CheckoutController extends Controller
             } elseif ($requestData->ordered_for == 'batch_exam')
             {
                 $model = BatchExam::find($requestData->model_id);
+            }elseif ($requestData->ordered_for == 'product')
+            {
+                $model = Product::find($requestData->model_id);
             }
             if (!empty(self::$user))
             {
