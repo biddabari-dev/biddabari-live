@@ -424,13 +424,22 @@ class CheckoutController extends Controller
                 {
                     Auth::login(self::$user);
                 }
-                $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01896060800-15.";
+                if ($requestData->ordered_for == 'product'){
+                    $message = "Congratulations!+You+are+successfully+purchased+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01896060800-15.";
+                }else{
+                    $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01896060800-15.";
+                }
             } else {
 
                 self::$user = User::createOrUpdateUserAfterPayment($requestData, $pass);
                 $newStudent = Student::createStudentAfterPayment($requestData, self::$user);
                 Auth::login(self::$user);
-                $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01896060800-15.";
+                if ($requestData->ordered_for == 'product'){
+                    $message = "Congratulations!+You+are+successfully+purchased+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01896060800-15.";
+                }else {
+                    # code...
+                    $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01896060800-15.";
+                }
             }
             if (!empty(self::$user))
             {
