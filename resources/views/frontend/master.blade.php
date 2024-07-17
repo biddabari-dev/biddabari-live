@@ -193,20 +193,7 @@
         var formurl = $(formcls).attr('action');
         // var cart= $('#cart_amount').text('sar');
 
-        // $.ajax({
-        //     url : formurl,
-        //     method : 'Post',
-        //     data : $(formcls).serialize(),
-        //     success : function(response){
-        //         if(response.status == 'success'){
-        //             // console.log('success');
-        //             toastr.success(response.msg,'Success');
-        //             $('.cart_count-'+spid).html(`<a href="{{ route('front.view-cart') }}" class="default-btn ">এখনই কিনুন</a>`);
-        //         }else{
-        //             toastr.error(response.msg,'Failed');
-        //         }
-        //     }
-        // });
+       
     }
 </script>
 
