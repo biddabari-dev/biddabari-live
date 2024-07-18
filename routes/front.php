@@ -88,7 +88,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
         Route::get('/blog-details/{slug?}', [FrontendViewController::class, 'blogDetails'])->name('blog-details');
         Route::get('/product', [FrontendViewController::class, 'allProducts'])->name('all-products');
 
-        Route::get('/view-cart/{id}', [FrontendViewController::class, 'viewCart'])->name('view-cart');
+        Route::get('/view-cart/{slug}', [FrontendViewController::class, 'viewCart'])->name('view-cart');
 
         Route::get('/remove-from-cart/{id}', [FrontendViewController::class, 'removeFromCart'])->name('remove-from-cart');
         Route::get('/job-circular', [FrontendViewController::class, 'allJobCirculars'])->name('all-job-circulars');

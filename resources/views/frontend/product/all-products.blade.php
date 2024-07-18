@@ -24,7 +24,7 @@
                                 }
                                 @endphp
                                 <p></p>
-                                @if(!empty(\Cart::get($product->id)))
+                                @if(!empty(\Cart::get($product->slug)))
                                 <a href="{{ route('front.view-cart') }}" class="default-btn ">এখনই কিনুন</a>
                                 @else
                                 @if($stockStatus == true)

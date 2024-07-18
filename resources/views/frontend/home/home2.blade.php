@@ -12,7 +12,7 @@
                                 <a href="{{ $homeSliderCourse->link ?? '' }}" class="w-100">
                                     <div class="container-fluid">
                                         <div class="row align-items-center">
-                                            <div class="col-lg-6 c-dnone">
+                                            {{-- <div class="col-lg-6 c-dnone">
                                                 <div class="hero-content ms-3">
                                                     <h2 style="font-size: 36px">
                                                         {{ \Illuminate\Support\Str::words($homeSliderCourse->title, 8, '....') }}
@@ -27,8 +27,8 @@
                                                             ক্লিক করুন</button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-6">
+                                            </div> --}}
+                                            <div class="col-lg-12">
                                                 <div class="">
                                                     <img src="{{ asset($homeSliderCourse->image) }}" class="w-100"
                                                         alt="Home Slider" />
@@ -53,7 +53,46 @@
                 <div class="free_course_banner">
                     <div class="row">
                         <div class="col-md-2">
-                            
+                            <div class="free_course_category">
+                                <div class="free_course_category_img">
+                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="free_course_category">
+                                <div class="free_course_category_img">
+                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="free_course_category">
+                                <div class="free_course_category_img">
+                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="free_course_category">
+                                <div class="free_course_category_img">
+                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="free_course_category">
+                                <div class="free_course_category_img">
+                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="free_course_category">
+                                <div class="free_course_category_img">
+                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

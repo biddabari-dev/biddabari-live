@@ -40,7 +40,7 @@
                             <p class="text-danger f-s-19">Out Of Stock</p>
                         @endif
                         {!! $product->description !!}
-                        @if(!empty(\Cart::get($product->id)))
+                        @if(!empty(\Cart::get($product->slug)))
                             <a href="{{ route('front.view-cart') }}" class="default-btn ">এখনই কিনুন</a>
                         @else
                             @if($stockStatus == true)
@@ -49,7 +49,7 @@
                                 <input type="hidden" name="product_id" value="{{ $product->id }}" />
                                 <input type="hidden" name="price" value="{{ $product->has_discount_validity == 'true' ? $grandPrice : $product->price }}" />
 {{--                                <button type="submit" class="default-btn">Add to cart</button>--}}
-                                <button type="submit" class="default-btn cart_count">কার্টে যোগ করুন</button>
+                                <button type="submit" class="default-btn cart_count">কার্টে যোগ করুন zrtdghg</button>
                             </form>
                             @endif
                         @endif
