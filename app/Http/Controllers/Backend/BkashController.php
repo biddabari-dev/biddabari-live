@@ -27,12 +27,9 @@ class BkashController extends Controller
         $request['amount'] = $request->total_amount;
         $request['merchantInvoiceNumber'] = $inv;
         $request['callbackURL'] = config('bkashpay.callbackURL');
-//        return $request['callbackURL'];
         $request_data_json = json_encode($request->all());
-//        return $request_data_json;
 
         $response=$bkashobj->requestPayment($request_data_json);
-//        return $response;              // Output data submit bkash website for original creditionals
         if (isset($response['bkashURL'])){
             return redirect()->away($response['bkashURL']);
         }else{
@@ -53,7 +50,6 @@ class BkashController extends Controller
             if (isset($response['statusCode']) && $response['statusCode'] == "0000" && $response['transactionStatus'] == "Completed"){
                 $requestData = (object) \session()->get('requestData');
 
-                //                user create or old
                 $request['trxID']   = $response['trxID'];
                 $request['tran_id']   = $response['paymentID'];
                 $request['amount']   = $response['amount'];
@@ -102,13 +98,13 @@ class BkashController extends Controller
 
 
 
-//                    return self::createOrderAndAssignStudent($requestData, $request);
                 } else {
                     return 'Data is missing from session';
                 }
 
             }else{
-                return redirect()->back()->with('error', 'Something went wrong during payment. Please try again 12.');;
+
+                return redirect()->back()->with('error', 'Something went wrong during payment. Please try again.');
             }
         }else{
             return redirect()->back()->with('error', 'Something went wrong during payment. Please try again 34.');
@@ -120,7 +116,6 @@ class BkashController extends Controller
     {
         $bkash=new BkashPayment();
         $findpayment= $bkash->searchPayment($trxID);
-        //return BkashPaymentTokenize::searchTransaction($trxID,1); //last parameter is your account number for multi account its like, 1,2,3,4,cont..
         return $findpayment;
     }
 }

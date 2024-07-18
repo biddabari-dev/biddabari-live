@@ -139,8 +139,6 @@ class FrontendViewController extends Controller
                     foreach (Cart::getContent() as $key => $item)
                     {
                         $product = Product::find($item->id);
-//                        if ($product->stock_amount > 0)
-//                        {
                             $request['total_amount']  = $item->price + ($request->ordered_for == 'product' && $key == 0 ? $request->delivery_charge : 0);
                             $request['parent_model_id']  = $item->id;
                             ParentOrder::orderProduct($request);
@@ -150,14 +148,7 @@ class FrontendViewController extends Controller
                                 $product->is_stock = 0;
                             }
                             $product->save();
-//                        } else {
-//                            $emptyStatus = true;
-//                        }
                     }
-//                    if ($emptyStatus == true)
-//                    {
-//                        return redirect()->back()->with('error', 'Product Out of Stock.');
-//                    }
                     Cart::clear();
                     return redirect()->route('front.home')->with('success', 'Products ordered submitted successfully.');
                 }

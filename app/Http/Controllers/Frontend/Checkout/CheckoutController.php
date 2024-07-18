@@ -10,6 +10,7 @@ use App\Models\Backend\AdditionalFeatureManagement\Affiliation\AffiliationHistor
 use App\Models\Backend\AdditionalFeatureManagement\Affiliation\AffiliationRegistration;
 use App\Models\Backend\BatchExamManagement\BatchExam;
 use App\Models\Backend\Course\Course;
+use App\Models\Backend\ProductManagement\Product;
 use App\Models\Backend\Course\CourseCoupon;
 use App\Models\Backend\OrderManagement\ParentOrder;
 use App\Models\Backend\UserManagement\Student;
@@ -233,8 +234,14 @@ class CheckoutController extends Controller
                     $request['affiliate_amount'] = $request->ordered_for == 'course' ? Course::find($request->model_id)->affiliate_amount : BatchExam::find($request->model_id)->affiliate_amount;
                 }
                 \session()->put('requestData', $request->all());
-
-                return self::sendOrderRequestToSSLZ($request->total_amount, $request->ordered_for == 'course' ? Course::find($request->model_id)->title : BatchExam::find($request->model_id)->title, $request);
+                if ($request->ordered_for == 'product') {
+                    # code...
+                    return self::sendOrderRequestToSSLZ($request->total_amount, Product::find($request->model_id)->title, $request);
+                } else {
+                    # code...
+                    return self::sendOrderRequestToSSLZ($request->total_amount, $request->ordered_for == 'course' ? Course::find($request->model_id)->title : BatchExam::find($request->model_id)->title, $request);
+                }
+                
             }
             elseif ($request->payment_method == 'bkash'){
 
@@ -407,6 +414,9 @@ class CheckoutController extends Controller
             } elseif ($requestData->ordered_for == 'batch_exam')
             {
                 $model = BatchExam::find($requestData->model_id);
+            }elseif ($requestData->ordered_for == 'product')
+            {
+                $model = Product::find($requestData->model_id);
             }
             if (!empty(self::$user))
             {
@@ -414,13 +424,22 @@ class CheckoutController extends Controller
                 {
                     Auth::login(self::$user);
                 }
-                $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01896060800-15.";
+                if ($requestData->ordered_for == 'product'){
+                    $message = "Congratulations!+You+are+successfully+purchased+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01896060800-15.";
+                }else{
+                    $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01896060800-15.";
+                }
             } else {
 
                 self::$user = User::createOrUpdateUserAfterPayment($requestData, $pass);
                 $newStudent = Student::createStudentAfterPayment($requestData, self::$user);
                 Auth::login(self::$user);
-                $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01896060800-15.";
+                if ($requestData->ordered_for == 'product'){
+                    $message = "Congratulations!+You+are+successfully+purchased+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01896060800-15.";
+                }else {
+                    # code...
+                    $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01896060800-15.";
+                }
             }
             if (!empty(self::$user))
             {

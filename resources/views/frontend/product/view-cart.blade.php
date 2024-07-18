@@ -46,14 +46,19 @@
                                             <label for="paidTo">Your Name</label>
                                             <input type="text" id="paidTo" onkeydown="return /[a-zA-Z ]/i.test(event.key)" required name="name" class="form-control"
                                                    placeholder="Enter your name" value="{{ auth()->check() ? auth()->user()->name : '' }}" {{--{{ auth()->check() && !empty(auth()->user()->name) ? 'readonly' : '' }}--}}  />
-                                            @if(!auth()->check()) <span class="text-danger f-s-18 float-start">আপনার এই নাম এ কোর্সটি রেজিস্টার করা হবে।</span> @endif
+                                            @if(!auth()->check()) <span class="text-danger f-s-18 float-start">আপনার এই নামে বইটির অর্ডার গ্রহণ হবে।</span> @endif
                                             @error('paid_to')<span class="text-danger"></span>@enderror
+                                        </div>
+                                        <div class="col-md-12 ">
+                                            <label for="paidTo">Full Address</label>
+                                            <input type="text" required name="shipping_address" class="form-control"
+                                                   placeholder="জেলার নাম: থানার নাম: এবং সম্পূর্ণ ঠিকানা দিন। গ্রাম/শহর, বাসা নং (পাশে কোন বাজার থাকলে নাম লিখুন)"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="phone" >Phone No</label>
                                             <input type="text" pattern="^01[3-9]\d{8}$" title="Please enter a valid phone number"  onkeypress="return isNumberKey(event)" id="phone" name="mobile" required class="form-control"
                                                    placeholder="Enter your phone no" value="{{ auth()->check() ? auth()->user()->mobile : '' }}" {{--{{ auth()->check() && !empty(auth()->user()->mobile) ? 'readonly' : '' }}--}} />
-                                            @if(!auth()->check()) <span class="text-danger f-s-18 float-start">এই নাম্বারটি হবে আপনার রেজিস্ট্রেশন নম্বর ।</span> @endif
+                                            @if(!auth()->check()) <span class="text-danger f-s-18 float-start">আপনার সক্রিয় মোবাইল নম্বর লিখুন</span> @endif
                                             @error('mobile')<span class="text-danger"></span>@enderror
                                         </div>
                                         <div class="col-md-6">
@@ -72,11 +77,18 @@
                                     <div class="row">
                                         <div class="col-md-6 checkout_contact">
                                             <div class="contact-info-card">
-                                                <i class="ri-phone-fill"></i>
-                                                <h5>প্রয়োজনে এজেন্ট এর সাথে কথা বলুন</h5>
-                                                <p><a href="tel:+8801896060800">+8801896060800-15</a></p>
+                                                <i class="ri-whatsapp-line"></i>
+                                                <h5>প্রয়োজনে WhatsApp করুন।</h5>
+                                                <p><a href="https://wa.me/8801896060860">+8801896060860</a></p>
                                             </div>
                                         </div>
+                                        <!-- <div class="col-md-6 checkout_contact">
+                                            <div class="contact-info-card">
+                                                <i class="ri-phone-fill"></i>
+                                                <h5>প্রয়োজনে এজেন্ট এর সাথে কথা বলুন</h5>
+                                                <p><a href="tel:+8801896060800">+8801896060860-65</a></p>
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </li>
                                 <li>
