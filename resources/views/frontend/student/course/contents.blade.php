@@ -583,12 +583,12 @@
                         metaData: {fileName: "pdfviewer.pdf"},
                     },
                     {
-                        embedMode: "IN_LINE", 
+                        embedMode: "IN_LINE",
                         showAnnotationTools: false,
                         showDownloadPDF: false,
                         showPrintPDF: false,
                     }
-);
+            );
 
                     if(data.sectionContent.can_download_pdf == 1 )
                     {
@@ -601,6 +601,8 @@
             })
 
         })
+
+
         function LoadCss(url) {
             var link = document.createElement("link");
             link.type = "text/css";
