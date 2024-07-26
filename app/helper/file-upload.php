@@ -127,28 +127,28 @@ function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl 
 
         // dd($nameString);
 
-        if ($nameString == 'question') {
+        // if ($nameString == 'question') {
+        //     # code...
+        //     $result = $client->putObject([
+        //         'Bucket' => 'biddabari-bucket',
+        //         'Key' => $fileDirectory.'/'.$fileName,
+        //         'SourceFile' => $fileObject,
+        //         ]);
+        // }elseif($nameString == 'section-content'){
             # code...
             $result = $client->putObject([
                 'Bucket' => 'biddabari-bucket',
                 'Key' => $fileDirectory.'/'.$fileName,
                 'SourceFile' => $fileObject,
                 ]);
-        }elseif($nameString == 'section-content'){
-            # code...
-            $result = $client->putObject([
-                'Bucket' => 'biddabari-bucket',
-                'Key' => $fileDirectory.'/'.$fileName,
-                'SourceFile' => $fileObject,
-                ]);
-        }else {
-            # code...
-            $result = $client->putObject([
-                'Bucket' => 'biddabari-bucket',
-                'Key' => $fileDirectory.$fileName,
-                'SourceFile' => $fileDirectory.$fileName,
-                ]);
-        }
+        // }else {
+        //     # code...
+        //     $result = $client->putObject([
+        //         'Bucket' => 'biddabari-bucket',
+        //         'Key' => $fileDirectory.$fileName,
+        //         'SourceFile' => $fileDirectory.$fileName,
+        //         ]);
+        // }
 
 
             if (file_exists($fileDirectory.$fileName))
@@ -157,14 +157,14 @@ function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl 
             }
 
 
-            if ($nameString == 'question') {
+            // if ($nameString == 'question') {
+            //     return $fileDirectory.'/'.$fileName;
+            // }elseif ($nameString == 'section-content') {
                 return $fileDirectory.'/'.$fileName;
-            }elseif ($nameString == 'section-content') {
-                return $fileDirectory.'/'.$fileName;
-            }else {
-                # code...
-                return $fileDirectory.$fileName;
-            }
+            // }else {
+            //     # code...
+            //     return $fileDirectory.$fileName;
+            // }
     } else {
         if (isset($modelFileUrl))
         {
