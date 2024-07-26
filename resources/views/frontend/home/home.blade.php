@@ -318,7 +318,7 @@
                                 <div class="content">
                                     <h3><a
                                             href="{{ route('front.product-details', ['id' => $product->id, 'slug' => $product->slug]) }}">{{
-                        Str::limit($product->title, 40) ?? '' }}</a></h3>
+                        Str::limit($product->title, 30) ?? '' }}</a></h3>
                                     @if($stockStatus == true)
                                         <p class="text-success f-s-19">In Stock</p>
                                     @else

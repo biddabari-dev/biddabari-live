@@ -10095,3 +10095,11 @@ img {
     overflow: scroll;
     height: 600px;
 }
+.checkout_log textarea {
+    font-size: 12px !important;
+    line-height: 22px !important;
+}
+/* .custom_product_details_scroll{
+    overflow: scroll;
+    height: 600px ;
+} */
