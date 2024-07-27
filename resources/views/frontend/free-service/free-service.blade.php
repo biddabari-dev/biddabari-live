@@ -13,9 +13,7 @@
                             <button class="nav-link f-s-26" id="" data-bs-toggle="pill" data-bs-target="#freeExams" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">ফ্রি পরীক্ষা সমূহ</button>
                         </li>
                     </ul>
-                    <style>
-                        .a .courses-item {padding-right: 50px;}
-                    </style>
+                   
                     <div class="tab-content mt-4" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="freeCourses" role="tabpanel" aria-labelledby="pills-home-tab">
                             <div class="row a">
@@ -29,8 +27,8 @@
                                                     <h3>{{ $course->title }}</h3>
                                                     <div class="bottom-content">
                                                         <button type="button" class="btn btn-warning">বিস্তারিত দেখুন</button>
-                                                        <div class="rating ">
-                                                            <button type="button" class="btn btn-warning">Free</button>
+                                                        <div class="rating "> 
+                                                            <button type="button" class="btn btn-warning">কোর্সটি করুন</button>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -58,7 +58,7 @@
                                     <div class="d-flex flex-column">
                                         <div class="com-img-box">
                                             @if(isset($comment->user->profile_photo_path))
-                                                <img src="{{ asset( $comment->user->profile_photo_path ) }}" alt="user-image" class="comment-user-image">
+                                                <img src="{{ asset( $comment->user->profile_photo_path ) }}" alt="user-image" class="comment-user-icard-bodymage">
                                             @else
                                                 <img src="https://www.vhv.rs/dpng/d/509-5096993_login-icon-vector-png-clipart-png-download-user.png" alt="user-image" class="comment-user-image">
                                             @endif
