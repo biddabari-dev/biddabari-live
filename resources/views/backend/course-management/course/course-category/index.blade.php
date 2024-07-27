@@ -66,12 +66,14 @@
                 <form action="" method="post" enctype="multipart/form-data" id="courseCategoryForm">
                     @csrf
                     <div class="modal-header">
-                        @can('create-course-category')
-                        <h5 class="modal-title" id="exampleModalLabel">Create Course Category</h5>
+                       @if ($category->id)
+                       <h5 class="modal-title" id="exampleModalLabel">Edit Course Category</h5>
+                       @else
+                       <h5 class="modal-title" id="exampleModalLabel">Create Course Category</h5>
+                       @endif
                       
-                        @elsecan('edit-course-category')
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Course Category</h5>
-                        @endcan
+                      
+                        
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
 
