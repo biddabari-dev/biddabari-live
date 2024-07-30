@@ -3,11 +3,11 @@
 @section('body')
 
 <div class="container">
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-12 mt-4">
             <a href="/"> Home /</a> {{ $course->title }}
         </div>
-    </div>
+    </div> --}}
 </div>
             <div class="courses-details-area pt-3 pb-70">
                 <div class="container">
@@ -554,7 +554,7 @@
         $header.css('bottom','475px');
         $header.css( 'top', 'unset');
         }else{
-        $header.css('top', '215px');
+        $header.css('top', '167px');
         $header.css('bottom','unset');
 
         }

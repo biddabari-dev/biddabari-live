@@ -225,7 +225,7 @@
         event.preventDefault();
         var sectionContentId = $(this).attr('data-id');
         $.ajax({
-            url: base_url+"get-pdf-store-file/"+sectionContentId,
+            url: "/get-pdf-store-file/"+sectionContentId,
             method: "GET",
             success: function (data) {
                 console.log(data);
@@ -315,7 +315,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-blog-id');
             $.ajax({
-                url: base_url+"pdf-stores/"+courseId+"/edit",
+                url: "/pdf-stores/"+courseId+"/edit",
                 method: "GET",
                 success: function (data) {
                     $('#modalForm').empty().append(data);

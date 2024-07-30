@@ -15,7 +15,7 @@
                     @endif
             </div> --}}
 
-            <div class="col-md-12 mt-4">
+            {{-- <div class="col-md-12 mt-4">
                 <p class="">
                     Home / 
                     @if(!$courseCategory->courseCategories->isEmpty())
@@ -26,7 +26,7 @@
                         @endif
                     @endif
                 </p>
-            </div>
+            </div> --}}
             
         </div>
     </div>
