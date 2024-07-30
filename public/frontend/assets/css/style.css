@@ -8749,9 +8749,22 @@ img {
     display: none;
 }
 
+.custom_book_button_none{
+    display: none;
+}
+.custom_book_button_block{
+    display: block;
+}
+
 
 @media only screen and (min-width: 280px) and (max-width: 420px) {
 
+    .custom_book_button_none{
+        display: block;
+    }
+    .custom_book_button_block{
+        display: none;
+    }
 
     /* --------------Exam Page Start-------------- */
     .quiz-wizard .quiz-name {
@@ -9124,6 +9137,12 @@ img {
 
 @media only screen and (min-width: 421px) and (max-width: 520px) {
 
+    .custom_book_button_none{
+        display: block;
+    }
+    .custom_book_button_block{
+        display: none;
+    }
         /* --------------Exam Page Start-------------- */
         .quiz-wizard .quiz-name {
             font-size: 15px !important;

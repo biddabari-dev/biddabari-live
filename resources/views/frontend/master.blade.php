@@ -33,6 +33,12 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+<!-- slick slide css -->
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
 
     <title>BiddaBari - The First Job Study Online Platform in Bangladesh</title>
 
@@ -143,6 +149,10 @@
 
 @yield('js')
 
+    <!-- slick slide cdn -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- slick slide cdn -->
+
 {{--custom js--}}
 <script  src="{{ asset('/') }}frontend/assets/js/my-custom-mod.js"></script>
 {{--<script defer src="{{ asset('/') }}frontend/assets/js/my-custom-mod.min.js"></script>--}}
@@ -192,7 +202,6 @@
         var formurl = $(formcls).attr('action');
         var formurl = $(formcls).attr('action');
         // var cart= $('#cart_amount').text('sar');
-
        
     }
 </script>
