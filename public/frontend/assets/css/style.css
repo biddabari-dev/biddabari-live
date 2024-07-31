@@ -10123,3 +10123,9 @@ img {
     overflow: scroll;
     height: 600px ;
 } */
+
+.single-content .color_black {
+    color: black;
+    font-family: auto;
+    font-size: 18px;
+}
