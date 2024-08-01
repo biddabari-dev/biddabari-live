@@ -322,6 +322,36 @@ class CourseController extends Controller
         ParentOrder::where(['parent_model_id' => $id, 'user_id' => Student::find($request->student_id)->user_id])->first()->update(['status' => 'canceled']);
         return back()->with('success', 'Student assigned to course Successfully.');
     }
+    
+
+    // public function detachStudent(Request $request, $id)
+    // {
+    //     abort_if(Gate::denies('detach-course-student'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        
+    //     $this->course = Course::find($id);
+    //     $this->course->students()->detach($request->student_id);
+        
+    //     $student = Student::find($request->student_id);
+    //     if ($student) {
+    //         $parentOrder = ParentOrder::where(['parent_model_id' => $id, 'user_id' => $student->user_id])->first();
+    //         if ($parentOrder) {
+    //             $parentOrder->update(['status' => 'canceled']);
+    //         } else {
+    //             // Handle the case where ParentOrder is not found
+    //             return back()->with('error', 'ParentOrder not found.');
+    //         }
+    //     } else {
+    //         // Handle the case where Student is not found
+    //         return back()->with('error', 'Student not found.');
+    //     }
+    
+    //     return back()->with('success', 'Student detached from course successfully.');
+    // }
+    
+
+
+
+
 
     public function getCoursesByCategory($id)
     {

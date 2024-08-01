@@ -49,7 +49,7 @@ Route::prefix('v1')->name('api.')->group(function (){
     Route::get('web-home', [BasicViewController::class, 'home'])->name('web-home');
     Route::get('all-courses', [BasicViewController::class, 'allCourses'])->name('all-courses');
     Route::get('course-details/{id}/{slug?}', [BasicViewController::class, 'courseDetails'])->name('course-details');
-    Route::get('checkout/{slug}', [BasicViewController::class, 'checkout'])->name('checkout');
+    Route::get('checkout/{slug}', [BasicViewController::class, 'checkout'])->name('checkout'); 
     Route::get('category-courses/{id}/{slug?}', [BasicViewController::class, 'categoryCourses'])->name('category-courses');
     Route::get('all-instructors', [FrontendViewController::class, 'instructors'])->name('instructors');
     Route::get('instructor-details/{slug}', [FrontendViewController::class, 'instructorDetails'])->name('instructor-details');

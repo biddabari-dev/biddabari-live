@@ -26,8 +26,8 @@
                     <div class="contact-info-card">
                         <i class="ri-phone-fill"></i>
                         <h3>Phone</h3>
-                        <p><a href="tel:+44587154756">+8801896060809</a></p>
-                        <p><a href="tel:+44587154756">+8801896060809</a></p>
+                        <p><a href="tel:01896060800">+8801896060800</a></p>
+                        <p><a href="tel:01896060801">+8801896060801</a></p>
                     </div>
                 </div>
             </div>
