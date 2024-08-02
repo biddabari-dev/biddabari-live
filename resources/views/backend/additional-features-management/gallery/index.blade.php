@@ -280,7 +280,8 @@
             event.preventDefault();
             var courseId = $(this).attr('data-blog-category-id'); //change value
             $.ajax({
-                url: base_url+"galleries/"+courseId+"/edit",
+                //url: base_url+"galleries/"+courseId+"/edit",
+                url: "/galleries/"+courseId+"/edit",
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
@@ -298,7 +299,7 @@
                     } else {
                         $('input[name="status"]').attr('checked', false);
                     }
-                    $('#courseSectionForm').attr('action', base_url+"galleries/"+data.id).append('<input type="hidden" name="_method" value="put">');
+                    $('#courseSectionForm').attr('action', "/galleries/"+data.id).append('<input type="hidden" name="_method" value="put">');
                     $('#blogCategoryModal').modal('show');
                 }
             })
@@ -310,7 +311,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-blog-category-id'); //change value
             $.ajax({
-                url: base_url+"galleries/get-images/"+courseId,
+                url: "/galleries/get-images/"+courseId,
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -347,7 +348,7 @@
         var courseId = $(this).attr('data-blog-category-id'); //change value
         $('input[name="gallery_id"]').val(courseId);
         $.ajax({
-            url: base_url+"galleries/get-images/"+courseId,
+            url: "/galleries/get-images/"+courseId,
             method: "GET",
             // dataType: "JSON",
             success: function (data) {
@@ -362,7 +363,7 @@
         event.preventDefault();
         var courseId = $(this).attr('data-gallery-image-id'); //change value
         $.ajax({
-            url: base_url+"galleries/delete-image/"+courseId,
+            url: "/galleries/delete-image/"+courseId,
             method: "GET",
             // dataType: "JSON",
             success: function (data) {

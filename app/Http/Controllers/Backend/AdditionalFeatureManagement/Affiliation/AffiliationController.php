@@ -24,7 +24,7 @@ class AffiliationController extends Controller
             $affiliateReg->save();
             return ViewHelper::returnSuccessMessage('Your Application submitted successfully.');
         }
-    }
+    } 
 
     public function generateUniqueCodeForAffiliate()
     {

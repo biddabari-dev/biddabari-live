@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title', 'Blogs')
+@section('title', 'Job Circulars')
 
 @section('body')
     <div class="row py-5">
@@ -149,7 +149,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-blog-id');
             $.ajax({
-                url: base_url+"circulars/"+courseId+"/edit",
+                url: "/circulars/"+courseId+"/edit",
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
@@ -206,7 +206,7 @@
         event.preventDefault();
         var courseId = $(this).attr('data-blog-id');
         $.ajax({
-            url: base_url+"circulars/"+courseId,
+            url: "/circulars/"+courseId,
             method: "GET",
             // dataType: "JSON",
             success: function (data) {
