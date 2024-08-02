@@ -85,8 +85,8 @@ class FrontExamController extends Controller
 //                        return redirect()->action([FrontExamController::class, 'getCourseExamResult'], ['content_id'=>$content->id, 'slug' => $content->title])->withInput(session('getXmDataToSession'));
                 } elseif (session('getXmStartStatus')['xmType'] == 'batch_exam')
                 {
- session()->forget('getXmStartStatus');
-        session()->forget('getXmDataToSession');
+                    // session()->forget('getXmStartStatus');
+                    // session()->forget('getXmDataToSession');
                     return $response = $this->commonGetBatchExamResult((object) session('getXmDataToSession'), session('getXmStartStatus')['xmContentId']);
                 }
             }
@@ -537,6 +537,14 @@ class FrontExamController extends Controller
         $this->totalWrongAns = 0;
         $this->totalProvidedAns = 0;
         $this->exam = BatchExamSectionContent::whereId($contentId)->first();
+        $this->type = 'batch';
+        if (empty($this->exam)) {
+            # code...
+            $this->exam = CourseSectionContent::whereId($contentId)->first();
+            $this->type = 'course';
+        }
+
+        // dd($this->exam);
 
         if ($this->exam)
         {
@@ -574,22 +582,45 @@ class FrontExamController extends Controller
                         }
                     }
                 }
-                $this->examResult = [
-                    'batch_exam_section_content_id'       => $contentId,
-                    'user_id'       => ViewHelper::loggedUser()->id,
-                    'xm_type'       => $this->exam->content_type,
-//                    'written_xm_file'       => fileUpload($request->file('written_xm_file'), 'xm-files/'.$this->exam->id.'/', 'file-'.ViewHelper::loggedUser()->id.'-'),
-                    'provided_ans'      => json_encode($this->questionJson),
-                    'total_right_ans'       => $this->totalRightAns ?? 0,
-                    'total_wrong_ans'       => $this->totalWrongAns ?? 0,
-                    'total_provided_ans'    => $this->totalProvidedAns ?? 0,
-//                        'result_mark'       => $this->resultNumber ?? 0,
-//                        'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
-                    'result_mark'       => $this->resultNumber,
-                    'is_reviewed'       => 0,
-                    'required_time'       => $request->required_time ?? 0,
-                    'status'        => $this->exam->content_type == 'exam' ? ($this->resultNumber >= $this->exam->exam_pass_mark ? 'pass' : 'fail') : 'pending',
-                ];
+                if ($this->type == 'course') {
+                    # code...
+                    $this->examResult = [
+                        'course_section_content_id'       => $contentId,
+                        'user_id'       => ViewHelper::loggedUser()->id,
+                        'xm_type'       => $this->exam->content_type,
+    //                    'written_xm_file'       => fileUpload($request->file('written_xm_file'), 'xm-files/'.$this->exam->id.'/', 'file-'.ViewHelper::loggedUser()->id.'-'),
+                        'provided_ans'      => json_encode($this->questionJson),
+                        'total_right_ans'       => $this->totalRightAns ?? 0,
+                        'total_wrong_ans'       => $this->totalWrongAns ?? 0,
+                        'total_provided_ans'    => $this->totalProvidedAns ?? 0,
+    //                        'result_mark'       => $this->resultNumber ?? 0,
+    //                        'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
+                        'result_mark'       => $this->resultNumber,
+                        'is_reviewed'       => 0,
+                        'required_time'       => $request->required_time ?? 0,
+                        'status'        => $this->exam->content_type == 'exam' ? ($this->resultNumber >= $this->exam->exam_pass_mark ? 'pass' : 'fail') : 'pending',
+                    ];
+                } else {
+                    # code...
+                    $this->examResult = [
+                        'batch_exam_section_content_id'       => $contentId,
+                        'user_id'       => ViewHelper::loggedUser()->id,
+                        'xm_type'       => $this->exam->content_type,
+    //                    'written_xm_file'       => fileUpload($request->file('written_xm_file'), 'xm-files/'.$this->exam->id.'/', 'file-'.ViewHelper::loggedUser()->id.'-'),
+                        'provided_ans'      => json_encode($this->questionJson),
+                        'total_right_ans'       => $this->totalRightAns ?? 0,
+                        'total_wrong_ans'       => $this->totalWrongAns ?? 0,
+                        'total_provided_ans'    => $this->totalProvidedAns ?? 0,
+    //                        'result_mark'       => $this->resultNumber ?? 0,
+    //                        'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
+                        'result_mark'       => $this->resultNumber,
+                        'is_reviewed'       => 0,
+                        'required_time'       => $request->required_time ?? 0,
+                        'status'        => $this->exam->content_type == 'exam' ? ($this->resultNumber >= $this->exam->exam_pass_mark ? 'pass' : 'fail') : 'pending',
+                    ];
+                }
+
+
 
             } elseif ($this->exam->content_type == 'written_exam')
             {
@@ -621,24 +652,48 @@ class FrontExamController extends Controller
                     }
                 }
 
-                $this->examResult = [
-                    'batch_exam_section_content_id'       => $contentId,
-                    'user_id'       => ViewHelper::loggedUser()->id,
-                    'xm_type'       => $this->exam->content_type,
-                    'written_xm_file'       => $this->pdfFilePath,
-//                    'provided_ans'      => json_encode($this->questionJson),
-//                    'result_mark'       => $this->resultNumber ?? 0,
-                    'is_reviewed'       => 0,
-                    'required_time'       => $request->required_time ?? 0,
-                    'status'        =>  'pending',
-                ];
+                if ($this->type == 'course') {
+                    # code...
+                    $this->examResult = [
+                        'course_section_content_id'       => $contentId,
+                        'user_id'       => ViewHelper::loggedUser()->id,
+                        'xm_type'       => $this->exam->content_type,
+                        'written_xm_file'       => $this->pdfFilePath,
+    //                    'provided_ans'      => json_encode($this->questionJson),
+    //                    'result_mark'       => $this->resultNumber ?? 0,
+                        'is_reviewed'       => 0,
+                        'required_time'       => $request->required_time ?? 0,
+                        'status'        =>  'pending',
+                    ];
+                }else{
+                    $this->examResult = [
+                        'batch_exam_section_content_id'       => $contentId,
+                        'user_id'       => ViewHelper::loggedUser()->id,
+                        'xm_type'       => $this->exam->content_type,
+                        'written_xm_file'       => $this->pdfFilePath,
+    //                    'provided_ans'      => json_encode($this->questionJson),
+    //                    'result_mark'       => $this->resultNumber ?? 0,
+                        'is_reviewed'       => 0,
+                        'required_time'       => $request->required_time ?? 0,
+                        'status'        =>  'pending',
+                    ];
+                }
+
+
             }
 //            session_start();
 //            unset($_SESSION['getXmStartStatus']);
 //            unset($_SESSION['getXmDataToSession']);
             Session::forget('getXmStartStatus');
             Session::forget('getXmDataToSession');
+            if ($this->type == 'course') {
+                # code...
+            $batchExamResult = CourseExamResult::storeExamResult($this->examResult);
+
+            }else{
             $batchExamResult = BatchExamResult::storeExamResult($this->examResult);
+
+            }
             if (str()->contains(url()->current(), '/api/'))
             {
                 return response()->json(['status' => 'success', 'message' => 'Exam Data Saved Successfully.', 'exam_id' => $this->exam->id]);

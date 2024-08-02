@@ -85,7 +85,7 @@
 
                                             @can('detach-course-student')
                                                 <form class="d-inline" action="{{ route('detach-student', $course->id) }}" method="post" onsubmit="return confirm('Are you sure to Detach this Student from this course?')">                                            @csrf
-                                                    <input type="hidden" name="student_id" value="{{ $student['student_id'] }}">
+                                                    <input type="hidden" name="student_id" value="{{ $student->user->id }}">
                                                     <button type="submit" class="btn btn-sm btn-danger data-delete-form" title="Detach Student from this Course?">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
@@ -261,7 +261,7 @@
         $('.js-example-basic-single').select2({
             dropdownParent: $('#coursesModal'),
             ajax: {
-                url: "{{ route('search-student-ajax') }}",
+                url: "/search-student-ajax",
                 datatype: "json",
                 delay: 250,
                 data: function (params) {
