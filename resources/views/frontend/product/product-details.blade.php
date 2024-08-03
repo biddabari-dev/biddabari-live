@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="py-2 text-center">
                             <a href="{{ route('front.show-product-pdf', ['content_id' => $product->id]) }}"
-                                class="btn rounded-0 btn-outline-success ">একটু পড়ে দেখুন</a>
+                            class="btn rounded-0 btn-outline-success ">একটু পড়ে দেখুন</a>
                         </div>
                         <div class="mt-3 blog_card_img">
                             <img src="{{ asset(isset($product->image) ? $product->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
