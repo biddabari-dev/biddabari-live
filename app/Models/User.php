@@ -251,6 +251,10 @@ class User extends Authenticatable
         }
         self::$user->save();
     }
+    public function admin()
+    {
+        return $this->hasMany(User::class);
+    }
     public function teachers()
     {
         return $this->hasMany(Teacher::class);

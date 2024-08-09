@@ -55,7 +55,7 @@ class BasicViewController extends Controller
             'homeSliderCourses' => $this->homeSliderCourses,
             // 'batchExams'        => $this->batchExams,
             'numberCounters'    => NumberCounter::whereStatus(1)->select('id', 'label', 'icon_code', 'total_number','image')->get(),
-            'ourServices'       => OurService::whereStatus(1)->select('id', 'icon_code', 'image', 'title','content')->get(),
+            'ourServices'       => OurService::whereStatus(1)->select('id', 'icon_code', 'image', 'title','content')->latest()->get(),
             'ourTeams'          => OurTeam::whereStatus(1)->where(['content_show_type' => 'home_page'])->select('id', 'name', 'designation', 'image','content_show_type','video_link','video_file')->get(),
             'studentOpinions'   => StudentOpinion::whereStatus(1)->select('id', 'show_type', 'name', 'image','comment')->get(),
             'poppup'            => PopupNotification::where('status', 1)->first(),
@@ -235,8 +235,7 @@ class BasicViewController extends Controller
         } else {
             $this->course = Course::where('slug', $slug)->with([
                 'teachers'   => function($teachers) {
-                    $teachers->select('id', 'user_id', 'subject', 'first_name', 'last_name', 'description', 'image')->with(['user' => function($user){
-//                    $user->select('id', 'name', 'email')->first();
+                    $teachers->select('id', 'user_id', 'subject', 'first_name', 'last_name', 'description', 'image','teacher_intro_video','github')->with(['user' => function($user){
                     }])->get();
                 },
                 // 'courseSections' => function($courseSections) {

@@ -75,10 +75,13 @@
 
 
                                     @can('manage-user')
-                                        <li><a href="" class="slide-item {{ request()->is('admin') || request()->is('admin*') ? 'active' : '' }}">Admin</a></li>
+                                        <li><a href="{{ route('admin') }}" class="slide-item {{ request()->is('admin') || request()->is('admin*') ? 'active' : '' }}">Admin</a></li>
                                     @endcan
                                     @can('manage-user')
                                         <li><a href="" class="slide-item {{ request()->is('sub-admin') || request()->is('sub-admin*') ? 'active' : '' }}">Sub Admin</a></li>
+                                    @endcan
+                                    @can('teacher-profile')
+                                        <li><a href="{{ route('teachers_profile.index') }}" class="slide-item {{ request()->is('sub-admin') || request()->is('sub-admin*') ? 'active' : '' }}">Teacher</a></li>
                                     @endcan
                                     @can('manage-user')
                                         <li><a href="{{ route('users.index') }}" class="slide-item {{ request()->is('users') || request()->is('users*') ? 'active' : '' }}">Users</a></li>

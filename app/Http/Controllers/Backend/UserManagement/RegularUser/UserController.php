@@ -17,7 +17,7 @@ use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
-    protected $user, $users = [];
+    protected $user, $users, $admin = [];
     /**
      * Display a listing of the resource.
      */
@@ -36,6 +36,23 @@ class UserController extends Controller
 
         return view('backend.role-management.user.index',[
             'users'   => $this->users,
+        ]);
+    }
+    public function admin(Users $dateTable,Request $request)
+    {
+        abort_if(Gate::denies('manage-user'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return $dateTable->render('backend.role-management.user.index');
+
+        if (isset($request->user_type->admin))
+        {
+            $this->users    = User::paginate(100);
+        } else {
+            $this->users = User::latest()->select('id', 'mobile', 'name', 'status', 'profile_photo_path')->paginate(100);
+        }
+
+        return view('backend.role-management.user.index',[
+            'users'   => $this->admin,
         ]);
     }
 
@@ -151,12 +168,20 @@ class UserController extends Controller
         $userType = '';
         foreach ($user->roles as $role)
         {
-            if ($role->id == 3)
+            if ($role->id == 2)
+            {
+                $userDetails = User::where('user_id', $user->id)->first();
+                $userType = 'admin';
+                break;
+            } 
+            elseif ($role->id == 3)
             {
                 $userDetails = Teacher::where('user_id', $user->id)->first();
                 $userType = 'teacher';
                 break;
-            } elseif ($role->id == 4)
+            } 
+            
+            elseif ($role->id == 4)
             {
                 $userDetails = Student::where('user_id', $user->id)->first();
                 $userType = 'student';
@@ -194,10 +219,16 @@ class UserController extends Controller
         if (isset($request->user_type) && $request->user_type == 'student')
         {
             $this->users    = Student::latest()->get();
-        } elseif (isset($request->user_type) && $request->user_type == 'teacher')
+        } 
+        elseif (isset($request->user_type) && $request->user_type == 'admin')
+        {
+            $this->users    = User::latest()->get();
+        }
+        elseif (isset($request->user_type) && $request->user_type == 'teacher')
         {
             $this->users    = Teacher::latest()->get();
-        } else {
+        }
+         else {
             $this->users    = User::latest()->get();
         }
         return view('backend.role-management.user.all-users', [
