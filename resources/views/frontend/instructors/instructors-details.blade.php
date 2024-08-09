@@ -37,7 +37,7 @@
                     <div class="instructors-details-content pl-20">
                         @if (!empty($teacher->teacher_intro_video ))
                         <div class="">
-                            <h3 class="f-s-39">Teacher Intro</h3>
+                            <h3 class="f-s-39">Teacher’s Intro & Special Tips</h3>
                             <div class="top_slide_video_content">
                                 <video class="border-0" style="width: 100%!important;" controls>
                                     <source src="{{ asset($teacher->teacher_intro_video) }}" type="video/mp4">
@@ -48,7 +48,7 @@
                         @endif
                         <div class="row">
                             @if (!empty($teacher->demo_video_1 || $teacher->demo_video_2))
-                            <h3 class="f-s-39">Teacher Demo Class</h3>
+                            <h3 class="f-s-39">Teacher Demo Class- Short Classes</h3>
                             @endif
                             @if (!empty($teacher->demo_video_1 ))
                             <div class="col-md-6">
