@@ -52,36 +52,36 @@ class PdfStore extends Model
             self::$pdfStore = new PdfStore();
         }
         self::$file = $request->file('file');
-        if (self::$file)
-        {
-            if (isset($id))
-            {
-                if (file_exists(self::$pdfStore->file_url))
-                {
-                    unlink(self::$pdfStore->file_url);
-                }
-            }
-            self::$fileName = 'pdf-store-'.rand(10, 999999).time().'.'.self::$file->getClientOriginalExtension();
-            self::$fileDirectory = 'backend/assets/uploaded-files/pdf-management/pdf-store/';
-            self::$file->move(self::$fileDirectory, self::$fileName);
-            self::$fileUrl = self::$fileDirectory.self::$fileName;
-//            self::$fileSize = self::$file->getSize();
-            self::$fileSize = $_FILES['file']['size'];
-            self::$fileType = self::$file->getClientMimeType();
-            self::$fileExtension = self::$file->getClientOriginalExtension();
-        } else {
-            if (isset($id))
-            {
-                self::$fileUrl = self::$pdfStore->file_url;
-            } else {
-                self::$fileUrl = null;
-            }
-        }
+//         if (self::$file)
+//         {
+//             if (isset($id))
+//             {
+//                 if (file_exists(self::$pdfStore->file_url))
+//                 {
+//                     unlink(self::$pdfStore->file_url);
+//                 }
+//             }
+//             self::$fileName = 'pdf-store-'.rand(10, 999999).time().'.'.self::$file->getClientOriginalExtension();
+//             self::$fileDirectory = 'backend/assets/uploaded-files/pdf-management/pdf-store/';
+//             self::$file->move(self::$fileDirectory, self::$fileName);
+//             self::$fileUrl = self::$fileDirectory.self::$fileName;
+// //            self::$fileSize = self::$file->getSize();
+//             self::$fileSize = $_FILES['file']['size'];
+//             self::$fileType = self::$file->getClientMimeType();
+//             self::$fileExtension = self::$file->getClientOriginalExtension();
+//         } else {
+//             if (isset($id))
+//             {
+//                 self::$fileUrl = self::$pdfStore->file_url;
+//             } else {
+//                 self::$fileUrl = null;
+//             }
+//         }
         self::$pdfStore->pdf_store_category_id = $request->pdf_store_category_id;
         self::$pdfStore->title = $request->title;
         self::$pdfStore->preview_image = imageUpload($request->file('preview_image'), 'pdf-management/pdf-store/preview-image/', 'preview-', 300, 300, isset($id) ? self::$pdfStore->preview_image : null);
         self::$pdfStore->file_external_link = $request->file_external_link;
-        self::$pdfStore->file_url = self::$fileUrl;
+        self::$pdfStore->file_url = fileUpload($request->file('file'), 'pdf-management/pdf-store/', 'pdf-store-', (isset($id) ? PdfStore::find($id)->file_url : null));
         self::$pdfStore->file_size = self::$fileSize;
         self::$pdfStore->file_type = self::$fileType;
         self::$pdfStore->file_extension = self::$fileExtension;
