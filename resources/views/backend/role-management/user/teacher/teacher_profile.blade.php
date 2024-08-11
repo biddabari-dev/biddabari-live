@@ -23,7 +23,7 @@
                         <th>User name</th>
                         <th>Full name</th>
 {{--                        <th>Last name</th>--}}
-                        <th>Designation</th>
+                        <th>Show Details Title</th>
                         {{-- <th>Email</th> --}}
                         <th>Mobile</th>
                         <th>Image</th>

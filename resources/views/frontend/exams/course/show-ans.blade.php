@@ -14,7 +14,7 @@
                             <div class="row ">
                                 @if($content->content_type == 'exam')
                                     @foreach($content->questionStores as $questionStore)
-                                         <div class="col-md-6 mt-3 {{$questionStore->has_answered !=1 ? 'bg-danger' : ''}}" >
+                                         <div class="col-md-6 mt-3 {{$questionStore->has_answered !=1 ? 'bg-warning' : ''}}" >
                                             <h2>{{ $loop->iteration }}. {!! strip_tags($questionStore->question) !!}</h2>
                                             @if($content->content_type == 'exam')
                                                 <div class="mt-2">

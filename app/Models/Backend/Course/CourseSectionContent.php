@@ -419,6 +419,7 @@ class CourseSectionContent extends Model
             QuestionStore::class,
             'course_section_content_question_store_class'
         )->orderBy('id', 'ASC');
+        
     }
 
     public function courseClassExamResults()

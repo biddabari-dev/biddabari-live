@@ -39,7 +39,7 @@
                                                                 </a>
                                                             @endif
                                                             @if($courseSectionContent->content_type == 'video')
-                                                                    <a href="javascript:void(0)" class="w-100 open-video-modal" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-video-link="{{ $courseSectionContent->video_vendor == 'youtube' ? explode('https://www.youtube.com/watch?v=', $courseSectionContent->video_link)[1] : $courseSectionContent->video_link }}" data-video-vendor="{{ $courseSectionContent->video_vendor }}" data-content-id="{{ $courseSectionContent->id }}">
+                                                                    <a href="javascript:void(0)" class="w-100 open-video-modal" data-title="{{ $courseSectionContent->title }}" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-video-link="{{ $courseSectionContent->video_vendor == 'youtube' ? explode('https://www.youtube.com/watch?v=', $courseSectionContent->video_link)[1] : $courseSectionContent->video_link }}" data-video-vendor="{{ $courseSectionContent->video_vendor }}" data-content-id="{{ $courseSectionContent->id }}">
                                                                         <div class="accordion-content-list pt-2 pb-0">
                                                                             <div class="accordion-content-left">
 {{--                                                                                Video--}}
@@ -196,6 +196,9 @@
                             <div style="padding:56.25% 0 0 0;position:relative;">
                                 <iframe id="vimeoPlayer" src="" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                             </div>
+                        </div>
+                        <div class="mt-4 ms-4">
+                            <a href="" target="_blank" class="btn btn-success see-answer">See Answer</a>
                         </div>
                         <div class="mt-4">
                             <div id="videoCommentDiv">
@@ -424,6 +427,12 @@
 
         $(document).on('click', '.open-video-modal', function () {
             var status = checkHasClassXm($(this));
+            var has_exam = $(this).data('has-class-xm');
+            var title = $(this).data('title');
+            if (has_exam != 1) {
+                $('.see-answer').hide();    
+            } 
+
             if (status == true)
             {
                 var contentId = $(this).attr('data-content-id');
@@ -497,6 +506,7 @@
                     $('.youtube').removeClass('d-none');
                     $('.private').addClass('d-none');
                     $('.vimeo').addClass('d-none');
+                    $('.see-answer').attr('href','/student/show-course-class-exam-answers/'+contentId+'/'+title)
                     $('.video-modal').modal('show');
                 } else if (videoVendor == 'private')
                 {

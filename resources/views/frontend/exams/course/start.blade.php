@@ -1,18 +1,4 @@
 @extends('frontend.master')
-@push('style')
-    <style>
-        .sticky-submit-btn{
-            text-align: center;
-            width: 500px;
-            position: fixed;
-            bottom: 0px;
-            margin-bottom: 2rem;
-            background: #ffc107;
-            color: #fff;
-            font-size: 1rem;
-        }
-    </style>
-@endpush
 
 @section('body')
 <div class="container-fluid" id="grad1">
@@ -135,7 +121,7 @@
                      
                     </div>
                     <div class="col-md-12 text-center" style="border-radius: 25px">
-                        <a href="" class="btn btn-danger w-100 f-s-26">Submit</a>
+                        <a href="" class=" sticky-submit-btn btn btn-danger w-100 f-s-26">Submit</a>
                     </div>
                 </div>
             </div>

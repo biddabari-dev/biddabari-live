@@ -16,14 +16,32 @@
                             @method('put')
                         @endif
                         <div class="row">
+                            
+                            <div class="col-sm-6 mt-2">
+                                <label for="">Our Speech Video File</label>
+                                <input type="file" class="form-control" name="our_speech_video_url" accept="video/*" />
+                                <span class="text-danger" id="">{{ $errors->has('video_file') ? $errors->first('video_file') : '' }}</span>
+                            </div> 
+
                             <div class="col-sm-6">
                                 <label for="">Site Title</label>
                                 <input type="text" class="form-control" name="site_title" value="{{ isset($siteSettings) ? $siteSettings->site_title : '' }}" placeholder="Title" title="Title" />
                             </div>
-                            <div class="col-sm-6">
+
+                            {{-- <div class="col-sm-6">
                                 <label for="">Our Speech Youtube Url</label>
                                 <input type="text" class="form-control" name="our_speech_video_url" value="{{ isset($siteSettings) ? $siteSettings->our_speech_video_url : '' }}" placeholder="Youtube Link" title="Youtube Link" />
+                            </div> --}}
+
+                            @if (!empty($siteSettings->our_speech_video_url))
+                            <div class="col-md-6">
+                                    <video class="border-0" style="width: 50%!important; height: 100px"  controls>
+                                        <source src="{{ asset($siteSettings->our_speech_video_url) }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                @endif
                             </div>
+
                             <div class="col-md-12 mt-2">
                                 <label for="">Description</label>
                                 <textarea name="site_meta_description" data-editor="summernote" class="form-control" cols="30" rows="10">{{ isset($siteSettings) ? $siteSettings->site_meta_description : '' }}</textarea>

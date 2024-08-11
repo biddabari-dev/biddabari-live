@@ -90,13 +90,23 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12 col-lg-12 col-xl-6">
+                                    {{-- <div class="col-md-12 col-lg-12 col-xl-6">
                                         <div class="form-group">
                                             <label for="designation" class="form-label">Designation</label>
                                             <input type="text" class="form-control" id="designation"
                                                 placeholder="Designation" readonly value="{{ $teacher->subject }}" />
                                         </div>
+                                    </div> --}}
+
+                                      <div class="col-md-12 col-lg-12 col-xl-6">
+                                        <div class="form-group">
+                                            <label for="subject" class="form-label">Show Details Title</label>
+                                            <input type="text" class="form-control" id="subject" name="subject"
+                                                placeholder="Show Details Title"
+                                                value="{{ !empty($teacher) ? $teacher->subject : '' }}">
+                                        </div>
                                     </div>
+
                                 </div>
                                 <p class="mb-4 text-17">Contact Info</p>
                                 <div class="form-group">

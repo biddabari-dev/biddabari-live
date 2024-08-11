@@ -968,7 +968,7 @@ class FrontExamController extends Controller
         // dd($this->sectionContent);
 
         //        student xm perticipant check
-        $xmAllResults   = CourseExamResult::where('course_section_content_id', $contentId)->get();
+        $xmAllResults   = CourseClassExamResult::where('course_section_content_id', $contentId)->get();
         $userXmPerticipateStatus = false;
         foreach ($xmAllResults as $xmSingleResult)
         {
@@ -990,21 +990,25 @@ class FrontExamController extends Controller
 
 
 
-        if ($this->sectionContent->content_type == 'exam')
+        if ($this->sectionContent->content_type == 'video')
         {
-            $getProvidedAnswers = CourseExamResult::where(['course_section_content_id' => $contentId, 'user_id' => ViewHelper::loggedUser()->id])->first();
+            $getProvidedAnswers = CourseClassExamResult::where(['course_section_content_id' => $contentId, 'user_id' => ViewHelper::loggedUser()->id])->first();
+
             if (isset($getProvidedAnswers->provided_ans))
             {
                 $this->ansLoop($this->sectionContent, (array) json_decode($getProvidedAnswers->provided_ans));
             }
         } elseif ($this->sectionContent->content_type == 'written_exam')
         {
-            $writtenXmFile = CourseExamResult::where(['xm_type' => 'written_exam', 'course_section_content_id' => $contentId,'user_id'=>ViewHelper::loggedUser()->id])->select('id', 'course_section_content_id', 'xm_type', 'user_id', 'written_xm_file')->first();
+            $writtenXmFile = CourseClassExamResult::where(['xm_type' => 'written_exam', 'course_section_content_id' => $contentId,'user_id'=>ViewHelper::loggedUser()->id])->select('id', 'course_section_content_id', 'xm_type', 'user_id', 'written_xm_file')->first();
             if (str()->contains(url()->current(), '/api/'))
             {
                 $writtenXmFile = $writtenXmFile->written_xm_file;
             }
         }
+
+        // dd($this->sectionContent['questionStoresForClassXm'][0]);
+
 
         $this->data = [
             'content'   => $this->sectionContent,
@@ -1043,7 +1047,33 @@ class FrontExamController extends Controller
 
     public function ansLoop($sectionContent, $providedAnswers)
     {
+        // dd($sectionContent->questionStores);
         foreach ($sectionContent->questionStores as $questionStore)
+        {
+            foreach ($questionStore->questionOptions as $questionOption)
+            {
+                foreach ($providedAnswers as $questionId => $providedAnswer)
+                {
+                    if($questionStore->id == $questionId){
+                        $questionStore->has_answered=1;
+                    }
+                    if ($questionId == $questionStore->id && $questionOption->is_correct == 1 && $questionOption->id == $providedAnswer->answer)
+                    {
+                        $questionOption->my_ans = 1;
+                        break;
+                    } elseif ($questionId == $questionStore->id && $questionOption->is_correct == 0 && $questionOption->id == $providedAnswer->answer)
+                    {
+                        $questionOption->my_ans = 0;
+                        break;
+                    } else {
+                        $questionOption->my_ans = 2;
+//                        $questionOption->my_ans = 'x';
+                    }
+                }
+            }
+        }
+
+        foreach ($sectionContent->questionStoresForClassXm as $questionStore)
         {
             foreach ($questionStore->questionOptions as $questionOption)
             {

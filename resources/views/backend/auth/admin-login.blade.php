@@ -6,10 +6,13 @@
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="index">
+    <meta property="og:description"        content="Biddabari is such a different and unique online platform where you can rely yourself. You just keep your faith on Biddabari, believe it, it will do the rest. " />
+    <meta name="facebook-domain-verification" content="g7t7phde3zn27hgjb1iaxlm67f8hdv" />
+
 
     <!-- TITLE -->
-    <title>BiddaBari - Login</title>
+    <title>BiddaBari - The First Job Study Online Platform in Bangladesh</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- FAVICON -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/') }}frontend/logo/favicon/apple-icon-57x57.png">
@@ -77,7 +80,7 @@
                     <form class="login100-form validate-form auth-div" id="authModalForm" action="{{ route('login') }}" method="post">
                         @csrf
 									<span class="login100-form-title">
-										Login
+									<h1>Login</h1>
 									</span>
                         <div class="wrap-input100 validate-input mobile-div" data-order="0" data-active="1" data-bs-validate="Valid email is required: ex@abc.xyz">
                             <input class="input100" type="text" name="mobile" placeholder="Mobile Number" required>

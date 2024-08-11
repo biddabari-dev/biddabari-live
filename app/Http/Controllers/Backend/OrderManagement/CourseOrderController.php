@@ -26,7 +26,7 @@ class CourseOrderController extends Controller
         if (!empty($request->course_id))
         {
 //            $this->courseOrders = CourseOrder::whereCourseId($request->course_id)->get();
-            $this->courseOrders = ParentOrder::where('ordered_for', 'course')->whereParentModelId($request->course_id)->get();
+            $this->courseOrders = ParentOrder::where('ordered_for', 'course')->whereParentModelId($request->course_id)->latest()->get();
 //            $this->courseOrders = ParentOrder::where('status', 'approved')->whereParentModelId($request->course_id)->latest()->paginate(20);
 //            return $this->courseOrders;
         }

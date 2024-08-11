@@ -17,7 +17,7 @@
                             <div class="content py-3">
 
                                 <h3><a href="{{ route('front.instructor-details', ['id' => $teacher->id, 'slug' => str_replace(' ', '-', $teacher->name)]) }}">{{ $teacher->user->name ?? '' }}</a></h3>
-                                <span>{{ $teacher->subject ?? '' }}</span>
+                                <span><a href="{{ route('front.instructor-details', ['id' => $teacher->id, 'slug' => str_replace(' ', '-', $teacher->name)]) }}">{{ $teacher->subject ?? '' }}</a></span>
                             </div>
                         </div>
                     </div>
