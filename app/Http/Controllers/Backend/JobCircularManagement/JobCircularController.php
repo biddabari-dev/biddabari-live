@@ -89,6 +89,10 @@ class JobCircularController extends Controller
         {
             unlink($this->circular->image);
         }
+        if (file_exists($this->circular->featured_pdf))
+        {
+            unlink($this->circular->featured_pdf);
+        }
         $this->circular->delete();
         return back()->with('success', 'Circular Deleted Successfully.');
     }

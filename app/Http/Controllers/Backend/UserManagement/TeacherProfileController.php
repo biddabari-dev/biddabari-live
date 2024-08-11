@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend\UserManagement;
 
+use App\helper\ViewHelper;
 use App\Models\Backend\UserManagement\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,9 +18,9 @@ class TeacherProfileController extends Controller
     public function index()
     {
         abort_if(Gate::denies('teacher-profile'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-      return view('backend.role-management.user.teacher.teacher_profile',[
-          'teachers' => Teacher::latest()->get()
-      ]);
+        return view('backend.role-management.user.teacher.teacher_profile', [
+            'teachers' => Teacher::oldest()->get()
+        ]);
     }
 
     /**
@@ -52,8 +53,8 @@ class TeacherProfileController extends Controller
     public function edit(string $id)
     {
         abort_if(Gate::denies('teacher-profile-edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('backend.role-management.user.teacher.teacher_edit',[
-            'teacher'=>Teacher::find($id)
+        return view('backend.role-management.user.teacher.teacher_edit', [
+            'teacher' => Teacher::find($id)
         ]);
     }
 
@@ -63,9 +64,9 @@ class TeacherProfileController extends Controller
     public function update(Request $request, string $id)
     {
         abort_if(Gate::denies('teacher-profile-update'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $this->user = User::createOrUpdateUser($request,$request->user_id );
+        $this->user = User::createOrUpdateUser($request, $request->user_id);
         Teacher::createOrUpdateTeacher($request, $this->user, $id);
-        return redirect()->route('teachers_profile.index')->with('success','Teacher Profile Updated Successfully');
+        return redirect()->route('teachers_profile.index')->with('success', 'Teacher Profile Updated Successfully');
     }
 
     /**
@@ -73,6 +74,11 @@ class TeacherProfileController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if ($id != 1) {
+            Teacher::find($id)->delete();
+            return ViewHelper::returnSuccessMessage('Teacher deleted successfully.');
+        } else {
+            return ViewHelper::returEexceptionError('Please Contact your developer for deleting default user');
+        }
     }
 }

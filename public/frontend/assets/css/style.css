@@ -5290,10 +5290,14 @@ img {
 
 .instructors-details-img {
     margin-bottom: 30px;
+    /* text-align: center; */
+    margin-top: 54px;
 }
 
 .instructors-details-img img {
     margin-bottom: 25px;
+    width: 310px;
+    height: 350px;
 }
 
 .instructors-details-img .social-link {
@@ -8576,7 +8580,7 @@ img {
     height: 240px !important;
     width: 100%;
     padding: 0px 9px;
-    margin-top: 18.5%;
+    /* margin-top: 18.5%; */
 }
 
 .appInstall {
@@ -8759,6 +8763,19 @@ img {
 
 
 @media only screen and (min-width: 280px) and (max-width: 420px) {
+
+    .instructors-details-img img {
+        width: 220px;
+        height: 250px;
+    }
+    .instructors-details-img {
+        margin-bottom: 30px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .instructors-details-area .f-s-39, .instructors-details-area .f-s-32{
+        font-size: 26px !important;
+    }
 
     .custom_book_button_none{
         display: block;
@@ -9138,6 +9155,18 @@ img {
 
 @media only screen and (min-width: 421px) and (max-width: 520px) {
 
+    .instructors-details-img img {
+        width: 220px;
+        height: 250px;
+    }
+    .instructors-details-img {
+        margin-bottom: 30px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .instructors-details-area .f-s-39, .instructors-details-area .f-s-32{
+        font-size: 26px !important;
+    }
     .custom_book_button_none{
         display: block;
     }
@@ -10043,7 +10072,7 @@ img {
     }
     .facility img {
         height: 225px !important;
-        margin-top: 25%;
+        /* margin-top: 25%; */
     }
 
     .messanger_icon i {
@@ -10129,3 +10158,9 @@ img {
     font-family: auto;
     font-size: 18px;
 }
+/* .top_slide_video_content video{
+    height: 300px;
+} */
+ .instructors-details-area{
+    text-align: justify;
+ }

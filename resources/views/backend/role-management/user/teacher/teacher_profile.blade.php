@@ -24,9 +24,11 @@
                         <th>Full name</th>
 {{--                        <th>Last name</th>--}}
                         <th>Designation</th>
-                        <th>Email</th>
+                        {{-- <th>Email</th> --}}
                         <th>Mobile</th>
                         <th>Image</th>
+                        <th>Intro Video</th>
+                        <th>Demo Video</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -38,11 +40,34 @@
                                 <td>{{ $product->user->name }}</td>
                                 <td>{{ $product->first_name }} {{ $product->last_name }}</td>
                                 <td>{{ $product->subject }}</td>
-                                <td>{{ $product->email }}</td>
+                                {{-- <td>{{ $product->email }}</td> --}}
                                 <td>{{ $product->mobile }}</td>
                                 <td>
                                     <img src="{{asset($product->image)}}" alt="" style="height: 100px;width: 100px">
                                 </td>
+                                {{-- <td>{{ $product->teacher_intro_video }}</td> --}}
+                                <td>
+                                    @if(!empty($product->teacher_intro_video))
+                                        <video src="{{ asset($product->teacher_intro_video) }}" controls class="" style="height: 75px">
+                                            <source src="{{ asset($product->teacher_intro_video) }}" type="video/mp4" />
+                                        </video>
+                                    @endif
+
+                                </td>
+                                <td>
+                                    @if(!empty($product->demo_video_1))
+                                        <video src="{{ asset($product->demo_video_1) }}" controls class="" style="height: 75px">
+                                            <source src="{{ asset($product->demo_video_1) }}" type="video/mp4" /> 
+                                        </video>
+                                    @endif <br>
+                                    @if(!empty($product->demo_video_2))
+                                        <video src="{{ asset($product->demo_video_2) }}" controls class="" style="height: 75px">
+                                            <source src="{{ asset($product->demo_video_2) }}" type="video/mp4" /> 
+                                        </video>
+                                    @endif
+
+                                </td>
+
 {{--                                <td>--}}
 {{--                                    <a href="javascript:void(0)" class="badge bg-primary">{{ $product->status == 1 ? 'Published' : 'Unpublished' }}</a>--}}
 {{--                                    --}}{{--                                        <a href="javascript:void(0)" class="badge bg-primary">{{ $product->is_featured == 1 ? 'Featured' : 'Not Featured' }}</a>--}}
@@ -52,16 +77,16 @@
                                         <a href="{{route('teachers_profile.edit',$product->id)}}"  class="btn btn-sm btn-warning product-category-edit-btn" title="Edit Blog Category">
                                             <i class="fa-solid fa-edit"></i>
                                         </a>
-{{--                                    @endcan--}}
-{{--                                    @can('delete-product')--}}
-{{--                                        <form class="d-inline" action="{{ route('teachers_profile.destroy', $product->id) }}" method="post">--}}
-{{--                                            @csrf--}}
-{{--                                            @method('delete')--}}
-{{--                                            <button type="submit" class="btn btn-sm btn-danger data-delete-form" title="Delete Category">--}}
-{{--                                                <i class="fa-solid fa-trash"></i>--}}
-{{--                                            </button>--}}
-{{--                                        </form>--}}
-{{--                                    @endcan--}}
+                                   {{-- @endcan --}}
+                                   @can('delete-product')
+                                       <form class="d-inline" action="{{ route('teachers_profile.destroy', $product->id) }}" method="post">
+                                           @csrf
+                                           @method('delete')
+                                           <button type="submit" class="btn btn-sm btn-danger data-delete-form" title="Delete Category">
+                                               <i class="fa-solid fa-trash"></i>
+                                           </button>
+                                       </form>
+                                   @endcan
                                 </td>
                             </tr>
                         @endforeach
