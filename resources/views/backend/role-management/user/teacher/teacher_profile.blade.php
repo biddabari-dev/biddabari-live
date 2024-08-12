@@ -23,12 +23,12 @@
                         <th>User name</th>
                         <th>Full name</th>
 {{--                        <th>Last name</th>--}}
-                        <th>Show Details Title</th>
+                        <th>Designation</th>
                         {{-- <th>Email</th> --}}
                         <th>Mobile</th>
                         <th>Image</th>
-                        <th>Intro Video</th>
-                        <th>Demo Video</th>
+                        {{-- <th>Intro Video</th>
+                        <th>Demo Video</th> --}}
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -46,7 +46,7 @@
                                     <img src="{{asset($product->image)}}" alt="" style="height: 100px;width: 100px">
                                 </td>
                                 {{-- <td>{{ $product->teacher_intro_video }}</td> --}}
-                                <td>
+                                {{-- <td>
                                     @if(!empty($product->teacher_intro_video))
                                         <video src="{{ asset($product->teacher_intro_video) }}" controls class="" style="height: 75px">
                                             <source src="{{ asset($product->teacher_intro_video) }}" type="video/mp4" />
@@ -66,7 +66,7 @@
                                         </video>
                                     @endif
 
-                                </td>
+                                </td> --}}
 
 {{--                                <td>--}}
 {{--                                    <a href="javascript:void(0)" class="badge bg-primary">{{ $product->status == 1 ? 'Published' : 'Unpublished' }}</a>--}}

@@ -61,6 +61,22 @@ class Teacher extends Model
 
     public static function createOrUpdateTeacher ($request, $user = null, $id = null)
     {
+
+        // if (isset($request->teacher_intro_video)) {
+        //     # code...
+        //     if ($request->teacher_intro_video != 'https://youtu.be/') {
+        //         # code...
+        //         $check = 1;
+        //     }else {
+        //         # code...
+        //         $check=0;
+        //     }
+        // }else {
+        //     # code...
+        //     $check=0;
+        // }
+
+
         Teacher::updateOrCreate(['id' => $id], [
             'user_id'                   => $user->id,
             'first_name'                => $request->first_name,
@@ -68,10 +84,15 @@ class Teacher extends Model
             'email'                     => $request->email,
             'mobile'                    => $request->mobile,
             'image'                     => imageUpload($request->file('image'), 'student-images/', 'student', '280', '350', (isset($id) ? static::find($id)->image : null)),
-            // 'teacher_intro_video'       => $request->teacher_intro_video,
-            'teacher_intro_video'       => fileUpload($request->file('teacher_intro_video'),'additional-feature-management/our-team/teacher-video', 'our-team-video', isset($id) ? static::find($id)->teacher_intro_video : ''),
-            'demo_video_1'              => fileUpload($request->file('demo_video_1'),'additional-feature-management/our-team/teacher-video', 'our-team-video', isset($id) ? static::find($id)->demo_video_1 : ''),
-            'demo_video_2'              => fileUpload($request->file('demo_video_2'),'additional-feature-management/our-team/teacher-video', 'our-team-video', isset($id) ? static::find($id)->demo_video_2 : ''),
+            'teacher_intro_video'       => $request->teacher_intro_video,
+            // 'teacher_intro_video'                 => $check == 1 ? explode('https://www.youtube.com/watch?v=', $request->teacher_intro_video)[1] : '',
+
+            // 'teacher_intro_video'       => fileUpload($request->file('teacher_intro_video'),'additional-feature-management/our-team/teacher-video', 'our-team-video', isset($id) ? static::find($id)->teacher_intro_video : ''),
+            
+            'demo_video_1'              => $request->demo_video_1,
+            // 'demo_video_1'              => fileUpload($request->file('demo_video_1'),'additional-feature-management/our-team/teacher-video', 'our-team-video', isset($id) ? static::find($id)->demo_video_1 : ''),
+            'demo_video_2'              => $request->demo_video_2,
+            // 'demo_video_2'              => fileUpload($request->file('demo_video_2'),'additional-feature-management/our-team/teacher-video', 'our-team-video', isset($id) ? static::find($id)->demo_video_2 : ''),
             'description'               => $request->description,
             'subject'                   => $request->subject,
             'present_address'           => $request->present_address,

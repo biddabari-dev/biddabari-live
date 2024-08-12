@@ -17,7 +17,7 @@
                             <div class="content py-3">
 
                                 <h3><a href="{{ route('front.instructor-details', ['id' => $teacher->id, 'slug' => str_replace(' ', '-', $teacher->name)]) }}">{{ $teacher->user->name ?? '' }}</a></h3>
-                                <span><a href="{{ route('front.instructor-details', ['id' => $teacher->id, 'slug' => str_replace(' ', '-', $teacher->name)]) }}">{{ $teacher->subject ?? '' }}</a></span>
+                                <span><a href="{{ route('front.instructor-details', ['id' => $teacher->id, 'slug' => str_replace(' ', '-', $teacher->name)]) }}">স্যার এর ২টি ক্লাস দেখতে ক্লিক করুন</a></span>
                             </div>
                         </div>
                     </div>

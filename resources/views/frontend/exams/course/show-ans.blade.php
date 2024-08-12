@@ -15,7 +15,7 @@
                                 @if($content->content_type == 'exam')
                                     @foreach($content->questionStores as $questionStore)
                                          <div class="col-md-6 mt-3 {{$questionStore->has_answered !=1 ? 'bg-warning' : ''}}" >
-                                            <h2>{{ $loop->iteration }}. {!! strip_tags($questionStore->question) !!}</h2>
+                                            <h3>{{ $loop->iteration }}. {!! strip_tags($questionStore->question) !!}</h3>
                                             @if($content->content_type == 'exam')
                                                 <div class="mt-2">
                                                     <ul class="nav flex-column">
@@ -73,7 +73,20 @@
     </style>
 
     <style>
-        .correct-ans-bg { background-color: #B2DB9A}
+        .correct-ans-bg { background-color: green}
+        .bg-warning { 
+            background-color: #efa880 !important;
+            /* padding: 1px; */
+        }
+        .bg-danger{ background-color: #ed2222}
+
+        .section-title p{
+            padding: 8px 0px !important;
+            color: black
+        }
+        .section-title h3{
+            padding-top:5px;
+        }
     </style>
 @endpush
 

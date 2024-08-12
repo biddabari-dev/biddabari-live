@@ -49,6 +49,11 @@
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.css">
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom-my-mod.css">
 
+    {{-- ------------Video Gallery------------ --}}
+    <link rel="stylesheet" href="https://cdn.rawgit.com/dimsemenov/Magnific-Popup/master/dist/magnific-popup.css">
+    {{-- ------------Video Gallery------------ --}}
+
+
 
     <!--font awesome link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -157,6 +162,26 @@
 <script  src="{{ asset('/') }}frontend/assets/js/my-custom-mod.js"></script>
 {{--<script defer src="{{ asset('/') }}frontend/assets/js/my-custom-mod.min.js"></script>--}}
 
+{{-- ----------Video Gallery------------------ --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="https://cdn.rawgit.com/dimsemenov/Magnific-Popup/master/dist/jquery.magnific-popup.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        $('.video-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'iframe',
+            gallery: {
+                enabled: true
+            }
+        });
+    });
+</script>
+
+{{-- ----------Video Gallery------------------ --}}
 
 <!-- Toastr Css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />

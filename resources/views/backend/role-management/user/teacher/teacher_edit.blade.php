@@ -57,7 +57,7 @@
             <div class="tab-content">
                 <div class="tab-pane active show" id="profileMain">
                     <div class="card">
-                        <div class="card-body border-0">
+                        <div class="card-body border-0 video-gallery">  
                             <form class="form-horizontal" action="{{ route('teachers_profile.update', $teacher->id) }}"
                                 method="post" enctype="multipart/form-data">
                                 @csrf
@@ -100,9 +100,9 @@
 
                                       <div class="col-md-12 col-lg-12 col-xl-6">
                                         <div class="form-group">
-                                            <label for="subject" class="form-label">Show Details Title</label>
+                                            <label for="subject" class="form-label">Designation</label>
                                             <input type="text" class="form-control" id="subject" name="subject"
-                                                placeholder="Show Details Title"
+                                                placeholder="Designation"
                                                 value="{{ !empty($teacher) ? $teacher->subject : '' }}">
                                         </div>
                                     </div>
@@ -156,13 +156,26 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group ">
+                                {{-- <div class="form-group ">
                                     <div class="row row-sm">
                                         <div class="col-md-3">
                                             <label for="phoneNumber" class="form-label">Teacher Intro Video</label>
                                         </div>
                                         <div class="col-md-9">
                                             <input type="file" class="form-control" name="teacher_intro_video"
+                                                value="{{ !empty($teacher) ? $teacher->teacher_intro_video : '' }}"
+                                                accept="video/*" />
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+                                <div class="form-group ">
+                                    <div class="row row-sm">
+                                        <div class="col-md-3">
+                                            <label for="phoneNumber" class="form-label">Teacher Intro Video</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="teacher_intro_video"  placeholder="Teacher Intro Video Youtube Link "
                                                 value="{{ !empty($teacher) ? $teacher->teacher_intro_video : '' }}"
                                                 accept="video/*" />
                                         </div>
@@ -182,7 +195,7 @@
 
                                 <p class="mb-4 text-17">Teacher Demo Videos</p>
 
-                                <div class="form-group ">
+                                {{-- <div class="form-group ">
                                     <div class="row row-sm">
                                         <div class="col-md-3">
                                             <label for="phoneNumber" class="form-label">Demo Video 1</label>
@@ -193,14 +206,38 @@
                                                 accept="video/*" />
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group ">
+                                    <div class="row row-sm">
+                                        <div class="col-md-3">
+                                            <label for="phoneNumber" class="form-label">Demo Video 1</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="demo_video_1" placeholder="Teacher Short Classess Video 1 Youtube Link"
+                                                value="{{ !empty($teacher) ? $teacher->demo_video_1 : '' }}"
+                                                accept="video/*" />
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- <div class="form-group ">
                                     <div class="row row-sm">
                                         <div class="col-md-3">
                                             <label for="phoneNumber" class="form-label">Demo Video 2</label>
                                         </div>
                                         <div class="col-md-9">
                                             <input type="file" class="form-control" name="demo_video_2"
+                                                value="{{ !empty($teacher) ? $teacher->demo_video_2 : '' }}"
+                                                accept="video/*" />
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                <div class="form-group ">
+                                    <div class="row row-sm">
+                                        <div class="col-md-3">
+                                            <label for="phoneNumber" class="form-label">Demo Video 2</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="demo_video_2" placeholder="Teacher Short Classess Video 2 Youtube Link"
                                                 value="{{ !empty($teacher) ? $teacher->demo_video_2 : '' }}"
                                                 accept="video/*" />
                                         </div>
