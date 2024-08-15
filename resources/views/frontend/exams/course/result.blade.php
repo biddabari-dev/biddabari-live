@@ -29,7 +29,7 @@
                             @if($exam->content_type == 'exam')
                             <div class="text-center mt-3">
                                 <div class="me-4">
-                                    <strong class="fw-bold f-s-45
+                                    <span class="fw-bold f-s-30 text-primary">Your Mark : </span> <strong class="fw-bold f-s-30
                                     @if ($exam->exam_pass_mark > $examResult->result_mark)
                                         text-danger
 
@@ -53,7 +53,7 @@
                                         @if($examResult->status == 'fail')
                                         <div class="fail-div">
                                             <div class="text-center">
-                                                <img src="{{ asset('/') }}backend/assets/images/xm-ressult/feeling.png" alt="" class="img-fluid" style="height: 300px" />
+                                                <img src="{{ asset('/') }}backend/assets/images/xm-ressult/feeling.png" alt="" class="img-fluid" style="height: 250px" />
                                                 <h3 class="text-primary">Sorry.... You failed in the exam</h3>
                                             </div>
                                         </div>

@@ -27,7 +27,7 @@
                             @if($exam->xm_type == 'MCQ')
                             <div class="float-end text-center mt-3">
                                 <div class="me-4">
-                                    <strong class="fw-bold" style="font-size: 25px">{{ $examResult->result_mark }}</strong> <br>
+                                    <p class="fw-bold f-s-45">Your Mark</p> <strong class="fw-bold" style="font-size: 25px">{{ $examResult->result_mark }}</strong> <br>
                                     <span>({{ $examResult->status == 'pass' ? 'Pass' : 'Failed' }})</span>
                                 </div>
                             </div>
