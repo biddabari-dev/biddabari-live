@@ -8770,6 +8770,26 @@ img {
 
 @media only screen and (min-width: 280px) and (max-width: 420px) {
 
+    .instructors-area .col-md-6{
+        width: 50%;
+        height: auto;
+    }
+    .instructors-card a img {
+        height: 78px !important;
+        border: 1px solid #F18345;
+    }
+    .content h3 a {
+        font-size: 16px !important;
+        line-height: 18px;
+    }
+    .instructors-card .py{
+        padding: 16px;
+    }
+    .instructors-card span {
+        /* padding: 15px 0; */
+        line-height: 17px !important;
+    }
+
     .instructors-details-img img {
         width: 220px;
         height: 250px;
@@ -8779,6 +8799,25 @@ img {
         text-align: center;
         margin-top: 20px;
     }
+    .instructors-card .content {
+        padding: 0px 18px !important;
+    }
+    .instructors-card a {
+        font-size: 12px;
+        padding-bottom: 8px;
+    }
+    .instructors-card .content h3 {
+        margin-top: 1px !important;
+    }
+
+
+
+
+
+
+
+
+
     .instructors-details-area .f-s-39, .instructors-details-area .f-s-32{
         font-size: 26px !important;
     }
@@ -9160,6 +9199,46 @@ img {
 }
 
 @media only screen and (min-width: 421px) and (max-width: 520px) {
+
+    .instructors-area .col-md-6{
+        width: 50%;
+        height: auto;
+    }
+    .instructors-card a img {
+        height: 150px !important;
+        border: 1px solid #F18345;
+    }
+    .content h3 a {
+        font-size: 16px !important;
+        line-height: 18px;
+    }
+    .instructors-card .py{
+        padding: 16px;
+    }
+    .instructors-card span {
+        /* padding: 15px 0; */
+        line-height: 17px !important;
+    }
+
+    .instructors-details-img img {
+        width: 220px;
+        height: 250px;
+    }
+    .instructors-details-img {
+        margin-bottom: 30px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .instructors-card .content {
+        padding: 0px 18px !important;
+    }
+    .instructors-card a {
+        font-size: 16px;
+        padding-bottom: 8px;
+    }
+    .instructors-card .content h3 {
+        margin-top: 1px !important;
+    }
 
     .instructors-details-img img {
         width: 220px;
@@ -10335,3 +10414,4 @@ img {
     }
 }
 /* ---------------Video Gallery----------------------- */
+

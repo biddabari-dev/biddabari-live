@@ -101,9 +101,10 @@
                                       <div class="col-md-12 col-lg-12 col-xl-6">
                                         <div class="form-group">
                                             <label for="subject" class="form-label">Designation</label>
-                                            <input type="text" class="form-control" id="subject" name="subject"
+                                            {{-- <input type="text" class="form-control" id="subject" name="subject"
                                                 placeholder="Designation"
-                                                value="{{ !empty($teacher) ? $teacher->subject : '' }}">
+                                                value="{{ !empty($teacher) ? $teacher->subject : '' }}"> --}}
+                                                    <textarea class="form-control" id="subject" rows="2" name="subject" placeholder="Designation">{!! !empty($teacher->subject) ? $teacher->subject : '' !!}</textarea>
                                         </div>
                                     </div>
 

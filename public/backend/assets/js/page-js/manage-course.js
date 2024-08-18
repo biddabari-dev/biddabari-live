@@ -195,6 +195,78 @@ $(document).on('click', '.submit-btn', function () {
         }
     })
 })
+
+
+
+
+// store blog
+$(document).on('click', '.submit-btn', function () {
+    event.preventDefault();
+    var discountAmount = Number($('input[name="discount_amount"]').val());
+    if(discountAmount != '')
+    {
+        var price = Number($('input[name="price"]').val());
+        if (discountAmount > price)
+        {
+            $('#discountErrorMsg').text('Discount amount should be lower then Price.');
+            return false;
+        }
+    }
+
+    var form = $('#coursesForm')[0];
+    var formData = new FormData(form);
+    var des = CKEDITOR.instances['ck'].getData();
+    formData.append('description',des);
+    $.ajax({
+        url: base_url+"courses",
+        method: "POST",
+        data: formData,
+        dataType: "JSON",
+        contentType: false,
+        processData: false,
+        beforeSend: function () {
+
+            $('.submit-btn').attr('disabled', 'disabled');
+        },
+        success: function (data) {
+            // console.log(data);
+            toastr.success(data);
+            $('#coursesModal').modal('hide');
+            window.location.reload();
+        },
+        error: function (errors) {
+            if (errors.responseJSON)
+            {
+                $('span[class="text-danger"]').empty();
+                var allErrors = errors.responseJSON.errors;
+                for (key in allErrors)
+                {
+                    $('#'+key).empty().append(allErrors[key]);
+                    if (key == 'course_categories.0') {
+                        $('#course_categories').empty().append('The Course Category field is required.');
+                    }
+
+                    if (key == 'teachers_id.0') {
+                        $('#teachers_id').empty().append('The Teachers field is required.');
+                    }
+                }
+                $('.submit-btn').attr('disabled', false);
+            }
+        }
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
 // DragNDrop js
 $(document).on('keyup', '#discountAmount', function () {
     var discountAmount = Number($(this).val());
