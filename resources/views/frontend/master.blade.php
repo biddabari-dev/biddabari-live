@@ -40,7 +40,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
 
-    <title>BiddaBari - The First Job Study Online Platform in Bangladesh</title>
+    <title>Biddabari - The First Job Study Online Platform in Bangladesh</title>
 
     <!-- HELPER CSS -->
     <link href="{{ asset('/') }}backend/assets/css/helper.css" rel="stylesheet" />

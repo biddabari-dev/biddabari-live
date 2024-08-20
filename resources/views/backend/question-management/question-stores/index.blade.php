@@ -196,10 +196,10 @@
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="questionImage">Que Image</label>
-                                        <input type="file" class="form-control" id="questionImage" name="question[0][question_image]" {{--accept="application/pdf,image/*"--}} accept="image/*" />
+                                        <input type="file" class="form-control" id="questionImage" name="question[0][question_image]" accept="application/pdf,image/*" {{--accept="image/*"--}} />
                                     </div>
 {{--                                    <div class="col-md-6 mt-3">--}}
-{{--                                        <label for="queVidDes">Que Video Description</label>--}}
+{{--                                        <label for="queVidDes">Que Vdieo Description</label>--}}
 {{--                                        <input type="text" class="form-control" id="queVidDes" name="question[0][question_video_link]" placeholder="https://youtu.be/xxxxxxxxx" />--}}
 {{--                                    </div>--}}
 {{--                                    <div class="col-md-6 mt-3">--}}
@@ -472,7 +472,7 @@
                     // '                                    </div>\n' +
                     '                                    <div class="col-md-6 mt-3">\n' +
                     '                                        <label for="questionImage">Que Image</label>\n' +
-                    '                                        <input type="file" class="form-control" id="questionImage" name="question['+serial+'][question_image]" accept="image/*" />\n' +
+                    '                                        <input type="file" class="form-control" id="questionImage" name="question['+serial+'][question_image]" accept="application/pdf,image/*" />\n' +
                     '                                    </div>\n' +
                     // '                                    <div class="col-md-6 mt-3">\n' +
                     // '                                        <label for="queVidDes">Que Video Description</label>\n' +

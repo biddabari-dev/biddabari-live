@@ -7,9 +7,9 @@
                 <div class="col-lg-8 mx-auto">
                     <h2 style="color: black">{{ $circular->post_title }}</h2>
                     <div class="blog-details-content pr-20">
-                        {{-- <div class="blog-preview-img text-center">
+                        <div class="blog-preview-img text-center">
                             <img src="{{ asset(!empty($circular->image) ? $circular->image : 'frontend/assets/images/biddabari-image.jpg') }}" alt="Circular Details" class="img-fluid">
-                        </div> --}}
+                        </div>
 
                         @push('style')
                             <link rel="stylesheet"

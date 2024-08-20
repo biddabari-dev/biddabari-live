@@ -136,10 +136,11 @@
                                                         <div class="courses-details-instructor">
                                                             <h3>About the instructors</h3>
                                                             @foreach($course->teachers as $teacher)
-                                                                <div class="details-instructor float-start ms-2 d-flex">
-                                                                    <img src="{{ !empty($teacher->image) ? asset($teacher->image) : asset('user-avatar.png') }}" alt="instructor" style="height: 60px; width:60px;" />
-                                                                    <h3 style="font-weight: lighter;">{{ isset($teacher->first_name) ? $teacher->first_name.' '.$teacher->last_name : $teacher->user->name }}</h3>
-                                                                    <span>{{ isset($teacher->subject) ? $teacher->subject : '' }}</span>
+                                                                <div  class="details-instructor float-start ms-2 d-flex"> <a href="{{ route('front.instructor-details', ['id' => $teacher->id, 'slug' => str_replace(' ', '-', $teacher->name)]) }}">
+                                                                    <img src="{{ !empty($teacher->image) ? asset($teacher->image) : asset('user-avatar.png') }}" alt="instructor" style="height: 60px; width:60px;" /></a>
+                                                                    <h3 style="font-weight: lighter;">{{ isset($teacher->first_name) ? $teacher->first_name.' '.$teacher->last_name : $teacher->user->name }}</h3><br>
+                                                                    {{-- <span>{{ isset($teacher->subject) ? $teacher->subject : '' }}</span> --}}
+                                                                
                                                                 </div>
                                                             @endforeach
                                                             {{--                                                    <p>{!! isset($course->teachers->description) ? $course->teachers->description : 'No Information Provided.' !!}</p>--}}

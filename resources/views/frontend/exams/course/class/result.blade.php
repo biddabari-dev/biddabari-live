@@ -26,7 +26,7 @@
                             </div>
                             <div class="text-center mt-3">
                                 <div class="me-4">
-                                    <strong class="fw-bold f-s-45
+                                    <p class="fw-bold f-s-45">Your Mark</p> <strong class="fw-bold f-s-45
                                     @if ($exam->exam_pass_mark > $examResult->result_mark)
                                         text-danger
 

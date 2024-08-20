@@ -34,12 +34,18 @@
                     <span class="text-danger" id="">{{ $errors->has('video_url') ? $errors->first('video_url') : '' }}</span>
                 </div>
             </div>
+
+
+
+
             <div class="row mt-2">
                 <div class="col-md-12">
                     <textarea name="body" id="summernote" placeholder="Blog Content" cols="30" rows="10"></textarea>
                     <span class="text-danger" id="">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
                 </div>
             </div>
+
+            
             <div class="row mt-2">
                 <div class="col-md-4 mt-2">
                      <label for="">Image <span class="text-red">(300 X 200 + WEBP)</span> </label>

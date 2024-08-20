@@ -128,7 +128,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-course-routine-id');
             $.ajax({
-                url: base_url+"course-routines/"+courseId+"/edit",
+                url: "/course-routines/"+courseId+"/edit",
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {
