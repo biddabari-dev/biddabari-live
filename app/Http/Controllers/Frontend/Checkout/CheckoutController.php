@@ -241,7 +241,7 @@ class CheckoutController extends Controller
                     # code...
                     return self::sendOrderRequestToSSLZ($request->total_amount, $request->ordered_for == 'course' ? Course::find($request->model_id)->title : BatchExam::find($request->model_id)->title, $request);
                 }
-                
+
             }
             elseif ($request->payment_method == 'bkash'){
 
@@ -447,7 +447,7 @@ class CheckoutController extends Controller
             }
 
             $client = new Client();
-                $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$message);
+                $body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$requestData->mobile.'&smstext='.$message);
                 $responseCode = explode(':',$body->getBody()->getContents() )[1];
                 if (isset($responseCode) && !empty($responseCode))
                 {
