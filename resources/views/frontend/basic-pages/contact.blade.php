@@ -5,6 +5,9 @@
     <div class="contact-info-area pt-100 pb-70">
         <div class="container">
             <div class="row justify-content-center">
+                <div class="section-title text-center mb-45">
+                    <h1>Contact Us</h1>
+                </div>
                 <div class="col-lg-4  col-12 col-sm-8">
                     <div class="contact-info-card">
                         <i class="ri-map-pin-fill"></i>

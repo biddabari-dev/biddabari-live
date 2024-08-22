@@ -1,5 +1,9 @@
 @extends('frontend.master')
 
+@section('title')
+Biddabari - All Course 
+@endsection
+
 @section('body')
 
 

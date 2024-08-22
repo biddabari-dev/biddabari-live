@@ -17,6 +17,7 @@ use App\Models\Backend\ProductManagement\Product;
 use App\Models\Backend\ProductManagement\ProductDeliveryOption;
 use App\Models\Backend\UserManagement\Teacher;
 use App\Models\Frontend\AdditionalFeature\ContactMessage;
+use App\Models\Seo;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -26,6 +27,7 @@ class FrontendViewController extends Controller
     protected $courseCategories, $courseCategory, $courses, $course, $courseCoupon, $courseCoupons = [], $teachers = [], $blogs = [], $blogCategories = [], $blog, $blogCategory;
     protected $message, $status, $notices = [], $notice, $products = [], $product, $data, $exams = [], $examCategories = [], $homeSliderCourses = [];
     protected $comments = [], $jobCirculars = [], $jobCircular;
+    protected $seos = [];
     public function allProducts ()
     {
         if (str()->contains(url()->current(), '/api/'))
@@ -285,12 +287,19 @@ class FrontendViewController extends Controller
         if (isset($this->blog))
         {
             $this->comments = ContactMessage::where(['status' => 1, 'type' => 'blog', 'parent_model_id' => $this->blog->id, 'is_seen' => 1])->get();
+            $this->seos= Seo::where(['status' => 1, 'seo_for' => 'blog', 'parent_model_id' => $this->blog->id])->get();
         }
+
+        // dd($this->seos);
+        
         $this->blog->image = asset($this->blog->image);
         $this->data = [
             'blog'    => $this->blog,
             'recentBlogs'   => Blog::whereStatus(1)->latest()->select('id', 'title', 'image', 'slug', 'created_at')->take(6)->get(),
-            'comments'      => $this->comments
+            'comments'      => $this->comments,
+       
+            'seos'          => $this->seos,
+            
         ];
 
         return ViewHelper::checkViewForApi($this->data, 'frontend.blogs.blog-details');

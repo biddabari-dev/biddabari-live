@@ -1,5 +1,19 @@
 @extends('frontend.master')
 
+
+
+@section('meta-description')@foreach($seos as $seo){{ $seo->meta_description ?? ''}}@endforeach
+@endsection
+
+@section('meta-keywords')@foreach($seos as $seo){{ $seo->meta_keywords ?? ''}}@endforeach
+@endsection
+
+@section('meta-title')@foreach($seos as $seo){{ $seo->slug ?? ''}}@endforeach
+@endsection
+
+@section('title')@foreach($seos as $seo){{ $seo->meta_tags ?? ''}}@endforeach
+@endsection
+
 @section('body')
 
 <div class="container">

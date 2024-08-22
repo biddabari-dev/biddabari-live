@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\OrderManagement\CourseOrderController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Pages\BasicViewController;
@@ -21,9 +22,13 @@ use App\Http\Controllers\SqlScriptController;
 route::get('/assign-role',[CourseController::class,'assign_role']);
 
 
+
+
 Route::get('import', function(){
     return view('import');
 });
+
+// route::get('courseupdate',[CourseOrderController::class,'courseUpdate']);
 
 route::get('files',[CourseController::class,'fileUpload']);
 

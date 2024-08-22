@@ -8,28 +8,38 @@
                     <div class="card">
                         <div class="card-header">
                             <h2 class="text-center"> {!! $content->title !!} Question Answers</h2>
-                            <hr class="w-25 mx-auto bg-danger"/>
+                            <hr class="w-25 mx-auto bg-danger" />
                         </div>
                         <div class="card-body">
                             <div class="row ">
-                                @if($content->content_type == 'exam')
-                                    @foreach($content->questionStores as $questionStore)
-                                         <div class="col-md-6 mt-3 {{$questionStore->has_answered !=1 ? 'bg-warning' : ''}}" >
+                                @if ($content->content_type == 'exam')
+                                    @foreach ($content->questionStores as $questionStore)
+                                        <div
+                                            class="col-md-6 mt-3 {{ $questionStore->has_answered != 1 ? 'bg-warning' : '' }}">
                                             <h3>{{ $loop->iteration }}. {!! strip_tags($questionStore->question) !!}</h3>
-                                            @if($content->content_type == 'exam')
+                                            @if ($content->content_type == 'exam')
                                                 <div class="mt-2">
                                                     <ul class="nav flex-column">
-                                                        @foreach($questionStore->questionOptions as $questionOption)
-                                                            <li class="f-s-20 border px-2 {{ $questionOption->is_correct == 1 ? 'correct-ans-bg' : '' }} {{ isset($questionOption->my_ans) && $questionOption->my_ans == 1 ? 'correct-ans-bg' : '' }} {{ isset($questionOption->my_ans) && $questionOption->my_ans == 0 ? 'bg-danger' : '' }}"><p class="{{ $questionOption->is_correct == 1 ? 'text-white' : '' }}"> {{ $loop->iteration }}. {{ $questionOption->option_title }}</p></li>
+                                                        @foreach ($questionStore->questionOptions as $questionOption)
+                                                            <li
+                                                                class="f-s-20 border px-2 {{ $questionOption->is_correct == 1 ? 'correct-ans-bg' : '' }} {{ isset($questionOption->my_ans) && $questionOption->my_ans == 1 ? 'correct-ans-bg' : '' }} {{ isset($questionOption->my_ans) && $questionOption->my_ans == 0 ? 'bg-danger' : '' }}">
+                                                                <p
+                                                                    class="{{ $questionOption->is_correct == 1 ? 'text-white' : '' }}">
+                                                                    {{ $loop->iteration }}.
+                                                                    {{ $questionOption->option_title }}</p>
+                                                            </li>
                                                         @endforeach
                                                     </ul>
-                                                    @if($questionStore->has_all_wrong_ans == 1)
+                                                    @if ($questionStore->has_all_wrong_ans == 1)
                                                         <span class="text-danger">All Options are incorrect.</span>
                                                     @endif
                                                     <div class="mt-2">
-                                                        <a href="#" class="toggleAnsDes nav-link"  data-question-id="{{ $questionStore->id }}">Show Answer Description</a>
-                                                        @if(isset($questionStore->mcq_ans_description))
-                                                            <div class="mt-2" id="ansDes{{ $questionStore->id }}" style="display: none">
+                                                        <a href="#" class="toggleAnsDes nav-link"
+                                                            data-question-id="{{ $questionStore->id }}">Show Answer
+                                                            Description</a>
+                                                        @if (isset($questionStore->mcq_ans_description))
+                                                            <div class="mt-2" id="ansDes{{ $questionStore->id }}"
+                                                                style="display: none">
                                                                 {!! $questionStore->mcq_ans_description !!}
                                                             </div>
                                                         @endif
@@ -67,49 +77,63 @@
 
     <link rel="stylesheet" href="{{ asset('/') }}backend/ppdf/css/pdfviewer.jquery.css" />
     <style>
-        .pdf-toolbar {display: none;}
-        #pdf-container {overflow: scroll; height: 500px;}
-        .aks-video-player { width: 99%!important;/* min-height: 450px*/}
+        .pdf-toolbar {
+            display: none;
+        }
+
+        #pdf-container {
+            overflow: scroll;
+            height: 500px;
+        }
+
+        .aks-video-player {
+            width: 99% !important;
+            /* min-height: 450px*/
+        }
     </style>
 
     <style>
-        .correct-ans-bg { background-color: green}
-        .bg-warning { 
-            background-color: #efa880 !important;
+        .correct-ans-bg {
+            background-color: green
+        }
+
+        .bg-warning {
+            background-color: #fcd8c3 !important;
             /* padding: 1px; */
         }
-        .bg-danger{ background-color: #ed2222}
 
-        .section-title p{
+        .bg-danger {
+            background-color: #ed2222
+        }
+
+        .section-title p {
             padding: 8px 0px !important;
             color: black
         }
-        .section-title h3{
-            padding-top:5px;
+
+        .section-title h3 {
+            padding-top: 5px;
         }
     </style>
 @endpush
 
 @push('script')
-
     <!--ppdf-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
-<script src="{{ asset('/') }}backend/ppdf/js/pdfviewer.jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+    <script src="{{ asset('/') }}backend/ppdf/js/pdfviewer.jquery.js"></script>
 
     <script>
+        var pdflink = "{{ isset($writtenFile) ? asset($writtenFile->written_xm_file) : null }}";
+        @if (!empty($writtenFile->written_xm_file))
 
-    var pdflink = "{{ isset($writtenFile) ? asset($writtenFile->written_xm_file) : null }}";
-    @if(!empty($writtenFile->written_xm_file))
-
-    $('#pdf-container').pdfViewer(pdflink);
+            $('#pdf-container').pdfViewer(pdflink);
         @endif
-
     </script>
     <script>
-        $(document).on('click', '.toggleAnsDes', function () {
+        $(document).on('click', '.toggleAnsDes', function() {
             event.preventDefault();
             var questionStoreId = $(this).attr('data-question-id');
-            $('#ansDes'+questionStoreId).toggle(500);
+            $('#ansDes' + questionStoreId).toggle(500);
         })
     </script>
 @endpush

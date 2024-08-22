@@ -28,6 +28,7 @@ use App\Models\Backend\ProductManagement\Product;
 use App\Models\Backend\UserManagement\Teacher;
 use App\Models\Frontend\AdditionalFeature\ContactMessage;
 use App\Models\Frontend\CourseOrder\CourseOrder;
+use App\Models\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -36,6 +37,7 @@ class BasicViewController extends Controller
     protected $courseCategories, $courseCategory, $courses, $course, $courseCoupon, $courseCoupons = [], $teachers = [], $blogs = [], $blogCategories = [], $blog, $blogCategory;
     protected $message, $status, $notices = [], $notice, $products = [], $product, $data, $exams = [], $examCategories = [], $homeSliderCourses = [];
     protected $comments = [], $galleries = [], $galleryImage, $batchExams = [];
+    protected $seos = [];
     public function home ()
     {
         $this->batchExams  = BatchExam::where(['status' => 1, 'is_master_exam' => 0, 'is_paid' => 1])->select('id', 'title', 'banner', 'slug')->take(6)->get();
@@ -248,15 +250,18 @@ class BasicViewController extends Controller
             if (isset($this->course))
             {
                 $this->comments = ContactMessage::where(['status' => 1, 'type' => 'course', 'parent_model_id' => $this->course->id, 'is_seen' => 1])->get();
+                $this->seos= Seo::where(['status' => 1, 'seo_for' => 'course', 'parent_model_id' => $this->course->id])->get();
             }
+            // dd($this->seos);
             $this->data = [
                 'course' => $this->course,
                 'courseEnrollStatus' => $courseEnrollStatus,
-                'comments'  => $this->comments
+                'comments'  => $this->comments,
+                'seos'  => $this->seos
             ];
             return ViewHelper::checkViewForApi($this->data, 'frontend.courses.details', 'Course Not Found');
         }
-        return 'something went wrong';
+        return 'Something went wrong';
     }
 
     public function checkout (Request $request, $type = 'course',  $slug = null)
@@ -498,4 +503,8 @@ class BasicViewController extends Controller
         ];
         return view('frontend.basic-pages.search', $this->data);
     }
+
+    // public function seo(){
+        
+    // }
 }

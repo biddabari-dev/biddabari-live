@@ -102,17 +102,38 @@ class CourseOrderController extends Controller
                 $student = Student::whereUserId($parentOrder->user_id)->first();
                 $parentOrder->course->students()->attach($student->id);
             }
-            return back()->with('success', 'Order Status Updated Successfully');
+            return back()->with('success', 'Order status updated successfully');
         } catch (\Exception $exception)
         {
             return back()->with('error', $exception->getMessage());
         }
 
     }
+    
+    // public function courseUpdate(Request $request, string $id)
+    // {
+    //     abort_if(Gate::denies('update-course-order'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    //     try {
+    //         if ($request->status == 'canceled')
+    //         {
+    //             ParentOrder::find($id)->delete();
+    //             return ViewHelper::returnSuccessMessage('Order deleted successfully.');
+    //         }
+    //         $parentOrder = ParentOrder::updateExamOrderStatus($request, $id);
+    //         if ($request->status == 'approved')
+    //         {
+    //             $student = Student::whereUserId($parentOrder->user_id)->first();
+    //             $parentOrder->course->students()->attach($student->id);
+    //         }
+    //         return back()->with('success', 'Order status updated successfully');
+    //     } catch (\Exception $exception)
+    //     {
+    //         return back()->with('error', $exception->getMessage());
+    //     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // }
+
+
     public function destroy(string $id)
     {
 //        return $id;

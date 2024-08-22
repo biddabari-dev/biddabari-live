@@ -1,5 +1,9 @@
 @extends('frontend.master')
 
+@section('title')
+Biddabari - The First Job Study Online Platform in Bangladesh
+@endsection
+
 @section('body')
 <div class="courses-area-two section-bg p-t-50" style="">
     <div class="container">

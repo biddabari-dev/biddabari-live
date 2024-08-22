@@ -298,7 +298,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-blog-category-id'); //change value
             $.ajax({
-                url: base_url+"course-orders/"+courseId+"/edit",
+                url: "/course-orders/"+courseId+"/edit",
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
@@ -354,7 +354,7 @@
             event.preventDefault();
             var courseId = $(this).attr('data-blog-category-id'); //change value
             $.ajax({
-                url: base_url+"course-orders/"+courseId+"/edit",
+                url: "/course-orders/"+courseId+"/edit",
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
@@ -381,7 +381,7 @@
             event.preventDefault();
             var categoryId = $(this).val(); //change value
             $.ajax({
-                url: base_url+"get-courses-by-category/"+categoryId,
+                url: "/get-courses-by-category/"+categoryId,
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
@@ -406,7 +406,7 @@
             event.preventDefault();
             var orderId = $(this).attr('data-order-id'); //change value
             $.ajax({
-                url: base_url+"get-course-order-details/"+orderId,
+                url: "/get-course-order-details/"+orderId,
                 method: "GET",
                 // dataType: "JSON",
                 success: function (data) {

@@ -8,11 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta property="description"        content="@yield('meta-description')" />
+    <meta property="keywords"        content="@yield('meta-keywords')" />
+    <link rel="canonical" href=" "/>
+    {{--     for facebook --}}
     <meta property="og:url"                content="https://biddabari.com" />
-    <meta property="og:title"              content="Biddabari" />
-    <meta property="og:description"        content="Biddabari is such a different and unique online platform where you can rely yourself. You just keep your faith on Biddabari, believe it, it will do the rest. " />
+    {{-- <meta property="og:title"              content="@yield('meta-title')" /> --}}
+    <meta property="og:description"        content="@yield('meta-description')" />
     <meta property="og:image"              content="https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/backend/assets/uploaded-files/additional-features-management/site-settings/logo-1717397688866.png" />
+    <meta property="og:image:width"        content="200"/> 
+    <meta property="og:image:height"       content="286"/> 
     <meta name="facebook-domain-verification" content="g7t7phde3zn27hgjb1iaxlm67f8hdv" />
+    {{--     for facebook --}}
+
+
+
     {!! isset($siteSettings->default_seo_code_on_header) ? $siteSettings->default_seo_code_on_header : '' !!}
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
 
@@ -40,7 +50,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
 
-    <title>Biddabari - The First Job Study Online Platform in Bangladesh</title>
+    <title>@yield('title')</title>
 
     <!-- HELPER CSS -->
     <link href="{{ asset('/') }}backend/assets/css/helper.css" rel="stylesheet" />

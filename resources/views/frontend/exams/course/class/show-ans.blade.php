@@ -72,8 +72,25 @@
         .aks-video-player { width: 99%!important;/* min-height: 450px*/}
     </style>
 
-    <style>
+    {{-- <style>
         .correct-ans-bg { background-color: #B2DB9A}
+    </style> --}}
+
+    <style>
+        .correct-ans-bg { background-color: green}
+        .bg-warning { 
+            background-color: #fcd8c3 !important;
+            /* padding: 1px; */
+        }
+        .bg-danger{ background-color: #ed2222}
+
+        .section-title p{
+            padding: 8px 0px !important;
+            color: black
+        }
+        .section-title h3{
+            padding-top:5px;
+        }
     </style>
 @endpush
 
