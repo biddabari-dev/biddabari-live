@@ -153,6 +153,14 @@
                                         <div class="col-md-9">
                                             <input type="file" class="form-control" name="image"
                                                 accept="image/*" />
+
+                                                <div class="col-md-6 mt-2">
+                                                    @if(isset($teacher))
+                                                        <div>
+                                                            <img src="{{ asset($teacher->image) }}" id="courseImagePreview" style="height: 60px; width: 70px" />
+                                                        </div>
+                                                    @endif
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -179,6 +187,25 @@
                                             <input type="text" class="form-control" name="teacher_intro_video"  placeholder="Teacher Intro Video Youtube Link "
                                                 value="{{ !empty($teacher) ? $teacher->teacher_intro_video : '' }}"
                                                 accept="video/*" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row row-sm">
+                                        <div class="col-md-3">
+                                            <label for="phoneNumber" class="form-label">Teacher Intro Banner</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="file" class="form-control" name="teacher_intro_banner"
+                                                accept="image/*" />
+
+                                                <div class="col-md-6 mt-2">
+                                                    @if(isset($teacher))
+                                                        <div>
+                                                            <img src="{{ asset($teacher->teacher_intro_banner) }}" id="courseImagePreview" style="height: 60px; width: 70px" />
+                                                        </div>
+                                                    @endif
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -211,7 +238,7 @@
                                 <div class="form-group ">
                                     <div class="row row-sm">
                                         <div class="col-md-3">
-                                            <label for="phoneNumber" class="form-label">Demo Video 1</label>
+                                            <label for="phoneNumber" class="form-label">Short Classes Video 1</label>
                                         </div>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="demo_video_1" placeholder="Teacher Short Classess Video 1 Youtube Link"
@@ -220,6 +247,29 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group ">
+                                    <div class="row row-sm">
+                                        <div class="col-md-3">
+                                            <label for="phoneNumber" class="form-label">Short Classes Banner 1</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="file" class="form-control" name="demo_banner_1"
+                                                accept="image/*" />
+
+                                                <div class="col-md-6 mt-2">
+                                                    @if(isset($teacher))
+                                                        <div>
+                                                            <img src="{{ asset($teacher->demo_banner_1) }}" id="courseImagePreview" style="height: 60px; width: 70px" />
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+
                                 {{-- <div class="form-group ">
                                     <div class="row row-sm">
                                         <div class="col-md-3">
@@ -235,12 +285,32 @@
                                 <div class="form-group ">
                                     <div class="row row-sm">
                                         <div class="col-md-3">
-                                            <label for="phoneNumber" class="form-label">Demo Video 2</label>
+                                            <label for="phoneNumber" class="form-label">Short Classes Video 2</label>
                                         </div>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="demo_video_2" placeholder="Teacher Short Classess Video 2 Youtube Link"
                                                 value="{{ !empty($teacher) ? $teacher->demo_video_2 : '' }}"
                                                 accept="video/*" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <div class="row row-sm">
+                                        <div class="col-md-3">
+                                            <label for="phoneNumber" class="form-label">Short Classes Banner 2</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="file" class="form-control" name="demo_banner_2"
+                                                accept="image/*" />
+
+                                                <div class="col-md-6 mt-2">
+                                                    @if(isset($teacher))
+                                                        <div>
+                                                            <img src="{{ asset($teacher->demo_banner_2) }}" id="courseImagePreview" style="height: 60px; width: 70px" />
+                                                        </div>
+                                                    @endif
+                                                </div>
                                         </div>
                                     </div>
                                 </div>

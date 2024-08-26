@@ -96,6 +96,34 @@ class FrontendViewController extends Controller
         return ViewHelper::checkViewForApi($this->data, 'frontend.product.product-details');
     }
 
+//----------- neamot vai -------------//
+    public function allTeachers ()
+    {
+        // return "Ok";
+        if (str()->contains(url()->current(), '/api/'))
+        {
+            $this->teachers = Teacher::whereStatus(1)->get();
+        }
+        return response()->json([
+            'teachers'  => $this->teachers
+            ],200);
+
+    }
+
+    public function findTeacher ($id)
+    {
+        
+        if (str()->contains(url()->current(), '/api/'))
+        {
+            $teacher = Teacher::whereStatus(1)->where('id',$id)->first();
+        }
+        return response()->json([
+            'teacher'  => $teacher,
+        ],200);
+
+    }
+
+    //----------- neamot vai -------------//
     public function placeProductOrder (Request $request)
     {
 

@@ -10351,7 +10351,7 @@ img {
 .video-gallery .gallery-item img {
     position: relative;
     display: block;
-    opacity: .45;
+    /* opacity: .45; */
     width: 105%;
     height: 300px;
     transition: opacity 0.35s, transform 0.35s;
