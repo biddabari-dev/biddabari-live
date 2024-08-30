@@ -264,11 +264,11 @@ class CustomAuthController extends Controller
             {
                 //            test two
                 $client = new Client();
-                //$body = $client->request('GET', 'http://sms.felnadma.com/api/v1/send?api_key=44516684285595991668428559&contacts=88'.$request->mobile.'&senderid=01844532630&msg=Biddabari+otp+is+'.$otpNumber);
+                //$body = $client->request('GET', 'http://sms.felnadma.com/api/v1/send?api_key=44516684285595991668428559&contacts=88'.$request->mobile.'&senderid=01844532630&msg=Biddabari+OTP+is+'.$otpNumber);
 
-                // $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$request->mobile.'&senderid=8809601011181&msg=Biddabari+otp+is+'.$otpNumber);
+                // $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$request->mobile.'&senderid=8809601011181&msg=Biddabari+OTP+is+'.$otpNumber);
 
-                $body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$request->mobile.'&smstext=Biddabari+otp+is+'.$otpNumber);
+                $body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$request->mobile.'&smstext=Biddabari+OTP+is+'.$otpNumber);
 
                 //echo '<pre>'; print_r( explode(':',$body->getBody()->getContents() )[1] ); die();
                 //die($body->getBody()->getContents())[0])[1]);
@@ -348,13 +348,13 @@ class CustomAuthController extends Controller
 
     public function passResetOtp (Request $request)
     {
-        $otpNumber = rand(100000, 999999);
+        $otpNumber = rand(1000, 9999);
         try {
             $client = new Client();
-            //$body = $client->request('GET', 'http://sms.felnadma.com/api/v1/send?api_key=44516684285595991668428559&contacts=88'.$request->mobile.'&senderid=01844532630&msg=Biddabari+otp+is+'.$otpNumber);
-            // $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$request->mobile.'&senderid=8809601011181&msg=Biddabari+otp+is+'.$otpNumber);
+            //$body = $client->request('GET', 'http://sms.felnadma.com/api/v1/send?api_key=44516684285595991668428559&contacts=88'.$request->mobile.'&senderid=01844532630&msg=Biddabari+OTP+is+'.$otpNumber);
+            // $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$request->mobile.'&senderid=8809601011181&msg=Biddabari+OTP+is+'.$otpNumber);
 
-            $body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$request->mobile.'&smstext=Biddabari+otp+is+'.$otpNumber);
+            $body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$request->mobile.'&smstext=Biddabari+OTP+is+'.$otpNumber);
 
 
 
