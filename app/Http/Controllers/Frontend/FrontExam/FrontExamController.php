@@ -1088,7 +1088,6 @@ class FrontExamController extends Controller
                         break;
                     } else {
                         $questionOption->my_ans = 2;
-//                        $questionOption->my_ans = 'x';
                     }
                 }
             }
@@ -1113,7 +1112,6 @@ class FrontExamController extends Controller
                         break;
                     } else {
                         $questionOption->my_ans = 2;
-//                        $questionOption->my_ans = 'x';
                     }
                 }
             }
