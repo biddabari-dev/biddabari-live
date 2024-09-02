@@ -40,7 +40,7 @@ class Notice extends Model
         self::$notice->type = $request->type;
         self::$notice->alt_text = $request->alt_text;
         self::$notice->banner_title = $request->banner_title;
-        self::$notice->image = isset($id) ? imageUpload($request->file('image'), 'notice-management/notices/', 'notice-', '', '', Notice::find($id)->image) : imageUpload($request->file('image'), 'notice-management/notices/', 'notice-', '', '');
+        self::$notice->image = fileUpload($request->file('image'), 'notice-management/notices', 'notice-', (isset($id) ? Notice::find($id)->image : null));
         self::$notice->body = $request->body;
         self::$notice->status = $request->status == 'on' ? 1 : 0;
         self::$notice->slug = str_replace(' ', '-', $request->title);

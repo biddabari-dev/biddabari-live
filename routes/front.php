@@ -79,6 +79,8 @@ Route::middleware('previousUrlMiddleware')->group(function (){
         Route::get('/checkout/{type}/{slug}', [BasicViewController::class, 'checkout'])->name('checkout');
 
         Route::get('/category/{slug}', [BasicViewController::class, 'categoryCourses'])->name('category-courses');
+        //neamat
+        Route::get('/free-category/{slug}', [BasicViewController::class, 'freeCategoryCourses'])->name('free-category-courses');
         Route::get('/notice', [BasicViewController::class, 'allNotices'])->name('notices');
 
 

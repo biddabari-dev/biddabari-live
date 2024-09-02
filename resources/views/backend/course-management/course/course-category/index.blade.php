@@ -267,12 +267,15 @@
 
     <script>
         {{--    store course category--}}
-        $(document).on('click', '.update-btn', function () {
+        $(document).on('click', '.update-btn', function (event) {
             event.preventDefault();
+            console.log('Update button clicked'); // Debugging statement
+
             var form = $('#courseCategoryForm')[0];
             var formData = new FormData(form);
+            console.log('Form Data:', formData); // Debugging statement
+
             $.ajax({
-                {{--url: "{{ route('course-categories.store') }}",--}}
                 url: $('#courseCategoryForm').attr('action'),
                 method: "POST",
                 data: formData,
@@ -280,23 +283,25 @@
                 contentType: false,
                 processData: false,
                 success: function (message) {
+                    console.log('Success Response:', message); // Debugging statement
                     toastr.success(message);
                     $('#courseCategoryModal').modal('hide');
                     window.location.reload();
                 },
                 error: function (errors) {
-                    if (errors.responseJSON)
-                    {
+                    console.log('Error Response:', errors); // Debugging statement
+                    if (errors.responseJSON) {
                         $('span[class="text-danger"]').empty();
                         var allErrors = errors.responseJSON.errors;
-                        for (key in allErrors)
-                        {
-                            $('#'+key).empty().append(allErrors[key]);
+                        for (key in allErrors) {
+                            console.log('Error for field ' + key + ':', allErrors[key]); // Debugging statement
+                            $('#' + key).empty().append(allErrors[key]);
                         }
                     }
                 }
-            })
-        })
+            });
+        });
+
     </script>
 
     <script>

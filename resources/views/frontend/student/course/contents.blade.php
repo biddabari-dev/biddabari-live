@@ -254,7 +254,7 @@
 
 
 
-    <link rel="stylesheet" href="{{ asset('/') }}backend/ppdf/css/pdfviewer.jquery.css" />
+    <link rel="stylesheet" href="{{ asset('/') }}backend/ppdf/css/pdfviewer.jquery.css"/>
     <style>
         .pdf-toolbar {display: none;}
         #pdf-container {overflow: scroll; height: 500px;}

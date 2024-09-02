@@ -28,11 +28,11 @@
                                 Instructors
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="javascript:void(0)">
                                 Our Event
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('front.contact-us') }}">
                                 Contact Us

@@ -48,15 +48,15 @@
             </div>
             <div class="row mt-2 image-row ">
                 <div class="col-md-4 mt-2">
-                    <label for="">Image</label>
-                    <input type="file" name="image" class="form-control" id="imagex" accept="image/*" placeholder="Image" />
+                    <label for="" class="mb-1">Upload PDF</label>
+                    <input type="file" name="image" class="form-control" id="imagex" accept=".pdf" placeholder="PDF Document" />
                     <span class="text-danger" id="image">{{ $errors->has('image') ? $errors->first('image') : '' }}</span>
                 </div>
-                <div class="col-md-4 mt-2">
+                {{-- <div class="col-md-4 mt-2">
                     <div>
                         <img src="" id="imagePreview" alt="">
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row mt-2 banner-text-title-row">
                 <div class="col-md-6 mt-2">
