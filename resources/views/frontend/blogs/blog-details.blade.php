@@ -2,7 +2,7 @@
 
 
 @section('meta-description')@foreach($seos as $seo){{ $seo->meta_description ?? ''}}@endforeach
-@endsection
+@endsection 
 
 @section('meta-keywords')@foreach($seos as $seo){{ $seo->meta_keywords ?? ''}}@endforeach
 @endsection
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <div class="blog-details-content pr-20">
-                        <h1 class="text-center f-s-36 ">{{ $blog->title }}</h1>
+                        <h1 class="text-center f-s-36 ">{{ $blog->title }}</h1> 
                         <div class="blog-preview-img text-center">
                             @if(!empty($blog->video_url))
 

@@ -10,12 +10,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta property="description"        content="@yield('meta-description')" />
     <meta property="keywords"        content="@yield('meta-keywords')" />
-    <link rel="canonical" href=" "/>
+    <link rel="canonical" href="@yield('meta-url')"/>
     {{--     for facebook --}}
-    <meta property="og:url"                content="https://biddabari.com" />
-    {{-- <meta property="og:title"              content="@yield('meta-title')" /> --}}
+    <meta property="og:url"                content="@yield('og-url')"/>
     <meta property="og:description"        content="@yield('meta-description')" />
-    <meta property="og:image"              content="https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/backend/assets/uploaded-files/additional-features-management/site-settings/logo-1717397688866.png" />
+    <meta property="og:image"              content="https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/@yield('og-image')" />
     <meta property="og:image:width"        content="200"/> 
     <meta property="og:image:height"       content="286"/> 
     <meta name="facebook-domain-verification" content="g7t7phde3zn27hgjb1iaxlm67f8hdv" />

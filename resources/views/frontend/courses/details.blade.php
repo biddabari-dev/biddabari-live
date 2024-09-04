@@ -16,12 +16,14 @@
 
 @section('body')
 
-<div class="container">
-    {{-- <div class="row">
+<div class="container">  
+  <div class="row">
         <div class="col-md-12 mt-4">
-            <a href="/"> Home /</a> {{ $course->title }}
+            @section('meta-url'){{ route('front.course-details', ['slug' => $course->slug]) }}@endsection
+            @section('og-url'){{ route('front.course-details', ['slug' => $course->slug]) }}@endsection
+            @section('og-image'){{ $course->banner }} @endsection
         </div>
-    </div> --}}
+    </div>
 </div>
             <div class="courses-details-area pt-3 pb-70">
                 <div class="container">
