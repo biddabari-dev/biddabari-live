@@ -232,7 +232,7 @@ class BasicViewController extends Controller
             'courseCategories' => function($courseCategories){
                 $courseCategories->whereStatus(1)->orderBy('order','ASC')->select('id', 'parent_id','name', 'image', 'icon', 'slug', 'status')->get();
             }])->first();
-            
+
         foreach ($this->courseCategory->courses as $course)
         {
             $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
@@ -430,10 +430,10 @@ class BasicViewController extends Controller
         $this->examCategories = batchExamCategory::whereStatus(1)->where('parent_id', 0)->select('id', 'name', 'slug')->with(['batchExams' => function($course){
             $course->whereStatus(1)->where('is_paid', 1)->latest()->get();
         },
-            'batchExamCategories' => function($batchExamCategories) {
-                $batchExamCategories->select('id', 'parent_id', 'name', 'image', 'slug')->orderBy('order', 'ASC')->whereStatus(1)->get();
-            }])->get();
-               
+        'batchExamCategories' => function($batchExamCategories) {
+            $batchExamCategories->select('id', 'parent_id', 'name', 'image', 'slug')->orderBy('order', 'ASC')->whereStatus(1)->get();
+        }])->get();
+
 
         $this->courses = Course::where('is_paid', 0)->whereStatus(1)->latest()->select('id','title','banner','slug','alt_text','banner_title')->get();
         $this->batchExams = BatchExam::where(['is_paid' => 0, 'status' => 1])->select('id', 'title', 'slug', 'banner')->get();
@@ -479,7 +479,7 @@ class BasicViewController extends Controller
             }
         }
 
-       
+
         $allBatchExams = collect($tempCourses)->unique('id');
 
         $this->data = [
@@ -597,6 +597,6 @@ class BasicViewController extends Controller
     }
 
     // public function seo(){
-        
+
     // }
 }

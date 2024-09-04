@@ -183,8 +183,8 @@ class ParentOrder extends Model
                 'payment_status'            => 'complete',
 
                 'shipping_address'          => $requestData->ordered_for == 'product' ? $requestData->shipping_address : null,
-                'notes'                     => $requestData->ordered_for == 'product' ? $requestData->notes : null,
-                'delivery_charge'           => $requestData->ordered_for == 'product' ? $requestData->delivery_charge : 0,
+                // 'notes'                     => $requestData->ordered_for == 'product' ? $requestData->notes : null,
+                // 'delivery_charge'           => $requestData->ordered_for == 'product' ? $requestData->delivery_charge : 0,
             ]);
             $product = Product::find($requestData->model_id);
             $product->stock_amount = $product->stock_amount -1;
