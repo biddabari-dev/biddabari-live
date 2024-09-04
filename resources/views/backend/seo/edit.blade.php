@@ -60,8 +60,8 @@
                                         {{--                                    <img src="" id="imagePreview" alt="">--}}
                                     </div>
                                     <div class="col-md-4 mt-2">
-                                        <label for="">Meta Tags</label>
-                                        <input type="text"  name="meta_tags" class="form-control" placeholder="meta_tags" value="{{$seo->meta_tags}}" />
+                                        <label for="">Custom Page Title</label>
+                                        <input type="text"  name="meta_tags" class="form-control" placeholder="Custom Page Title" value="{{$seo->meta_tags}}" />
                                         <span class="text-danger">{{ $errors->has('meta_tags') ? $errors->first('meta_tags') : '' }}</span>
                                         {{--                                    <img src="" id="imagePreview" alt="">--}}
                                     </div>

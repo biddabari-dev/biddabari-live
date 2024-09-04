@@ -8662,6 +8662,11 @@ img {
     text-align: center !important;
 }
 
+.quiz-wizard {
+    margin-top: 15px !important;
+    margin-bottom: 72px;
+}
+
 .quiz-wizard .position-sticky {
     top: 105px !important;
     z-index: 10;
@@ -8770,6 +8775,10 @@ img {
 
 @media only screen and (min-width: 280px) and (max-width: 420px) {
 
+    .custom_start_exam_scroll {
+        overflow: scroll;
+        height: 380px !important;
+    }
     .instructors-area .col-md-6{
         width: 50%;
         height: auto;
@@ -9200,6 +9209,10 @@ img {
 
 @media only screen and (min-width: 421px) and (max-width: 520px) {
 
+    .custom_start_exam_scroll {
+        overflow: scroll;
+        height: 400px !important;
+    }
     .instructors-area .col-md-6{
         width: 50%;
         height: auto;
@@ -9620,6 +9633,10 @@ img {
 
 @media only screen and (min-width: 521px) and (max-width: 767px) {
 
+    .custom_start_exam_scroll {
+        overflow: scroll;
+        height: 400px !important;
+    }
     .details_custom_mobile_none .custom_fixed {
         position: static;
         top: 0px;
@@ -9940,6 +9957,10 @@ img {
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
 
+    .custom_start_exam_scroll {
+        overflow: scroll;
+        height: 400px !important;
+    }
     .details_custom_mobile_none .custom_fixed {
         position: static;
         top: 0px;
@@ -10038,6 +10059,11 @@ img {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .custom_start_exam_scroll {
+        overflow: scroll;
+        height: 400px !important;
+    }
 
     .details_custom_mobile_none .custom_fixed {
         position: static;
@@ -10227,7 +10253,7 @@ img {
 
 .custom_start_exam_scroll{
     overflow: scroll;
-    height: 600px;
+    height: 500px;
 }
 .checkout_log textarea {
     font-size: 12px !important;
@@ -10325,7 +10351,7 @@ img {
 .video-gallery .gallery-item img {
     position: relative;
     display: block;
-    opacity: .45;
+    /* opacity: .45; */
     width: 105%;
     height: 300px;
     transition: opacity 0.35s, transform 0.35s;

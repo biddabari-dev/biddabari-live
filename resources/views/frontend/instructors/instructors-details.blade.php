@@ -10,7 +10,7 @@
                             alt="Instructor" />
                         <h3 class="f-s-39  ">{{ $teacher->first_name . ' ' . $teacher->last_name }}</h3>
                         <div class="designation">
-                          {{ $teacher->subject ?? '' }}
+                            {{ $teacher->subject ?? '' }}
                         </div>
                         <ul class="social-link">
                             <li class="social-title">Follow me:</li>
@@ -35,59 +35,7 @@
                         {{ Str::limit($teacher->github, 430) }}
                     </div>
                 </div>
-                {{-- <div class="col-lg-7">
-                    <div class="instructors-details-content pl-20">
-
-                        @if (!empty($teacher->teacher_intro_video))
-                            <div class="">
-                                <h3 class="f-s-39">Teacher’s Intro & Special Tips</h3>
-
-                                <div class="video-container">
-                                    <div class="video-foreground">
-                                        <iframe width="100%" height="400px"
-                                            src="https://www.youtube.com/embed/{!! $teacher->teacher_intro_video !!}?rel=0&amp;modestbranding=1"
-                                            title="YouTube video player" frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                        <div class="row">
-                            @if (!empty($teacher->demo_video_1 || $teacher->demo_video_2))
-                                <h3 class="f-s-39"> Short Classes</h3>
-                            @endif
-                            @if (!empty($teacher->demo_video_1))
-                                <div class="col-md-6">
-                                    <div class="top_slide_video_content">
-                                        <video class="border-0" style="width: 100%!important;" controls>
-                                            <source src="{{ asset($teacher->demo_video_1) }}" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    </div>
-                                </div>
-                            @endif
-                            @if (!empty($teacher->demo_video_2))
-                                <div class="col-md-6">
-                                    <div class="top_slide_video_content">
-                                        <video class="border-0" style="width: 100%!important;" controls>
-                                            <source src="{{ asset($teacher->demo_video_2) }}" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    </div>
-                            @endif
-                        </div>
-                    </div>
-
-                    <h3 class="f-s-39">{{ $teacher->first_name. ' ' . $teacher->last_name }}</h3>
-                    <span class="sub-title f-s-24">{{ $teacher->subject }}</span>
-                    <ul>
-                            <li class="f-s-22 mb-0">Phone number: <span><a href="tel:{{ $teacher->mobile }}">{{ $teacher->mobile }} </a></span></li>
-                            <li class="f-s-22 mb-0">Email: <span><a href="mailto:{{ $teacher->email }}"><span class="__cf_email__">{{ $teacher->email }}</span></a></span></li>
-                            <li class="f-s-22 mb-0">Website: <span><a href="{{ $teacher->website }}" target="_blank">{{ $teacher->website }}</a></span></li>
-                        </ul>
-                </div> --}}
-
-
+               
                 <div class="col-lg-7">
                     <div class="instructors-details-content pl-20">
                         <div class="video-gallery">
@@ -95,7 +43,12 @@
                                 <div class="">
                                     <h3 class="f-s-39">Teacher’s Intro & Special Tips</h3>
                                     <div class="gallery-item ">
-                                        <img style="height: 370px" src="{{ asset('/') }}frontend/assets/images/webSide.jpg" alt="Instructor" />
+                                        {{-- <img style="height: 370px"
+                                            src="{{ asset('/') }}frontend/assets/images/webSide.jpg" alt="Instructor" /> --}}
+                                            <img style="height: 370px"
+                                            src="{{ asset(isset($teacher->teacher_intro_banner) ? $teacher->teacher_intro_banner : asset('frontend/assets/images/webSide.jpg')) }}"
+                                            alt="Instructor" />
+
                                         <div class="gallery-item-caption">
                                             {{-- <div>
                                                 <h2>Mt. Rainier</h2>
@@ -113,12 +66,13 @@
                                 @if (!empty($teacher->demo_video_1))
                                     <div class="col-md-6">
                                         <div class="gallery-item">
-                                          <img style="height: 250px" src="{{ asset('/') }}frontend/assets/images/webSide-2classess1.jpg" alt="Instructor" />
+                                            {{-- <img style="height: 250px"
+                                                src="{{ asset('/') }}frontend/assets/images/webSide-2classess1.jpg"
+                                                alt="Instructor" /> --}}
+                                            <img style="height: 250px"
+                                                src="{{ asset(isset($teacher->demo_banner_1) ? $teacher->demo_banner_1 : asset('frontend/assets/images/webSide-2classess1.jpg')) }}"
+                                                alt="Instructor" />
                                             <div class="gallery-item-caption">
-                                                {{-- <div>
-                                                    <h2>Olympic National Park</h2>
-                                                    <p>Mountains, rain forests, wild coastlines</p>
-                                                </div> --}}
                                                 <a class="vimeo-popup" href="{{ asset($teacher->demo_video_1) }}"></a>
                                             </div>
                                         </div>
@@ -127,12 +81,13 @@
                                 @if (!empty($teacher->demo_video_2))
                                     <div class="col-md-6">
                                         <div class="gallery-item">
-                                          <img style="height: 250px" src="{{ asset('/') }}frontend/assets/images/webSide-2classess2jpg.jpg" alt="Instructor" />
+                                            {{-- <img style="height: 250px"
+                                                src="{{ asset('/') }}frontend/assets/images/webSide-2classess2jpg.jpg"
+                                                alt="Instructor" /> --}}
+                                            <img style="height: 250px"
+                                                src="{{ asset(isset($teacher->demo_banner_2) ? $teacher->demo_banner_2 : asset('frontend/assets/images/webSide-2classess2jpg.jpg')) }}"
+                                                alt="Instructor" />
                                             <div class="gallery-item-caption">
-                                                {{-- <div>
-                                                    <h2>Olympic National Park</h2>
-                                                    <p>Mountains, rain forests, wild coastlines</p>
-                                                </div> --}}
                                                 <a class="vimeo-popup" href="{{ asset($teacher->demo_video_2) }}"></a>
                                             </div>
                                         </div>

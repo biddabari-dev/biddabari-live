@@ -1,16 +1,20 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-<head>
+<head> 
     <!-- META DATA -->
     <meta charset="UTF-8">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="robots" content="index">
-    {{-- <meta property="og:description"        content="Biddabari is such a different and unique online platform where you can rely yourself. You just keep your faith on Biddabari, believe it, it will do the rest. " /> --}}
     <meta name="facebook-domain-verification" content="g7t7phde3zn27hgjb1iaxlm67f8hdv" />
-    <meta name="description" content="Log in to your Biddabari account to manage your profile, courses, exam courses, orders etc."/> 
-
+    <meta name="description"               content="Log in to your Biddabari account to manage your profile, courses, exam courses, orders etc."/> 
+    <meta property="og:url"                content="@yield('og-url')"/>
+    <meta property="og:image"              content="https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/backend/assets/uploaded-files/additional-features-management/site-settings/logo-1717397688866.png" />
+    <meta property="og:image:width"        content="200"/> 
+    <meta property="og:image:height"       content="286"/> 
+    <meta property="keywords"               content="@yield('meta-keywords')" />
+    <link rel="canonical" href="@yield('meta-url')"/>
     <!-- TITLE -->
     <title>BiddaBari - Login</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">

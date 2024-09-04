@@ -23,7 +23,7 @@
                             <th>parent_model_id</th>
                             <th>custom_page_link</th>
                             <th>meta_keywords</th>
-                            <th>mata_tags</th>
+                            <th>custom_page_title</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -35,21 +35,21 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $product->seo_for }}</td>
                                     @if($product->seo_for == 'course')
-                                        <td>{{ $product->course->title }}</td>
+                                        <td>{{ $product->course->title ?? ''}}</td>
                                     @elseif($product->seo_for == 'batch_exam')
-                                        <td>{{ $product->batchExam->title }}</td>
+                                        <td>{{ $product->batchExam->title ?? '' }}</td>
                                     @elseif($product->seo_for == 'product')
-                                        <td>{{ $product->product->title }}</td>
+                                        <td>{{ $product->product->title ?? ''}}</td>
                                     @elseif($product->seo_for == 'blog')
-                                        <td>{{ $product->blog->title }}</td>
+                                        <td>{{ $product->blog->title ?? '' }}</td>
                                     @elseif($product->seo_for == 'course_category')
-                                        <td>{{ $product->courseCategory->title }}</td>
+                                        <td>{{ $product->courseCategory->title ??'' }}</td>
                                     @elseif($product->seo_for == 'batch_exam_category')
-                                        <td>{{ $product->batchExamCategory->title }}</td>
+                                        <td>{{ $product->batchExamCategory->title ?? ''}}</td>
                                     @elseif($product->seo_for == 'product_category')
-                                        <td>{{ $product->productCategory->title }}</td>
+                                        <td>{{ $product->productCategory->title ?? ''}}</td>
                                     @elseif($product->seo_for == 'blog_category')
-                                        <td>{{ $product->blogCategory->title }}</td>
+                                        <td>{{ $product->blogCategory->title ?? ''}}</td>
                                     @else
                                         <td>-------</td>
                                     @endif
@@ -136,8 +136,8 @@
                                     <span class="text-danger">{{ $errors->has('meta_keywords') ? $errors->first('meta_keywords') : '' }}</span>
                                 </div>
                                 <div class="col-md-4 mt-2">
-                                    <label for="">Meta Tags</label>
-                                    <input data-role="tagsinput" type="text"  name="meta_tags" class="form-control taginput " placeholder="meta_tags" />
+                                    <label for="">Custom Page Title</label>
+                                    <input data-role="tagsinput" type="text"  name="meta_tags" class="form-control taginput " placeholder="Custom Page Title" />
                                     <span class="text-danger">{{ $errors->has('meta_tags') ? $errors->first('meta_tags') : '' }}</span>
                                 </div>
                                 <div class="col-md-4 mt-2">
@@ -243,7 +243,7 @@
                     success:function (data){
                         // console.log(data.old_seofor);
                         var option = '';
-
+                        console.log(option);
                         $.each(data.data,function (key,val){
                             if (data.old_seofor == 'course'){
                                 option += '<option value="'+val.id+'">'+val.title+'</option>';

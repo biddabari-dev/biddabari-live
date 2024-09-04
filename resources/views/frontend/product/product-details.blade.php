@@ -1,5 +1,13 @@
 @extends('frontend.master')
-
+<div class="container">  
+  <div class="row">
+        <div class="col-md-12 mt-4">
+            @section('meta-url'){{ route('front.product-details', ['slug' => $product->slug]) }}@endsection
+            @section('og-url'){{ route('front.product-details', ['slug' => $product->slug]) }}@endsection
+            @section('og-image'){{ $product->image }} @endsection
+        </div>
+    </div>
+</div>
 @section('body')
     <div class="courses-details-area pt-100 pb-70">
         <div class="container">

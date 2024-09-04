@@ -1,5 +1,9 @@
 @extends('frontend.master')
 
+@section('title')
+Biddabari - The First Job Study Online Platform in Bangladesh
+@endsection
+
 @section('body')
 <div class="hero-slider-area">
     <div class="hero-slider owl-carousel owl-theme">

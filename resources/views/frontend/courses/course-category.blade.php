@@ -1,5 +1,9 @@
 @extends('frontend.master')
 
+@section('title')
+Biddabari - Course Category
+@endsection
+
 @section('body')
     <div class="container">
         <div class="row">

@@ -56,6 +56,7 @@ class CourseCategory extends Model
 
     public static function createOrUpdateCourseCategory($request, $id = null)
     {
+       
         CourseCategory::updateOrCreate(['id' => $id], [
             'name'          => $request->name,
             'parent_id'     => !empty($request->parent_id) ? $request->parent_id : (isset($id) ? static::find($id)->parent_id :  0),

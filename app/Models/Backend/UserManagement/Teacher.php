@@ -21,8 +21,11 @@ class Teacher extends Model
         'mobile',
         'image',
         'teacher_intro_video',
+        'teacher_intro_banner',
         'demo_video_1',
+        'demo_banner_1',
         'demo_video_2',
+        'demo_banner_2',
         'description',
         'present_address',
         'permanent_address',
@@ -84,14 +87,19 @@ class Teacher extends Model
             'email'                     => $request->email,
             'mobile'                    => $request->mobile,
             'image'                     => imageUpload($request->file('image'), 'student-images/', 'student', '280', '350', (isset($id) ? static::find($id)->image : null)),
+            'teacher_intro_banner'      => imageUpload($request->file('teacher_intro_banner'), 'student-images/', 'student', '280', '350', (isset($id) ? static::find($id)->teacher_intro_banner : null)),
             'teacher_intro_video'       => $request->teacher_intro_video,
             // 'teacher_intro_video'                 => $check == 1 ? explode('https://www.youtube.com/watch?v=', $request->teacher_intro_video)[1] : '',
 
             // 'teacher_intro_video'       => fileUpload($request->file('teacher_intro_video'),'additional-feature-management/our-team/teacher-video', 'our-team-video', isset($id) ? static::find($id)->teacher_intro_video : ''),
             
             'demo_video_1'              => $request->demo_video_1,
+            'demo_banner_1'             => imageUpload($request->file('demo_banner_1'), 'student-images/', 'student', '280', '350', (isset($id) ? static::find($id)->demo_banner_1 : null)),
+
             // 'demo_video_1'              => fileUpload($request->file('demo_video_1'),'additional-feature-management/our-team/teacher-video', 'our-team-video', isset($id) ? static::find($id)->demo_video_1 : ''),
             'demo_video_2'              => $request->demo_video_2,
+            'demo_banner_2'             => imageUpload($request->file('demo_banner_2'), 'student-images/', 'student', '280', '350', (isset($id) ? static::find($id)->demo_banner_2 : null)),
+
             // 'demo_video_2'              => fileUpload($request->file('demo_video_2'),'additional-feature-management/our-team/teacher-video', 'our-team-video', isset($id) ? static::find($id)->demo_video_2 : ''),
             'description'               => $request->description,
             'subject'                   => $request->subject,

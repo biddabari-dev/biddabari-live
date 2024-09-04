@@ -45,6 +45,11 @@ Route::prefix('v1')->name('api.')->group(function (){
 
     Route::post('/search-content-home', [BasicViewController::class, 'searchContentHome']);
 
+    //----------- neamot vai -------------//
+    Route::get('/all-teachers', [FrontendViewController::class, 'allTeachers']);
+    Route::get('/teacher/{id}', [FrontendViewController::class, 'findTeacher']);
+    //----------- neamot vai -------------//    
+
 
     Route::get('web-home', [BasicViewController::class, 'home'])->name('web-home');
     Route::get('all-courses', [BasicViewController::class, 'allCourses'])->name('all-courses');
@@ -122,6 +127,9 @@ Route::prefix('v1')->name('api.')->group(function (){
             Route::get('show-course-exam-result/{xm_id}', [FrontExamController::class, 'showCourseExamResult']);
             Route::get('show-course-class-exam-result/{xm_id}', [FrontExamController::class, 'showCourseClassExamResult']);
             Route::get('show-batch-exam-result/{xm_id}', [FrontExamController::class, 'showBatchExamResult']);
+
+
+
 
             Route::get('today-classes', [FrontViewTwoController::class, 'todayClasses']);
             Route::get('today-exams', [FrontViewTwoController::class, 'todayExams']);

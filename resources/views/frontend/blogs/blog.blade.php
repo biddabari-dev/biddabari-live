@@ -2,7 +2,7 @@
 
 @section('body')
 
-<div class="blog-widget-area pt-100 pb-70">
+<div class="blog-widget-area pt-100 pb-70"> 
     <div class="container">
         <div class="row">
             <h1 class="text-center">আমাদের ব্লগ সমূহ</h1>

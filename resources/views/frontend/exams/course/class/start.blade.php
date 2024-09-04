@@ -1,6 +1,6 @@
 @extends('frontend.master')
 
-@push('style')
+{{-- @push('style')
     <style>
         .sticky-submit-btn{
             text-align: center;
@@ -13,7 +13,7 @@
             font-size: 1rem;
         }
     </style>
-@endpush
+@endpush --}}
 
 @section('body')
 
@@ -46,7 +46,7 @@
                 </div>
                 <!-- $quiz->questions->take(100)->shuffle(50)->random(50); -->
                 <div class="card-body d-none" id="questionsCard">
-                    <div class="row">
+                    <div class="row custom_start_exam_scroll">
                         <div class="col-md-12 px-0" id="dtBasicExample">
                             {{--                            <form id="quizForm" action="/user/quizzes/{{ $quiz->id }}/store_results-mega" method="post" class="quiz-form">--}}
                             <form id="quizForm" action="{{ route('front.student.get-course-class-exam-result', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" method="post" class="quiz-form" enctype="multipart/form-data">
@@ -93,18 +93,22 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                <div class="card-actions d-flex align-items-center finish-div d-none">
+                                {{-- <div class="card-actions d-flex align-items-center finish-div d-none">
                                     <button type="submit" class="action-button finish btn btn-danger">Finish Test</button>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
+                    </div>
+
+                    <div class="col-md-12 text-center" style="border-radius: 25px">
+                        <a href="" class=" sticky-submit-btn btn btn-danger w-100 f-s-26">Submit</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-8 text-center">
+        {{-- <div class="col-md-8 text-center">
             <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a>
-        </div>
+        </div> --}}
     </div>
 </div>
 
@@ -167,6 +171,24 @@
                     $('.finish-div').removeClass('d-none');
                     $('.sticky-submit-btn').removeClass('d-none');
 
+                    $(function() {
+                    const $header = $('.sticky-submit-btn');
+                    let prevScroll = 0;
+                    height = document.body.offsetHeight-window.innerHeight;
+                    footer = height - 500;
+
+                    console.log(height);
+
+                    $(window).scroll(function() {
+                        let scroll = $(window).scrollTop();
+                        if (scroll > footer) {
+                        $header.css('bottom','470px');
+                        }else{
+                        $header.css('bottom','0px');
+                        }
+                        prevScroll = scroll;
+                    });
+                    });
 
                     var currentTime = new Date();
                     currentTime.setMinutes(currentTime.getMinutes() + {!! isset($exam) ? $exam->class_xm_duration_in_minutes : 1 !!}); //set custom time instead 60
