@@ -12,6 +12,7 @@ Biddabari - All Course
             <div class="col-md-12">
                 <div class="card card-body border-0 rounded-0">
                     
+<<<<<<< HEAD
                     <div>
                         <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -19,6 +20,15 @@ Biddabari - All Course
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link f-s-26" id="" data-bs-toggle="pill" data-bs-target="#freeExams" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">ফ্রি পরীক্ষা সমূহ</button>
+=======
+                    <div> 
+                        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                            <h2><button class="nav-link f-s-26 active" id="" data-bs-toggle="pill" data-bs-target="#freeCourses" type="button" role="tab" aria-controls="pills-home" aria-selected="true">ফ্রি কোর্সসমূহ</button></h2>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <h2><button class="nav-link f-s-26" id="" data-bs-toggle="pill" data-bs-target="#freeExams" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">ফ্রি পরীক্ষা সমূহ</button></h2>
+>>>>>>> ccbf2cdbaefa7e43d01108e4e51171e39e9af4ad
                             </li>
                         </ul>
                         
