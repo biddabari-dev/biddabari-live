@@ -11,6 +11,7 @@ use App\Models\Backend\AdditionalFeatureManagement\OurTeam\OurTeam;
 use App\Models\Backend\AdditionalFeatureManagement\PopupNotification;
 use App\Models\Backend\AdditionalFeatureManagement\StudentOpinion\StudentOpinion;
 use App\Models\Backend\BatchExamManagement\BatchExam;
+use App\Models\Backend\BatchExamManagement\BatchExamCategory;
 use App\Models\Backend\BatchExamManagement\BatchExamSubscription;
 use App\Models\Backend\BlogManagement\Blog;
 use App\Models\Backend\BlogManagement\BlogCategory;
@@ -203,7 +204,7 @@ class BasicViewController extends Controller
 //        {
 //            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
 //        }
-        // dd($this->courses);
+         //dd($this->courseCategories);
         $this->data = ['courseCategories' => $this->courseCategories, 'allCourses' => $this->courses];
         return ViewHelper::checkViewForApi($this->data, 'frontend.courses.courses');
     }
@@ -216,6 +217,22 @@ class BasicViewController extends Controller
             'courseCategories' => function($courseCategories){
                 $courseCategories->whereStatus(1)->orderBy('order','ASC')->select('id', 'parent_id','name', 'image', 'icon', 'slug', 'status')->get();
             }])->first();
+        foreach ($this->courseCategory->courses as $course)
+        {
+            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
+        }
+        $this->data = ['courseCategory' => $this->courseCategory];
+        return ViewHelper::checkViewForApi($this->data, 'frontend.courses.course-category', 'Category Not Found');
+    }
+    public function freeCategoryCourses ($slug)
+    {
+        $this->courseCategory = CourseCategory::whereSlug($slug)->select('id','name', 'parent_id', 'image', 'icon', 'slug', 'status')->with(['courses' => function($course){
+            $course->whereStatus(1)->where('is_paid', 0)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug','alt_text','banner_title')->get()->makeHidden('updated_at');
+        },
+            'courseCategories' => function($courseCategories){
+                $courseCategories->whereStatus(1)->orderBy('order','ASC')->select('id', 'parent_id','name', 'image', 'icon', 'slug', 'status')->get();
+            }])->first();
+
         foreach ($this->courseCategory->courses as $course)
         {
             $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
@@ -381,6 +398,43 @@ class BasicViewController extends Controller
 
     public function freeCourses ()
     {
+        $this->courseCategories = CourseCategory::whereStatus(1)
+            ->where('parent_id', 0)
+            ->whereHas('courses', function ($query) {
+                $query->whereStatus(1)->where('is_paid', 0);
+            })
+            ->orWhereHas('courseCategories.courses', function ($query) {
+                $query->whereStatus(1)->where('is_paid', 0);
+            })
+            ->select('id', 'name', 'slug')
+            ->with([
+                'courses' => function ($course) {
+                    $course->whereStatus(1)
+                        ->where('is_paid', 0)
+                        ->latest()
+                        ->select('id', 'title', 'price', 'banner', 'total_pdf', 'total_exam', 'total_live', 'discount_amount', 'discount_type', 'admission_last_date', 'slug', 'alt_text', 'banner_title');
+                },
+                'courseCategories' => function ($courseCategories) {
+                    $courseCategories->whereStatus(1)
+                        ->whereHas('courses', function ($query) {
+                            $query->whereStatus(1)->where('is_paid', 0);
+                        })
+                        ->orWhereHas('courseCategories.courses', function ($query) {
+                            $query->whereStatus(1)->where('is_paid', 0);
+                        })
+                        ->select('id', 'parent_id', 'name', 'image', 'slug')
+                        ->orderBy('order', 'ASC');
+                }
+            ])->get();
+        // exam categories
+        $this->examCategories = batchExamCategory::whereStatus(1)->where('parent_id', 0)->select('id', 'name', 'slug')->with(['batchExams' => function($course){
+            $course->whereStatus(1)->where('is_paid', 1)->latest()->get();
+        },
+        'batchExamCategories' => function($batchExamCategories) {
+            $batchExamCategories->select('id', 'parent_id', 'name', 'image', 'slug')->orderBy('order', 'ASC')->whereStatus(1)->get();
+        }])->get();
+
+
         $this->courses = Course::where('is_paid', 0)->whereStatus(1)->latest()->select('id','title','banner','slug','alt_text','banner_title')->get();
         $this->batchExams = BatchExam::where(['is_paid' => 0, 'status' => 1])->select('id', 'title', 'slug', 'banner')->get();
         if (str()->contains(url()->current(), '/api/'))
@@ -394,9 +448,47 @@ class BasicViewController extends Controller
                 $batchExam->banner = asset($batchExam->banner);
             }
         }
+
+        $this->examCategories = BatchExamCategory::where('status', 1)
+            ->whereHas('batchExams', function ($query) {
+                $query->where([
+                    'status' => 1,
+                    'is_master_exam' => 0,
+                    'is_paid' => 0,
+                ]);
+            })
+            ->with(['batchExams' => function ($batchExams) {
+                $batchExams->where([
+                    'status' => 1,
+                    'is_master_exam' => 0,
+                    'is_paid' => 0,
+                ])->select('id', 'title', 'banner', 'slug');
+            }])
+            ->get();
+
+        $tempCourses = [];
+        foreach ($this->examCategories as $examCategory)
+        {
+            foreach ($examCategory->batchExams as $batchExam)
+            {
+                if (isset($batchExam))
+                {
+                    $batchExam->purchase_status  = ViewHelper::checkUserBatchExamIsEnrollment(ViewHelper::loggedUser(), $batchExam);
+                    array_push($tempCourses, $batchExam);
+                }
+            }
+        }
+
+
+        $allBatchExams = collect($tempCourses)->unique('id');
+
         $this->data = [
             'courses'   => $this->courses,
+            'allCourses'   => $this->courses,
             'batchExams'     => $this->batchExams,
+            'courseCategories'     => $this->courseCategories,
+            'examCategories'     => $this->examCategories,
+            'allExams'      => $allBatchExams
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.free-service.free-service');
     }
@@ -505,6 +597,6 @@ class BasicViewController extends Controller
     }
 
     // public function seo(){
-        
+
     // }
 }

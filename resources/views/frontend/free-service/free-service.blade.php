@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
 @section('title')
-Biddabari - All Course 
+Biddabari - All Course
 @endsection
 
 @section('body')
@@ -11,17 +11,18 @@ Biddabari - All Course
         <div class="container">
             <div class="col-md-12">
                 <div class="card card-body border-0 rounded-0">
-                    
-                    <div> 
+
+                    <div>
                         <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                            <h2><button class="nav-link f-s-26 active" id="" data-bs-toggle="pill" data-bs-target="#freeCourses" type="button" role="tab" aria-controls="pills-home" aria-selected="true">ফ্রি কোর্সসমূহ</button></h2>
+                                <button class="nav-link f-s-26 active" id="" data-bs-toggle="pill" data-bs-target="#freeCourses" type="button" role="tab" aria-controls="pills-home" aria-selected="true">ফ্রি কোর্সসমূহ</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <h2><button class="nav-link f-s-26" id="" data-bs-toggle="pill" data-bs-target="#freeExams" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">ফ্রি পরীক্ষা সমূহ</button></h2>
+                                <button class="nav-link f-s-26" id="" data-bs-toggle="pill" data-bs-target="#freeExams" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">ফ্রি পরীক্ষা সমূহ</button>
+
                             </li>
                         </ul>
-                        
+
                         <div class="tab-content mt-4" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="freeCourses" role="tabpanel" aria-labelledby="pills-home-tab">
                                 <div class="row a">
@@ -36,7 +37,7 @@ Biddabari - All Course
                                             @if($key == 0)
                                                 <div class="tab-pane px-1 fade show active" id="allCourses">
                                                     <div class="row">
-            
+
                                                         @foreach($allCourses as $allIndex => $singleCourse)
                                                             @include('frontend.courses.include-courses-course', ['course' => $singleCourse])
                                                         @endforeach
@@ -67,7 +68,7 @@ Biddabari - All Course
                                                     @if(count($courseCategory->courses) > 0)
                                                         @forelse($courseCategory->courses as $course)
                                                             @if ($course->is_paid == 0)
-                                                                @include('frontend.courses.include-free-courses-course', ['course' => $course])   
+                                                                @include('frontend.courses.include-free-courses-course', ['course' => $course])
                                                             @endif
                                                         @empty
                                                         <div class="col-md-12">
@@ -122,7 +123,7 @@ Biddabari - All Course
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
