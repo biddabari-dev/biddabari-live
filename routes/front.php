@@ -85,6 +85,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
 
 
         Route::get('/free-course', [BasicViewController::class, 'freeCourses'])->name('free-courses');
+        Route::get('/free-course/{slug}', [BasicViewController::class, 'freeCourseVideo'])->name('free.course');
         Route::get('/exam', [FrontExamController::class, 'showAllExams'])->name('all-exams');
         Route::get('/view-exam-details/{xm_id}/{slug?}', [FrontExamController::class, 'viewExamDetails'])->name('view-exam');
 
@@ -125,7 +126,7 @@ Route::middleware('previousUrlMiddleware')->group(function (){
 
 
     Route::post('/add-to-cart', [FrontendViewController::class, 'addToCart'])->name('add-to-cart');
-     Route::post('/add-to-cart-home', [FrontendViewController::class, 'addToCarthome'])->name('add-to-cart-home');
+    Route::post('/add-to-cart-home', [FrontendViewController::class, 'addToCarthome'])->name('add-to-cart-home');
 
 
 

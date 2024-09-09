@@ -163,7 +163,8 @@
             var courseId = $(this).attr('data-blog-category-id'); //change value
             $('#xmResultId').val(courseId);
             $.ajax({
-                url: base_url+"get-exam-sheet-data/"+courseId,
+                // url: base_url+"get-exam-sheet-data/"+courseId,
+                url: "/get-exam-sheet-data/"+courseId,
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
@@ -184,8 +185,9 @@
             } else {
                 $('#assignment').css('display', 'block');
             }
+            console.log('base_url...',base_url);
             $.ajax({
-                url: base_url+"get-course-or-batch-exam-names/"+xmOf,
+                url: "/get-course-or-batch-exam-names/"+xmOf,
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
@@ -204,7 +206,8 @@
             var xmOf = $('#examOf').val(); //change value
             var xmTypeId = $(this).val(); //change value
             $.ajax({
-                url: base_url+"get-exam-names/"+xmOf+'/'+xmTypeId,
+                //url: base_url+"get-exam-names/"+xmOf+'/'+xmTypeId,
+                url: "/get-exam-names/"+xmOf+'/'+xmTypeId,
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
@@ -225,7 +228,8 @@
             var sectionId = $('#sectionId').val(); //change value
             var sectionContentType = $(this).val(); //change value
             $.ajax({
-                url: base_url+"get-written-section-contents/"+xmOf+'/'+sectionId+'/'+sectionContentType,
+                // url: base_url+"get-written-section-contents/"+xmOf+'/'+sectionId+'/'+sectionContentType,
+                url: "/get-written-section-contents/"+xmOf+'/'+sectionId+'/'+sectionContentType,
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {

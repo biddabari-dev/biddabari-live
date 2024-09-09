@@ -195,6 +195,19 @@
             </div>
         </div>
     </div>
+    <div class="modal fade " id="setVideoOnCategoryContentModal" data-bs-backdrop="static" >
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" id="">
+                <div class="modal-header">
+                    <h2 class="text-center">Set Video to Category</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body" id="addCatgegoryModalBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade " id="appendXmParticipants" data-bs-backdrop="static" >
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content" id="">
@@ -808,6 +821,24 @@
                 }
             })
         });
+        //neamat
+        $(document).on('click', '.add-video-modal-btn', function () {
+            event.preventDefault();
+            var sectionContentId = $(this).attr('data-section-content-id');
+            var examType = $(this).attr('data-xm-type');
+            $.ajax({
+                url: "/get-category-for-assign-video",
+                method: "GET",
+                // dataType: "JSON",
+                data: {section_content_id:sectionContentId,exam_type:examType},
+                success: function (data) {
+                    console.log(data);
+                    $('#addCatgegoryModalBody').empty().append(data);
+                    $('.select2').select2();
+                    $('#setVideoOnCategoryContentModal').modal('show');
+                }
+            })
+        });
         $(document).on('click', '.view-participants', function () {
             event.preventDefault();
             var sectionContentId = $(this).attr('data-section-content-id');
@@ -1001,6 +1032,37 @@
             $('#questionTopicModal').modal('hide');
         })
     </script>
+{{-- assign category --}}
+<script>
+    var currentId = null;
+    var categoryName = '';
+    $(document).on('click', '#categoryInputField', function () {
+        $('#categoryModal').modal('show');
+    })
+
+    $(document).on('click', '.check', function () {
+        var newId = $(this).val();
+        var newCategoryName = $(this).parent().text();
+        if ($(this).is(':checked')) {
+            if (currentId !== null && currentId !== newId) {
+                $('.check[value="' + currentId + '"]').prop('checked', false);
+            }
+            currentId = newId;
+            categoryName = newCategoryName;
+        } else {
+            if (currentId === newId) {
+                currentId = null;
+                categoryName = '';
+            }
+        }
+    });
+
+    $(document).on('click', '#done', function () {
+        $('#categoryInputField').val(categoryName);
+        $('#category_id').val(currentId);
+        $('#categoryModal').modal('hide');
+    })
+</script>
     {{--    set value to input fields from modal ends--}}
     <!--show hide test start-->
     <script>
@@ -1023,6 +1085,10 @@
         $(document).on('click', '.close-topic-modal', function () {
             // $('#questionTopicModal').css('display', 'none');
             $('#questionTopicModal').modal('hide');
+        })
+        $(document).on('click', '.close-category-modal', function () {
+            // $('#questionTopicModal').css('display', 'none');
+            $('#categoryModal').modal('hide');
         })
     </script>
     <!--show hide test end-->

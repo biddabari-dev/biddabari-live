@@ -122,6 +122,8 @@ Route::middleware([
     Route::post('courses/save-nested-categories', [CourseController::class, 'saveNestedCourses'])->name('courses.saveNestedCategories');
     Route::post('course-sections-contents/save-nested-categories', [CourseController::class, 'saveNestedSectionsAndContents'])->name('course.saveNestedSectionsAndContents');
     Route::get('/get-content-for-add-question', [CourseSectionContentController::class, 'getContentForAddQuestion'])->name('get-content-for-add-question');
+    Route::get('/get-category-for-assign-video', [CourseSectionContentController::class, 'getCategoryForAssignVideo'])->name('get-category-for-assign-video');
+    Route::post('category-for-assign-video', [CourseSectionContentController::class, 'categoryForAssignVideo'])->name('category-for-assign-video');
     Route::get('/get-content-for-add-class-question', [CourseSectionContentController::class, 'getContentForAddClassQuestion'])->name('get-content-for-add-class-question');
     Route::get('/get-ques-by-topic', [CourseSectionContentController::class, 'getQuesByTopic'])->name('get-ques-by-topic');
     Route::post('/assign-question-to-content', [CourseSectionContentController::class, 'assignQuestionToContent'])->name('assign-question-to-content');
@@ -168,7 +170,8 @@ Route::middleware([
     Route::get('/get-batch-exam-content-for-add-question', [BatchExamSectionContentController::class, 'getContentForAddQuestion'])->name('get-batch-exam-content-for-add-question');
     Route::get('/detach-question-from-content', [BatchExamSectionContentController::class, 'detachQuestionFromContent'])->name('detach-question-from-content');
     Route::post('/assign-question-to-batch-exam-content', [BatchExamSectionContentController::class, 'assignQuestionToContent'])->name('assign-question-to-batch-exam-content');
-
+    // Assign to free category.
+    Route::get('/get-category-for-assign-exam', [BatchExamController::class, 'getCategoryForAssignExam'])->name('get-category-for-assign-exam');
     //    Assign Teacher student to Batch Exams
     Route::get('assign-teacher-to-batch-exam/{batch_exam_id}', [BatchExamController::class, 'assignTeacherToBatchExam'])->name('assign-teacher-to-batch-exam');
     Route::post('assign-batch-exam-teacher/{batch_exam_id}', [BatchExamController::class, 'assignTeacher'])->name('assign-batch-exam-teacher');

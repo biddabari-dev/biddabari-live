@@ -58,6 +58,12 @@
                         <i class="fa-solid fa-eye"></i>
                     </a>
                 @endif
+                {{-- neamat --}}
+                @if($sectionContent->content_type == 'video')
+                    <a href="" data-section-content-id="{{ $sectionContent->id }}" data-xm-type="{{ $sectionContent->content_type }}" class="btn btn-sm btn-blue add-video-modal-btn" title="Video Assign To Free Category">
+                        <i class="fa fa-tags"></i>
+                    </a>
+                @endif
                 @can('add-question-to-course-section-content')
                     @if($sectionContent->content_type == 'exam' || $sectionContent->content_type == 'written_exam')
                         {{--                            <a href="" data-section-content-id="{{ $sectionContent->id }}" data-xm-type="{{ $sectionContent->content_type }}" class="btn btn-sm btn-warning view-participants" title="View Participants">--}}

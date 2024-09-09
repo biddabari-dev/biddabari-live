@@ -110,18 +110,14 @@
                                         <div class="col-md-12 ">
                                             <div class="ansFileUpload"></div>
                                         </div>
-                                        <div class="col-md-4 mx-auto">
-                                            <input type="submit" class=" btn btn-danger mt-4 finish-div d-none" value="Finish Test" />
+                                        <div class="col-md-4 mx-auto mt-5">
+                                            {{-- <a href="" class="btn btn-danger ">Finish Test</a> --}}
+                                            <a href="" class="sticky-submit-btn btn btn-danger w-100 f-s-20">Submit</a>
                                         </div>
                                     </div>
                                 @endif
                             </form>
                         </div>
-
-                     
-                    </div>
-                    <div class="col-md-12 text-center" style="border-radius: 25px">
-                        <a href="" class=" sticky-submit-btn btn btn-danger w-100 f-s-26">Submit</a>
                     </div>
                 </div>
             </div>

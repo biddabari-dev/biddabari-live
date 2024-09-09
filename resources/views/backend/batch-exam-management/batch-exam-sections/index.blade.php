@@ -15,8 +15,6 @@
                 </div>
                 <div class="card-body">
 
-
-
                     <div class="card-body">
                         <div class="py-5">
                             <div class="accordion" id="accordionExample">
@@ -33,11 +31,6 @@
                                                     </h3>
                                                     <div class="col-sm-3">
                                                         <div class="float-end">
-                                                            {{--                                                        @can('add-sub-cat-to-notice-category')--}}
-                                                            {{--                                                            <button type="button" data-notice-category-id="{{ $batchExamSection->id }}" class="btn btn-sm btn-info add-sub-category-btn" title="Add Sub Category">--}}
-                                                            {{--                                                                <i class="fa-solid fa-plus"></i>--}}
-                                                            {{--                                                            </button>--}}
-                                                            {{--                                                        @endcan--}}
                                                             <a href="{{ route('change-order-number', ['model_name' => 'batch_exam_section', 'model_id' => $batchExamSection->id, 'order' => 'up']) }}" class="btn btn-sm btn-secondary " title="Change Order top One level">
                                                                 <i class="fa-solid fa-arrow-up-long"></i>
                                                             </a>

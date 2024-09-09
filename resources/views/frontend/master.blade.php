@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-
-<meta charset="UTF-8">
+    @php $css_rand=rand(111,999); @endphp
+    
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index">
@@ -15,18 +16,14 @@
     <meta property="og:url"                content="@yield('og-url')"/>
     <meta property="og:description"        content="@yield('meta-description')" />
     <meta property="og:image"              content="https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/@yield('og-image')" />
-    <meta property="og:image:width"        content="200"/> 
-    <meta property="og:image:height"       content="286"/> 
+    <meta property="og:image:width"        content="200"/>
+    <meta property="og:image:height"       content="286"/>
     <meta name="facebook-domain-verification" content="g7t7phde3zn27hgjb1iaxlm67f8hdv" />
     {{--     for facebook --}}
 
 
-
     {!! isset($siteSettings->default_seo_code_on_header) ? $siteSettings->default_seo_code_on_header : '' !!}
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
-
-
-
 
     <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/assets/images/favicon.png">
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.min.css" />
@@ -38,7 +35,7 @@
 
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/theme-dark.css">
 
-    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.css">
+    <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/custom.css?v={{ $css_rand }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -236,7 +233,7 @@
         var formurl = $(formcls).attr('action');
         var formurl = $(formcls).attr('action');
         // var cart= $('#cart_amount').text('sar');
-       
+
     }
 </script>
 
