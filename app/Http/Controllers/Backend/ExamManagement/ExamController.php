@@ -126,7 +126,7 @@ class ExamController extends Controller
             if ($request->exam_of == 'course') {
                 if ($request->exam_section_content_type == 'written')
                 {
-                  return  $this->examSheets = CourseExamResult::where('course_section_content_id', $request->section_content_id)->get();
+                    $this->examSheets = CourseExamResult::where('course_section_content_id', $request->section_content_id)->get();
                 } elseif ($request->exam_section_content_type == 'assignment')
                 {
                     $this->examSheets = AssignmentFile::where('course_section_content_id', $request->section_content_id)->get();
