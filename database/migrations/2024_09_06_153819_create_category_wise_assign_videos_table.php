@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('category_id');
             $table->integer('section_content_id');
+            $table->integer('exam_id');
             $table->string('thumbnail');
+            $table->string('type');
             $table->timestamps();
         });
     }
