@@ -343,13 +343,15 @@ class FrontExamController extends Controller
                 {
                     if (!empty($request->file('ans_files'))) {
                         foreach ($request->file('ans_files') as $ans_file) {
-                            $imageUrl = moveFile($ans_file, 'course-xm-temp-file-upload/');
+                            $imageUrl = moveFile($ans_file, 'backend/assets/uploaded-files/course-xm-temp-file-upload/');
+                            // dd($imageUrl);
                             array_push($this->fileSessionPaths, $imageUrl);
                             $this->filePathString .= escapeshellarg(str_replace('\\', '/', public_path($imageUrl))) . ' ';
                         }
 
                         $this->pdfFilePath = 'backend/assets/uploaded-files/course-written-xm-ans-files/' . rand(10000, 99999) . time() . '.pdf';
                         $pdfFilePath = public_path($this->pdfFilePath);
+
 
                         // Ensure the directory exists
                         if (!File::isDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files'))) {
@@ -363,6 +365,7 @@ class FrontExamController extends Controller
                         $output = shell_exec($command . ' 2>&1');
                         Log::info('Conversion command: ' . $command);
                         Log::error('Conversion output: ' . $output);
+                        // dd($output);
 
                         // Check if PDF was created
                         if (file_exists($pdfFilePath)) {

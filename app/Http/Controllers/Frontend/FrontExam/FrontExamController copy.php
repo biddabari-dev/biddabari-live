@@ -322,7 +322,6 @@ class FrontExamController extends Controller
                             ++$this->totalProvidedAns;
                             if ($this->question->has_all_wrong_ans == 1)
                             {
-//                                    $this->resultNumber -= (int)$this->question->negative_mark;
                                 $this->resultNumber -= $this->exam->exam_negative_mark;
                                 ++$this->totalWrongAns;
                             } else {
@@ -343,12 +342,10 @@ class FrontExamController extends Controller
                     'course_section_content_id'       => $contentId,
                     'user_id'       => ViewHelper::loggedUser()->id,
                     'xm_type'       => $this->exam->content_type,
-//                    'written_xm_file'       => fileUpload($request->file('written_xm_file'), 'xm-files/'.$this->exam->id.'/', 'file-'.ViewHelper::loggedUser()->id.'-'),
                     'provided_ans'      => json_encode($this->questionJson),
                     'total_right_ans'       => $this->totalRightAns ?? 0,
                     'total_wrong_ans'       => $this->totalWrongAns ?? 0,
                     'total_provided_ans'    => $this->totalProvidedAns ?? 0,
-//                        'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
                     'result_mark'       => $this->resultNumber,
                     'is_reviewed'       => 0,
                     'required_time'       => $request->required_time ?? 0,
