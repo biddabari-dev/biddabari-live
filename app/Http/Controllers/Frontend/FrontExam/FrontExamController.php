@@ -218,7 +218,6 @@ class FrontExamController extends Controller
                     {
                         if ($this->question->has_all_wrong_ans == 1)
                         {
-//                            $this->resultNumber -= (int)$this->question->negative_mark;
                             $this->resultNumber -= (int)$this->exam->exam_per_question_mark;
                         } else {
                             $this->questionOption = QuestionOption::whereId($answer['answer'])->select('id', 'is_correct')->first();
@@ -235,7 +234,6 @@ class FrontExamController extends Controller
                     'exam_id'       => $examId,
                     'user_id'       => ViewHelper::loggedUser()->id,
                     'xm_type'       => $this->exam->xm_type,
-//                    'written_xm_file'       => fileUpload($request->file('written_xm_file'), 'xm-files/'.$this->exam->id.'/', 'file-'.ViewHelper::loggedUser()->id.'-'),
                     'provided_ans'      => json_encode($this->questionJson),
                     'result_mark'       => $this->resultNumber ?? 0,
                     'is_reviewed'       => 0,
@@ -251,12 +249,10 @@ class FrontExamController extends Controller
                     {
                         $imageUrl = imageUpload($ans_file, 'xm-temp-file-upload/', 'tmp-', 600, 800);
                         array_push($this->fileSessionPaths, $imageUrl);
-//                        $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.$imageUrl.' ';
                         $this->filePathString .= public_path($imageUrl).' ';
                     }
                     $this->pdfFilePath = 'backend/assets/uploaded-files/written-xm-ans-files/'.rand(10000,99999).time().'.pdf';
                     // shell_exec('magick convert '. $this->filePathString.public_path($this->pdfFilePath));
-//                    exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
                      shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
                     foreach ($this->fileSessionPaths as $fileSessionPath)
                     {
@@ -272,8 +268,6 @@ class FrontExamController extends Controller
                     'user_id'       => ViewHelper::loggedUser()->id,
                     'xm_type'       => $this->exam->xm_type,
                     'written_xm_file'       => $this->pdfFilePath,
-//                    'provided_ans'      => json_encode($this->questionJson),
-//                    'result_mark'       => $this->resultNumber ?? 0,
                     'is_reviewed'       => 0,
                     'status'        =>  'pending',
                 ];
@@ -286,19 +280,6 @@ class FrontExamController extends Controller
 
     public function commonGetCourseExamResul($request, $contentId, $slug = null)
     {
-
-
-
-//        $existExam = CourseExamResult::where(['user_id' => ViewHelper::loggedUser()->id, 'course_section_content_id' => $contentId])->first();
-//        if (isset($existExam) && !empty($existExam))
-//        {
-//            if (str()->contains(url()->current(), '/api/'))
-//            {
-//                return response()->json(['error' => 'You already participated in this exam.'], 400);
-//            } else {
-//                return redirect('/student/dashboard')->with('success', 'You already participated in this exam.');
-//            }
-//        }
         $this->resultNumber = 0;
         $this->totalRightAns = 0;
         $this->totalWrongAns = 0;
@@ -323,7 +304,6 @@ class FrontExamController extends Controller
                             ++$this->totalProvidedAns;
                             if ($this->question->has_all_wrong_ans == 1)
                             {
-//                                    $this->resultNumber -= (int)$this->question->negative_mark;
                                 $this->resultNumber -= $this->exam->exam_negative_mark;
                                 ++$this->totalWrongAns;
                             } else {
@@ -344,12 +324,10 @@ class FrontExamController extends Controller
                     'course_section_content_id'       => $contentId,
                     'user_id'       => ViewHelper::loggedUser()->id,
                     'xm_type'       => $this->exam->content_type,
-//                    'written_xm_file'       => fileUpload($request->file('written_xm_file'), 'xm-files/'.$this->exam->id.'/', 'file-'.ViewHelper::loggedUser()->id.'-'),
                     'provided_ans'      => json_encode($this->questionJson),
                     'total_right_ans'       => $this->totalRightAns ?? 0,
                     'total_wrong_ans'       => $this->totalWrongAns ?? 0,
                     'total_provided_ans'    => $this->totalProvidedAns ?? 0,
-//                        'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
                     'result_mark'       => $this->resultNumber,
                     'is_reviewed'       => 0,
                     'required_time'       => $request->required_time ?? 0,
@@ -367,7 +345,8 @@ class FrontExamController extends Controller
                         foreach ($request->file('ans_files') as $ans_file) {
                             $imageUrl = moveFile($ans_file, 'course-xm-temp-file-upload/');
                             array_push($this->fileSessionPaths, $imageUrl);
-                            $this->filePathString .= escapeshellarg(str_replace('\\', '/', public_path($imageUrl))) . ' ';
+//                            $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.($imageUrl).' ';
+                            $this->filePathString .= public_path($imageUrl).' ';
                         }
 
                         $this->pdfFilePath = 'backend/assets/uploaded-files/course-written-xm-ans-files/' . rand(10000, 99999) . time() . '.pdf';
@@ -377,31 +356,13 @@ class FrontExamController extends Controller
                         if (!File::isDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files'))) {
                             File::makeDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files'), 0777, true, true);
                         }
-                        // Build the command
-                        $command = 'convert ' . trim($this->filePathString) . ' ' . escapeshellarg(str_replace('\\', '/', $pdfFilePath));
+//                        exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
 
-                        // Execute the command and capture the output
-                        $output = shell_exec($command . ' 2>&1');
-                        Log::info('Conversion command: ' . $command);
-                        Log::error('Conversion output: ' . $output);
-
-                        // Check if PDF was created
-                        if (file_exists($pdfFilePath)) {
-                            $pdfFileObject = new \Illuminate\Http\File($pdfFilePath);
-                            $pdfFilePathInBucket = $this->fileUpload($pdfFileObject, 'course-written-xm-ans-files');
-
-                            if ($pdfFilePathInBucket) {
-                                return 'File uploaded successfully: ' . $pdfFilePathInBucket;
-                            } else {
-                                return 'File upload failed';
-                            }
-                        } else {
-                            return 'PDF file does not exist: ' . $pdfFilePath;
-                        }
-
-                        // Clean up temporary files
-                        foreach ($this->fileSessionPaths as $fileSessionPath) {
-                            if (file_exists($fileSessionPath)) {
+                        shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
+                        foreach ($this->fileSessionPaths as $fileSessionPath)
+                        {
+                            if (file_exists($fileSessionPath))
+                            {
                                 unlink($fileSessionPath);
                             }
                         }
@@ -416,8 +377,6 @@ class FrontExamController extends Controller
                     'user_id'       => ViewHelper::loggedUser()->id,
                     'xm_type'       => $this->exam->content_type,
                     'written_xm_file'       => $this->pdfFilePath,
-//                    'provided_ans'      => json_encode($this->questionJson),
-//                    'result_mark'       => $this->resultNumber ?? 0,
                     'is_reviewed'       => 0,
                     'required_time'       => $request->required_time ?? 0,
                     'status'        =>  'pending',
@@ -512,18 +471,13 @@ class FrontExamController extends Controller
                 $this->examResult = [
                     'course_section_content_id'       => $contentId,
                     'user_id'       => ViewHelper::loggedUser()->id,
-//                'xm_type'       => $this->exam->content_type,
-//                    'written_xm_file'       => fileUpload($request->file('written_xm_file'), 'xm-files/'.$this->exam->id.'/', 'file-'.ViewHelper::loggedUser()->id.'-'),
                     'provided_ans'      => json_encode($this->questionJson),
                     'total_right_ans'       => $this->totalRightAns ?? 0,
                     'total_wrong_ans'       => $this->totalWrongAns ?? 0,
                     'total_provided_ans'    => $this->totalProvidedAns ?? 0,
-//                    'result_mark'       => $this->resultNumber ?? 0,
-//                    'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
                     'result_mark'       => $this->resultNumber,
                     'is_reviewed'       => 0,
                     'required_time'     => $request->required_time ?? 0,
-//                'status'        => $this->resultNumber >= $this->exam->exam_pass_mark ? 'pass' : 'fail',
                     'status'            => 'pass',
                 ];
                 $courseClassExamResult = CourseClassExamResult::storeExamResult($this->examResult);
@@ -544,16 +498,6 @@ class FrontExamController extends Controller
 
     public function commonGetBatchExamResult($request, $contentId, $slug = null)
     {
-//        $existExam = CourseClassExamResult::where(['user_id' => ViewHelper::loggedUser()->id, 'batch_exam_section_content_id' => $contentId])->first();
-//        if (isset($existExam) && !empty($existExam))
-//        {
-//            if (str()->contains(url()->current(), '/api/'))
-//            {
-//                return response()->json(['error' => 'You already participated in this exam.'], 400);
-//            } else {
-//                return redirect('/student/dashboard')->with('success', 'You already participated in this exam.');
-//            }
-//        }
         $this->resultNumber = 0;
         $this->totalRightAns = 0;
         $this->totalWrongAns = 0;
@@ -587,7 +531,6 @@ class FrontExamController extends Controller
                             ++$this->totalProvidedAns;
                             if ($this->question->has_all_wrong_ans == 1)
                             {
-//                                $this->resultNumber -= (int)$this->question->negative_mark;
                                 $this->resultNumber -= (int)$this->exam->exam_per_question_mark;
                                 ++$this->totalWrongAns;
                             } else {
@@ -610,13 +553,10 @@ class FrontExamController extends Controller
                         'course_section_content_id'       => $contentId,
                         'user_id'       => ViewHelper::loggedUser()->id,
                         'xm_type'       => $this->exam->content_type,
-    //                    'written_xm_file'       => fileUpload($request->file('written_xm_file'), 'xm-files/'.$this->exam->id.'/', 'file-'.ViewHelper::loggedUser()->id.'-'),
                         'provided_ans'      => json_encode($this->questionJson),
                         'total_right_ans'       => $this->totalRightAns ?? 0,
                         'total_wrong_ans'       => $this->totalWrongAns ?? 0,
                         'total_provided_ans'    => $this->totalProvidedAns ?? 0,
-    //                        'result_mark'       => $this->resultNumber ?? 0,
-    //                        'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
                         'result_mark'       => $this->resultNumber,
                         'is_reviewed'       => 0,
                         'required_time'       => $request->required_time ?? 0,
@@ -628,13 +568,10 @@ class FrontExamController extends Controller
                         'batch_exam_section_content_id'       => $contentId,
                         'user_id'       => ViewHelper::loggedUser()->id,
                         'xm_type'       => $this->exam->content_type,
-    //                    'written_xm_file'       => fileUpload($request->file('written_xm_file'), 'xm-files/'.$this->exam->id.'/', 'file-'.ViewHelper::loggedUser()->id.'-'),
                         'provided_ans'      => json_encode($this->questionJson),
                         'total_right_ans'       => $this->totalRightAns ?? 0,
                         'total_wrong_ans'       => $this->totalWrongAns ?? 0,
                         'total_provided_ans'    => $this->totalProvidedAns ?? 0,
-    //                        'result_mark'       => $this->resultNumber ?? 0,
-    //                        'result_mark'       => $this->resultNumber > 0 ? $this->resultNumber : 0,
                         'result_mark'       => $this->resultNumber,
                         'is_reviewed'       => 0,
                         'required_time'       => $request->required_time ?? 0,
@@ -654,7 +591,6 @@ class FrontExamController extends Controller
                     {
                         $imageUrl = imageUpload($ans_file, 'batch-xm-temp-file-upload/', 'tmp-', 600, 800);
                         array_push($this->fileSessionPaths, $imageUrl);
-//                        $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.($imageUrl).' ';
                         $this->filePathString .= public_path($imageUrl).' ';
                     }
                     $this->pdfFilePath = 'backend/assets/uploaded-files/batch-written-xm-ans-files/'.rand(10000,99999).time().'.pdf';
@@ -662,7 +598,6 @@ class FrontExamController extends Controller
                     {
                         File::makeDirectory(public_path('backend/assets/uploaded-files/batch-written-xm-ans-files'), 0777, true, true);
                     }
-//                    exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.($this->pdfFilePath));
                      shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
                         // shell_exec('magick convert '. $this->filePathString.public_path($this->pdfFilePath));
                     foreach ($this->fileSessionPaths as $fileSessionPath)
@@ -681,8 +616,6 @@ class FrontExamController extends Controller
                         'user_id'       => ViewHelper::loggedUser()->id,
                         'xm_type'       => $this->exam->content_type,
                         'written_xm_file'       => $this->pdfFilePath,
-    //                    'provided_ans'      => json_encode($this->questionJson),
-    //                    'result_mark'       => $this->resultNumber ?? 0,
                         'is_reviewed'       => 0,
                         'required_time'       => $request->required_time ?? 0,
                         'status'        =>  'pending',
@@ -693,8 +626,6 @@ class FrontExamController extends Controller
                         'user_id'       => ViewHelper::loggedUser()->id,
                         'xm_type'       => $this->exam->content_type,
                         'written_xm_file'       => $this->pdfFilePath,
-    //                    'provided_ans'      => json_encode($this->questionJson),
-    //                    'result_mark'       => $this->resultNumber ?? 0,
                         'is_reviewed'       => 0,
                         'required_time'       => $request->required_time ?? 0,
                         'status'        =>  'pending',
@@ -703,9 +634,6 @@ class FrontExamController extends Controller
 
 
             }
-//            session_start();
-//            unset($_SESSION['getXmStartStatus']);
-//            unset($_SESSION['getXmDataToSession']);
             Session::forget('getXmStartStatus');
             Session::forget('getXmDataToSession');
             if ($this->type == 'course') {
@@ -755,7 +683,6 @@ class FrontExamController extends Controller
 
     public function showCourseExamResult ($xmId, $xmResultId = null)
     {
-//        $this->exam = CourseSectionContent::whereId($xmId)->select('id', 'title', 'content_type', 'total_mark', 'xm_pass_mark', 'xm_duration')->first();
        $this->exam = CourseSectionContent::whereId($xmId)->first();
 
 
@@ -791,7 +718,6 @@ class FrontExamController extends Controller
 
     public function showBatchExamResult ($xmId, $xmResultId = null)
     {
-//        $this->exam = CourseSectionContent::whereId($xmId)->select('id', 'title', 'content_type', 'total_mark', 'xm_pass_mark', 'xm_duration')->first();
         $this->exam = BatchExamSectionContent::whereId($xmId)->first();
         if (isset($xmResultId))
         {
@@ -830,18 +756,10 @@ class FrontExamController extends Controller
             }
         }
 
-//        $allBatchExams = BatchExam::where(['status' => 1, 'is_master_exam' => 0, 'is_paid' => 1])->select('id', 'title', 'banner', 'slug')->get();
-//        foreach ($allBatchExams as $singleBatchExam)
-//        {
-//            if (isset($singleBatchExam))
-//            {
-//                $singleBatchExam->purchase_status  = ViewHelper::checkUserBatchExamIsEnrollment(ViewHelper::loggedUser(), $singleBatchExam);
-//            }
-//        }
+
         $allBatchExams = collect($tempCourses)->unique('id');
 
         $this->data = [
-//            'exams'     => $this->exams,
             'examCategories'     => $this->examCategories,
             'masterExam'    => $masterExam,
             'allExams'      => $allBatchExams
@@ -854,16 +772,11 @@ class FrontExamController extends Controller
         $this->exam = BatchExam::whereId($id)->select('id', 'title', 'description', 'banner',  'status', 'is_paid', 'slug')->with(['batchExamSubscriptions' => function ($package) {
             $package->whereStatus(1)->select('id', 'batch_exam_id', 'price', 'package_duration_in_days', 'package_title', 'discount_amount', 'discount_start_date', 'discount_end_date')->get();
         }])->first();
-//        $this->examCategory->validity = Carbon::parse($this->examCategory->valid_from)->format('d-m-Y').' - '. Carbon::parse($this->examCategory->valid_to)->format('d-m-Y');
         return response()->json([
             'exam' => $this->exam,
             'enrollStatus'  => ViewHelper::authCheck() ? ViewHelper::checkIfBatchExamIsEnrollmentAndHasValidity(ViewHelper::loggedUser(),$this->exam) : 'false',
         ]);
-//        $this->data = [
-//            'examCategories'    => ExamCategory::where(['exam_category_id' => $id, 'status' => 1])->select('id', 'name', 'image', 'status')->get(),
-//            'exams'    => Exam::where(['exam_category_id' => $id, 'status' => 1])->select('id', 'slug', 'title', 'image', 'xm_duration')->get(),
-//        ];
-//        return ViewHelper::checkViewForApi($this->data, 'frontend.exams.xm.category-exams');
+
     }
 
     public function viewExamDetails($id, $slug = null)
@@ -913,7 +826,6 @@ class FrontExamController extends Controller
                 if ($validator->fails())
                 {
                     return ViewHelper::returEexceptionError($validator->errors());
-//                return back()->withErrors($validator);
                 }
                 ParentOrder::storeXmOrderInfo($request, $id);
                 if (isset($request->rc))
@@ -923,7 +835,6 @@ class FrontExamController extends Controller
                 return ViewHelper::returnSuccessMessage('You successfully purchased this exam.');
             }
 
-//            return back()->with('success', 'You successfully purchased this exam');
         } else {
             return back()->with('error','Please Login First.');
         }
@@ -935,7 +846,6 @@ class FrontExamController extends Controller
             $questionStores->select('id', 'question_type', 'question', 'question_description', 'question_image', 'question_video_link', 'written_que_ans', 'written_que_ans_description', 'has_all_wrong_ans', 'status', 'mcq_ans_description')->with('questionOptions')->get();
         }])->first();
 
-        //        student xm perticipant check
         $xmAllResults   = CourseExamResult::where('course_section_content_id', $contentId)->get();
         $userXmPerticipateStatus = false;
         foreach ($xmAllResults as $xmSingleResult)
@@ -987,7 +897,6 @@ class FrontExamController extends Controller
             $questionStores->select('id', 'question_type', 'question', 'question_description', 'question_image', 'question_video_link', 'written_que_ans', 'written_que_ans_description', 'has_all_wrong_ans', 'status', 'mcq_ans_description')->with('questionOptions')->get();
         }])->first();
 
-        // dd($this->sectionContent);
 
         $this->courseExamResults = CourseClassExamResult::where(['course_section_content_id' => $contentId])->orderBy('result_mark', 'DESC')->orderBy('required_time', 'ASC')->with(['courseSectionContent' => function($courseSectionContent) {
             $courseSectionContent->select('id',  'course_section_id', 'exam_total_questions','exam_per_question_mark', 'written_total_questions')->first();
@@ -1065,7 +974,6 @@ class FrontExamController extends Controller
         $this->sectionContent = BatchExamSectionContent::whereId($contentId)->select('id', 'batch_exam_section_id', 'parent_id', 'content_type', 'title', 'status')->with(['questionStores' => function($questionStores){
             $questionStores->select('id', 'question_type', 'question', 'question_description', 'question_image', 'question_video_link', 'written_que_ans', 'written_que_ans_description', 'has_all_wrong_ans', 'status', 'mcq_ans_description')->with('questionOptions')->get();
         }])->first();
-//        $providedAnswers = (array) json_decode(BatchExamResult::where(['batch_exam_section_content_id' => $contentId, 'user_id' => ViewHelper::loggedUser()->id])->first()->provided_ans);
         if ($this->sectionContent->content_type == 'exam')
         {
             $getProvidedAnswers = BatchExamResult::where(['batch_exam_section_content_id' => $contentId, 'user_id' => ViewHelper::loggedUser()->id])->first();
@@ -1090,7 +998,6 @@ class FrontExamController extends Controller
 
     public function ansLoop($sectionContent, $providedAnswers)
     {
-        // dd($sectionContent->questionStores);
         foreach ($sectionContent->questionStores as $questionStore)
         {
             foreach ($questionStore->questionOptions as $questionOption)
@@ -1184,65 +1091,6 @@ class FrontExamController extends Controller
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.exams.batch-exam.show-ranking');
     }
-
-    public function pdfViewTest ()
-    {
-//        return Response::make(file_get_contents('assets/pdf-demo.pdf'), 200, [
-//            'content-type'=>'application/pdf',
-//        ]);
-//        return view('backend.exam-management.xm-sheets.view-pdf-test');
-    }
-
-//     public function uploadAssignmentFiles(Request $request)
-//     {
-// //        return $request;
-//         try {
-//             $imageUrl = '';
-//             $this->pdfFilePath = '';
-
-//             if (!empty($request->file('files')))
-//             {
-//                 foreach ($request->file('files') as $ans_file)
-//                 {
-//                     $imageUrl = imageUpload($ans_file, 'course-xm-temp-file-upload/', 'tmp-', 600, 800);
-//                     array_push($this->fileSessionPaths, $imageUrl);
-//                     $this->filePathString .= public_path($imageUrl).' ';
-//                 }
-//                 $this->pdfFilePath = 'backend/assets/uploaded-files/course-assignment-files/'.rand(10000,99999).time().'.pdf';
-//                 if (!File::isDirectory(public_path('backend/assets/uploaded-files/course-assignment-files')))
-//                 {
-//                     File::makeDirectory(public_path('backend/assets/uploaded-files/course-assignment-files'), 0777, true, true);
-//                 }
-// //                        shell_exec('magick convert'. $this->filePathString.public_path($this->pdfFilePath));
-// //               echo shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
-// //                echo shell_exec("convert image.png image.pdf");
-// //              echo putenv("PATH=your_path_to_the_bin_folder");
-//                 $output = shell_exec('ls -lart');
-//                 echo "<pre>$output</pre>";
-//                 return 0;
-//                 AssignmentFile::create([
-//                     'course_section_content_id' => $request->course_content_id,
-//                     'file'  => $this->pdfFilePath,
-//                     'file_type' => 'pdf',
-//                     'user_id'   => ViewHelper::loggedUser()->id
-//                 ]);
-//                 foreach ($this->fileSessionPaths as $fileSessionPath)
-//                 {
-//                     if (file_exists($fileSessionPath))
-//                     {
-//                         unlink($fileSessionPath);
-//                     }
-//                 }
-//                 return ViewHelper::returnSuccessMessage('Files Uploaded successfully.');
-//             } else {
-//                 return ViewHelper::returEexceptionError('No files found.');
-//             }
-//         } catch (\Exception $exception)
-//         {
-//             return ViewHelper::returEexceptionError($exception->getMessage());
-//         }
-//     }
-
   public function uploadAssignmentFiles(Request $request)
     {
         try {
