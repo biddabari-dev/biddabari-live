@@ -117,7 +117,12 @@
                                                 <a href="" data-course-id="{{ $batchExam->id }}" class="btn btn-sm btn-warning edit-btn" title="Edit Batch Exam">
                                                     <i class="fa-solid fa-edit"></i>
                                                 </a>
-                                                @endcan
+                                            @endcan
+                                            @can('edit-batch-exam')
+                                                <a href="" data-exam-id="{{ $batchExam->id }}" class="btn btn-sm btn-blue add-video-modal-btn" title="Exam Assign To Category">
+                                                    <i class="fa fa-tags"></i>
+                                                </a>
+                                            @endcan
                                             @can('delete-batch-exam')
                                                 <form class="d-inline" action="{{ route('batch-exams.destroy', $batchExam->id) }}" method="post" >
                                                     @csrf
@@ -164,6 +169,20 @@
                             <button type="submit" class="btn btn-success">Import</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- free exam assign --}}
+    <div class="modal fade " id="setVideoOnCategoryContentModal" data-bs-backdrop="static" >
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" id="">
+                <div class="modal-header">
+                    <h2 class="text-center">Set Video to Category</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body" id="addCatgegoryModalBody">
+
                 </div>
             </div>
         </div>
@@ -625,4 +644,54 @@
         })
     </script>
     <!--show hide test end-->
+<script>
+    //neamat
+    $(document).on('click', '.add-video-modal-btn', function () {
+        event.preventDefault();
+        var examId = $(this).attr('data-exam-id');
+        $.ajax({
+            url: "/get-category-for-assign-exam",
+            method: "GET",
+            // dataType: "JSON",
+            data: {'examId':examId},
+            success: function (data) {
+                console.log(data);
+                $('#addCatgegoryModalBody').empty().append(data);
+                $('.select2').select2();
+                $('#setVideoOnCategoryContentModal').modal('show');
+            }
+        })
+    });
+    //assign category
+    var currentId = null;
+    var categoryName = '';
+    $(document).on('click', '#categoryInputField', function () {
+        $('#categoryModal').modal('show');
+    })
+
+    $(document).on('click', '.check', function () {
+        var newId = $(this).val();
+        var newCategoryName = $(this).parent().text();
+        if ($(this).is(':checked')) {
+            if (currentId !== null && currentId !== newId) {
+                $('.check[value="' + currentId + '"]').prop('checked', false);
+            }
+            currentId = newId;
+            categoryName = newCategoryName;
+        } else {
+            if (currentId === newId) {
+                currentId = null;
+                categoryName = '';
+            }
+        }
+    });
+
+    $(document).on('click', '#done', function () {
+        $('#categoryInputField').val(categoryName);
+        $('#category_id').val(currentId);
+        $('#categoryModal').modal('hide');
+    })
+
+</script>
+
 @endpush

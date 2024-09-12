@@ -16,6 +16,7 @@ use App\Models\Backend\BatchExamManagement\BatchExamSubscription;
 use App\Models\Backend\BlogManagement\Blog;
 use App\Models\Backend\BlogManagement\BlogCategory;
 use App\Models\Backend\CircularManagement\Circular;
+use App\Models\Backend\Course\CategoryWIseAssignVideo;
 use App\Models\Backend\Course\Course;
 use App\Models\Backend\Course\CourseCategory;
 use App\Models\Backend\Course\CourseCoupon;
@@ -32,6 +33,7 @@ use App\Models\Frontend\CourseOrder\CourseOrder;
 use App\Models\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class BasicViewController extends Controller
 {
@@ -398,34 +400,12 @@ class BasicViewController extends Controller
 
     public function freeCourses ()
     {
-        $this->courseCategories = CourseCategory::whereStatus(1)
-            ->where('parent_id', 0)
-            ->whereHas('courses', function ($query) {
-                $query->whereStatus(1)->where('is_paid', 0);
-            })
-            ->orWhereHas('courseCategories.courses', function ($query) {
-                $query->whereStatus(1)->where('is_paid', 0);
-            })
-            ->select('id', 'name', 'slug')
-            ->with([
-                'courses' => function ($course) {
-                    $course->whereStatus(1)
-                        ->where('is_paid', 0)
-                        ->latest()
-                        ->select('id', 'title', 'price', 'banner', 'total_pdf', 'total_exam', 'total_live', 'discount_amount', 'discount_type', 'admission_last_date', 'slug', 'alt_text', 'banner_title');
-                },
-                'courseCategories' => function ($courseCategories) {
-                    $courseCategories->whereStatus(1)
-                        ->whereHas('courses', function ($query) {
-                            $query->whereStatus(1)->where('is_paid', 0);
-                        })
-                        ->orWhereHas('courseCategories.courses', function ($query) {
-                            $query->whereStatus(1)->where('is_paid', 0);
-                        })
-                        ->select('id', 'parent_id', 'name', 'image', 'slug')
-                        ->orderBy('order', 'ASC');
-                }
-            ])->get();
+        $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->where('name', '!=', 'Free Course')->select('id', 'name', 'slug','image')->with(['courses' => function($course){
+            $course->whereStatus(1)->where('is_paid', 1)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug','alt_text','banner_title')->get();
+        },
+            'courseCategories' => function($courseCategories) {
+                $courseCategories->select('id', 'parent_id', 'name', 'image', 'slug')->orderBy('order', 'ASC')->whereStatus(1)->get();
+            }])->get();
         // exam categories
         $this->examCategories = batchExamCategory::whereStatus(1)->where('parent_id', 0)->select('id', 'name', 'slug')->with(['batchExams' => function($course){
             $course->whereStatus(1)->where('is_paid', 1)->latest()->get();
@@ -491,6 +471,14 @@ class BasicViewController extends Controller
             'allExams'      => $allBatchExams
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.free-service.free-service');
+    }
+
+    public function freeCourseVideo($slug){
+
+        $category = CourseCategory::where('slug',$slug)->first();
+        $results = CategoryWIseAssignVideo::with('categoryVideo:id,title,video_link')->where('category_id', $category->id)->where('type','video')->get();
+        $exams = CategoryWIseAssignVideo::with('categoryExam')->where('category_id', $category->id)->where('type','exam')->get();
+        return view('frontend.free-service.free-video', compact('results','category','exams'));
     }
 
     public function checkCoupon (Request $request)

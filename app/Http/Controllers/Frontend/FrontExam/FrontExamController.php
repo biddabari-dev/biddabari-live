@@ -379,7 +379,7 @@ class FrontExamController extends Controller
                         }
 //                        exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
 
-                         shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
+                        shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
                         foreach ($this->fileSessionPaths as $fileSessionPath)
                         {
                             if (file_exists($fileSessionPath))

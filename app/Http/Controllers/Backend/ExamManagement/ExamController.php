@@ -302,7 +302,7 @@ class ExamController extends Controller
             $this->enrolledUsers = Course::find($baseType->id)->students;
             $this->xmParticipateUsers = CourseClassExamResult::where(['course_section_content_id' => $contentId])->get(['id', 'user_id', 'course_section_content_id']);
         }
-        
+
         foreach ($this->enrolledUsers as $enrolledUser)
         {
             $count = 0;
@@ -335,4 +335,6 @@ class ExamController extends Controller
         ];
         return view('backend.exam-management.xm-attendance.index', $data);
     }
+
+
 }

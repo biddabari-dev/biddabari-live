@@ -130,18 +130,32 @@ Biddabari - The First Job Study Online Platform in Bangladesh
                 @foreach($courseCategories as $courseCategory)
                     <div class="col-md-3 col-m-6">
                         <div class="categories-item">
-                            <a
-                                href="{{ route('front.category-courses', ['slug' => $courseCategory->slug]) }}">
+                            @if ($courseCategory->name == 'Free Course')
+                            <a href="{{ route('front.free-courses') }}">
                                 <img loading="lazy"
                                     src="{{ asset(isset($courseCategory->image) ? $courseCategory->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
                                     alt="Categories" class="w-100 border-0">
                             </a>
+                            @else
+                            <a href="{{ route('front.category-courses', ['slug' => $courseCategory->slug]) }}">
+                                <img loading="lazy"
+                                    src="{{ asset(isset($courseCategory->image) ? $courseCategory->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
+                                    alt="Categories" class="w-100 border-0">
+                            </a>
+                            @endif
                             <div class="content">
-                                <a
-                                    href="{{ route('front.category-courses', ['slug' => $courseCategory->slug]) }}">
-                                    <i class="{{ $courseCategory->icon ?? 'flaticon-web-development' }}"></i>
-                                    <h3>{{ $courseCategory->name ?? 'No Title' }}</h3>
-                                </a>
+                                @if ($courseCategory->name == 'Free Course')
+                                    <a href="{{ route('front.free-courses') }}">
+                                        <i class="{{ $courseCategory->icon ?? 'flaticon-web-development' }}"></i>
+                                        <h3>{{ $courseCategory->name ?? 'No Title' }}</h3>
+                                    </a>
+                                @else
+                                    <a href="{{ route('front.category-courses', ['slug' => $courseCategory->slug]) }}">
+                                        <i class="{{ $courseCategory->icon ?? 'flaticon-web-development' }}"></i>
+                                        <h3>{{ $courseCategory->name ?? 'No Title' }}</h3>
+                                    </a>
+                                @endif
+
                             </div>
                         </div>
                     </div>

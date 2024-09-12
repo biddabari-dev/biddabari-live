@@ -8,6 +8,7 @@ use App\Http\Requests\Backend\BatchExam\BatchExamFormRequest;
 use App\Models\Backend\BatchExamManagement\BatchExam;
 use App\Models\Backend\BatchExamManagement\BatchExamCategory;
 use App\Models\Backend\BatchExamManagement\BatchExamSubscription;
+use App\Models\Backend\Course\CourseCategory;
 use App\Models\Backend\OrderManagement\ParentOrder;
 use App\Models\Backend\UserManagement\Student;
 use App\Models\Backend\UserManagement\Teacher;
@@ -254,6 +255,16 @@ class BatchExamController extends Controller
         abort_if(Gate::denies('show-batch-master-exam'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return view('backend.batch-exam-management.batch-exams.master-exam', [
             'masterExam'    => BatchExam::where('is_master_exam', 1)->first()
+        ]);
+    }
+
+    public function getCategoryForAssignExam (Request $request)
+    {
+
+        abort_if(Gate::denies('add-question-to-course-section-content'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        return view('backend.batch-exam-management.batch-exams.add-category-to-free-exam', [
+            'exam' => BatchExam::find($request->examId),
+            'categories' => CourseCategory::whereStatus(1)->where('parent_id', 0)->where('name', '!=', 'Free Course')->select('id', 'name')->get(),
         ]);
     }
 }

@@ -35,14 +35,14 @@
                         {{ Str::limit($teacher->github, 430) }}
                     </div>
                 </div>
-               
+
                 <div class="col-lg-7">
                     <div class="instructors-details-content pl-20">
                         <div class="video-gallery">
                             @if (!empty($teacher->teacher_intro_video))
                                 <div class="">
                                     <h3 class="f-s-39">Teacher’s Intro & Special Tips</h3>
-                                    <div class="gallery-item ">
+                                    <div class="gallery-item">
                                         {{-- <img style="height: 370px"
                                             src="{{ asset('/') }}frontend/assets/images/webSide.jpg" alt="Instructor" /> --}}
                                             <img style="height: 370px"
@@ -122,7 +122,7 @@
                                     <p>The mountains are calling</p>
                                 </div>
                                 <a class="vimeo-popup" href="https://vimeo.com/3653567"></a>
-                               
+
 
                             </div>
                         </div>

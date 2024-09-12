@@ -1,5 +1,5 @@
 @extends('frontend.master')
-<div class="container">  
+<div class="container">
   <div class="row">
         <div class="col-md-12 mt-4">
             @section('meta-url'){{ route('front.product-details', ['slug' => $product->slug]) }}@endsection
@@ -41,8 +41,8 @@
                             <p class="f-s-20 mb-0" style="">Discounted Price:
                                 {{ $grandPrice = $product->price - $product->discount_amount }} tk</p>
                         @else
-                            <p class="mb-0 f-s-25 fw-bold">{{ $product->price }} tk<span> 
-                                
+                            <p class="mb-0 f-s-25 fw-bold">{{ $product->price }} tk<span>
+
                                     </span></p>
                         @endif
                         @php
@@ -59,7 +59,7 @@
                         <a href="{{ route('front.view-cart', [$product->id]) }}" class="default-btn w-100 mb-3 f-s-22 custom_book_button_none">এখনই কিনুন</a>
                         {!! $product->description !!}
 
-                        <a href="{{ route('front.view-cart',[$product->id]) }}" class="default-btn w-100 f-s-24 custom_book_button_block">এখনই কিনুন</a>
+                        <a href="{{ route('front.view-cart',[$product->id]) }}" class="default-btn f-s-24 custom_book_button_block">এখনই কিনুন</a>
 
 
                     </div>

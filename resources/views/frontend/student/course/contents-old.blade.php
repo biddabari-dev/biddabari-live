@@ -39,7 +39,7 @@
                                                                 </a>
                                                             @endif
                                                             @if($courseSectionContent->content_type == 'video')
-                                                                    <a href="javascript:void(0)" class="w-100 show-video-modal" data-title="{{ $courseSectionContent->title }}" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-video-link="{{ $courseSectionContent->video_vendor == 'youtube' ? explode('https://www.youtube.com/watch?v=', $courseSectionContent->video_link)[1] : $courseSectionContent->video_link }}" data-video-vendor="{{ $courseSectionContent->video_vendor }}" data-content-id="{{ $courseSectionContent->id }}">
+                                                                    <a href="javascript:void(0)" class="w-100 open-video-modal" data-title="{{ $courseSectionContent->title }}" data-has-class-xm="{{ $courseSectionContent->has_class_xm }}" data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}" data-video-link="{{ $courseSectionContent->video_vendor == 'youtube' ? explode('https://www.youtube.com/watch?v=', $courseSectionContent->video_link)[1] : $courseSectionContent->video_link }}" data-video-vendor="{{ $courseSectionContent->video_vendor }}" data-content-id="{{ $courseSectionContent->id }}">
                                                                         <div class="accordion-content-list pt-2 pb-0">
                                                                             <div class="accordion-content-left">
 {{--                                                                                Video--}}
@@ -168,8 +168,7 @@
             </div>
         </div>
     </div>
-    {{-- old video model --}}
-    {{-- <div class="modal fade video-modal" id="videoModal" data-bs-backdrop="static" data-modal-parent="courseContentModal" >
+    <div class="modal fade video-modal" id="videoModal" data-bs-backdrop="static" data-modal-parent="courseContentModal" >
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content" >
                 <div class="modal-header">
@@ -192,49 +191,6 @@
                             </div>
 
 
-                        </div>
-                        <div class="vimeo d-none">
-                            <div style="padding:56.25% 0 0 0;position:relative;">
-                                <iframe id="vimeoPlayer" src="" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="mt-4 ms-4">
-                            <a href="" target="_blank" class="btn btn-success see-answer">See Answer</a>
-                        </div>
-                        <div class="mt-4">
-                            <div id="videoCommentDiv">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- new video model --}}
-    <div class="modal fade video-modal" id="videoModal" data-bs-backdrop="static" data-modal-parent="courseContentModal" >
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content" >
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Watch Class Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="close_video()" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-0">
-                    <div class="card card-body p-0">
-                        <div class="private d-none">
-                            <video class="w-100 video" height="500" controls="controls" controlist="nodownload">
-                                <source id="privatVid" src="//samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="youtube">
-                            <div class="video-container video_mobile_res" >
-                                <div class="video-foreground">
-                                        <div class="plyr__video-embed" id="player">
-                                            <iframe id="play-now" src="" allowfullscreen allowtransparency allow="autoplay"></iframe>
-                                        </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="vimeo d-none">
                             <div style="padding:56.25% 0 0 0;position:relative;">
@@ -281,37 +237,7 @@
         </div>
     </div>
 @endsection
-
 @push('style')
-{{-- connect to the plyr css --}}
-<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-<style>
-    /* Hide YouTube Controls and Share Options */
-    .plyr__video-embed iframe {
-        pointer-events: none;
-    }
-
-    /* Additional CSS to block unwanted interactions */
-    .plyr__video-embed {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid #eeeeee !important;
-    }
-
-    /* Transparent overlay to block interactions */
-    .plyr__video-embed::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-        z-index: 100;
-        pointer-events: none;
-    }
-
-</style>
     <style>
         .mcq-xm th {font-size: 24px}
         .mcq-xm td {font-size: 22px}
@@ -324,12 +250,26 @@
     <!--<link rel="stylesheet" href="{{ asset('/') }}backend/assets/plugins/pdf-draw/styles.css">-->
 
 
+
+
+
+
     <link rel="stylesheet" href="{{ asset('/') }}backend/ppdf/css/pdfviewer.jquery.css"/>
     <style>
         .pdf-toolbar {display: none;}
         #pdf-container {overflow: scroll; height: 500px;}
         .aks-video-player { width: 99%!important;}
     </style>
+
+
+
+
+
+
+
+{{--    <style>--}}
+{{--        .canvas-container, canvas { width: 100%!important; margin-top: 10px!important;}--}}
+{{--    </style>--}}
     <style>
         .my-box { width: 100%!important;}
         .canvas-container, canvas {
@@ -368,7 +308,7 @@
             left: 0;
             width: 100%;
             /*height: calc(80% + 100px);*/
-            /* height: 500px!important; */
+            height: 500px!important;
         }
         .video-foreground{
             pointer-events:auto;
@@ -421,10 +361,15 @@
 
     </style>
 
-    {{-- <link type="text/css" rel="stylesheet" href="https://unpkg.com/aksvideoplayer@1.0.0/dist/aksVideoPlayer.min.css"> --}}
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/aksvideoplayer@1.0.0/dist/aksVideoPlayer.min.css">
 @endpush
 
 @section('js')
+
+
+
+
+
 
 
 {{--    note--}}
@@ -467,9 +412,19 @@
         }
     }
 </script>
+    {{--    video --}}
+    <script src="https://player.vimeo.com/api/player.js"></script>
 
-<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+
+{{--    <script src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>--}}
+{{--    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>--}}
+    <script src="https://unpkg.com/aksvideoplayer@1.0.0/dist/aksVideoPlayer.min.js"></script>
+
+
+
+
     <script>
+
         $(document).on('click', '.open-video-modal', function () {
             var status = checkHasClassXm($(this));
             var has_exam = $(this).data('has-class-xm');
@@ -571,132 +526,18 @@
                 }
 
             } else {
+
                 return false;
             }
         })
-
-        $(function(){
-            // Disable right-click for the entire page
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-            });
-
-            // Disable text selection
-            document.body.style.userSelect = 'none';
-
-            // Disable access to developer tools and prevent copying via key events
-            document.addEventListener('keydown', function(e) {
-                if (e.ctrlKey || e.key === 'F12') {
-                    e.preventDefault();
-                }
-            });
-        });
-        // Global variable to store the Plyr instance
-        let player;
-
-        $(document).on('click', '.show-video-modal', function () {
-            var status = checkHasClassXm($(this));
-            var has_exam = $(this).data('has-class-xm');
-            var title = $(this).data('title');
-            //console.log('title...........', title);
-
-            if (has_exam != 1) {
-                $('.see-answer').hide();
-            }
-
-            if (status == true) {
-                var contentId = $(this).attr('data-content-id');
-                var videoVendor = $(this).attr('data-video-vendor');
-                var videoLink = $(this).attr('data-video-link');
-               // console.log('videoLink............', videoLink);
-
-                // Construct the correct embed URL based on the video vendor
-                var embedUrl = (videoVendor == 'youtube')
-                    ? 'https://www.youtube.com/embed/' + videoLink + '?origin=https://plyr.io&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1'
-                    : videoLink;
-
-                // Update the src attribute dynamically
-                $('#play-now').attr('src', embedUrl);
-                if (videoVendor == 'youtube') {
-                    $('.see-answer').attr('href', '/student/show-course-class-exam-answers/' + contentId + '/' + title);
-                }
-
-                // Initialize Plyr player instance
-                if (player) {
-                    player.destroy(); // Destroy the previous instance to avoid conflicts
-                }
-                player = new Plyr('#player', {
-                    controls: [
-                        'play-large',
-                        'rewind',
-                        'play',
-                        'fast-forward',
-                        'progress',
-                        'current-time',
-                        'duration',
-                        'mute',
-                        'volume',
-                        'settings',
-                        'fullscreen',
-                    ],
-                    settings: ['quality', 'speed'],
-                    youtube: {
-                        controls: 0,
-                        noCookie: true,
-                        rel: 0,
-                        modestbranding: 1,
-                    }
-                });
-                // Wait for the Plyr player to be ready and then access the YouTube player
-                player.on('ready', (event) => {
-                    const youtubePlayer = event.detail.plyr.embed; // Access the YouTube player object
-
-                    // Check if the YouTube player is ready and set the quality
-                    youtubePlayer.addEventListener('onReady', () => {
-                        youtubePlayer.setPlaybackQuality('hd720'); // Set the desired quality (e.g., 'hd720', 'hd1080')
-                    });
-                });
-
-                $('.video-modal').modal('show'); // Show the modal
-            } else {
-                return false;
-            }
-
-            // Disable right-click for the entire page
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-            });
-
-            // Disable text selection
-            document.body.style.userSelect = 'none';
-
-            // Disable access to developer tools and prevent copying via key events
-            document.addEventListener('keydown', function(e) {
-                if (e.ctrlKey || e.key === 'F12') {
-                    e.preventDefault();
-                }
-            });
-        });
-
-        // Clear the src and destroy the player when the modal is hidden
-        $('.video-modal').on('hidden.bs.modal', function () {
-            if (player) {
-                player.destroy(); // Destroy the Plyr instance
-                player = null; // Reset the player variable
-            }
-            $('#play-now').attr('src', ''); // Clear the src to stop video playback
-        });
-
-        // Clear the src when the modal is hidden to stop the video playback
-        $('.video-modal').on('hidden.bs.modal', function () {
-            $('#play-now').attr('src', ''); // Clear the src to stop video playback
-        });
-
     </script>
 
     <script>
         function close_video(){
-            $("#video").empty();
+
+            $("#video").empty()
+
+
         }
     </script>
 
@@ -787,5 +628,7 @@
         }
 
     </script>
-@endsection
 
+
+
+@endsection

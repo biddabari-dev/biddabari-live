@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend\CourseManagement\Course;
 use App\helper\ViewHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\BatchExamManagement\BatchExamResult;
+use App\Models\Backend\Course\CategoryWiseAssignVideo;
+use App\Models\Backend\Course\CourseCategory;
 use App\Models\Backend\Course\CourseClassExamResult;
 use App\Models\Backend\Course\CourseExamResult;
 use App\Models\Backend\Course\CourseSection;
@@ -148,6 +150,33 @@ class CourseSectionContentController extends Controller
             'examType'  => $request->exam_type,
             'questionTopics'    => QuestionTopic::whereStatus(1)->where('question_topic_id', 0)->whereType($request->exam_type == 'exam' ? 'mcq' : 'written')->select('id', 'question_topic_id', 'name')->get(),
         ]);
+    }
+    public function getCategoryForAssignVideo (Request $request)
+    {
+        abort_if(Gate::denies('add-question-to-course-section-content'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        return view('backend.course-management.course.section-contents.add-category-to-contents-video', [
+            'content'   => CourseSectionContent::find($request->section_content_id),
+            'examType'  => $request->exam_type,
+            'categories'    => CourseCategory::whereStatus(1)->where('parent_id', 0)->where('name', '!=', 'Free Course')->select('id', 'name')->get(),
+        ]);
+    }
+
+    public function categoryForAssignVideo(Request $request){
+        abort_if(Gate::denies('add-question-to-course-section-content'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $thumbnail = imageUpload($request->file('thumbnail'), 'course/course-banners/', 'courses', '300', '200');
+        $assign = CategoryWIseAssignVideo::create([
+            'type' => $request->type,
+            'category_id' => $request->category_id,
+            'thumbnail' => $thumbnail,
+            'section_content_id' => $request->section_content_id ? $request->section_content_id : null,
+            'exam_id' => $request->exam_id ? $request->exam_id : null,
+        ]);
+
+        if($assign){
+            return back()->with('success', 'Course Created Successfully.');
+        }else{
+            return back()->with('warning', 'Something wrong!');
+        }
     }
 
     public function getContentForAddClassQuestion (Request $request)
