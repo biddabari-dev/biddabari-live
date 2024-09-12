@@ -90,6 +90,7 @@ function userCertificateUpload ($fileObject, $directory, $nameString = null)
 
 function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl = null)
 {
+    // dd($nameString);
     if ($fileObject)
     {
         if (isset($modelFileUrl))
@@ -101,6 +102,8 @@ function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl 
         }
         $fileName       = mt_rand(1,5555555555555555555).'.'.$fileObject->extension();
         $fileDirectory  = 'backend/assets/uploaded-files/'.$directory;
+        // $fileObject->move($fileDirectory, $fileName);
+
         $prefix = '';
         $config = [
             'key' => '7NBPYLX5IMJMXEVUAMJR',
@@ -120,18 +123,48 @@ function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl 
         $adapter = new ObsAdapter($client, $config['bucket'], $prefix, null, null, $config['options']);
         $flysystem = new Filesystem($adapter);
 
-        $result = $client->putObject([
-            'Bucket' => 'biddabari-bucket',
-            'Key' => $fileDirectory.'/'.$fileName,
-            'SourceFile' => $fileObject,
-            ]);
+        // dd(env('OBS_BUCKET'));
+
+        // dd($nameString);
+
+        // if ($nameString == 'question') {
+        //     # code...
+        //     $result = $client->putObject([
+        //         'Bucket' => 'biddabari-bucket',
+        //         'Key' => $fileDirectory.'/'.$fileName,
+        //         'SourceFile' => $fileObject,
+        //         ]);
+        // }elseif($nameString == 'section-content'){
+            # code...
+            $result = $client->putObject([
+                'Bucket' => 'biddabari-bucket',
+                'Key' => $fileDirectory.'/'.$fileName,
+                'SourceFile' => $fileObject,
+                ]);
+        // }else {
+        //     # code...
+        //     $result = $client->putObject([
+        //         'Bucket' => 'biddabari-bucket',
+        //         'Key' => $fileDirectory.$fileName,
+        //         'SourceFile' => $fileDirectory.$fileName,
+        //         ]);
+        // }
+
 
             if (file_exists($fileDirectory.$fileName))
             {
                 unlink($fileDirectory.$fileName);
             }
-            return $fileDirectory.'/'.$fileName;
 
+
+            // if ($nameString == 'question') {
+            //     return $fileDirectory.'/'.$fileName;
+            // }elseif ($nameString == 'section-content') {
+                return $fileDirectory.'/'.$fileName;
+            // }else {
+            //     # code...
+            //     return $fileDirectory.$fileName;
+            // }
     } else {
         if (isset($modelFileUrl))
         {
@@ -191,12 +224,5 @@ function file_exists_obs($url)
     }else{
         return false;
     }
-}
 
-function moveFile($file, $directory)
-{
-    $destinationPath = public_path($directory);
-    $fileName = time() . '-' . $file->getClientOriginalName();
-    $file->move($destinationPath, $fileName);
-    return $directory . $fileName;
 }

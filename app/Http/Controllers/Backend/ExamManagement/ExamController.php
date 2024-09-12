@@ -213,6 +213,7 @@ class ExamController extends Controller
 
     public function checkExamPaper($id = null, $typeOf = null, $sectionContentType = null)
     {
+       //return CourseExamResult::find($id);
 //      $file=  $typeOf == 'course' ? ($sectionContentType == 'written' ? CourseExamResult::find($id) : AssignmentFile::find($id)) : BatchExamResult::find($id);
 //
 //      return $file->file;

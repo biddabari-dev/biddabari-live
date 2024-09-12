@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-12">
             <div class="my-box mx-auto mt-5" style="position: relative!important; height: auto;">
@@ -83,15 +83,16 @@
                     <div class="tool">
                         <button class="btn btn-danger btn-sm" onclick="clearPage()">Clear Page</button>
                     </div>
-{{--                                                <div class="tool">--}}
-{{--                                                    <button class="btn btn-info btn-sm" onclick="showPdfData()">{}</button>--}}
-{{--                                                </div>--}}
+                    {{-- <div class="tool">
+                        <button class="btn btn-info btn-sm" onclick="showPdfData()">show</button>
+                    </div> --}}
                     <div class="tool">
                         <button class="btn btn-primary btn-sm" onclick="savePDF()"><i class="fa fa-save"></i> Save</button>
                     </div>
                 </div>
-                <div id="pdf-container">
 
+                <div id="pdf-container">
+                    <a href="{{ asset($examSheet->written_xm_file) }}">download</a>
                 </div>
             </div>
         </div>

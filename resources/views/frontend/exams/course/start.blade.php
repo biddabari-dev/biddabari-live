@@ -1,6 +1,65 @@
 @extends('frontend.master')
 
 @section('body')
+@push('style')
+<style>
+    /* Hide all toolbar buttons initially */
+    .pdf-toolbar-btn {
+        display: none;
+    }
+
+    /* Show only the print, download buttons, and zoom dropdown */
+    #btn-print, #btn-download, .pdf-toolbar-zoom {
+        display: inline-block; /* Ensure these elements are shown */
+    }
+
+    /* Style the toolbar container */
+    .pdf-toolbar {
+        display: flex;
+        align-items: center;
+        background-color: #333; /* Dark background for the toolbar */
+        color: #fff; /* White text color */
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    /* Style the title (optional) */
+    .pdf-toolbar-title {
+        display: none;
+    }
+
+    /* Style the visible buttons */
+    #btn-print, #btn-download {
+        background-color: #555; /* Darker button background */
+        border: none;
+        color: #fff;
+        padding: 5px 10px;;
+        margin: 0 2px;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    /* Change button color on hover */
+    #btn-print:hover, #btn-download:hover {
+        background-color: #777;
+    }
+
+    /* Style the zoom dropdown */
+    .pdf-toolbar-zoom {
+        background-color: #555;
+        color: #fff;
+        border: 1px solid #555;
+        border-radius: 3px;
+        padding: 5px;
+        margin: 0 5px;
+    }
+    input[type="number"], select {
+        display: none;
+    }
+    </style>
+
+@endpush
 <div class="container-fluid" id="grad1">
     <div class="row" style=" min-height: 500px;">
         <div class="col-md-8 quiz-wizard mx-auto">
@@ -95,7 +154,6 @@
                                                 <h4 class="float-start fw-bold">{!! $question->question !!}</h4>
                                                 <div class="mt-3">
                                                     @if($question->question_file_type == 'pdf')
-                                                        <div class="my-2 d-grid"><a href="{{ asset($question->question_image) }}" download="" class="btn btn-sm btn-success text-warning col-md-3 col-sm-6 ms-auto">Download</a></div>
                                                         <div id="pdf-container" data-pdf-url="{{ asset($question->question_image) }}"></div>
                                                     @else
                                                         <img src="{{ asset($question->question_image) }}" alt="" style="max-height: 400px; width: 94%;">
@@ -104,13 +162,12 @@
                                             </div>
                                         </div>
                                     @endforeach
-
                                     <div class="row mt-3">
 
                                         <div class="col-md-12 ">
                                             <div class="ansFileUpload"></div>
                                         </div>
-                                        <div class="col-md-4 mx-auto mt-5">
+                                        <div class="col-md-4 mx-auto mt-3 mb-3">
                                             {{-- <a href="" class="btn btn-danger ">Finish Test</a> --}}
                                             <a href="" class="sticky-submit-btn btn btn-danger w-100 f-s-20">Submit</a>
                                         </div>
@@ -119,6 +176,7 @@
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -472,6 +530,7 @@
     $(function (){
         $('.ansFileUpload').imageUploader({
             imagesInputName: "ans_files",
+            preloadedInputName:'preloaded',
             label: "Drag & Drop Answer Image files here or click to browse"
         });
     })

@@ -28,7 +28,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Response;
@@ -363,51 +362,30 @@ class FrontExamController extends Controller
 
                 if (isset($request->ans_files))
                 {
-                    if (!empty($request->file('ans_files'))) {
-                        foreach ($request->file('ans_files') as $ans_file) {
-                            $imageUrl = moveFile($ans_file, 'course-xm-temp-file-upload/');
+                    if (!empty($request->file('ans_files')))
+                    {
+                        foreach ($request->file('ans_files') as $ans_file)
+                        {
+
+                            $imageUrl = imageUpload($ans_file, 'course-xm-temp-file-upload/', 'tmp', 600, 800);
                             array_push($this->fileSessionPaths, $imageUrl);
-                            $this->filePathString .= escapeshellarg(str_replace('\\', '/', public_path($imageUrl))) . ' ';
+//                            $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.($imageUrl).' ';
+                            $this->filePathString .= public_path($imageUrl).' ';
                         }
-
-                        $this->pdfFilePath = 'backend/assets/uploaded-files/course-written-xm-ans-files/' . rand(10000, 99999) . time() . '.pdf';
-                        $pdfFilePath = public_path($this->pdfFilePath);
-
-                        // Ensure the directory exists
-                        if (!File::isDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files'))) {
+                        $this->pdfFilePath = 'backend/assets/uploaded-files/course-written-xm-ans-files/'.rand(10000,99999).time().'.pdf';
+                        if (!File::isDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files')))
+                        {
                             File::makeDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files'), 0777, true, true);
                         }
-                        // Build the command
-                        $command = 'convert ' . trim($this->filePathString) . ' ' . escapeshellarg(str_replace('\\', '/', $pdfFilePath));
+//                        exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
 
-                        // Execute the command and capture the output
-                        $output = shell_exec($command . ' 2>&1');
-                        Log::info('Conversion command: ' . $command);
-                        Log::error('Conversion output: ' . $output);
-
-                        // Check if PDF was created
-                        if (file_exists($pdfFilePath)) {
-                            $pdfFileObject = new \Illuminate\Http\File($pdfFilePath);
-                            $pdfFilePathInBucket = $this->fileUpload($pdfFileObject, 'course-written-xm-ans-files');
-
-                            if ($pdfFilePathInBucket) {
-                                return 'File uploaded successfully: ' . $pdfFilePathInBucket;
-                            } else {
-                                return 'File upload failed';
-                            }
-                        } else {
-                            return 'PDF file does not exist: ' . $pdfFilePath;
-                        }
-
-                        // Clean up temporary files
-                        foreach ($this->fileSessionPaths as $fileSessionPath) {
-                            if (file_exists($fileSessionPath)) {
+                        shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
+                        foreach ($this->fileSessionPaths as $fileSessionPath)
+                        {
+                            if (file_exists($fileSessionPath))
+                            {
                                 unlink($fileSessionPath);
                             }
-                        }
-
-                        if (file_exists($pdfFilePath)) {
-                            unlink($pdfFilePath);
                         }
                     }
                 }
@@ -439,7 +417,7 @@ class FrontExamController extends Controller
     }
     public function getCourseExamResult(Request $request, $contentId, $slug = null)
     {
-       // try {
+        try {
             $existExam = CourseExamResult::where(['user_id' => ViewHelper::loggedUser()->id, 'course_section_content_id' => $contentId])->first();
             if (isset($existExam) && !empty($existExam))
             {
@@ -452,10 +430,10 @@ class FrontExamController extends Controller
             }
             return $this->commonGetCourseExamResul($request, $contentId, $slug = null);
 
-        // } catch (\Exception $exception)
-        // {
-        //     return ViewHelper::returEexceptionError($exception->getMessage());
-        // }
+        } catch (\Exception $exception)
+        {
+            return ViewHelper::returEexceptionError($exception->getMessage());
+        }
 
     }
     public function getCourseClassExamResult(Request $request, $contentId, $slug = null)
