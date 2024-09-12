@@ -343,7 +343,7 @@ class FrontExamController extends Controller
                 {
                     if (!empty($request->file('ans_files'))) {
                         foreach ($request->file('ans_files') as $ans_file) {
-                            $imageUrl = moveFile($ans_file, 'course-xm-temp-file-upload/');
+                            $imageUrl = moveFile($ans_file, 'backend/assets/uploaded-files/course-xm-temp-file-upload/');
                             array_push($this->fileSessionPaths, $imageUrl);
                             $this->filePathString .= escapeshellarg(str_replace('\\', '/', public_path($imageUrl))) . ' ';
                         }
