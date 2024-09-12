@@ -345,8 +345,7 @@ class FrontExamController extends Controller
                         foreach ($request->file('ans_files') as $ans_file) {
                             $imageUrl = moveFile($ans_file, 'course-xm-temp-file-upload/');
                             array_push($this->fileSessionPaths, $imageUrl);
-//                            $this->filePathString .= $_SERVER['DOCUMENT_ROOT'].'/'.($imageUrl).' ';
-                            $this->filePathString .= public_path($imageUrl).' ';
+                            $this->filePathString .= escapeshellarg(str_replace('\\', '/', public_path($imageUrl))) . ' ';
                         }
 
                         $this->pdfFilePath = 'backend/assets/uploaded-files/course-written-xm-ans-files/' . rand(10000, 99999) . time() . '.pdf';
@@ -356,13 +355,32 @@ class FrontExamController extends Controller
                         if (!File::isDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files'))) {
                             File::makeDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files'), 0777, true, true);
                         }
-//                        exec('convert '. $this->filePathString.$_SERVER['DOCUMENT_ROOT'].'/'.$this->pdfFilePath);
 
-                        shell_exec('convert '. $this->filePathString.public_path($this->pdfFilePath));
-                        foreach ($this->fileSessionPaths as $fileSessionPath)
-                        {
-                            if (file_exists($fileSessionPath))
-                            {
+                        // Build the command
+                        $command = 'convert ' . trim($this->filePathString) . ' ' . escapeshellarg(str_replace('\\', '/', $pdfFilePath));
+
+                        // Execute the command and capture the output
+                        $output = shell_exec($command . ' 2>&1');
+                        Log::info('Conversion command: ' . $command);
+                        Log::error('Conversion output: ' . $output);
+
+                        // Check if PDF was created
+                        if (file_exists($pdfFilePath)) {
+                            $pdfFileObject = new \Illuminate\Http\File($pdfFilePath);
+                            $pdfFilePathInBucket = $this->fileUpload($pdfFileObject, 'course-written-xm-ans-files');
+
+                            if ($pdfFilePathInBucket) {
+                                return 'File uploaded successfully: ' . $pdfFilePathInBucket;
+                            } else {
+                                return 'File upload failed';
+                            }
+                        } else {
+                            return 'PDF file does not exist: ' . $pdfFilePath;
+                        }
+
+                        // Clean up temporary files
+                        foreach ($this->fileSessionPaths as $fileSessionPath) {
+                            if (file_exists($fileSessionPath)) {
                                 unlink($fileSessionPath);
                             }
                         }
