@@ -326,4 +326,5 @@ class Course extends Model
     {
         return $this->hasManyThrough(CourseSectionContent::class, CourseSection::class);
     }
+
 }
