@@ -84,7 +84,7 @@ class CourseSection extends Model
 
     public function courseSectionContents()
     {
-        return $this->hasMany(CourseSectionContent::class)->orderBy('order', 'ASC');
+        return $this->hasMany(CourseSectionContent::class)->orderBy('order', 'DESC');
     }
     public function courseSectionContentsWithCustomColumns()
     {

@@ -8,7 +8,7 @@
             <div class="card card-body">
                 <form action="{{ route('update-written-xm-result', ['id' => $examSheet->id, 'examOf' => $examOf, 'sectionContentType' => $sectionContentType]) }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="row" >
+                    <div class="row">
                         <div class="col select2-div">
                             <label for="">Total Mark</label>
                             <input type="text" class="form-control" name="result_mark" />
@@ -18,7 +18,7 @@
                             <input type="file" class="form-control" name="written_xm_file" accept="application/pdf" />
                         </div>
                         <div class="col-auto">
-                            <input type="submit" class="btn btn-success ms-4 " style="margin-top: 18px" value="Update" />
+                            <input type="submit" class="btn btn-success ms-4" style="margin-top: 18px" value="Update" />
                         </div>
                     </div>
                 </form>
@@ -92,7 +92,7 @@
                 </div>
 
                 <div id="pdf-container">
-                    <a href="{{ asset($examSheet->written_xm_file) }}">download</a>
+
                 </div>
             </div>
         </div>
@@ -110,6 +110,8 @@
 @endpush
 
 @push('script')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
     <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.3.0/fabric.min.js"></script>

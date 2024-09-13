@@ -22,7 +22,7 @@ use Illuminate\Http\Request;
 
 class ExamController extends Controller
 {
-    private $questions, $exam, $exams, $examSheets = [], $examResults = [], $enrolledUsers = [], $xmParticipateUsers = [], $presentStudents = [], $absentStudents = [];
+    private $questions, $exam, $sectionContent, $exams, $examSheets = [], $examResults = [], $enrolledUsers = [], $xmParticipateUsers = [], $presentStudents = [], $absentStudents = [];
 
     /**
      * Display a listing of the resource.

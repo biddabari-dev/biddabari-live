@@ -37,7 +37,7 @@ use function PHPUnit\Framework\directoryExists;
 class FrontExamController extends Controller
 {
     protected float $resultNumber;
-    protected $questions = [], $exams = [], $exam, $examCategory, $examCategories = [], $subscriptions = [], $courseExamResults = [];
+    protected $questions = [], $exams = [], $exam, $type, $examCategory, $examCategories = [], $subscriptions = [], $courseExamResults = [];
     protected $xmResult, $data = [], $courseSection, $courseSections = [], $sectionContent, $sectionContents = [];
     protected $examResult, $totalRightAns, $totalWrongAns, $totalProvidedAns, $question, $questionOption, $questionJson=[], $fileSessionPaths = [], $filePathString, $pdfFilePath;
     public function xmTestForDev ()
@@ -247,7 +247,7 @@ class FrontExamController extends Controller
                 {
                     foreach ($request->file('ans_files') as $ans_file)
                     {
-                        $imageUrl = imageUpload($ans_file, 'xm-temp-file-upload/', 'tmp-', 600, 800);
+                        $imageUrl = imageUpload($ans_file, 'backend/assets/uploaded-files/course-xm-temp-file-upload/', 'tmp-', 600, 800);
                         array_push($this->fileSessionPaths, $imageUrl);
                         $this->filePathString .= public_path($imageUrl).' ';
                     }
@@ -363,22 +363,13 @@ class FrontExamController extends Controller
 
                         // Execute the command and capture the output
                         $output = shell_exec($command . ' 2>&1');
-                        Log::info('Conversion command: ' . $command);
-                        Log::error('Conversion output: ' . $output);
-                        // dd($output);
 
                         // Check if PDF was created
                         if (file_exists($pdfFilePath)) {
                             $pdfFileObject = new \Illuminate\Http\File($pdfFilePath);
-                            $pdfFilePathInBucket = $this->fileUpload($pdfFileObject, 'course-written-xm-ans-files');
-
-                            if ($pdfFilePathInBucket) {
-                                return 'File uploaded successfully: ' . $pdfFilePathInBucket;
-                            } else {
-                                return 'File upload failed';
-                            }
+                            $pdfFilePathInBucket = fileUpload($pdfFileObject, 'course-written-xm-ans-files');
                         } else {
-                            return 'PDF file does not exist: ' . $pdfFilePath;
+                            return back()->with('error', 'PDF file does not exist');
                         }
 
                         // Clean up temporary files
@@ -397,7 +388,7 @@ class FrontExamController extends Controller
                     'course_section_content_id'       => $contentId,
                     'user_id'       => ViewHelper::loggedUser()->id,
                     'xm_type'       => $this->exam->content_type,
-                    'written_xm_file'       => $this->pdfFilePath,
+                    'written_xm_file'       => $pdfFilePathInBucket,
                     'is_reviewed'       => 0,
                     'required_time'       => $request->required_time ?? 0,
                     'status'        =>  'pending',
