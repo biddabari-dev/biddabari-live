@@ -168,6 +168,7 @@ class QuestionStoreController extends Controller
                 return back()->with('success', 'Questions imported successfully.');
             } elseif ($type == 'MCQ') {
                 $this->fileArray = Excel::toArray(new McqQuestionImport(), $request->file('import_file'));
+                //dd($this->fileArray);
                 foreach ($this->fileArray[0] as $item)
                 {
                     if ($item['question'])
@@ -183,6 +184,7 @@ class QuestionStoreController extends Controller
                         $questionStore->question_type = $type;
                         $questionStore->question = $item['question'];
                         $questionStore->question_description = $item['question_description'];
+                        $questionStore->mcq_ans_description = $item['option_description'];
 //                    $questionStore->question_mark = $item['question_mark'];
 //                    $questionStore->negative_mark = $item['negative_mark'];
                         $questionStore->has_all_wrong_ans = $item['has_all_wrong_ans'];
