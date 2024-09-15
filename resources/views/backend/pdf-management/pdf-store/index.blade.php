@@ -122,16 +122,6 @@
 <script src="{{ asset('/') }}backend/assets/plugins/pdf-draw/pdfannotate.js"></script>
 {{--    <script src="{{ asset('/') }}backend/assets/plugins/pdf-draw/functions.js"></script>--}}
 <script>
-    {{--var pdf = new PDFAnnotate("pdf-container", "{{ !empty($sectionContent->pdf_link) ? $sectionContent->pdf_link : asset($sectionContent->pdf_file) }}", {--}}
-    {{--    onPageUpdated(page, oldData, newData) {--}}
-    {{--        console.log(page, oldData, newData);--}}
-    {{--    },--}}
-    {{--    ready() {--}}
-    {{--        console.log("Plugin initialized successfully");--}}
-    {{--    },--}}
-    {{--    scale: 1.5,--}}
-    {{--    pageImageCompression: "MEDIUM", // FAST, MEDIUM, SLOW(Helps to control the new PDF file size)--}}
-    {{--});--}}
 
     function changeActiveTool(event) {
         var element = $(event.target).hasClass("tool-button")
@@ -275,40 +265,6 @@
     })
 </script>
 
-    {{--    store course--}}
-    <script>
-        $(document).on('click', '.submit-btn', function () {
-            event.preventDefault();
-            var form = $('#coursesForm')[0];
-            var formData = new FormData(form);
-            $.ajax({
-                url: "{{ route('pdf-stores.store') }}",
-                method: "POST",
-                data: formData,
-                dataType: "JSON",
-                contentType: false,
-                processData: false,
-                success: function (message) {
-                    // console.log(message);
-                    toastr.success(message);
-                    $('#coursesModal').modal('hide');
-                    window.location.reload();
-                },
-                error: function (errors) {
-                    if (errors.responseJSON)
-                    {
-                        $('span[class="text-danger"]').empty();
-                        var allErrors = errors.responseJSON.errors;
-                        for (key in allErrors)
-                        {
-                            $('#'+key).empty().append(allErrors[key]);
-                        }
-                    }
-                }
-            })
-        })
-    </script>
-
 {{--    edit course category--}}
     <script>
         $(document).on('click', '.edit-btn', function () {
@@ -380,14 +336,6 @@
             $('#'+selectorId).text('');
         }
     })
-    {{--        // date time error empty not working--}}
-    {{--        // $(document).on('click', '#dateTime', function () {--}}
-    {{--        //     var selectorId = $(this).attr('name');--}}
-    {{--        //     alert('hi');--}}
-    {{--        //     if ($('#'+selectorId).text().length)--}}
-    {{--        //     {--}}
-    {{--        //         $('#'+selectorId).text('');--}}
-    {{--        //     }--}}
-    {{--        // })--}}
+
 </script>
 @endpush
