@@ -148,7 +148,7 @@
                             @empty
                                 <div class="col-md-12">
                                     <div class="card card-body">
-                                        <h2 class="text-center">No Classes Available yet.</h2>
+                                        <h2 class="text-center">No Exam Available yet.</h2>
                                     </div>
                                 </div>
                             @endforelse

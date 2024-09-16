@@ -181,7 +181,7 @@
                     @endif
                 @endif
 {{--                @if( \Illuminate\Support\Carbon::parse($content->exam_end_time)->format('Y-m-d H:i') < \Illuminate\Support\Carbon::now()->format('Y-m-d H:i'))--}}
-                @if( dateTimeFormatYmdHi($content->exam_end_time) < currentDateTimeYmdHi())
+                @if(dateTimeFormatYmdHi($content->exam_end_time) < currentDateTimeYmdHi())
                     <div class="callout-danger py-2 " style="border-left: 3px solid red">
                         <span class="f-s-22 py-0">Exam Has ended</span>
                     </div>
@@ -189,6 +189,7 @@
 {{--                            <a href="{{ route('front.student.show-course-exam-answers', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-warning border" style="background-color: #f18345!important; border: 1px solid #F18345!important; color: white">See Answers</a>--}}
 {{--                    </div>--}}
                 @endif
+                @if($participateStatus == 'true')
                 <div>
 {{--                    @if(dateTimeFormatYmdHi($content->exam_result_publish_time) < currentDateTimeYmdHi())--}}
                     @if($participateStatus == 'true' || $content->exam_result_publish_time_timestamp < strtotime(currentDateTimeYmdHi()))
@@ -200,6 +201,7 @@
                         <a href="{{ route('front.student.show-course-exam-ranking', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-primary">See Ranking</a>
                     @endif
                 </div>
+                @endif
             </div>
         </div>
     @endif
@@ -255,7 +257,7 @@
                     @endif
                 @endif
 {{--                @if( \Illuminate\Support\Carbon::parse($content->written_end_time)->format('Y-m-d H:i') < \Illuminate\Support\Carbon::now()->format('Y-m-d H:i'))--}}
-                @if( dateTimeFormatYmdHi($content->written_end_time) < currentDateTimeYmdHi())
+                @if(dateTimeFormatYmdHi($content->written_end_time) < currentDateTimeYmdHi())
                     <div class="bg-danger py-4">
                         <p class="text-white ">Exam Has ended</p>
                     </div>

@@ -143,9 +143,9 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                        {{-- <div class="card-actions d-flex align-items-center finish-div d-none">
-                                            <button type="submit" class="action-button finish btn btn-danger">Finish Test</button>
-                                        </div> --}}
+                                    {{-- <div class="card-actions d-flex align-items-center finish-div d-none">
+                                        <button type="submit" class="action-button finish btn btn-danger">Finish Test</button>
+                                    </div> --}}
                                 @elseif($exam->content_type == 'written_exam')
                                     @foreach($exam->questionStores as $index => $question)
                                         <div class="row mt-2">
@@ -176,13 +176,16 @@
                             </form>
                         </div>
                     </div>
-
+                @if($exam->content_type == 'exam')
+                    <div class="col-md-8 text-center mt-3 mx-auto mb-3">
+                        {{-- <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a> --}}
+                        <a href="" class="sticky-submit-btn btn btn-danger btn-outline-warning w-50 f-s-20 d-none">Submit</a>
+                    </div>
+                @endif
                 </div>
             </div>
         </div>
-        {{-- <div class="col-md-8 text-center">
-            <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a>
-        </div> --}}
+
     </div>
 </div>
 

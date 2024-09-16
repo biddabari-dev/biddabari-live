@@ -6,7 +6,7 @@
                     <i class="ri-phone-fill"></i>
                 </div>
                 <div class="icon_no">
-                    <a href="tel:++8801896060809">+8801896060800</a>
+                    <a href="tel:+8809644433300">09644433300</a>
                 </div>
             </div>
             <div class="custome_col-6 bg-danger d-flex">
@@ -59,7 +59,7 @@
                         <ul>
                             <li>
                                 <i class="ri-phone-fill"></i>
-                                <a href="tel:++8801896060809">+8801896060800</a>
+                                <a href="tel:+8809644433300">09644433300</a>
                             </li>
                             <li class="bg-danger" style="margin-right: 0px">
                                 <i class="fa-brands fa-google-play"></i>

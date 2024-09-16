@@ -3,7 +3,7 @@
 
 <head>
     @php $css_rand=rand(111,999); @endphp
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,7 @@
     {!! isset($siteSettings->default_seo_code_on_header) ? $siteSettings->default_seo_code_on_header : '' !!}
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/css/plugins.css">
 
-    <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="{{ asset('/') }}frontend/logo/favicon/favicon-32x32.png">
     <link rel="stylesheet" href="{{ asset('/') }}frontend/assets/news-tinker/style.min.css" />
     <link rel="stylesheet" href="/frontend/assets/css/iconplugins.css">
 
