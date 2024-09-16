@@ -405,8 +405,6 @@
             height: 440px;
             overflow: hidden;
             position: relative;
-
-
             padding-bottom: 56.25%;
             padding-top: 25px;
             /*height: 0;*/
@@ -414,10 +412,10 @@
 
         .video-container iframe {
             position: absolute;
-            top: -60px;
+            /* top: -60px; */
             left: 0;
             width: 100%;
-            /*height: calc(80% + 100px);*/
+            height: calc(80% + 100px);
             /* height: 500px!important; */
         }
 
