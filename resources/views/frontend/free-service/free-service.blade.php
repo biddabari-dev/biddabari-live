@@ -18,6 +18,7 @@ Biddabari - All Course
                 <div class="card card-body border-0 rounded-0">
                     <div class="row cat_mobile_res">
                     @foreach($courseCategories as $courseCategory)
+                        @if($courseCategory->id != 157)
                         <div class="col-md-3 col-m-6">
                             <div class="categories-item">
                                 <a href="{{ route('front.free.course', ['slug' => $courseCategory->slug]) }}">
@@ -28,11 +29,12 @@ Biddabari - All Course
                                 <div class="content">
                                     <a href="{{ route('front.free.course', ['slug' => $courseCategory->slug]) }}">
                                         <i class="{{ $courseCategory->icon ?? 'flaticon-web-development' }}"></i>
-                                        <h3>{{ 'Free' }}</h3>
+                                        <h3>{{ 'ফ্রি শিখুন' }}</h3>
                                     </a>
                                 </div>
                             </div>
                         </div>
+                        @endif
                     @endforeach
                     </div>
                 </div>
