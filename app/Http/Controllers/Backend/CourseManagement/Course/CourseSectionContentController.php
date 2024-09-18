@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend\CourseManagement\Course;
 use App\helper\ViewHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\BatchExamManagement\BatchExamResult;
-use App\Models\Backend\Course\CategoryWiseAssignVideo;
+use App\Models\Backend\Course\CategoryWIseAssignVideo;
 use App\Models\Backend\Course\CourseCategory;
 use App\Models\Backend\Course\CourseClassExamResult;
 use App\Models\Backend\Course\CourseExamResult;
