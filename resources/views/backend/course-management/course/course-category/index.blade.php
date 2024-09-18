@@ -71,9 +71,9 @@
                        @else
                        <h5 class="modal-title" id="exampleModalLabel">Create Course Category</h5>
                        @endif
-                      
-                      
-                        
+
+
+
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                     </div>
 
@@ -126,6 +126,11 @@
                                 <input type="file" name="image" id="categoryImage" accept="images/*">
                                 <span class="text-danger" id="image"></span>
                             </div>
+                            <div class="col-md-4 mt-2">
+                                <label for="">Second Image <span class="text-red"> [300 x 200 pixels (WEBP format)] </span> </label>
+                                <input type="file" name="second_image" id="categoryImage2" accept="images/*">
+                                <span class="text-danger" id="second_image"></span>
+                            </div>
 
                             <div class="col-md-6 mt-2">
                                 <label for="">Banner Image ALT text</label>
@@ -143,6 +148,11 @@
                             <div class="col-md-4 mt-2">
                                 <div>
                                     <img src="" id="imagePreview" style=""/>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-2">
+                                <div>
+                                    <img src="" id="imagePreview2" style=""/>
                                 </div>
                             </div>
                         </div>
@@ -285,8 +295,8 @@
                 success: function (message) {
                     console.log('Success Response:', message); // Debugging statement
                     toastr.success(message);
-                    $('#courseCategoryModal').modal('hide');
-                    window.location.reload();
+                    //$('#courseCategoryModal').modal('hide');
+                    //window.location.reload();
                 },
                 error: function (errors) {
                     console.log('Error Response:', errors); // Debugging statement
@@ -368,6 +378,15 @@
             $('#categoryImage').change(function() {
                 var imgURL = URL.createObjectURL(event.target.files[0]);
                 $('#imagePreview').attr('src', imgURL).css({
+                    height: 150+'px',
+                    width: 150+'px',
+                    marginTop: '5px',
+                    display: 'block'
+                });
+            });
+            $('#categoryImage2').change(function() {
+                var imgURL = URL.createObjectURL(event.target.files[0]);
+                $('#imagePreview2').attr('src', imgURL).css({
                     height: 150+'px',
                     width: 150+'px',
                     marginTop: '5px',

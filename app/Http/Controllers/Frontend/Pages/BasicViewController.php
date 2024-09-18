@@ -202,9 +202,16 @@ class BasicViewController extends Controller
                 } else {
                     $course->order_status = 'false';
                 }
+
             }
+
         }
-        $this->courses  = collect($tempCourses)->unique('id');
+        //$this->courses  = collect($tempCourses)->unique('id');
+        $this->courses = Course::whereStatus(1)->where(['is_featured' => 1])->latest()->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link','total_file','total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time','admission_last_date','alt_text','banner_title')->take(9)->get();
+        foreach ($this->courses as $course)
+        {
+            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
+        }
 //        foreach ($this->courses as $course)
 //        {
 //            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);

@@ -242,13 +242,13 @@
         data-modal-parent="courseContentModal">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Watch Class Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="close_video()"
+                <div class="modal-header" style="padding: 0px; 5px;">
+                    <h5 class="modal-title px-3" id="exampleModalLabel">Watch Class Video</h5>
+                    <button type="button" class="btn-close px-3" data-bs-dismiss="modal" onclick="close_video()"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-0">
-                    <div class="card card-body p-0">
+                    <div class="p-0">
                         <div class="private d-none">
                             <video class="w-100 video" height="500" controls="controls" controlist="nodownload">
                                 <source id="privatVid" src="//samplelib.com/lib/preview/mp4/sample-5s.mp4"
@@ -265,21 +265,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="vimeo d-none">
+                        {{-- <div class="vimeo d-none">
                             <div style="padding:56.25% 0 0 0;position:relative;">
                                 <iframe id="vimeoPlayer" src=""
                                     style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
                                     allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                             </div>
-                        </div>
-                        <div class="mt-4 ms-4">
+                        </div> --}}
+                        {{-- <div class="mt-4 ms-4">
                             <a href="" target="_blank" class="btn btn-success see-answer">See Answer</a>
                         </div>
                         <div class="mt-4">
                             <div id="videoCommentDiv">
 
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -402,11 +402,11 @@
 
         .video-container {
             width: 100% !important;
-            height: 440px;
+            height: 447px;
             overflow: hidden;
             position: relative;
-            padding-bottom: 56.25%;
-            padding-top: 25px;
+            /* padding-bottom: 56.25%; */
+            /* padding-top: 25px; */
             /*height: 0;*/
         }
 
@@ -415,7 +415,7 @@
             /* top: -60px; */
             left: 0;
             width: 100%;
-            height: calc(80% + 100px);
+            /* height: calc(80% + 100px); */
             /* height: 500px!important; */
         }
 
@@ -490,7 +490,7 @@
 
         @keyframes pageIn {
             0% {
-                transform: translateX(-300px);
+                transform: translateX(0px);
                 opacity: 0;
             }
 
@@ -612,14 +612,11 @@
                 player = new Plyr('#player', {
                     controls: [
                         'play-large',
-                        'rewind',
                         'play',
                         'fast-forward',
                         'progress',
                         'current-time',
                         'duration',
-                        'mute',
-                        'volume',
                         'settings',
                         'fullscreen',
                     ],
