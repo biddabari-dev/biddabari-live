@@ -130,7 +130,7 @@ Biddabari - The First Job Study Online Platform in Bangladesh
                 @foreach($courseCategories as $courseCategory)
                     <div class="col-md-3 col-m-6">
                         <div class="categories-item">
-                            @if ($courseCategory->name == 'Free Course')
+                            @if ($courseCategory->id == 157)
                             <a href="{{ route('front.free-courses') }}">
                                 <img loading="lazy"
                                     src="{{ asset(isset($courseCategory->image) ? $courseCategory->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
@@ -144,7 +144,7 @@ Biddabari - The First Job Study Online Platform in Bangladesh
                             </a>
                             @endif
                             <div class="content">
-                                @if ($courseCategory->name == 'Free Course')
+                                @if ($courseCategory->id == 157)
                                     <a href="{{ route('front.free-courses') }}">
                                         <i class="{{ $courseCategory->icon ?? 'flaticon-web-development' }}"></i>
                                         <h3>{{ $courseCategory->name ?? 'No Title' }}</h3>

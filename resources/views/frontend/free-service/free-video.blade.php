@@ -30,7 +30,7 @@
                             <button class="nav-link border-danger btn py-0 mx-2 text-dark"
                                 style="border: 1px solid #F18C53;font-size: 30px;" data-bs-toggle="pill"
                                 data-bs-target="#freeExams">
-                                <span class="f-s-30">ফ্রি পরিক্ষা দিন</span>
+                                <span class="f-s-30">ফ্রি পরীক্ষা দিন</span>
                             </button>
                         </li>
                     </ul>
