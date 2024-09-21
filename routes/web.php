@@ -150,26 +150,26 @@ Route::get('/a', function () {
    echo 'a';
 });
 /* migration */
-Route::get('/migrate',function(){
-    Artisan::call('migrate');
-    echo Artisan::output();
-});
+// Route::get('/migrate',function(){
+//     Artisan::call('migrate');
+//     echo Artisan::output();
+// });
 
-Route::get('/migrate-seed',function(){
-    Artisan::call('migrate --seed');
-    echo Artisan::output();
-});
+// Route::get('/migrate-seed',function(){
+//     Artisan::call('migrate --seed');
+//     echo Artisan::output();
+// });
 
-Route::get('/migrate-fresh-seed',function(){
-    Artisan::call('migrate:fresh --seed');
-    echo Artisan::output();
-});
+// Route::get('/migrate-fresh-seed',function(){
+//     Artisan::call('migrate:fresh --seed');
+//     echo Artisan::output();
+// });
 
 /* migration rollback */
-Route::get('/migrate-rollback',function(){
-    Artisan::call('migrate:rollback');
-    echo Artisan::output();
-});
+// Route::get('/migrate-rollback',function(){
+//     Artisan::call('migrate:rollback');
+//     echo Artisan::output();
+// });
 
 /* create symbolic link */
 Route::get('/symlink', function () {
@@ -192,10 +192,10 @@ Route::get('/clear-route-cache', function () {
     return 'Route Cache Cleared';
 });
 /* Only db seed */
-Route::get('/only-db-seed', function () {
-    Artisan::call('db:seed');
-    return 'DB Seed successful';
-});
+// Route::get('/only-db-seed', function () {
+//     Artisan::call('db:seed');
+//     return 'DB Seed successful';
+// });
 
 Route::get('/phpinfo', function () {
     phpinfo();

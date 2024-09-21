@@ -23,7 +23,7 @@ Biddabari - All Course
                             <div class="categories-item">
                                 <a href="{{ route('front.free.course', ['slug' => $courseCategory->slug]) }}">
                                     <img loading="lazy"
-                                        src="{{ asset(isset($courseCategory->image) ? $courseCategory->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
+                                        src="{{ asset(isset($courseCategory->second_image) ? $courseCategory->second_image : 'frontend/logo/biddabari-card-logo.jpg') }}"
                                         alt="Categories" class="w-100 border-0">
                                 </a>
                                 <div class="content">

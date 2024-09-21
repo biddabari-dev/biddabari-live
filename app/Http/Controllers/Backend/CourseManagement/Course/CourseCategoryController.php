@@ -165,7 +165,7 @@ class CourseCategoryController extends Controller
     public function update(CourseCategoryFormRequest $request, string $id)
     {
         abort_if(Gate::denies('update-course-category'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return CourseCategory::createOrUpdateCourseCategory($request, $id);
+        CourseCategory::createOrUpdateCourseCategory($request, $id);
         if ($request->ajax())
         {
             return response()->json('Course Category updated successfully.');

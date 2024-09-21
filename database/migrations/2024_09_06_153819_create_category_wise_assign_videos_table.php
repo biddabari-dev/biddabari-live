@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('category_wise_assign_videos', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id');
-            $table->integer('section_content_id')->nullable();
-            $table->integer('exam_id')->nullable();
-            $table->string('thumbnail')->nullable();
-            $table->string('type')->nullable();
+            $table->integer('section_content_id');
+            $table->integer('exam_id');
+            $table->string('thumbnail');
+            $table->string('type');
             $table->timestamps();
         });
     }

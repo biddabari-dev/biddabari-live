@@ -18,6 +18,7 @@ class CourseCategory extends Model
         'note',
         'icon',
         'image',
+        'second_image',
         'meta_title',
         'meta_description',
         'slug',
@@ -56,15 +57,15 @@ class CourseCategory extends Model
 
     public static function createOrUpdateCourseCategory($request, $id = null)
     {
-
+        $second_image = isset($id) ? imageUpload($request->file('second_image'), 'course/course-second-image/', 'course-category', '300', '200', static::find($id)->second_image) : imageUpload($request->file('second_image'), 'course/course-images/', 'course-category', '300', '200');
         CourseCategory::updateOrCreate(['id' => $id], [
             'name'          => $request->name,
             'parent_id'     => !empty($request->parent_id) ? $request->parent_id : (isset($id) ? static::find($id)->parent_id :  0),
             'note'          => $request->note,
             'icon'          => isset($id) ? imageUpload($request->file('icon'), 'course/course-icons/', 'course-category', '40', '40', static::find($id)->icon) : imageUpload($request->file('icon'), 'course/course-icons/', 'course-category', '40', '40'),
             'image'         => isset($id) ? imageUpload($request->file('image'), 'course/course-images/', 'course-category', '300', '200', static::find($id)->image) : imageUpload($request->file('image'), 'course/course-images/', 'course-category', '300', '200'),
-            'second_image'  => isset($id) ? imageUpload($request->file('second_image'), 'course/course-images/', 'course-category', '300', '200', static::find($id)->second_image) : imageUpload($request->file('second_image'), 'course/course-images/', 'course-category', '300', '200'),
-//            'slug'          => str_replace(' ', '-', $request->name),
+            'second_image'  => $second_image,
+//          'slug'          => str_replace(' ', '-', $request->name),
             'slug'          => $request->slug ?? str_replace(' ', '-', $request->name),
             'alt_text'          => $request->alt_text,
             'banner_title'          => $request->banner_title,
