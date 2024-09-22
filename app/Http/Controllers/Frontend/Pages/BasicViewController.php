@@ -229,13 +229,20 @@ class BasicViewController extends Controller
             'courseCategories' => function($courseCategories){
                 $courseCategories->whereStatus(1)->orderBy('order','ASC')->select('id', 'parent_id','name', 'image', 'icon', 'slug', 'status')->get();
             }])->first();
+
+        if(!$this->courseCategory){
+            return response()->view('errors.404', [], 404);
+        }
+
         foreach ($this->courseCategory->courses as $course)
         {
             $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
         }
+
         $this->data = ['courseCategory' => $this->courseCategory];
         return ViewHelper::checkViewForApi($this->data, 'frontend.courses.course-category', 'Category Not Found');
     }
+
     public function freeCategoryCourses ($slug)
     {
         $this->courseCategory = CourseCategory::whereSlug($slug)->select('id','name', 'parent_id', 'image', 'icon', 'slug', 'status')->with(['courses' => function($course){
@@ -255,7 +262,11 @@ class BasicViewController extends Controller
 
     public function courseDetails ($slug)
     {
+
         $course = Course::where('slug', $slug)->first();
+        if(!$course){
+            return response()->view('errors.404', [], 404);
+        }
         if (!empty($course))
         {
             $courseEnrollStatus = ViewHelper::checkIfCourseIsEnrolled($course);

@@ -839,6 +839,31 @@
                 }
             })
         });
+
+        $(document).on('click', '.delete-video-modal-btn', function (event) { // Add event as a parameter here
+            event.preventDefault();
+
+            var sectionContentId = $(this).attr('data-section-content-id');
+            var examType = $(this).attr('data-xm-type');
+            // Show confirmation alert
+            if (confirm("Are you sure you want to unassigned this video?")) {
+                $.ajax({
+                    url: "/delete-assign-video",
+                    method: "GET",
+                    data: {section_content_id: sectionContentId, exam_type: examType},
+                    success: function (data) {
+                        location.reload();
+                    },
+                    error: function() {
+                        alert("An error occurred while trying to delete the video.");
+                    }
+                });
+            } else {
+                // If the user cancels, you can add any logic here if needed
+                console.log("Deletion cancelled.");
+            }
+        });
+
         $(document).on('click', '.view-participants', function () {
             event.preventDefault();
             var sectionContentId = $(this).attr('data-section-content-id');

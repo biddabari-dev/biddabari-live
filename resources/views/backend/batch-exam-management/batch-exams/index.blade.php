@@ -119,9 +119,18 @@
                                                 </a>
                                             @endcan
                                             @can('edit-batch-exam')
-                                                <a href="" data-exam-id="{{ $batchExam->id }}" class="btn btn-sm btn-blue add-video-modal-btn" title="Exam Assign To Category">
-                                                    <i class="fa fa-tags"></i>
-                                                </a>
+                                                @php
+                                                    $exists = \App\Models\Backend\Course\CategoryWIseAssignVideo::where('exam_id', $batchExam->id)->exists();
+                                                @endphp
+                                                    @if($exists)
+                                                    <a href="" data-exam-id="{{ $batchExam->id }}" class="btn btn-sm bg-black text-white delete-video-modal-btn" title="Exam is Assigned To Category">
+                                                        <i class="fa fa-tags"></i>
+                                                    </a>
+                                                    @else
+                                                    <a href="" data-exam-id="{{ $batchExam->id }}" class="btn btn-sm btn-blue add-video-modal-btn" title="Exam Assign To Category">
+                                                        <i class="fa fa-tags"></i>
+                                                    </a>
+                                                @endif
                                             @endcan
                                             @can('delete-batch-exam')
                                                 <form class="d-inline" action="{{ route('batch-exams.destroy', $batchExam->id) }}" method="post" >
@@ -235,7 +244,28 @@
             alert('sdfsdf');
         })
     </script>
+{{-- unassigned exam --}}
+<script>
+    $(document).on('click', '.delete-video-modal-btn', function (event) { // Add event as a parameter here
+        event.preventDefault();
 
+        var examtId = $(this).attr('data-exam-id');
+        // Show confirmation alert
+        if (confirm("Are you sure you want to unassigned this exam?")) {
+            $.ajax({
+                url: "/delete-assign-video",
+                method: "GET",
+                data: {exam_id: examtId},
+                success: function (data) {
+                    location.reload();
+                },
+                error: function() {
+                    alert("An error occurred while trying to delete the video.");
+                }
+            });
+        } 
+    });
+</script>
 
 {{--    edit course category--}}
     <script>

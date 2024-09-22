@@ -187,7 +187,7 @@ function file_exists_obs($url)
         # code...
         $exists = Storage::disk('obs')->has($url);
 
-        return $exists;
+        return $url;
     }else{
         return false;
     }
