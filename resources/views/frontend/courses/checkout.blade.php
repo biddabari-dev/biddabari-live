@@ -1,5 +1,5 @@
 @extends('frontend.master')
-
+@section('robots', 'noindex')
 @section('title')
 Biddabari - The First Job Study Online Platform in Bangladesh
 @endsection
@@ -21,7 +21,7 @@ Biddabari - The First Job Study Online Platform in Bangladesh
                                 @else
                                 Exam Name
                                 @endif
-                       
+
                                 <span>{{ $course->title }}</span>
 
                             </li>

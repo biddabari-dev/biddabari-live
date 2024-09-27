@@ -1,7 +1,7 @@
 @extends('frontend.master')
-
+@section('meta-url'){{ request()->url() }}@endsection
 @section('title')
-Biddabari - All Course 
+Biddabari - All Course
 @endsection
 
 @section('body')
@@ -22,7 +22,7 @@ Biddabari - All Course
                                 <li class="nav-item mb-3"><a href="{{ route('front.free-courses')}}"><button type="button" class="nav-link border-danger btn py-0 mx-2 text-dark" style="border: 1px solid #F18C53"><span class="f-s-25">{{ $courseCategory->name }}</span></button></a></li>
                                 @else
                                     <li class="nav-item mb-3"><button type="button" class="nav-link border-danger btn py-0 mx-2 text-dark" style="border: 1px solid #F18C53" data-bs-toggle="pill" data-bs-target="#{{ 'id'.$index }}"><span class="f-s-25">{{ $courseCategory->name }}</span></button></li>
-                                @endif   
+                                @endif
                             @endforeach
                         </ul>
                         <div class="tab-content mt-5">

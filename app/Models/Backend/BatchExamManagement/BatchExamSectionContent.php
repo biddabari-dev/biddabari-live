@@ -256,7 +256,7 @@ class BatchExamSectionContent extends Model
 
     public function questionStores()
     {
-        return $this->belongsToMany(QuestionStore::class);
+        return $this->belongsToMany(QuestionStore::class)->orderBy('id', 'ASC');
     }
 
     public function examResults()

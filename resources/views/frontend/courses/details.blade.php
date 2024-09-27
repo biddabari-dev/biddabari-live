@@ -14,6 +14,8 @@
 @section('title')@foreach($seos as $seo){{ $seo->meta_tags ?? ''}}@endforeach
 @endsection
 
+@section('meta-url'){{ request()->url() }}@endsection
+
 @section('body')
 
 <div class="container">

@@ -449,6 +449,83 @@
             }
         }
 
+        button.plyr__controls__item.plyr__control[data-plyr="fast-forward"] {
+            position: absolute;
+            top: -190%;
+            transform: translateY(-50%);
+            opacity: 1;
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            right: 30%;
+        }
+        button.plyr__controls__item.plyr__control[data-plyr="rewind"] {
+            position: absolute;
+            top: -190%;
+            transform: translateY(-50%);
+            opacity: 1;
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            left: 30%;
+        }
+
+    @media only screen and (min-width: 280px) and (max-width: 320px) {
+        button.plyr__controls__item.plyr__control[data-plyr="fast-forward"] {
+            top: -55% !important;
+
+        }
+        button.plyr__controls__item.plyr__control[data-plyr="rewind"] {
+            top: -55% !important;
+        }
+    }
+
+    @media only screen and (min-width: 321px) and (max-width: 480px) {
+        button.plyr__controls__item.plyr__control[data-plyr="fast-forward"] {
+            top: -80% !important;
+
+        }
+        button.plyr__controls__item.plyr__control[data-plyr="rewind"] {
+            top: -80% !important;
+        }
+    }
+
+    @media only screen and (min-width: 481px) and (max-width: 767px) {
+        button.plyr__controls__item.plyr__control[data-plyr="fast-forward"] {
+            top: -106% !important;
+
+        }
+        button.plyr__controls__item.plyr__control[data-plyr="rewind"] {
+            top: -106% !important;
+        }
+    }
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        button.plyr__controls__item.plyr__control[data-plyr="fast-forward"] {
+            top: -163% !important;
+
+        }
+        button.plyr__controls__item.plyr__control[data-plyr="rewind"] {
+            top: -163% !important;
+        }
+    }
 
         /* Adjust Plyr controls (if using Plyr) */
         .plyr__controls button {
@@ -694,7 +771,9 @@
                 player = new Plyr('#player', {
                     controls: [
                         'play-large',
-                        'play',
+                        'rewind',
+                        'play', // Play/Pause button
+                        'fast-forward',
                         'progress',
                         'current-time',
                         'duration',
@@ -746,7 +825,7 @@
             document.addEventListener('MSFullscreenChange', function() {
                 handleOrientationChange();
             });
-            
+
         });
 
         // Clear the src and destroy the player when the modal is hidden
