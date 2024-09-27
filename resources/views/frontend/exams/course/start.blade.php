@@ -101,7 +101,7 @@
                                             <div class="form-card " id="fildset{{ $question->id }}">
                                                 <div class="question-title" id="loop{{ $question->id }}" data-loop="{{ $loop->iteration }}" style="margin-top: 10px">
                                                     <span class="float-start f-s-26"> &nbsp;</span>
-                                                    <span class="float-start f-s-26"> {!! $question->question !!}</span>
+                                                    <span class="float-start f-s-26">{!! $question->question !!}</span>
                                                 </div>
                                                 @if(!empty($question->question_image))
                                                     <div class="{{--image-container--}}">

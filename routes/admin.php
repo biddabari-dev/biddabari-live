@@ -123,6 +123,7 @@ Route::middleware([
     Route::post('course-sections-contents/save-nested-categories', [CourseController::class, 'saveNestedSectionsAndContents'])->name('course.saveNestedSectionsAndContents');
     Route::get('/get-content-for-add-question', [CourseSectionContentController::class, 'getContentForAddQuestion'])->name('get-content-for-add-question');
     Route::get('/get-category-for-assign-video', [CourseSectionContentController::class, 'getCategoryForAssignVideo'])->name('get-category-for-assign-video');
+    Route::get('/delete-assign-video', [CourseSectionContentController::class, 'deleteAssignVideo'])->name('delete-assign-video');
     Route::post('category-for-assign-video', [CourseSectionContentController::class, 'categoryForAssignVideo'])->name('category-for-assign-video');
     Route::get('/get-content-for-add-class-question', [CourseSectionContentController::class, 'getContentForAddClassQuestion'])->name('get-content-for-add-class-question');
     Route::get('/get-ques-by-topic', [CourseSectionContentController::class, 'getQuesByTopic'])->name('get-ques-by-topic');

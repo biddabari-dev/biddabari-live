@@ -104,6 +104,7 @@ class StudentController extends Controller
         $this->data = [
             'courseOrders'  => $this->courseOrders
         ];
+        
         return ViewHelper::checkViewForApi($this->data, 'frontend.student.course.courses');
     }
 

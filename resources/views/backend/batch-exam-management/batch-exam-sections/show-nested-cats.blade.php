@@ -54,7 +54,7 @@
                 @can('add-question-to-batch-exam-section-content')
                     @if($sectionContent->content_type == 'exam' || $sectionContent->content_type == 'written_exam')
                         <a href="" data-section-content-id="{{ $sectionContent->id }}" data-xm-type="{{ $sectionContent->content_type }}" class="btn btn-sm btn-primary add-question-modal-btn" title="Add Questions">
-                            <i class="fa-solid fa-plus">1</i>
+                            <i class="fa-solid fa-plus"></i>
                         </a>
                     @endif
                 @endcan

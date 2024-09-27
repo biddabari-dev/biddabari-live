@@ -181,10 +181,7 @@
     <div class="modal fade" id="commonPrintModel" data-bs-backdrop="static" data-modal-parent="courseContentModal">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">View Content</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-body p-0">
                     <div class="card card-body p-0">
                         <div class="" id="printHere"></div>
@@ -242,59 +239,43 @@
         data-modal-parent="courseContentModal">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Watch Class Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="close_video()"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-0">
-                    <div class="card card-body p-0">
-                        <div class="private d-none">
-                            <video class="w-100 video" height="500" controls="controls" controlist="nodownload">
-                                <source id="privatVid" src="//samplelib.com/lib/preview/mp4/sample-5s.mp4"
-                                    type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="youtube">
-                            <div class="video-container video_mobile_res">
-                                <div class="video-foreground">
-                                    <div class="plyr__video-embed" id="player">
-                                        <iframe id="play-now" src="" allowfullscreen allowtransparency
-                                            allow="autoplay"></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vimeo d-none">
-                            <div style="padding:56.25% 0 0 0;position:relative;">
-                                <iframe id="vimeoPlayer" src=""
-                                    style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
-                                    allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="mt-4 ms-4">
-                            <a href="" target="_blank" class="btn btn-success see-answer">See Answer</a>
-                        </div>
-                        <div class="mt-4">
-                            <div id="videoCommentDiv">
+                <div class="modal-body p-0 position-relative">
+                    <!-- Close Button -->
+                    <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="modal"
+                        onclick="close_video()" aria-label="Close"></button>
 
+                    <!-- Video Content -->
+                    <div class="video-container video_mobile_res">
+                        <div class="video-foreground">
+                            <div class="plyr__video-embed" id="player">
+                                <iframe id="play-now" src="//samplelib.com/lib/preview/mp4/sample-5s.mp4" allowfullscreen
+                                    allowtransparency allow="autoplay"></iframe>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Uncomment this if needed
+                        <div class="vimeo d-none">
+                            <div style="padding:56.25% 0 0 0;position:relative;">
+                                <iframe id="vimeoPlayer" src="" style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        -->
                 </div>
             </div>
         </div>
     </div>
 
 
+
     <div class="modal fade show-pdf-modal" id="pdfModal" data-bs-backdrop="static"
         data-modal-parent="courseContentModal">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">View Class Pdf</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="modal"
+                    onclick="close_video()" aria-label="Close"></button>
                 <div class="modal-body p-0">
                     <div class="card card-body p-0" id="pdfContentPrintDiv">
                         <div class="row">
@@ -339,7 +320,7 @@
         .plyr__video-embed {
             position: relative;
             overflow: hidden;
-            border: 1px solid #eeeeee !important;
+            /* border: 1px solid #eeeeee !important; */
         }
 
         /* Transparent overlay to block interactions */
@@ -353,6 +334,32 @@
             background: transparent;
             z-index: 100;
             pointer-events: none;
+        }
+
+        .plyr__volume input[type=range] {
+            max-width: 60px !important;
+        }
+
+        /* Generic Video Control Styling (if not using Plyr) */
+        video::-webkit-media-controls-volume-slider {
+            height: 16px;
+            /* Set slider height */
+        }
+
+        video::-webkit-media-controls-mute-button {
+            width: 32px;
+            /* Adjust button size */
+            height: 32px;
+            /* Adjust button size */
+            font-size: 14px;
+            /* Adjust icon size */
+        }
+
+        @media only screen and (max-width: 767px) {
+            .p-0 {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
         }
     </style>
     <style>
@@ -389,56 +396,184 @@
         }
     </style>
     <style>
-        .my-box {
-            width: 100% !important;
-        }
+        .modal-body {
+            position: relative;
+            padding: 0;
 
-        .canvas-container,
-        canvas {
-            width: 100% !important;
-            margin-top: 10px !important;
-            height: auto;
         }
-
+        .modal-content {
+            background-color: transparent;
+            /* Optional: Makes the modal content background transparent */
+            border: none;
+            /* Remove border */
+        }
+        /* Video Container Styling */
         .video-container {
             width: 100% !important;
-            height: 440px;
-            overflow: hidden;
-            position: relative;
+            height: auto;
             padding-bottom: 56.25%;
-            padding-top: 25px;
-            /*height: 0;*/
+            /* Maintain 16:9 aspect ratio */
+            position: relative;
+            overflow: hidden;
         }
 
         .video-container iframe {
             position: absolute;
-            /* top: -60px; */
+            top: 0;
             left: 0;
             width: 100%;
-            height: calc(80% + 100px);
-            /* height: 500px!important; */
+            height: 100%;
+            border: none;
+            /* Remove border from iframe */
         }
 
-        .video-foreground {
-            pointer-events: auto;
+        /* Adjust video container and modal for mobile view */
+        @media only screen and (max-width: 768px) {
+            .modal-dialog-centered {
+                max-width: 100%;
+                /* Full-width modal on mobile */
+                margin: 0;
+                /* No margin */
+            }
+
+            .modal-content {
+                border: none;
+                /* No border */
+                border-radius: 0;
+                /* No rounded corners */
+            }
+
+            .video-container {
+                padding-bottom: 56.25%;
+                /* Maintain aspect ratio */
+            }
         }
 
-        #watchOnYoutubeWaterMark {
-            height: 47px;
-            width: 173px;
-            background-color: transparent;
+        button.plyr__controls__item.plyr__control[data-plyr="fast-forward"] {
             position: absolute;
-            bottom: 8%;
-            left: 0;
+            top: -190%;
+            transform: translateY(-50%);
+            opacity: 1;
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            right: 30%;
+        }
+        button.plyr__controls__item.plyr__control[data-plyr="rewind"] {
+            position: absolute;
+            top: -190%;
+            transform: translateY(-50%);
+            opacity: 1;
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            left: 30%;
         }
 
-        #rightSideYoutubeWaterMark {
-            height: 36px;
-            width: 67px;
-            background-color: transparent;
+    @media only screen and (min-width: 280px) and (max-width: 320px) {
+        button.plyr__controls__item.plyr__control[data-plyr="fast-forward"] {
+            top: -55% !important;
+
+        }
+        button.plyr__controls__item.plyr__control[data-plyr="rewind"] {
+            top: -55% !important;
+        }
+    }
+
+    @media only screen and (min-width: 321px) and (max-width: 480px) {
+        button.plyr__controls__item.plyr__control[data-plyr="fast-forward"] {
+            top: -80% !important;
+
+        }
+        button.plyr__controls__item.plyr__control[data-plyr="rewind"] {
+            top: -80% !important;
+        }
+    }
+
+    @media only screen and (min-width: 481px) and (max-width: 767px) {
+        button.plyr__controls__item.plyr__control[data-plyr="fast-forward"] {
+            top: -106% !important;
+
+        }
+        button.plyr__controls__item.plyr__control[data-plyr="rewind"] {
+            top: -106% !important;
+        }
+    }
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        button.plyr__controls__item.plyr__control[data-plyr="fast-forward"] {
+            top: -163% !important;
+
+        }
+        button.plyr__controls__item.plyr__control[data-plyr="rewind"] {
+            top: -163% !important;
+        }
+    }
+
+        /* Adjust Plyr controls (if using Plyr) */
+        .plyr__controls button {
+            font-size: 14px;
+            /* Adjust font size for all control buttons */
+        }
+
+        /* .btn-close {
             position: absolute;
-            right: 6%;
-            bottom: 7%;
+            top: -20px !important;
+            right: 0px;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            z-index: 1000;
+            background-color: #ffffff;
+            opacity: 0.5;
+        } */
+
+        .btn-close {
+            position: absolute;
+            top: -20px !important;
+            right: 0px;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            z-index: 1100; /* Higher than video player controls */
+            background-color: #ffffff;
+            opacity: 0.7; /* Slightly opaque */
+            display: block !important; /* Ensure it stays visible */
+        }
+
+        /* Increase z-index for close button in the modal */
+        .modal .btn-close {
+            z-index: 1100;
+        }
+
+        /* Adjust for responsiveness */
+        @media only screen and (max-width: 768px) {
+            .btn-close {
+                width: 24px;
+                height: 24px;
+                top: -20px !important;
+                right: 0px !important;
+                background-color: #ffffff;
+                opacity: 0.5; /* Maintain opacity on mobile */
+                z-index: 1100; /* Ensure it's on top on smaller screens */
+            }
         }
     </style>
     <style>
@@ -490,7 +625,7 @@
 
         @keyframes pageIn {
             0% {
-                transform: translateX(-300px);
+                transform: translateX(0px);
                 opacity: 0;
             }
 
@@ -512,8 +647,6 @@
 
         #zoom-out {}
     </style>
-
-
 @endpush
 
 @section('js')
@@ -573,6 +706,32 @@
                 e.preventDefault();
             }
         }
+
+        function handleOrientationChange() {
+            if (isFullscreen()) {
+                // Entered fullscreen, switch to landscape
+                lockOrientation('landscape');
+            } else {
+                // Exited fullscreen, switch back to portrait
+                lockOrientation('portrait');
+            }
+        }
+
+        function isFullscreen() {
+            return document.fullscreenElement || document.webkitFullscreenElement ||
+                document.mozFullScreenElement || document.msFullscreenElement;
+        }
+
+        // Function to lock the screen orientation
+        function lockOrientation(orientation) {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock(orientation).catch(function(error) {
+                    console.error('Failed to lock the orientation:', error);
+                });
+            } else {
+                console.warn('Screen Orientation API not supported or permission denied.');
+            }
+        }
         // Global variable to store the Plyr instance
         let player;
 
@@ -613,12 +772,11 @@
                     controls: [
                         'play-large',
                         'rewind',
-                        'play',
+                        'play', // Play/Pause button
                         'fast-forward',
                         'progress',
                         'current-time',
                         'duration',
-                        'mute',
                         'volume',
                         'settings',
                         'fullscreen',
@@ -651,6 +809,23 @@
             document.addEventListener('contextmenu', disableContextMenu);
             document.body.style.userSelect = 'none';
             document.addEventListener('keydown', disableDeveloperTools);
+
+            document.addEventListener('fullscreenchange', function() {
+                handleOrientationChange();
+            });
+
+            document.addEventListener('webkitfullscreenchange', function() {
+                handleOrientationChange();
+            });
+
+            document.addEventListener('mozfullscreenchange', function() {
+                handleOrientationChange();
+            });
+
+            document.addEventListener('MSFullscreenChange', function() {
+                handleOrientationChange();
+            });
+
         });
 
         // Clear the src and destroy the player when the modal is hidden

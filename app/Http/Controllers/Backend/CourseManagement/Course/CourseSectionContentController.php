@@ -178,6 +178,13 @@ class CourseSectionContentController extends Controller
             return back()->with('warning', 'Something wrong!');
         }
     }
+    public function deleteAssignVideo(Request $request){
+        if($request->section_content_id){
+           return $data = CategoryWIseAssignVideo::where('section_content_id', $request->section_content_id)->delete();
+        }elseif($request->exam_id){
+           return $data = CategoryWIseAssignVideo::where('exam_id', $request->exam_id)->delete();
+        }
+    }
 
     public function getContentForAddClassQuestion (Request $request)
     {

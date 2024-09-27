@@ -33,7 +33,7 @@
                 'play-large', // Large play button in the center
                 'rewind',
                 'play', // Play/Pause button
-                'fast-forward',
+                'fast-forward'
                 'progress', // Progress bar
                 'current-time', // Current time indicator
                 'duration', // The full duration of the media

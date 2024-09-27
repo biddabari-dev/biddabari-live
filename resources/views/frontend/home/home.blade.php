@@ -468,7 +468,6 @@ Biddabari - The First Job Study Online Platform in Bangladesh
 
 
 
-
 <div class="courses-area-two py-5">
     <div class="container">
         <div class="section-title text-center mb-3">
@@ -479,8 +478,8 @@ Biddabari - The First Job Study Online Platform in Bangladesh
             @foreach($ourTeams as $ourTeam)
                 <div class="courses-item">
                     <div>
-                        <video class="border-0" style="width: 100%!important;" height="240" controls>
-                            <source src="{{asset($ourTeam->video_file)}}" type="video/mp4">
+                        <video class="border-0 video-player" style="width: 100%!important;" height="240" controls>
+                            <source src="{{ asset($ourTeam->video_file) }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -493,6 +492,27 @@ Biddabari - The First Job Study Online Platform in Bangladesh
         </div>
     </div>
 </div>
+
+
+{{-- Control video player --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const videos = document.querySelectorAll('.video-player');
+
+        videos.forEach(video => {
+            video.addEventListener('play', function () {
+                videos.forEach(otherVideo => {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+
 
 <div id="StudentsComments" class="testimonials-area bg-light py-5">
     <div class="container">

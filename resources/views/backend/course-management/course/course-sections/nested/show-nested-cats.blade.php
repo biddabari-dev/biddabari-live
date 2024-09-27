@@ -59,10 +59,20 @@
                     </a>
                 @endif
                 {{-- neamat --}}
+
                 @if($sectionContent->content_type == 'video')
+                    @php
+                        $exists = \App\Models\Backend\Course\CategoryWIseAssignVideo::where('section_content_id', $sectionContent->id)->exists();
+                    @endphp
+                    @if($exists)
+                    <a href="" data-section-content-id="{{ $sectionContent->id }}" data-xm-type="{{ $sectionContent->content_type }}" class="btn btn-sm bg-black text-white delete-video-modal-btn" title="Video is already assigned to a free category">
+                        <i class="fa fa-tags"></i>
+                    </a>
+                    @else
                     <a href="" data-section-content-id="{{ $sectionContent->id }}" data-xm-type="{{ $sectionContent->content_type }}" class="btn btn-sm btn-blue add-video-modal-btn" title="Video Assign To Free Category">
                         <i class="fa fa-tags"></i>
                     </a>
+                    @endif
                 @endif
                 @can('add-question-to-course-section-content')
                     @if($sectionContent->content_type == 'exam' || $sectionContent->content_type == 'written_exam')

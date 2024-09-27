@@ -184,7 +184,7 @@ class BasicViewController extends Controller
 
     public function allCourses ()
     {
-        $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->select('id', 'name', 'slug')->with(['courses' => function($course){
+        $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->where('id', '!=',157)->select('id', 'name', 'slug')->with(['courses' => function($course){
             $course->whereStatus(1)->where('is_paid', 1)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug','alt_text','banner_title')->get();
         },
             'courseCategories' => function($courseCategories) {
@@ -202,9 +202,16 @@ class BasicViewController extends Controller
                 } else {
                     $course->order_status = 'false';
                 }
+
             }
+
         }
-        $this->courses  = collect($tempCourses)->unique('id');
+        //$this->courses  = collect($tempCourses)->unique('id');
+        $this->courses = Course::whereStatus(1)->where(['is_featured' => 1])->latest()->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link','total_file','total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time','admission_last_date','alt_text','banner_title')->take(9)->get();
+        foreach ($this->courses as $course)
+        {
+            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
+        }
 //        foreach ($this->courses as $course)
 //        {
 //            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
@@ -222,13 +229,20 @@ class BasicViewController extends Controller
             'courseCategories' => function($courseCategories){
                 $courseCategories->whereStatus(1)->orderBy('order','ASC')->select('id', 'parent_id','name', 'image', 'icon', 'slug', 'status')->get();
             }])->first();
+
+        if(!$this->courseCategory){
+            return response()->view('errors.404', [], 404);
+        }
+
         foreach ($this->courseCategory->courses as $course)
         {
             $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
         }
+
         $this->data = ['courseCategory' => $this->courseCategory];
         return ViewHelper::checkViewForApi($this->data, 'frontend.courses.course-category', 'Category Not Found');
     }
+
     public function freeCategoryCourses ($slug)
     {
         $this->courseCategory = CourseCategory::whereSlug($slug)->select('id','name', 'parent_id', 'image', 'icon', 'slug', 'status')->with(['courses' => function($course){
@@ -248,7 +262,11 @@ class BasicViewController extends Controller
 
     public function courseDetails ($slug)
     {
+
         $course = Course::where('slug', $slug)->first();
+        if(!$course){
+            return response()->view('errors.404', [], 404);
+        }
         if (!empty($course))
         {
             $courseEnrollStatus = ViewHelper::checkIfCourseIsEnrolled($course);
@@ -403,11 +421,11 @@ class BasicViewController extends Controller
 
     public function freeCourses ()
     {
-        $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->where('name', '!=', 'Free Course')->select('id', 'name', 'slug','image')->with(['courses' => function($course){
+        $this->courseCategories = CourseCategory::where('parent_id', 0)->where('name', '!=', 'Free Course')->select('id', 'name', 'slug','image','second_image')->with(['courses' => function($course){
             $course->whereStatus(1)->where('is_paid', 1)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug','alt_text','banner_title')->get();
         },
             'courseCategories' => function($courseCategories) {
-                $courseCategories->select('id', 'parent_id', 'name', 'image', 'slug')->orderBy('order', 'ASC')->whereStatus(1)->get();
+                $courseCategories->select('id', 'parent_id', 'name', 'image','second_image', 'slug')->orderBy('order', 'ASC')->whereStatus(1)->get();
             }])->get();
         // exam categories
         $this->examCategories = batchExamCategory::whereStatus(1)->where('parent_id', 0)->select('id', 'name', 'slug')->with(['batchExams' => function($course){
@@ -464,7 +482,6 @@ class BasicViewController extends Controller
 
 
         $allBatchExams = collect($tempCourses)->unique('id');
-
         $this->data = [
             'courses'   => $this->courses,
             'allCourses'   => $this->courses,
