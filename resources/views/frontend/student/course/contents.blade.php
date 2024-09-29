@@ -248,8 +248,8 @@
                     <div class="video-container video_mobile_res">
                         <div class="video-foreground">
                             <div class="plyr__video-embed" id="player">
-                                <iframe id="play-now" src="//samplelib.com/lib/preview/mp4/sample-5s.mp4" allowfullscreen
-                                    allowtransparency allow="autoplay"></iframe>
+                                <iframe id="play-now" src="" allowfullscreen
+                                    allowtransparency></iframe>
                             </div>
                         </div>
                     </div>

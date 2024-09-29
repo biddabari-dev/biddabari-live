@@ -129,9 +129,12 @@ class FrontExamController extends Controller
            {
                return back()->with('error', 'You already participate in this exam.');
            }
-            $this->exam = CourseSectionContent::whereId($contentId)->with(['questionStores'])->first();
+
+            $this->exam = CourseSectionContent::with('questionStores.questionOptions')->whereId($contentId)->first();
+
             $this->data = [
-                'exam'   => $this->exam
+                'exam'   => $this->exam,
+                // 'exams'   => $this->exams
             ];
             return ViewHelper::checkViewForApi($this->data, 'frontend.exams.course.start');
         } else {

@@ -87,7 +87,7 @@ class ViewHelper
 
             self::$loggedUser = ViewHelper::loggedUser();
 
-             self::$courseOrder = ParentOrder::where(['user_id' => self::$loggedUser->id, 'ordered_for' => 'course'])->where('parent_model_id', $course->id)->first();
+            self::$courseOrder = ParentOrder::where(['user_id' => self::$loggedUser->id, 'ordered_for' => 'course'])->where('parent_model_id', $course->id)->first();
             if (!empty(self::$courseOrder))
             {
                 if (self::$courseOrder->status == 'pending')

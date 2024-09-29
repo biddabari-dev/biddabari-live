@@ -34,7 +34,7 @@ class Blog extends Model
 
     public static function saveOrUpdateBlog ($request, $id = null)
     {
-        
+
         if (isset($request->video_url)) {
             # code...
             if ($request->video_url != 'https://youtu.be/') {
@@ -48,7 +48,7 @@ class Blog extends Model
             # code...
             $check=0;
         }
-            
+
         Blog::updateOrCreate(['id' => $id], [
             'blog_category_id'          => $request->blog_category_id,
             'title'                     => $request->title,
@@ -56,7 +56,7 @@ class Blog extends Model
             'video_url'                 => $check == 1 ? explode('https://www.youtube.com/watch?v=', $request->video_url)[1] : '',
             'image'                     => imageUpload($request->file('image'), 'blog-management/blogs/', 'blog-', '300', '200', (isset($id) ? Blog::find($id)->image : null) ),
             'body'                      => $request->body,
-            'slug'                      => str_replace(' ', '-', $request->title),
+            'slug'                      => str_replace(['?', ' '], ['','-'], $request->title),
             'author_id'                 => auth()->id(),
             'alt_text'          => $request->alt_text,
             'banner_title'          => $request->banner_title,
