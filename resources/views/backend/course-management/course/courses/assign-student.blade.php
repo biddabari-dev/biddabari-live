@@ -67,7 +67,7 @@
                                             @endcan
                                         </td>
                                     </tr> --}}
-
+                                    @if(!empty($student->user->mobile))
                                     <tr>
                                         <td>
                                             {{ $student->user->name }}
@@ -93,6 +93,7 @@
                                             @endcan
                                         </td>
                                     </tr>
+                                    @endif
 
                             @endforeach
                         @endif

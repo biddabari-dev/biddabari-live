@@ -268,7 +268,7 @@
         </div>
     </div>
 
-
+ 
 
     <div class="modal fade show-pdf-modal" id="pdfModal" data-bs-backdrop="static"
         data-modal-parent="courseContentModal">
