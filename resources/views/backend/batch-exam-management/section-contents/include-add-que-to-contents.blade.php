@@ -43,7 +43,7 @@
     <div class="card card-body">
         <h2 class="text-center">Assigned Questions ({{ count($content->questionStores) }} Ques)</h2>
         <div class="row">
-            @foreach($content->questionStores as $questionStore)
+            @foreach($content->questionStores as $key=>$questionStore)
                 <div class="col-md-6 mt-2 border  p-3 shadow" id="question{{ $questionStore->id }}" style="cursor: pointer">
                     <div class="row">
                         <div class="col-sm-10">

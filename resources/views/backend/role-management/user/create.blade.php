@@ -41,9 +41,34 @@
                         <div class="mt-2 select2-div">
                             <label for="">Roles</label>
                             <select name="roles[]" class="form-control select2" multiple required data-placeholder="Select A Role" id="">
-{{--                                <option value="" disabled> <-- Select User Roles --> </option>--}}
                                 @foreach($roles as $role)
-                                    <option value="{{ $role->id }}" @if(isset($user)) @if(!empty($user->roles)) @foreach($user->roles as $userRole) @if($role->id == $userRole->id) selected @endif @endforeach @endif @endif >{{ $role->title }}</option>
+                                @if (Auth::check() && Auth::user()->roles->contains('id', 1))
+                                    {{-- Super admin can change roles --}}
+                                    <option value="{{ $role->id }}"
+                                        @if(isset($user))
+                                            @if(!empty($user->roles))
+                                                @foreach($user->roles as $userRole)
+                                                    @if($role->id == $userRole->id) selected @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    >
+                                        {{ $role->title }}
+                                    </option>
+                                @else
+                                    {{-- Non-super admin users: show their own role and allow role 4 --}}
+                                    @if(isset($user))
+                                        @foreach($user->roles as $userRole)
+                                            @if($role->id == $userRole->id || $role->id == 4)
+                                                <option value="{{ $role->id }}"
+                                                    @if($role->id == $userRole->id) selected @endif
+                                                >
+                                                    {{ $role->title }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @endif
                                 @endforeach
                             </select>
                         </div>

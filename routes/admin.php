@@ -148,6 +148,7 @@ Route::middleware([
     Route::post('detach-teacher/{course_id}', [CourseController::class, 'detachTeacher'])->name('detach-teacher');
 //    Assign student to course
     Route::get('assign-student-to-course/{course_id}/{title?}', [CourseController::class, 'assignStudentToCourse'])->name('assign-student-to-course');
+    Route::get('assign-student-profile/{student_id}}', [CourseController::class, 'assignStudentProfile'])->name('assign-student-profile');
     Route::post('transfer-student/{course_transfer_to_id}', [CourseController::class, 'assignStudent'])->name('transfer-student');
     Route::post('assign-new-student/{course_id}', [CourseController::class, 'assignNewStudent'])->name('assign-new-student');
     Route::post('detach-student/{course_id}', [CourseController::class, 'detachStudent'])->name('detach-student');

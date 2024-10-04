@@ -153,18 +153,17 @@ class CustomAuthController extends Controller
 
         // ]);
 
-            $request['roles'] = 4;
+        $request['roles'] = 4;
         $request['request_form'] = 'student';
-        DB::beginTransaction();
-        try {
-            $this->user = User::createOrUpdateUser($request);
-            if ($request->roles == 4)
-            {
-                Student::createOrUpdateStudent($request, $this->user);
-            }
 
-            DB::commit();
+        try {
+            DB::beginTransaction();
+            $this->user = User::createOrUpdateUser($request);
+
             if (isset($this->user)) {
+
+                Student::createOrUpdateStudent($request, $this->user);
+
                 Auth::login($this->user);
                 $this->user->device_token = session()->getId();
                 $this->user->save();
@@ -187,6 +186,7 @@ class CustomAuthController extends Controller
                     return redirect()->route('home')->with('success', 'Your registration completed successfully.');
                 }
             }
+            DB::commit();
         } catch (\Exception $exception)
         {
             DB::rollBack();

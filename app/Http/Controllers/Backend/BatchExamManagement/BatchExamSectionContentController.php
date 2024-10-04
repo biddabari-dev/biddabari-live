@@ -121,7 +121,7 @@ class BatchExamSectionContentController extends Controller
         abort_if(Gate::denies('add-question-to-batch-exam-section-content'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             return view('backend.batch-exam-management.section-contents.include-add-que-to-contents', [
-                'content'   => BatchExamSectionContent::find($request->section_content_id),
+                'content'   => BatchExamSectionContent::with('questionStores.questionOptions')->find($request->section_content_id),
                 'examType'  => $request->exam_type,
                 'questionTopics'    => QuestionTopic::whereStatus(1)->whereType($request->exam_type == 'exam' ? 'mcq' : 'written')->where('question_topic_id', 0)->select('id', 'question_topic_id', 'name')->get(),
             ]);

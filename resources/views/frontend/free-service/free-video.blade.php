@@ -9,9 +9,8 @@
         <div class="container">
             <div class="col-12 mb-4">
                 <div class="section-title text-center">
-                    <h2 class=""><span class="test-danger"
-                            style="display:inline; margin:0; padding: 0;">{{ $category->name }}</span> প্রস্তুতি </h2>
-                    <p class="p-0">ভিডিও ক্লাস ও পরীক্ষা – একদম ফ্রি!</p>
+                    <h2 class="">{{ $category->name }}<span class="test-danger f-s-24"
+                            style="display:inline; margin:0; padding: 0;"> প্রস্তুতি </span> </h2>
                     <hr class="w-25 mx-auto bg-danger" />
                 </div>
             </div>

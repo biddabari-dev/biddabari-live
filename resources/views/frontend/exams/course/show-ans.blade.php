@@ -16,7 +16,7 @@
                                     @foreach ($content->questionStores as $questionStore)
                                         <div
                                             class="col-md-6 mt-3 {{ $questionStore->has_answered != 1 ? 'bg-warning' : '' }}">
-                                            <h3>{{ $loop->iteration }}. {!! strip_tags($questionStore->question) !!}</h3>
+                                            <h3> {!! strip_tags($questionStore->question) !!}</h3>
                                             @if ($content->content_type == 'exam')
                                                 <div class="mt-2">
                                                     <ul class="nav flex-column">
@@ -25,7 +25,6 @@
                                                                 class="f-s-20 border px-2 {{ $questionOption->is_correct == 1 ? 'correct-ans-bg' : '' }} {{ isset($questionOption->my_ans) && $questionOption->my_ans == 1 ? 'correct-ans-bg' : '' }} {{ isset($questionOption->my_ans) && $questionOption->my_ans == 0 ? 'bg-danger' : '' }}">
                                                                 <p
                                                                     class="{{ $questionOption->is_correct == 1 ? 'text-white' : '' }}">
-                                                                    {{ $loop->iteration }}.
                                                                     {{ $questionOption->option_title }}</p>
                                                             </li>
                                                         @endforeach
@@ -34,10 +33,10 @@
                                                         <span class="text-danger">All Options are incorrect.</span>
                                                     @endif
                                                     <div class="mt-2">
+                                                        @if (isset($questionStore->mcq_ans_description))
                                                         <a href="#" class="toggleAnsDes nav-link"
                                                             data-question-id="{{ $questionStore->id }}">Show Answer
                                                             Description</a>
-                                                        @if (isset($questionStore->mcq_ans_description))
                                                             <div class="mt-2" id="ansDes{{ $questionStore->id }}"
                                                                 style="display: none">
                                                                 {!! $questionStore->mcq_ans_description !!}

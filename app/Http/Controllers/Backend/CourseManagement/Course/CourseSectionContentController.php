@@ -146,7 +146,7 @@ class CourseSectionContentController extends Controller
     {
         abort_if(Gate::denies('add-question-to-course-section-content'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return view('backend.course-management.course.section-contents.include-add-que-to-contents', [
-            'content'   => CourseSectionContent::find($request->section_content_id),
+            'content'   => CourseSectionContent::with('questionStores.questionOptions')->find($request->section_content_id),
             'examType'  => $request->exam_type,
             'questionTopics'    => QuestionTopic::whereStatus(1)->where('question_topic_id', 0)->whereType($request->exam_type == 'exam' ? 'mcq' : 'written')->select('id', 'question_topic_id', 'name')->get(),
         ]);

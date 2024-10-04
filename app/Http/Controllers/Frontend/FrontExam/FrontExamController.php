@@ -1058,6 +1058,7 @@ class FrontExamController extends Controller
                 }
             }
         }
+
     }
     public function showCourseExamRanking($contentId)
     {
@@ -1104,7 +1105,7 @@ class FrontExamController extends Controller
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.exams.batch-exam.show-ranking');
     }
-  public function uploadAssignmentFiles(Request $request)
+    public function uploadAssignmentFiles(Request $request)
     {
         try {
             $imageUrl = '';

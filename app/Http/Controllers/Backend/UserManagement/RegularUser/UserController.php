@@ -44,12 +44,12 @@ class UserController extends Controller
 
         return $dateTable->render('backend.role-management.user.index');
 
-        if (isset($request->user_type->admin))
-        {
-            $this->users    = User::paginate(100);
-        } else {
-            $this->users = User::latest()->select('id', 'mobile', 'name', 'status', 'profile_photo_path')->paginate(100);
-        }
+        // if (isset($request->user_type->admin))
+        // {
+        //     $this->admin    = User::paginate(100);
+        // } else {
+        //     $this->admin = User::latest()->select('id', 'mobile', 'name', 'status', 'profile_photo_path')->paginate(100);
+        // }
 
         return view('backend.role-management.user.index',[
             'users'   => $this->admin,
@@ -173,14 +173,14 @@ class UserController extends Controller
                 $userDetails = User::where('user_id', $user->id)->first();
                 $userType = 'admin';
                 break;
-            } 
+            }
             elseif ($role->id == 3)
             {
                 $userDetails = Teacher::where('user_id', $user->id)->first();
                 $userType = 'teacher';
                 break;
-            } 
-            
+            }
+
             elseif ($role->id == 4)
             {
                 $userDetails = Student::where('user_id', $user->id)->first();
@@ -219,7 +219,7 @@ class UserController extends Controller
         if (isset($request->user_type) && $request->user_type == 'student')
         {
             $this->users    = Student::latest()->get();
-        } 
+        }
         elseif (isset($request->user_type) && $request->user_type == 'admin')
         {
             $this->users    = User::latest()->get();
