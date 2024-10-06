@@ -92,7 +92,7 @@
                                             <div class="courses-item pb-0">
                                                 <img src="{{ !empty($batchExam->banner) ? asset($batchExam->banner) : asset('/frontend/logo/biddabari-card-logo.jpg') }}"
                                                     alt="Batch Exams" class="w-100" style="height: 230px" />
-
+ 
                                                 <div class="courses-item">
                                                     <div class="content">
                                                         <div class=" pt-3">

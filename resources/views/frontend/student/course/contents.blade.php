@@ -252,6 +252,9 @@
                                     allowtransparency></iframe>
                             </div>
                         </div>
+                        <div class="mt-1">
+                        <a href="" target="_blank" class="btn btn-success see-answer">See Answer</a>
+                        </div>
                     </div>
 
                     <!-- Uncomment this if needed
@@ -268,7 +271,7 @@
         </div>
     </div>
 
- 
+
 
     <div class="modal fade show-pdf-modal" id="pdfModal" data-bs-backdrop="static"
         data-modal-parent="courseContentModal">

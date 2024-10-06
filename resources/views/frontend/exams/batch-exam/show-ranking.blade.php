@@ -32,7 +32,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach($courseExamResults as $key => $courseExamResult)
-                                                @if($key <= 4)
+                                                {{-- @if($key <= 4) --}}
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $courseExamResult->user->name }}</td>
@@ -44,9 +44,9 @@
                                                         @endif
                                                         <td>{{ \Carbon\CarbonInterval::seconds($courseExamResult->required_time)->cascade()->forHumans() }}</td>
                                                     </tr>
-                                                @endif
+                                                {{-- @endif --}}
                                             @endforeach
-                                            @if(!empty($myPosition))
+                                            {{-- @if(!empty($myPosition))
                                                 @if($myPosition->position)
                                                     @if($myPosition->position > 4)
                                                         <tr class="correct-ans-bg">
@@ -73,7 +73,7 @@
                                                         <td>{{ \Carbon\CarbonInterval::seconds($courseExamResultx->required_time)->cascade()->forHumans() }}</td>
                                                     </tr>
                                                 @endif
-                                            @endforeach
+                                            @endforeach --}}
                                         </tbody>
                                     </table>
                                     {{-- {!! $courseExamResults->links() !!} --}}

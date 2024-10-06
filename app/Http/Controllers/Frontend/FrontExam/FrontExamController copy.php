@@ -1065,10 +1065,22 @@ class FrontExamController extends Controller
         $this->courseExamResults = CourseExamResult::where(['course_section_content_id' => $contentId])->orderBy('result_mark', 'DESC')->orderBy('required_time', 'ASC')->with(['courseSectionContent' => function($courseSectionContent) {
             $courseSectionContent->select('id',  'course_section_id', 'exam_total_questions','exam_per_question_mark', 'written_total_questions')->first();
         },
-            'user'])->paginate(100);
-
+            'user'])->paginate(20);
+        $myRank = [];
+        foreach ($this->courseExamResults as $index => $courseExamResult)
+        {
+            if ($courseExamResult->user_id == ViewHelper::loggedUser()->id)
+            {
+                $myRank = $courseExamResult;
+                $myRank['position'] = ++$index;
+            }
+        }
+        // $total=CourseExamResult::where('course_section_content_id',$contentId)->get();
+        // return count($total);
         $this->data = [
             'courseExamResults'     => $this->courseExamResults,
+            'myPosition'    => $myRank,
+            // 'total_question'=>count(CourseSectionContent::where('course_section_id',$contentId)->get())
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.exams.course.show-ranking');
     }
@@ -1077,9 +1089,19 @@ class FrontExamController extends Controller
         $this->courseExamResults = BatchExamResult::where(['batch_exam_section_content_id' => $contentId])->orderBy('result_mark', 'DESC')->orderBy('required_time', 'ASC')->with(['batchExamSectionContent' => function($batchExamSectionContent) {
             $batchExamSectionContent->select('id',  'batch_exam_section_id', 'exam_total_questions','exam_per_question_mark', 'written_total_questions')->first();
         },
-            'user'])->paginate(100);
+            'user'])->paginate(20);
+        $myRank = [];
+        foreach ($this->courseExamResults as $index => $courseExamResult)
+        {
+            if ($courseExamResult->user_id == ViewHelper::loggedUser()->id)
+            {
+                $myRank = $courseExamResult;
+                $myRank['position'] = ++$index;
+            }
+        }
         $this->data = [
             'courseExamResults'     => $this->courseExamResults,
+            'myPosition'    => $myRank
         ];
         return ViewHelper::checkViewForApi($this->data, 'frontend.exams.batch-exam.show-ranking');
     }

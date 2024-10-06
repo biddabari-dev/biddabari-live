@@ -23,7 +23,6 @@ class CustomAuthController extends Controller
     protected $email, $phone, $password, $user;
     public function login(Request $request)
     {
-
         // $this->validate($request, [
         //     'mobile'   => ['required','numeric|regex:/^(?:\+88|88)?(01[3-9]\d{8})$/']
 
