@@ -42,11 +42,22 @@
                                                                 </a>
                                                             @endif
                                                             @if ($courseSectionContent->content_type == 'video')
+
+                                                                @if ($courseSectionContent->video_vendor == 'youtube' && strpos($courseSectionContent->video_link, 'https://www.youtube.com/watch?v=') !== false)
+                                                                    @php
+                                                                        $videoId = explode('https://www.youtube.com/watch?v=', $courseSectionContent->video_link)[1] ?? null;
+                                                                    @endphp
+                                                                @else
+                                                                    @php
+                                                                        $videoId = $courseSectionContent->video_link;
+                                                                    @endphp
+                                                                @endif
+
                                                                 <a href="javascript:void(0)" class="w-100 show-video-modal"
                                                                     data-title="{{ $courseSectionContent->title }}"
                                                                     data-has-class-xm="{{ $courseSectionContent->has_class_xm }}"
                                                                     data-complete-class-xm="{{ $courseSectionContent->classXmStatus }}"
-                                                                    data-video-link="{{ $courseSectionContent->video_vendor == 'youtube' ? explode('https://www.youtube.com/watch?v=', $courseSectionContent->video_link)[1] : $courseSectionContent->video_link }}"
+                                                                    data-video-link="{{ $videoId  }}"
                                                                     data-video-vendor="{{ $courseSectionContent->video_vendor }}"
                                                                     data-content-id="{{ $courseSectionContent->id }}">
                                                                     <div class="accordion-content-list pt-2 pb-0">

@@ -79,7 +79,7 @@
                     <div class="mcq" id="mcqDiv">
                         <div class="row">
                             @if(!empty($questionTopic->questionStores))
-                                @forelse($questionTopic->questionStores as $question)
+                                @foreach($questionTopic->questionStores as $question)
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header">
@@ -106,33 +106,32 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                            @if(!empty($question->questionOptions) && count($question->questionOptions) > 0)
-                                                    <div class="card-body">
-                                                        @if(isset($question->question_option_image))
-                                                            <div>
-                                                                <img src="{{ asset($question->question_option_image) }}" alt="" class="img-fluid" style="max-height: 60px" />
-                                                            </div>
-                                                        @endif
-                                                        <div>
-                                                            <ol type="A">
-                                                                @foreach($question->questionOptionsAscOrder as $questionOption)
-                                                                    <li class="{{ $questionOption->is_correct == 1 ? 'text-success' : '' }}"><p class="{{ $questionOption->is_correct == 1 ? 'fw-bold' : '' }}">{{ $questionOption->option_title }}</p></li>
-                                                                @endforeach
-                                                            </ol>
-                                                        </div>
-                                                        @if(isset($question->mcq_ans_description))
-                                                            <div>
-                                                                {!! $question->mcq_ans_description !!}
-                                                            </div>
-                                                        @endif
-                                                    </div>
 
-                                            @endif
+                                            <div class="card-body">
+                                                @if(isset($question->question_option_image))
+                                                    <div>
+                                                        <img src="{{ asset($question->question_option_image) }}" alt="" class="img-fluid" style="max-height: 60px" />
+                                                    </div>
+                                                @endif
+                                                <div>
+                                                    <ol type="A">
+                                                        @foreach($question->questionOptionsAscOrder as $questionOption)
+                                                            <li class="{{ $questionOption->is_correct == 1 ? 'text-success' : '' }}"><p class="{{ $questionOption->is_correct == 1 ? 'fw-bold' : '' }}">{{ $questionOption->option_title }}</p></li>
+                                                        @endforeach
+                                                    </ol>
+                                                </div>
+                                                @if(isset($question->mcq_ans_description))
+                                                    <div>
+                                                        {!! $question->mcq_ans_description !!}
+                                                    </div>
+                                                @endif
+                                            </div>
+
                                         </div>
                                     </div>
-                                @empty
-                                    <div class="col-md-12">No Questions Available</div>
-                                @endforelse
+                                @endforeach
+                            @else
+                                <div class="col-md-12">No Questions Available</div>
                             @endif
                         </div>
                     </div>

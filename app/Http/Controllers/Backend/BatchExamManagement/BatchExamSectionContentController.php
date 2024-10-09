@@ -146,6 +146,7 @@ class BatchExamSectionContentController extends Controller
 
     public function getQuesByTopic (Request $request)
     {
+        return "ok";
 //        abort_if(Gate::denies('manage-batch-exam-section-content'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         foreach ($request->question_topic_ids as $question_topic_id)
         {

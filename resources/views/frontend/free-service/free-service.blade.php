@@ -42,14 +42,13 @@ Biddabari - All Course
         </div>
     </div>
 @endsection
-@push('css')
+@push('style')
 <style>
    @media only screen and (min-width: 280px) and (max-width: 420px){
         .cat_mobile_res .col-md-3 {
             width: 50% !important;
         }
    }
-
 </style>
 
 @endpush

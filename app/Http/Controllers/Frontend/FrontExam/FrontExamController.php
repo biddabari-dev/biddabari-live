@@ -146,7 +146,7 @@ class FrontExamController extends Controller
     {
         if (ViewHelper::authCheck())
         {
-            $this->sectionContent = CourseSectionContent::whereId($contentId)->with(['questionStoresForClassXm'])->first();
+            $this->sectionContent = CourseSectionContent::whereId($contentId)->with('questionStoresForClassXm.questionOptions')->first();
             $existUserClassXm = CourseClassExamResult::where(['course_section_content_id' => $this->sectionContent->id, 'user_id' => ViewHelper::loggedUser()->id])->first();
             if (isset($existUserClassXm))
             {

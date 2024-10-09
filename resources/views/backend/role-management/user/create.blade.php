@@ -54,6 +54,12 @@
                                         </option>
                                     @elseif(!isset($user) && $role->id == 4)
                                         <option value="{{ $role->id }}">{{ $role->title }}</option>
+                                    @elseif(isset($user) && $role->id == 4)
+                                        <option value="{{ $role->id }}"
+                                                @foreach($user->roles as $userRole)
+                                                    @if($role->id == $userRole->id) selected @endif
+                                                @endforeach
+                                            >{{ $role->title }}</option>
                                     @else
                                         @if(isset($user))
                                             @foreach($user->roles as $userRole)

@@ -723,7 +723,7 @@
                 // dataType: "JSON",
                 data: {section_content_id:sectionContentId,exam_type:examType},
                 success: function (data) {
-                    // console.log(data);
+                     console.log(data);
                     $('#addQueModalBody').empty().append(data);
                     $('.select2').select2();
                     $('#setQuestionOnSectionContentModal').modal('show');
