@@ -25,14 +25,26 @@ class QuestionStoreController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         abort_if(Gate::denies('manage-question-store'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         if (isset($_GET['topic_id']) && isset($_GET['q-type']))
         {
-            $this->questionTopic = QuestionTopic::whereId($_GET['topic_id'])->select('id', 'name', 'type', 'status')->with(['questionStores' => function($questionStores){
-                $questionStores->where('question_type', $_GET['q-type'] == 'mcq' ? 'MCQ' : 'Written')->orderBy('id', 'ASC')->get();
-            }])->first();
+        //    return $this->questionTopic = QuestionTopic::whereId($_GET['topic_id'])->select('id', 'name', 'type', 'status')->with(['questionStores' => function($questionStores){
+        //         $questionStores->where('question_type', $_GET['q-type'] == 'mcq' ? 'MCQ' : 'Written')->orderBy('id', 'ASC')->with(['questionOptions'])->get();
+        //     }])->first();
+
+        $this->questionTopic = QuestionTopic::whereId($_GET['topic_id'])
+        ->select('id', 'name', 'type', 'status')
+        ->with([
+            'questionStores' => function ($query) {
+                $query->where('question_type', $_GET['q-type'] == 'mcq' ? 'MCQ' : 'Written')
+                      ->orderBy('id', 'ASC')
+                      ->with(['questionOptionsAscOrder']);  // Ensure related data is eager-loaded
+            }
+        ])
+        ->first();
+
 
             return view('backend.question-management.question-stores.index', [
                 'questionTopic' => $this->questionTopic

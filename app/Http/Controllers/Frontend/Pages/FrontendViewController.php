@@ -61,6 +61,9 @@ class FrontendViewController extends Controller
     public function productDetails($slug)
     {
         $this->product = Product::where('slug',$slug)->select('id', 'product_author_id', 'title', 'image', 'featured_pdf', 'pdf', 'slug', 'description','price','discount_amount','discount_start_date','discount_end_date','about','specification','other_details' , 'stock_amount', 'is_featured', 'status')->first();
+        if(!$this->product){
+            return response()->view('errors.404', [], 404);
+        }
         if (!empty($this->product->discount_start_date) && !empty($this->product->discount_end_date))
         {
             if (Carbon::now()->between(dateTimeFormatYmdHi($this->product->discount_start_date), dateTimeFormatYmdHi($this->product->discount_end_date)))
@@ -112,7 +115,7 @@ class FrontendViewController extends Controller
 
     public function findTeacher ($id)
     {
-        
+
         if (str()->contains(url()->current(), '/api/'))
         {
             $teacher = Teacher::whereStatus(1)->where('id',$id)->first();
@@ -319,15 +322,15 @@ class FrontendViewController extends Controller
         }
 
         // dd($this->seos);
-        
+
         $this->blog->image = asset($this->blog->image);
         $this->data = [
             'blog'    => $this->blog,
             'recentBlogs'   => Blog::whereStatus(1)->latest()->select('id', 'title', 'image', 'slug', 'created_at')->take(6)->get(),
             'comments'      => $this->comments,
-       
+
             'seos'          => $this->seos,
-            
+
         ];
 
         return ViewHelper::checkViewForApi($this->data, 'frontend.blogs.blog-details');
@@ -424,6 +427,9 @@ class FrontendViewController extends Controller
     public function instructorDetails ($id, $slug = null)
     {
         $teacher = Teacher::find($id);
+        if(!$teacher){
+            return response()->view('errors.404', [], 404);
+        }
         $this->data = [
             'teacher'   => $teacher,
             'latestCourses' => Course::whereStatus(1)->latest()->take(6)->get(),

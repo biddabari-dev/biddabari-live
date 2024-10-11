@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('category_wise_assign_videos', function (Blueprint $table) {
+            $table->integer('section_content_id')->nullable()->change();
+            $table->integer('exam_id')->nullable()->change();
+            $table->string('thumbnail')->nullable()->change();
+            $table->string('type')->nullable()->change();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('category_wise_assign_videos', function (Blueprint $table) {
+            $table->integer('section_content_id')->nullable(false)->change();
+            $table->integer('exam_id')->nullable(false)->change();
+            $table->string('thumbnail')->nullable(false)->change();
+            $table->string('type')->nullable(false)->change();
+        });
+    }
+};

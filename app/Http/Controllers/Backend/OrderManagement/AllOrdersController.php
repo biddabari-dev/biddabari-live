@@ -23,7 +23,7 @@ class AllOrdersController extends Controller
         abort_if(Gate::denies('manage-all-order'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $this->allOrders=ParentOrder::orderBy('id','DESC');
         if($request->date== null && $request->status== null && $request->type == null && $request->payment == null && $request->search == null){
-            $this->allOrders = ParentOrder::latest();
+            $this->allOrders = ParentOrder::whereDate('created_at', today())->latest();
         }else{
             if (isset($request->date))
             {
@@ -53,7 +53,7 @@ class AllOrdersController extends Controller
 //        if (!empty($request->order_type) && $request->order_type != 'all')
 
 //        $this->allOrders = $this->allOrders->latest()->paginate(1000);
-        $this->allOrders = $this->allOrders->where('total_amount','>', '0')->paginate(25);
+        $this->allOrders = $this->allOrders->where('total_amount','>', '0')->get();
         return view('backend.order-management.all-order.index', [
             'allOrders'  => !empty($this->allOrders) ? $this->allOrders : '',
         ]);

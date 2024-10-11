@@ -98,7 +98,7 @@
 @push('script')
 {{--    datatable--}}
 @include('backend.includes.assets.plugin-files.datatable')
-@include('backend.includes.assets.plugin-files.editor')
+{{-- @include('backend.includes.assets.plugin-files.editor') --}}
 
 @if($errors->any())
     <script>
@@ -115,9 +115,13 @@
         $('#coursesModal').modal('show');
     })
 </script>
-
-    {{--    store course--}}
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
     <script>
+        CKEDITOR.replace( 'ck',
+        {
+            fullPage : true,
+            uiColor : '#efe8ce'
+        });
 
     </script>
 
@@ -133,8 +137,8 @@
                 success: function (data) {
                     console.log(data);
                     $('#modalForm').empty().append(data);
-                    $('#summernote').summernote('destroy');
-                    $('#summernote').summernote();
+                    // $('#summernote').summernote('destroy');
+                    // $('#summernote').summernote();
 
                     $('#coursesModal').modal('show');
                 }

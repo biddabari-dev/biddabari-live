@@ -58,6 +58,16 @@ use App\Models\Backend\UserManagement\Teacher;
 |
 */
 
+Route::get('/reboot', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    file_put_contents(storage_path('logs/laravel.log'), '');
+    Artisan::call('config:cache');
+    Artisan::call('optimize');
+    return '<center><h1>System Rebooted!</h1></center>';
+});
+
 Route::get('/ttt', function(){
     $prefix = '';
     $config = [
@@ -96,14 +106,7 @@ Route::get('/ttt', function(){
             ]);
             }
         }
-
-
-            // return response()->json(['url' => $result['ObjectURL']]);
-
-
-        }
-
-
+    }
 
 });
 
@@ -129,46 +132,14 @@ Route::post('/verify-pass-reset-otp', [CustomAuthController::class, 'verifyPassR
 Route::get('form',[PaymentController::class, 'form'])->name('form');
 Route::post('form-order',[PaymentController::class, 'order'])->name('form-order');
 
-
 /**
  * @return void
  */
 
-/* clear all cache */
-Route::get('/clear-all', function () {
-    Artisan::call('optimize:clear');
-    echo Artisan::output();
-});
-Route::get('/clear-all-cache', function () {
-    Artisan::call('optimize:clear');
-    return redirect()->back()->with('success', 'Cache cleared successfully' );
-})->name('clear-all-cache');
-//example one
 Route::get('/a', function () {
     shell_exec('convert '. public_path('backend/assets/uploaded-files/course-xm-temp-file-upload/tmp--1711188856692.jpg').' '.public_path('backend/assets/uploaded-files/course-xm-temp-file-upload/tmp-1709199042765.jpg').' '.public_path('backend/assets/uploaded-files/course-written-xm-ans-files/dd.pdf'));
 //   shell_exec('php artisan make:model A');
    echo 'a';
-});
-/* migration */
-Route::get('/migrate',function(){
-    Artisan::call('migrate');
-    echo Artisan::output();
-});
-
-Route::get('/migrate-seed',function(){
-    Artisan::call('migrate --seed');
-    echo Artisan::output();
-});
-
-Route::get('/migrate-fresh-seed',function(){
-    Artisan::call('migrate:fresh --seed');
-    echo Artisan::output();
-});
-
-/* migration rollback */
-Route::get('/migrate-rollback',function(){
-    Artisan::call('migrate:rollback');
-    echo Artisan::output();
 });
 
 /* create symbolic link */
@@ -176,30 +147,12 @@ Route::get('/symlink', function () {
     Artisan::call('storage:link');
     echo Artisan::output();
 });
-/* Optimize files */
-Route::get('/optimize', function () {
-    Artisan::call('optimize');
-    echo Artisan::output();
-});
-/* clear view cache */
-Route::get('/clear-view-cache', function () {
-    Artisan::call('view:clear');
-    return 'View Cache Cleared';
-});
-/* clear route cache */
-Route::get('/clear-route-cache', function () {
-    Artisan::call('route:clear');
-    return 'Route Cache Cleared';
-});
-/* Only db seed */
-Route::get('/only-db-seed', function () {
-    Artisan::call('db:seed');
-    return 'DB Seed successful';
-});
+
+Route::get('/clear-all-cache', function () {
+    Artisan::call('optimize:clear');
+    return redirect()->back()->with('success', 'Cache cleared successfully' );
+})->name('clear-all-cache');
 
 Route::get('/phpinfo', function () {
     phpinfo();
 });
-
-
-

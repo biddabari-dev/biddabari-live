@@ -13,26 +13,26 @@
                         <div class="card-body">
                             <div class="row ">
 
-                                <div class="card card-body">
+                                <div class="card card-body table-responsive">
                                     <table class="table ranking-table table-borderless" id="file-datatable">
                                         <thead>
                                             <tr>
-                                                <th>RANK</th>
-                                                <th>NAME</th>
-                                                <th>MARK</th>
+                                                <td>Rank</td>
+                                                <td>Name</td>
+                                                <td>Mark</td>
                                                 @if(count($courseExamResults) > 0)
                                                     @if($courseExamResults[0]->xm_type == 'exam')
-                                                        <th>Provided Ans</th>
-                                                        <th>Right Ans</th>
-                                                        <th>Wrong Ans</th>
+                                                        <td>Provided Ans</td>
+                                                        <td>Right Ans</td>
+                                                        <td>Wrong Ans</td>
                                                     @endif
                                                 @endif
-                                                <th>DURATION</th>
+                                                <td>Duration</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($courseExamResults as $key => $courseExamResult)
-                                                @if($key <= 4)
+                                                {{-- @if($key <= 4) --}}
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $courseExamResult->user->name }}</td>
@@ -44,9 +44,9 @@
                                                         @endif
                                                         <td>{{ \Carbon\CarbonInterval::seconds($courseExamResult->required_time)->cascade()->forHumans() }}</td>
                                                     </tr>
-                                                @endif
+                                                {{-- @endif --}}
                                             @endforeach
-                                            @if(!empty($myPosition))
+                                            {{-- @if(!empty($myPosition))
                                                 @if($myPosition->position)
                                                     @if($myPosition->position > 4)
                                                         <tr class="correct-ans-bg">
@@ -73,9 +73,10 @@
                                                         <td>{{ \Carbon\CarbonInterval::seconds($courseExamResultx->required_time)->cascade()->forHumans() }}</td>
                                                     </tr>
                                                 @endif
-                                            @endforeach
+                                            @endforeach --}}
                                         </tbody>
                                     </table>
+                                    {{-- {!! $courseExamResults->links() !!} --}}
                                 </div>
                             </div>
                         </div>

@@ -69,10 +69,6 @@ Route::middleware('previousUrlMiddleware')->group(function (){
 
 
     Route::get('/home2', [BasicViewController::class, 'home2'])->name('home2');
-
-
-
-
         Route::get('/', [BasicViewController::class, 'home'])->name('home');
         Route::get('/course', [BasicViewController::class, 'allCourses'])->name('all-courses');
         Route::get('/details/{slug}', [BasicViewController::class, 'courseDetails'])->name('course-details');

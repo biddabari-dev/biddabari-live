@@ -11,7 +11,7 @@
                 </div>
                 <div class="row product_mobile_res pro_book_mobile_res">
                     @foreach($products as $product)
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="blog-card">
                             <div class="book-btn-sec">
                                 <a href="{{ route('front.product-details',['id'=>$product->id, 'slug'=>$product->slug]) }}"
@@ -25,7 +25,7 @@
                                 @endphp
                                 <p></p>
                                 <a href="{{ route('front.view-cart',[$product->id]) }}" class="default-btn ">এখনই কিনুন</a>
-                                
+
                             </div>
 
                             <div class="blog_card_img">

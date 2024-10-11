@@ -1,65 +1,20 @@
 @extends('frontend.master')
+@push('style')
+    <style>
+        .sticky-submit-btn{
+            text-align: center;
+            width: 500px;
+            position: fixed;
+            bottom: 0px;
+            margin-bottom: 2rem;
+            background: #ffc107;
+            color: #fff;
+            font-size: 1rem;
+        }
+    </style>
+@endpush
 
 @section('body')
-@push('style')
-<style>
-    /* Hide all toolbar buttons initially */
-    .pdf-toolbar-btn {
-        display: none;
-    }
-
-    /* Show only the print, download buttons, and zoom dropdown */
-    #btn-print, #btn-download, .pdf-toolbar-zoom {
-        display: inline-block; /* Ensure these elements are shown */
-    }
-
-    /* Style the toolbar container */
-    .pdf-toolbar {
-        display: flex;
-        align-items: center;
-        background-color: #333; /* Dark background for the toolbar */
-        color: #fff; /* White text color */
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    /* Style the title (optional) */
-    .pdf-toolbar-title {
-        display: none;
-    }
-
-    /* Style the visible buttons */
-    #btn-print, #btn-download {
-        background-color: #555; /* Darker button background */
-        border: none;
-        color: #fff;
-        padding: 5px 10px;;
-        margin: 0 2px;
-        border-radius: 3px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    /* Change button color on hover */
-    #btn-print:hover, #btn-download:hover {
-        background-color: #777;
-    }
-
-    /* Style the zoom dropdown */
-    .pdf-toolbar-zoom {
-        background-color: #555;
-        color: #fff;
-        border: 1px solid #555;
-        border-radius: 3px;
-        padding: 5px;
-        margin: 0 5px;
-    }
-    input[type="number"], select {
-        display: none;
-    }
-    </style>
-
-@endpush
 <div class="container-fluid" id="grad1">
     <div class="row" style=" min-height: 500px;">
         <div class="col-md-8 quiz-wizard mx-auto">
@@ -87,21 +42,21 @@
                 </div>
                 <!-- $quiz->questions->take(100)->shuffle(50)->random(50); -->
                 <div class="card-body d-none" id="questionsCard">
-                    <div class="row custom_start_exam_scroll">
+                    <div class="row">
                         <div class="col-md-12 px-0" id="dtBasicExample">
                             {{--                            <form id="quizForm" action="/user/quizzes/{{ $quiz->id }}/store_results-mega" method="post" class="quiz-form">--}}
                             <form id="quizForm" action="{{ route('front.student.get-batch-exam-result', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}" method="post" class="quiz-form" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="required_time">
-                                <input type="hidden" name="_method" value="post"/>
+                                <input type="hidden" name="_method" value="post" />
                                 <input type="hidden" id="name" value="">
                                 @if($exam->content_type == 'exam')
                                     @foreach($exam->questionStores as $index => $question)
                                         <div class="mt-2 p-3" id="questionDiv{{ $question->id }}">
                                             <div class="form-card " id="fildset{{ $question->id }}">
                                                 <div class="question-title" id="loop{{ $question->id }}" data-loop="{{ $loop->iteration }}" style="margin-top: 10px">
-                                                    <span class="float-start f-s-26"> &nbsp;</span>
-                                                    <span class="float-start f-s-26">{!! $question->question !!}</span>
+                                                    <span class="float-start f-s-26">  &nbsp;</span>
+                                                    <span class="float-start f-s-26"> {!! $question->question !!}</span>
                                                 </div>
                                                 @if(!empty($question->question_image))
                                                     <div class="{{--image-container--}}">
@@ -143,9 +98,9 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    {{-- <div class="card-actions d-flex align-items-center finish-div d-none">
-                                        <button type="submit" class="action-button finish btn btn-danger">Finish Test</button>
-                                    </div> --}}
+                                        <div class="card-actions d-flex align-items-center finish-div d-none">
+                                            <button type="submit" class="action-button finish btn btn-danger">Finish Test</button>
+                                        </div>
                                 @elseif($exam->content_type == 'written_exam')
                                     @foreach($exam->questionStores as $index => $question)
                                         <div class="row mt-2">
@@ -154,6 +109,7 @@
                                                 <h4 class="float-start fw-bold">{!! $question->question !!}</h4>
                                                 <div class="mt-3">
                                                     @if($question->question_file_type == 'pdf')
+                                                        <div class="my-2 d-grid"><a href="{{ asset($question->question_image) }}" download="" class="btn btn-sm btn-success text-warning col-md-3 col-sm-6 ms-auto">Download</a></div>
                                                         <div id="pdf-container" data-pdf-url="{{ asset($question->question_image) }}"></div>
                                                     @else
                                                         <img src="{{ asset($question->question_image) }}" alt="" style="max-height: 400px; width: 94%;">
@@ -162,30 +118,28 @@
                                             </div>
                                         </div>
                                     @endforeach
+
                                     <div class="row mt-3">
 
                                         <div class="col-md-12 ">
                                             <div class="ansFileUpload"></div>
                                         </div>
-                                        <div class="col-md-4 mx-auto mt-3 mb-3">
-                                            {{-- <a href="" class="btn btn-danger ">Finish Test</a> --}}
-                                            <a href="" class="sticky-submit-btn btn btn-danger w-100 f-s-20">Submit</a>
+                                        <div class="col-md-4 mx-auto">
+                                            <input type="submit" class="btn btn-danger mt-4 finish-div d-none" value="Finish Test" />
                                         </div>
                                     </div>
                                 @endif
                             </form>
                         </div>
                     </div>
-                @if($exam->content_type == 'exam')
-                    <div class="col-md-8 text-center mt-3 mx-auto mb-3">
-                        {{-- <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a> --}}
-                        <a href="" class="sticky-submit-btn btn btn-danger btn-outline-warning w-50 f-s-20 d-none">Submit</a>
-                    </div>
-                @endif
                 </div>
             </div>
         </div>
-
+        @if($exam->content_type != 'written_exam')
+        <div class="col-md-8 text-center">
+            <a href="" class="btn sticky-submit-btn btn-outline-warning d-none">Submit</a>
+        </div>
+        @endif
     </div>
 </div>
 
@@ -533,7 +487,6 @@
     $(function (){
         $('.ansFileUpload').imageUploader({
             imagesInputName: "ans_files",
-            preloadedInputName:'preloaded',
             label: "Drag & Drop Answer Image files here or click to browse"
         });
     })

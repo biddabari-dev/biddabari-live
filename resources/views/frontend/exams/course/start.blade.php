@@ -97,11 +97,12 @@
                                 <input type="hidden" id="name" value="">
                                 @if($exam->content_type == 'exam')
                                     @foreach($exam->questionStores as $index => $question)
+
                                         <div class="mt-2 p-3" id="questionDiv{{ $question->id }}">
                                             <div class="form-card " id="fildset{{ $question->id }}">
                                                 <div class="question-title" id="loop{{ $question->id }}" data-loop="{{ $loop->iteration }}" style="margin-top: 10px">
                                                     <span class="float-start f-s-26"> &nbsp;</span>
-                                                    <span class="float-start f-s-26"> {!! $question->question !!}</span>
+                                                    <span class="float-start f-s-26">{!! $question->question !!}</span>
                                                 </div>
                                                 @if(!empty($question->question_image))
                                                     <div class="{{--image-container--}}">
@@ -117,6 +118,7 @@
                                                 @endif
                                                 <div class="answer-items mt-3" id="queRadio{{ $question->id }}">
                                                     @foreach($question->questionOptions as $optionIndex => $questionOption)
+
                                                         @if(!empty($questionOption->option_title))
                                                             <div class="form-radio" >
                                                                 <input class="asw{{ $questionOption->id }}" type="checkbox" name="question[{{ $question->id }}][answer]" value="{{ $questionOption->id }}">
@@ -124,11 +126,12 @@
                                                                 <label class="answer-label" id="ali{{ $questionOption->id }}" data-que-id="{{ $question->id }}" data-ans-id="{{ $questionOption->id }}" for="asw{{ $questionOption->id }}">
                                                                     <span class="answer-title mx-0">{{ $questionOption->option_title }}</span>
                                                                 </label>
-                                                                <span class="ps-1 d-none cont" id="ansCheck{{ $questionOption->id }}">
+                                                                <span class="ps-1 mt-2 d-none cont" id="ansCheck{{ $questionOption->id }}">
                                                                     <span class="check-ans" data-option-id="{{ $questionOption->id }}" style="cursor: pointer; color: black"><i class="fa-solid fa-check"></i></span>
-                                                                    <span class="text-danger cancel-ans" style="cursor: pointer; color: black"><i class="fa-solid fa-xmark"></i></span>
+                                                                    {{-- <span class="text-danger cancel-ans" style="cursor: pointer; color: black"><i class="fa-solid fa-xmark"></i></span> --}}
                                                                 </span>
                                                             </div>
+
                                                         @else
                                                             <div class="form-radio">
                                                                 <input id="asw{{ $questionOption->id }}" type="checkbox" name="question[{{ $question->id }}][answer]" value="{{ $questionOption->id }}">
@@ -136,12 +139,14 @@
                                                                 <label class="" for="asw{{ $questionOption->id }}">
                                                                     <img src="{{ $questionOption->option_image }}" class="fit-image" alt="">
                                                                 </label>
+
                                                             </div>
                                                         @endif
                                                     @endforeach
                                                 </div>
                                             </div>
                                         </div>
+
                                     @endforeach
                                     {{-- <div class="card-actions d-flex align-items-center finish-div d-none">
                                         <button type="submit" class="action-button finish btn btn-danger">Finish Test</button>

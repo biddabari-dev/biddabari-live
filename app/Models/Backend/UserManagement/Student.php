@@ -4,6 +4,7 @@ namespace App\Models\Backend\UserManagement;
 
 use App\Models\Backend\BatchExamManagement\BatchExam;
 use App\Models\Backend\Course\Course;
+use App\Models\Backend\OrderManagement\ParentOrder;
 use App\Models\Scopes\Searchable;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -119,4 +120,5 @@ class Student extends Model
     {
         return $this->belongsToMany(BatchExam::class);
     }
+
 }
