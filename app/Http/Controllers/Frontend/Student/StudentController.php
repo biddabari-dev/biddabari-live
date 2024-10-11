@@ -104,7 +104,7 @@ class StudentController extends Controller
         $this->data = [
             'courseOrders'  => $this->courseOrders
         ];
-        
+
         return ViewHelper::checkViewForApi($this->data, 'frontend.student.course.courses');
     }
 
@@ -160,11 +160,28 @@ class StudentController extends Controller
     public function myExams ()
     {
         $this->loggedUser = ViewHelper::loggedUser();
-        $this->exams   = ParentOrder::where(['ordered_for' => 'batch_exam', 'user_id' => $this->loggedUser->id])->where('status', '!=', 'canceled')->with([
-            'batchExam' => function($batchExam) {
-                $batchExam->whereStatus(1)->select('id', 'title', 'banner', 'slug', 'sub_title', 'is_paid', 'is_featured', 'is_approved', 'status', 'is_master_exam')->get();
-            }
-        ])->select('id', 'user_id', 'parent_model_id', 'batch_exam_subscription_id', 'ordered_for', 'status')->get();
+        // $this->exams   = ParentOrder::where(['ordered_for' => 'batch_exam', 'user_id' => $this->loggedUser->id])->where('status', '!=', 'canceled')->with([
+        //     'batchExam' => function($batchExam) {
+        //         $batchExam->whereStatus(1)->select('id', 'title', 'banner', 'slug', 'sub_title', 'is_paid', 'is_featured', 'is_approved', 'status', 'is_master_exam')->get();
+        //     }
+        // ])->select('id', 'user_id', 'parent_model_id', 'batch_exam_subscription_id', 'ordered_for', 'status')->get();
+
+        $this->exams = ParentOrder::where(['ordered_for' => 'batch_exam', 'user_id' => $this->loggedUser->id])
+            ->where('status', '!=', 'canceled')
+            ->with([
+                'batchExam' => function ($batchExam) {
+                    $batchExam->whereStatus(1)
+                        ->select('id', 'title', 'banner', 'slug', 'sub_title', 'is_paid', 'is_featured', 'is_approved', 'status', 'is_master_exam');
+                }
+            ])
+            ->select('id', 'user_id', 'parent_model_id', 'batch_exam_subscription_id', 'ordered_for', 'status')
+            ->get() // Make sure it's a collection
+            ->filter(function($exam) {
+                // Check if batchExam exists
+                return $exam->batchExam !== null;
+            });
+
+
         foreach ($this->exams as $exam)
         {
             $exam->has_validity = ViewHelper::checkIfBatchExamIsEnrollmentAndHasValidity($this->loggedUser, $exam->batchExam);

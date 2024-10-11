@@ -41,14 +41,14 @@
 
 @if(!empty($content->questionStores))
     <div class="card card-body">
-        <h2 class="text-center">Assigned Questions ({{ count($content->questionStores) }} Ques)</h2>
+        <h2 class="text-center">Assigned Questions ( <span id="q-count"></span> Ques )</h2>
         <div class="row">
             @foreach($content->questionStores as $key=>$questionStore)
                 <div class="col-md-6 mt-2 border  p-3 shadow" id="question{{ $questionStore->id }}" style="cursor: pointer">
                     <div class="row">
                         <div class="col-sm-10">
                             <label for="que{{ $questionStore->id }}" class="que-check"  style="cursor: pointer" data-question-id="{{ $questionStore->id }}">
-                                <span class="float-start">{{--#{{ $loop->iteration }}--}}&nbsp;</span> <span class="float-start">{!! $questionStore->question !!}</span>
+                                <span class="float-start">{{--#{{ $loop->iteration }}--}}&nbsp;</span> <span class="float-start">{!! $questionStore->question !!} </span>
                             </label>
                         </div>
                         <div class="col-sm-2">
@@ -61,8 +61,10 @@
                     @if(!empty($questionStore->questionOptions) && count($questionStore->questionOptions) > 0)
                         <div class="">
                             <div>
+
                                 <ol type="A">
                                     @foreach($questionStore->questionOptions as $questionOption)
+
                                         <li class="{{ $questionOption->is_correct == 1 ? 'text-success' : '' }}"><p class="{{ $questionOption->is_correct == 1 ? 'fw-bold' : '' }}">{{ $questionOption->option_title }}</p></li>
                                     @endforeach
                                 </ol>

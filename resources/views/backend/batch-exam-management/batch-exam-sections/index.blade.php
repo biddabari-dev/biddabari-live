@@ -760,6 +760,9 @@
                 $('.que-check-id-'+questionTopicId).each(function () {
                     $(this).parent().addClass('bg-warning');
                 });
+                let allQuestion = $(".all-question-count").val();
+
+                $("#q-count").text(allQuestion);
             } else {
                 $('.que-top-'+questionTopicId).each(function () {
                     this.checked = false;
@@ -767,9 +770,12 @@
                 $('.que-check-id-'+questionTopicId).each(function () {
                     $(this).parent().removeClass('bg-warning');
                 });
+                $("#q-count").text('0');
             }
         });
+        var count = 0;
         $(document).on('click', '.que-check', function () {
+
             var questionTopicId = $(this).attr('data-topic-id');
             var questionId = $(this).attr('data-question-id');
             if (!$(this).parent().hasClass('bg-warning'))
@@ -780,6 +786,7 @@
             }
             if ($('#que'+questionId).is(':checked'))
             {
+                count -= 1;
                 var unchecked = 0;
                 $('.que-check-id-'+questionTopicId).each(function () {
                     if(!this.checked){
@@ -788,13 +795,17 @@
                 });
                 if (unchecked == 0){
                     $('#selectAll-'+questionTopicId).prop('checked', true);
+                    count += 1;
+                    console.log('Counter,,,',count);
                 } else {
                     $('#selectAll-'+questionTopicId).prop('checked', false);
                 }
             } else {
                 // $('#selectAll-'+questionTopicId).prop('checked', false);
                 $('#selectAll-'+questionTopicId).attr('checked', false);
+                count += 1;
             }
+            $("#q-count").text(count);
         });
     </script>
     <script>
