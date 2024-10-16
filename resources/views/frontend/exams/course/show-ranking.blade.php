@@ -19,6 +19,7 @@
                                             <td>Rank</td>
                                             <td>Name</td>
                                             <td>Mark</td>
+                                            <td>Status</td>
                                             @if(count($courseExamResults) > 0)
                                                 @if($courseExamResults[0]->xm_type == 'exam')
                                                     <td>Provided Ans</td>
@@ -36,6 +37,18 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $courseExamResult->user->name }}</td>
                                                     <td>{{ $courseExamResult->result_mark ?? 0 }}</td>
+                                                    <td>
+                                                        @if(!empty($courseExamResult->status))
+                                                            @if(($courseExamResult->status === 'pass'))
+                                                                <button class="btn btn-sm" style="background-color: green; color: white;">Pass</button>
+                                                            @elseif(($courseExamResult->status === 'fail'))
+                                                                <button class="btn btn-sm" style="background-color: red; color: white;">Fail</button>
+                                                            @else
+                                                                <button class="btn btn-sm" style="background-color: orange; color: white;">Pending</button>
+                                                            @endif
+                                                        @endif
+                                                    </td>
+
                                                     @if($courseExamResults[0]->xm_type == 'exam')
                                                         <td>{{ $courseExamResult->total_provided_ans ?? 0 }}</td>
                                                         <td>{{ $courseExamResult->total_right_ans ?? 0 }}</td>

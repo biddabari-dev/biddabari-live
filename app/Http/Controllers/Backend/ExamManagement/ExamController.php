@@ -121,7 +121,7 @@ class ExamController extends Controller
 
     public function showExamSheet(Request $request)
     {
-//        return $request;
+     // return $request;
         if (!empty($request->section_content_id) && !empty($request->exam_of)) {
             if ($request->exam_of == 'course') {
                 if ($request->exam_section_content_type == 'written')
@@ -195,9 +195,14 @@ class ExamController extends Controller
 
     public function updateExamResult(Request $request)
     {
-//        return $request;
-       $data= ExamResult::updateXmResult($request);
-        return $data;
+        $examOf = $request->examOf;
+       //$data= ExamResult::updateXmResult($request);
+        if($examOf == "course"){
+            CourseExamResult::updateXmResult($request, $examOf);
+        }else{
+            BatchExamResult::updateXmResult($request, $examOf);
+        }
+
         return back()->with('success', 'Exam Result Updated Successfully.');
     }
 

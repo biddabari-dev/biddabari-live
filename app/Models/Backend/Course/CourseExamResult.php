@@ -41,7 +41,7 @@ class CourseExamResult extends Model
 
     public static function updateXmResult($request, $examOf)
     {
-        self::$xmResult                     = CourseExamResult::find($request->xm_result_id);
+        self::$xmResult = CourseExamResult::find($request->xm_result_id);
         if ($request->hasFile('written_xm_file'))
         {
             if (file_exists(self::$xmResult->written_xm_file))
@@ -51,13 +51,13 @@ class CourseExamResult extends Model
         }
         self::$xmResult->result_mark        = $request->result_mark;
         self::$xmResult->written_xm_file    = $request->hasFile('written_xm_file') ? fileUpload($request->file('written_xm_file'), 'written-xm-ans-files', '') : static::find($request->xm_result_id)->written_xm_file;
-        self::$xmResult->status             = !empty($request->result_mark) ? (self::$xmResult->courseSectionContent->xm_pass_mark >= $request->result_mark ? 'fail' : 'pass') : 'pending';
+        self::$xmResult->status             = !empty($request->result_mark) ? (self::$xmResult->courseSectionContent->written_pass_mark > $request->result_mark ? 'fail' : 'pass') : 'pending';
         self::$xmResult->save();
     }
 
     public function courseSectionContent()
     {
-        return $this->belongsTo(CourseSectionContent::class);
+        return $this->belongsTo(CourseSectionContent::class);                       
     }
 
     public function user()

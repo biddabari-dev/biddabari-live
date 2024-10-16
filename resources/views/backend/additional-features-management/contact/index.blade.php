@@ -98,14 +98,14 @@
                                     <tbody>
                                     @if(isset($contacts))
                                         @foreach($contacts as $contact)
-                                            @if($contact->type != 'page')
+                                                @if($contact->type !== null && $contact->type != 'page')
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>
                                                         <span>Name: {{ $contact->user->name }}</span> <br>
                                                         <span>Mobile: {{ $contact->user->mobile }}</span> <br>
                                                         @if($contact->type == 'course')
-                                                            <span>{{ $contact->course->title }}</span> <br>
+                                                            <span>{{ $contact->course->title ?? '' }}</span> <br>
                                                         @elseif($contact->type == 'batch_exam')
                                                             <span>{{ $contact->batchExam->title }}</span> <br>
                                                         @endif
@@ -113,15 +113,15 @@
                                                     </td>
                                                     <td>
                                                         @if($contact->type =='course')
-                                                            {{ $contact->course->title }}
+                                                            {{ $contact->course->title ?? '' }}
                                                         @elseif($contact->type =='batch_exam')
                                                             {{ $contact->batchExam->title }}
                                                         @elseif($contact->type =='product')
                                                             {{ $contact->product->title }}
                                                         @elseif($contact->type =='blog')
-                                                            {{ $contact->blog->title }}
+                                                            {{ $contact->blog->title ?? '' }}
                                                         @elseif($contact->type =='course_content')
-                                                            {{ $contact->courseSectionContent->courseSection->course->title }}
+                                                            {{ $contact->courseSectionContent->courseSection->course->title ?? '' }}
                                                         @elseif($contact->type =='batch_exam_content')
                                                             {{ $contact->batchExamSectionContent->batchExamSection->batchExam->title }}
                                                         @endif

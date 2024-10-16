@@ -155,8 +155,8 @@
                                     @foreach($exam->questionStores as $index => $question)
                                         <div class="row mt-2">
                                             <div class="col-md-12">
-                                                <span class="float-start" style="font-size: 22px"> &nbsp;</span>
-                                                <h4 class="float-start fw-bold">{!! $question->question !!}</h4>
+                                                <!-- <span class="float-start" style="font-size: 22px"> &nbsp;</span>
+                                                <h4 class="float-start fw-bold">{!! $question->question !!}</h4> -->
                                                 <div class="mt-3">
                                                     @if($question->question_file_type == 'pdf')
                                                         <div id="pdf-container" data-pdf-url="{{ asset($question->question_image) }}"></div>
