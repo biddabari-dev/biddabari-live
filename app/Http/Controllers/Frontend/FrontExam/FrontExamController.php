@@ -344,16 +344,7 @@ class FrontExamController extends Controller
                 $this->fileSessionPaths = [];
                 $this->pdfFilePath = '';
 
-<<<<<<< HEAD
-                if (isset($request->ans_files))
-                {
-                    if (!empty($request->file('ans_files'))) {
-                        foreach ($request->file('ans_files') as $ans_file) {
-                            $imageUrl = moveFile($ans_file, 'backend/assets/uploaded-files/course-xm-temp-file-upload/');
-                            // dd($imageUrl);
-                            array_push($this->fileSessionPaths, $imageUrl);
-                            $this->filePathString .= escapeshellarg(str_replace('\\', '/', public_path($imageUrl))) . ' ';
-=======
+
                 if (isset($request->ans_files) && !empty($request->file('ans_files'))) {
                     // Store each image file temporarily and save the path
                     foreach ($request->file('ans_files') as $ans_file) {
@@ -391,24 +382,21 @@ class FrontExamController extends Controller
                             $scalingFactor = min($pageWidth / $widthInMM, $pageHeight / $heightInMM);
                             $widthInMM *= $scalingFactor;
                             $heightInMM *= $scalingFactor;
->>>>>>> test
                         }
 
                         // Center the image on the page
                         $x = ($pageWidth - $widthInMM) / 2;
                         $y = ($pageHeight - $heightInMM) / 2;
 
-<<<<<<< HEAD
+                        // Add the image to the PDF with its actual size or scaled down
+                        $pdf->Image($file, $x, $y, $widthInMM, $heightInMM);
+                    }
+
 
                         // Ensure the directory exists
                         if (!File::isDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files'))) {
                             File::makeDirectory(public_path('backend/assets/uploaded-files/course-written-xm-ans-files'), 0777, true, true);
                         }
-=======
-                        // Add the image to the PDF with its actual size or scaled down
-                        $pdf->Image($file, $x, $y, $widthInMM, $heightInMM);
-                    }
->>>>>>> test
 
 
                     // Set file path for storing the generated PDF
@@ -422,6 +410,7 @@ class FrontExamController extends Controller
                     if (file_exists($pdfFilePath)) {
                         $pdfFileObject = new \Illuminate\Http\File($pdfFilePath);
                         $pdfFilePathInBucket = fileUpload($pdfFileObject, 'course-written-xm-ans-files');
+
 
                         // Clean up temporary files (uploaded images)
                         foreach ($this->fileSessionPaths as $fileSessionPath) {
