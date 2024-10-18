@@ -50,7 +50,7 @@ class BatchExamResult extends Model
         }
         self::$xmResult->result_mark        = $request->result_mark;
         self::$xmResult->written_xm_file    = $request->hasFile('written_xm_file') ? fileUpload($request->file('written_xm_file'), 'written-xm-ans-files', '') : static::find($request->xm_result_id)->written_xm_file;
-        self::$xmResult->status             = !empty($request->result_mark) ? (self::$xmResult->batchExamSectionContent->xm_pass_mark >= $request->result_mark ? 'fail' : 'pass') : 'pending';
+        self::$xmResult->status             = !empty($request->result_mark) ? (self::$xmResult->batchExamSectionContent->written_pass_mark > $request->result_mark ? 'fail' : 'pass') : 'pending';
         self::$xmResult->save();
     }
 

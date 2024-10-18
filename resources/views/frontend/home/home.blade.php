@@ -712,7 +712,7 @@
 @endpush
 
 @push('script')
-    @if (isset($poppup))
+    {{-- @if (isset($poppup))
         <script>
             $(function() {
                 setTimeout(function() {
@@ -720,5 +720,5 @@
                 }, 3000)
             });
         </script>
-    @endif
+    @endif --}}
 @endpush
