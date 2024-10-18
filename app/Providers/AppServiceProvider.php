@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app['request']->server->set('HTTPS', false);
+        $this->app['request']->server->set('HTTPS', true);
     }
 
     /**
@@ -35,8 +35,8 @@ class AppServiceProvider extends ServiceProvider
         });
         View::share('siteSettings', SiteSetting::first());
 		URL::forceRootUrl(Config::get('app.url'));
-			if (str_contains(Config::get('app.url'), 'http://')) {
-            URL::forceScheme('http');
+			if (str_contains(Config::get('app.url'), 'https://')) {
+            URL::forceScheme('https');
 		}
     }
 }

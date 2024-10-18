@@ -1,4 +1,5 @@
 @forelse($questionTopics as $questionTopic)
+<input type="hidden" class="all-question-count" value="{{ count($questionTopic->questionStores) }}">
     @if(count($questionTopic->questionStores) > 0)
         <div class="card-header bg-light mt-2">
             <h3 class="me-auto" id="">{{ $questionTopic->name }}</h3>

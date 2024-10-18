@@ -2,47 +2,54 @@
 
 @section('body')
 
-<div class="container">
-    <div class="row">
-        <div class="responsive">
-            <div class="slick_slider">
-                <div class="free_course_category_img">
-                    <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
-               </div>
-            </div>
-            <div class="slick_slider">
-                <div class="free_course_category_img">
-                    <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
-               </div>
-            </div>
-            <div class="slick_slider">
-                <div class="free_course_category_img">
-                    <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
-               </div>
-            </div>
-            <div class="slick_slider">
-                <div class="free_course_category_img">
-                    <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
-               </div>
-            </div>
-            <div class="slick_slider">
-                <div class="free_course_category_img">
-                    <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
-               </div>
-            </div>
-            <div class="slick_slider">
-                <div class="free_course_category_img">
-                    <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
-               </div>
-            </div>
-            <div class="slick_slider">
-                <div class="free_course_category_img">
-                    <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
-               </div>
+    <div class="container">
+        <div class="row">
+            <div class="responsive">
+                <div class="slick_slider">
+                    <div class="free_course_category_img">
+                        <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}" alt=""
+                            srcset="">
+                    </div>
+                </div>
+                <div class="slick_slider">
+                    <div class="free_course_category_img">
+                        <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}" alt=""
+                            srcset="">
+                    </div>
+                </div>
+                <div class="slick_slider">
+                    <div class="free_course_category_img">
+                        <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}" alt=""
+                            srcset="">
+                    </div>
+                </div>
+                <div class="slick_slider">
+                    <div class="free_course_category_img">
+                        <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}" alt=""
+                            srcset="">
+                    </div>
+                </div>
+                <div class="slick_slider">
+                    <div class="free_course_category_img">
+                        <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}" alt=""
+                            srcset="">
+                    </div>
+                </div>
+                <div class="slick_slider">
+                    <div class="free_course_category_img">
+                        <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}" alt=""
+                            srcset="">
+                    </div>
+                </div>
+                <div class="slick_slider">
+                    <div class="free_course_category_img">
+                        <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}" alt=""
+                            srcset="">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
@@ -101,48 +108,54 @@
                         <div class="col-md-2">
                             <div class="free_course_category">
                                 <div class="free_course_category_img">
-                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                    <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}"
+                                        alt="" srcset="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="free_course_category">
                                 <div class="free_course_category_img">
-                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                    <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}"
+                                        alt="" srcset="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="free_course_category">
                                 <div class="free_course_category_img">
-                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                    <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}"
+                                        alt="" srcset="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="free_course_category">
                                 <div class="free_course_category_img">
-                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                    <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}"
+                                        alt="" srcset="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="free_course_category">
                                 <div class="free_course_category_img">
-                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                    <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}"
+                                        alt="" srcset="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="free_course_category">
                                 <div class="free_course_category_img">
-                                     <img src="{{asset("frontend/assets/images/categories/categories-img1.jpg")}}" alt="" srcset="">
+                                    <img src="{{ asset('frontend/assets/images/categories/categories-img1.jpg') }}"
+                                        alt="" srcset="">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -669,29 +682,29 @@
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
+                <div class="modal-content model_custome">
                     <div class="modal-header">
                         {{-- <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5> --}}
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body popup_card">
                         <div class="card border-0">
-                            <img src="{{ asset(file_exists_obs($poppup->image) ? $poppup->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
-                                alt="popup-img">
-                            <p>{!! $poppup->description ?? '  ' !!}</p>
-                            {{-- <div class="d-flex"> --}}
-                            {{-- <a class="btn btn-primary btn-sm ms-auto" href="{{$poppup->active_btn_link}}">
-                                {{$poppup->action_btn_text}}</a> --}}
-                            {{-- </div> --}}
+                            @if (!empty($poppup->image))
+                                <img src="{{ asset(file_exists_obs($poppup->image) ? $poppup->image : 'frontend/logo/biddabari-card-logo.jpg') }}"
+                                    alt="popup-img">
+                            @else
+                                @if (!empty($poppup->description))
+                                    <p>{!! $poppup->description !!}</p>
+                                @endif
+                            @endif
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-                        {{-- <a type="button" class="btn btn-primary"> --}}
-                        <a class="btn btn-primary btn-sm ms-auto" href="{{ $poppup->active_btn_link ?? '' }}">
-                            {{ $poppup->action_btn_text ?? '' }}</a>
-                        {{-- </a> --}}
-                    </div>
+                    @if (!empty($poppup->active_btn_link))
+                        <div class="modal-footer">
+                            <a class="btn btn-primary btn-sm ms-auto" href="{{ $poppup->active_btn_link ?? '' }}">
+                                {{ $poppup->action_btn_text ?? '' }}</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -731,50 +744,48 @@
 @endpush
 
 <script>
-    
-$('.responsive').slick({
-  dots: false,
-  infinite: true,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  slidesToShow: 5,
-  slidesToScroll: 1,
-  responsive: [
-    {
-      breakpoint: 1200,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 1,
+    $('.responsive').slick({
+        dots: false,
         infinite: true,
-        dots: false
-      }
-    },
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        slidesToShow: 5,
         slidesToScroll: 1,
-        infinite: true,
-        dots: false
-      }
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
-    // You can unslick at a given breakpoint now by adding:
-    // settings: "unslick"
-    // instead of a settings object
-  ]
-});
+        responsive: [{
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: false
+                }
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: false
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+        ]
+    });
 </script>

@@ -133,7 +133,7 @@ class QuestionStore extends Model
 
     public function questionOptions()
     {
-        return $this->hasMany(QuestionOption::class);
+        return $this->hasMany(QuestionOption::class)->orderBy('id', 'ASC');
     }
 
     public function questionOptionsAscOrder()

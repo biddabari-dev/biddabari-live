@@ -182,6 +182,13 @@ class CheckoutController extends Controller
                 'mobile'  => ['required','confirmPhone', 'regex:/^(?:\+88|88)?(01[3-9]\d{8})$/'],
                 'payment_method'  => 'required',
             ]);
+
+            if ($request->mobile != $request->confirm_mobile)
+            {
+                return ViewHelper::returEexceptionError('Phone number didn\'t match. Please try again.');
+                return back()->with('error', 'Phone number didn\'t match. Please try again.');
+            }
+
             if (!empty($request->mobile))
             {
                 $checkExistUser = User::where('mobile', $request->mobile)->first();
@@ -194,11 +201,7 @@ class CheckoutController extends Controller
                     }
                 }
             }
-            if ($request->mobile != $request->confirm_mobile)
-            {
-                return ViewHelper::returEexceptionError('Phone number didn\'t match. Please try again.');
-                return back()->with('error', 'Phone number didn\'t match. Please try again.');
-            }
+
             if (isset($request->rc) && auth()->check())
             {
                 $existAffiliateUser = AffiliationRegistration::where('user_id', ViewHelper::loggedUser()->id)->first();
@@ -326,9 +329,22 @@ class CheckoutController extends Controller
                             AffiliationHistory::createNewHistory($requestData, $requestData->model_name, $requestData->model_id, $requestData->affiliate_amount, 'insert');
                         }
                     }
+                    if ($userCreateAuth['message']){
+                        $client = new Client();
+                        //$body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$requestData->mobile.'&smstext='.$message);
+                        $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$userCreateAuth['message']);
+                        $responseCode = explode(':',$body->getBody()->getContents() )[1];
+
+                    }
+
+                    if (isset($responseCode) && !empty($responseCode))
+                    {
+                        $smsStatus   = 'success';
+                    }
 
                     if (!$userCreateAuth['userStatus'])
-                    {   ViewHelper::returEexceptionError('We got your payment but we faced problem during creating your account in our system. Please try again.');
+                    {
+                        ViewHelper::returEexceptionError('We got your payment but we faced problem during creating your account in our system. Please try again.');
                     }
                         if ($userCreateAuth['smsStatus'] == 'failed')
                         {   ViewHelper::returEexceptionError('Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
@@ -339,7 +355,8 @@ class CheckoutController extends Controller
                     }
                     return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
                 } elseif ($userCreateAuth['processStatus'] == 'failed')
-                {   ViewHelper::returEexceptionError('Something went wrong during payment. Please try again.');
+                {
+                    ViewHelper::returEexceptionError('Something went wrong during payment. Please try again.');
                 }
 
 
@@ -400,7 +417,6 @@ class CheckoutController extends Controller
 
     public static function createUserAfterOrder($requestData)
     {
-        $smsStatus = 'failed';
         $userStatus = false;
         try {
         if (!empty($requestData->name) && !empty($requestData->mobile))
@@ -446,16 +462,8 @@ class CheckoutController extends Controller
                 $userStatus = true;
             }
 
-            $client = new Client();
-                //$body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$requestData->mobile.'&smstext='.$message);
-                $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$message);
-                $responseCode = explode(':',$body->getBody()->getContents() )[1];
-                if (isset($responseCode) && !empty($responseCode))
-                {
-                    $smsStatus   = 'success';
-                }
             return [
-                'smsStatus' => $smsStatus,
+                'message' => $message,
                 'user'      => self::$user,
                 'userStatus'    => $userStatus,
                 'processStatus' => 'success',
@@ -463,7 +471,6 @@ class CheckoutController extends Controller
 
         } else {
             return [
-                'smsStatus' => 'failed',
                 'user'      => self::$user,
                 'userStatus'    => false,
                 'processStatus' => 'failed',
@@ -474,7 +481,6 @@ class CheckoutController extends Controller
         } catch (\Exception $exception)
         {
             return [
-                'smsStatus' => 'failed',
                 'user'      => self::$user,
                 'userStatus'    => false,
                 'processStatus' => 'failed',

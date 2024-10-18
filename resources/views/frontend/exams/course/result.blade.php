@@ -37,7 +37,6 @@
                                         <span class="text-primary f-s-22">Negative Mark: </span><small
                                             class="f-s-22">{{ ($examResult->total_wrong_ans) }}</small>
                                     </div>
-                                   
                                 </div>
                             </div>
                             @if ($exam->content_type == 'exam')

@@ -26,6 +26,16 @@
                                             <span class="text-primary f-s-22">Total Mark: </span><small
                                                 class="f-s-22">{{ $exam->exam_total_questions * $exam->exam_per_question_mark }}</small>
                                         </div>
+                                        <div class="">
+                                            <div class="text-center me-3" style="display: inline-block;">
+                                                <span class="text-primary f-s-22">Positive Mark: </span><small
+                                                    class="f-s-22">{{ ($examResult->total_right_ans) }}</small>
+                                            </div>
+                                            <div class="text-center" style="display: inline-block;">
+                                                <span class="text-primary f-s-22">Negative Mark: </span><small
+                                                    class="f-s-22">{{ ($examResult->total_wrong_ans) }}</small>
+                                            </div>
+                                        </div>
                                     @endif
                                 </div>
                             </div>
@@ -77,7 +87,7 @@
                                                 class="btn btn-outline-success">Go Back</a>
                                             <a href="{{ route('front.student.show-batch-exam-answers', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}"
                                                 class="btn btn-outline-success">Show Answer</a>
-                                            <a href="{{ route('front.student.show-course-exam-ranking', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}"
+                                            <a href="{{ route('front.student.show-batch-exam-ranking', ['content_id' => $exam->id, 'slug' => str_replace(' ', '-', $exam->title)]) }}"
                                                 class="btn btn-outline-success">Show Ranking</a>
 
                                             {{-- <a href="{{ route('front.student.dashboard') }}" class="btn btn-outline-success">Student Dashboard</a> --}}

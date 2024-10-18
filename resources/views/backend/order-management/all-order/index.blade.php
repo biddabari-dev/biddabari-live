@@ -161,10 +161,18 @@
                                         {{--                                        <td>{{ $allOrder->total_amount - $allOrder->paid_amount }}</td> --}}
 
                                         @if ($allOrder->payment_method == 'ssl')
-                                            <td class="badge bg-success mt-6">Online Pyment</td>
+                                            <td class="badge bg-success mt-6">Online Payment
+                                            </td>
+                                        @elseif ($allOrder->payment_method == 'bkash')
+                                            <td>bKash <br>
+                                                Tnx- {{ $allOrder->bank_tran_id }}
+                                            </td>
                                         @else
                                             <td>F- {{ $allOrder->paid_from }} <br> T- {{ $allOrder->paid_to }} <br> V-
-                                                {{ $allOrder->vendor }} </td>
+                                                {{ $allOrder->vendor }}
+                                                {{ $allOrder->payment_method }}
+                                            </td>
+
                                         @endif
 
                                         {{--                                        <td>{{ $allOrder->vendor ?? '' }}</td> --}}

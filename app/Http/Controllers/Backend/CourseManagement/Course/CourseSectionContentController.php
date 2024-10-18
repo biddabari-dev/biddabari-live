@@ -146,7 +146,7 @@ class CourseSectionContentController extends Controller
     {
         abort_if(Gate::denies('add-question-to-course-section-content'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return view('backend.course-management.course.section-contents.include-add-que-to-contents', [
-            'content'   => CourseSectionContent::find($request->section_content_id),
+            'content'   => CourseSectionContent::with('questionStores.questionOptions')->find($request->section_content_id),
             'examType'  => $request->exam_type,
             'questionTopics'    => QuestionTopic::whereStatus(1)->where('question_topic_id', 0)->whereType($request->exam_type == 'exam' ? 'mcq' : 'written')->select('id', 'question_topic_id', 'name')->get(),
         ]);
@@ -196,20 +196,23 @@ class CourseSectionContentController extends Controller
         ]);
     }
 
-    public function getQuesByTopic (Request $request)
+    public function getQuesByTopic(Request $request)
     {
-//        abort_if(Gate::denies('manage-course-section-content'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $question_topic_ids = explode(',', $request->question_topic_ids);
-        foreach ($question_topic_ids as $question_topic_id)
-        {
-            $this->questionTopic = QuestionTopic::whereId($question_topic_id)->select('id', 'question_topic_id', 'name')->with(['questionStores' => function($questions) use($request){
-                $questions->whereQuestionType($request->exam_type == 'exam' ? 'MCQ' : 'Written')->whereStatus(1)->select('id', 'question_type', 'question')->get();
-            }])->first();
-            array_push($this->questionTopics, $this->questionTopic);
-        }
-//        return response()->json($this->questionTopics);
+        $questionTopics = QuestionTopic::whereIn('id', $question_topic_ids)
+            ->select('id', 'question_topic_id', 'name')
+            ->with(['questionStores' => function($query) use ($request) {
+                // Filter questionStores by question_type and status
+                $query->where('question_type', $request->exam_type == 'exam' ? 'MCQ' : 'Written')
+                      ->where('status', 1)
+                      ->select('id', 'question_type', 'question', 'question_topic_id')
+                      // Nested eager loading of questionOptions
+                      ->with(['questionOptions']);
+            }])
+            ->get();
+            
         return view('backend.course-management.course.section-contents.include-questions', [
-            'questionTopics'    => $this->questionTopics,
+            'questionTopics' => $questionTopics,
         ]);
     }
 

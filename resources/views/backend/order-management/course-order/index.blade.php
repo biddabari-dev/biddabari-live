@@ -79,7 +79,7 @@
                                         <td><a href="" data-order-id="{{ $courseOrder->id }}" class="show-order-details">#{{ $courseOrder->order_invoice_number }}</a></td>
                                         <td>{{ $courseOrder->course->title ?? null}}</td>
 
-                                        <td>{{ $courseOrder->user->name }} <br> {{ $courseOrder->user->mobile }}</td>
+                                        <td>{{ $courseOrder->user->name ?? '' }} <br> {{ $courseOrder->user->mobile ?? '' }}</td>
                                         <td>
                                             Total: {{ $courseOrder->total_amount }} <br>
                                             Paid: {{ $courseOrder->paid_amount ?? 0 }} <br>
@@ -95,8 +95,12 @@
                                                 TranId: {{ $courseOrder->bank_tran_id }} <br>
                                                 ValId: {{ $courseOrder->gateway_val_id }} <br>
                                                 GtStatus: {{ $courseOrder->gateway_status }} <br>
+                                            @elseif($courseOrder->payment_method == 'bkash')
+                                                TranId: {{ $courseOrder->bank_tran_id }} <br>
+                                                ValId: {{ $courseOrder->gateway_val_id }} <br>
+                                                GtStatus: {{ $courseOrder->gateway_status }} <br>
                                             @endif
-
+                                            <span>{{ $courseOrder->payment_method }}</span>
                                         </td>
 
                                         <td>{{ $courseOrder->txt_id }}</td>

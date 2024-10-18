@@ -18,7 +18,11 @@ class ContactController extends Controller
     public function index()
     {
         abort_if(Gate::denies('manage-contact'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('backend.additional-features-management.contact.index', ['contacts' => ContactMessage::latest()->orderBy('is_seen', 'DESC')->get()]);
+        $contacts = ContactMessage::latest()->orderBy('is_seen', 'DESC')->paginate(10);
+        return view('backend.additional-features-management.contact.index', compact('contacts'));
+
+        // abort_if(Gate::denies('manage-contact'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // return view('backend.additional-features-management.contact.index', ['contacts' => ContactMessage::latest()->orderBy('is_seen', 'DESC')->get()]);
     }
 
     /**

@@ -67,7 +67,7 @@
                                             @endcan
                                         </td>
                                     </tr> --}}
-
+                                    @if(!empty($student->user->mobile))
                                     <tr>
                                         <td>
                                             {{ $student->user->name }}
@@ -84,6 +84,7 @@
                                         <td>
 
                                             @can('detach-course-student')
+                                                <a href="{{ route('assign-student-profile', $student->user->id) }}" class="btn btn-sm btn-info" title="View Profile"><i class="fa fa-eye"></i></a>
                                                 <form class="d-inline" action="{{ route('detach-student', $course->id) }}" method="post" onsubmit="return confirm('Are you sure to Detach this Student from this course?')">                                            @csrf
                                                     <input type="hidden" name="student_id" value="{{ $student->user->id }}">
                                                     <button type="submit" class="btn btn-sm btn-danger data-delete-form" title="Detach Student from this Course?">
@@ -93,6 +94,7 @@
                                             @endcan
                                         </td>
                                     </tr>
+                                    @endif
 
                             @endforeach
                         @endif

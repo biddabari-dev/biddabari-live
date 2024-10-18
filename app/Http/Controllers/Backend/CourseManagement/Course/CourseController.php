@@ -214,6 +214,19 @@ class CourseController extends Controller
             'courses'   => Course::get(['id', 'title'])
         ]);
     }
+    public function assignStudentProfile ($user_id)
+    {
+       //return $student_id;
+        abort_if(Gate::denies('assign-course-student-page'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $student = Student::select('user_id','first_name','last_name','email','mobile','image','created_at',)->where('user_id',$user_id)->first();
+        if(!$student){
+            return back()->with('warning', 'Not found!');
+        }
+        $allOrders = ParentOrder::where(['user_id' => $user_id])->select('id', 'parent_model_id', 'user_id', 'order_invoice_number', 'ordered_for', 'total_amount', 'paid_amount', 'payment_status', 'status','created_at')->orderBy('order_invoice_number','DESC')->with('course:id,title,price', 'batchExam:id,title,price','product:id,title,price')->get();
+
+        return view('backend.role-management.user.student.profile',compact('student','allOrders'));
+    }
 
     public function searchStudentAjax(Request $request)
     {

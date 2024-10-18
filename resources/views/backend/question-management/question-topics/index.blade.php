@@ -123,28 +123,36 @@
     <!-- Required datatable js -->
     @include('backend.includes.assets.plugin-files.datatable')
     <script>
-        {{--    edit course category--}}
-        $(document).on('click', '.topic-edit-btn', function () {
+        // {{--    edit course category--}}
+        $(document).on('click', '.topic-edit-btn', function (event) {
             event.preventDefault();
             var categoryId = $(this).attr('data-topic-id');
+
             $.ajax({
-                url: "/question-topics/"+categoryId+"/edit",
+                url: "/question-topics/" + categoryId + "/edit",
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
                     $('input[name="name"]').val(data.name);
-                    if (data.status == 1)
-                    {
+
+                    if (data.status == 1) {
                         $('input[name="status"]').attr('checked', true);
                     } else {
                         $('input[name="status"]').attr('checked', false);
                     }
+
+                    // Change submit button class for update
                     $('.submit-btn').addClass('update-btn').removeClass('submit-btn');
-                    $('#questionTopicForm').attr('action', base_url+'question-topics/'+data.id+'?q-type={{ $_GET['q-type'] }}{{ isset($_GET['topic_id']) ? '&topic_id='.$_GET['topic_id'] : '' }}');
+
+                    // Update form action URL and set method to PUT
+                    $('#questionTopicForm').attr('action', base_url + 'question-topics/' + data.id + '?q-type={{ $_GET["q-type"] }}{{ isset($_GET["topic_id"]) ? "&topic_id=" + $_GET["topic_id"] : "" }}');
+                    $('#questionTopicForm').append('<input type="hidden" name="_method" value="PUT">'); // Add hidden input to simulate PUT method
                     $('#questionTopicsModal').modal('show');
                 }
-            })
-        })
+            });
+        });
+
+
     </script>
     <script>
         // update course category

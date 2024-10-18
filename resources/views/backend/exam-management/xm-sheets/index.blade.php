@@ -85,11 +85,29 @@
                                         <td>
                                             <a href="{{ route('check-xm-paper', ['id' => $examSheet->id, 'typeOf' => $examOf, 'sectionContentType' => $sectionContentType]) }}" target="_blank" >pdf file</a>
                                         </td>
-                                        <td>{{ $examSheet->exam->total_mark ?? '' }}</td>
-                                        <td>{{ $examSheet->result_mark ?? '' }}</td>
-                                        <td>{{ $examSheet->status ?? '' }}</td>
                                         <td>
-                                        <a href="" data-blog-category-id="{{ $examSheet->id }}" class="btn btn-sm btn-warning blog-category-edit-btn" title="Change Order Status">
+                                            @if(request('exam_of')== "course" && request('exam_section_content_type')== "written")
+                                                {{ $examSheet->courseSectionContent->written_total_marks ?? '' }}
+                                            @elseif(request('exam_of')== "batch_exam" && request('exam_section_content_type')== "written")
+                                                {{ $examSheet->batchExamSectionContent->written_total_marks ?? '' }}
+                                            @else
+                                                {{ $examSheet->exam->total_mark ?? '' }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $examSheet->result_mark ?? '' }}</td>
+                                        <td>
+                                            @if(!empty($examSheet->status))
+                                                @if(($examSheet->status === 'pass'))
+                                                    <button class="btn btn-sm" style="background-color: green; color: white;">Pass</button>
+                                                @elseif(($examSheet->status === 'fail'))
+                                                    <button class="btn btn-sm" style="background-color: orange; color: white;">Fail</button>
+                                                @else
+                                                    <button class="btn btn-sm" style="background-color: red; color: white;">Pending</button>
+                                                @endif
+                                            @endif
+                                        </td>
+                                        <td>
+                                        <a href="" data-exam-of="{{ request('exam_of') }}" data-blog-category-id="{{ $examSheet->id }}" class="btn btn-sm btn-warning blog-category-edit-btn" title="Change Order Status">
                                                 <i class="fa-solid fa-edit"></i>
                                             </a>
 {{--                                        <a href="" data-blog-category-id="{{ $examSheet->id }}" class="btn btn-sm btn-primary blog-category-edit-btnx" title="Change Order Status">--}}
@@ -130,6 +148,7 @@
                                     <label for="paidAmount">result Mark</label>
                                     <input type="text" class="form-control" name="result_mark" id="resultMark" placeholder="Result Mark" />
                                     <input type="hidden" class="form-control" name="xm_result_id" id="xmResultId" />
+                                    <input type="hidden" class="form-control" id="exam_of" name="examOf" />
                                 </div>
                                 <div class="col-md-6">
                                     <label for="paidAmount">Upload File</label>
@@ -161,6 +180,8 @@
         $(document).on('click', '.blog-category-edit-btn', function () {
             event.preventDefault();
             var courseId = $(this).attr('data-blog-category-id'); //change value
+            var inputValue = $(this).data('exam-of');
+            $("#exam_of").val(inputValue);
             $('#xmResultId').val(courseId);
             $.ajax({
                 // url: base_url+"get-exam-sheet-data/"+courseId,

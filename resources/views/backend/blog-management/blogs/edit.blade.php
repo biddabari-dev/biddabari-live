@@ -39,7 +39,7 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12">
-                        <textarea name="body" id="summernote" placeholder="Blog Content" cols="30" rows="10">{!! $blog->body !!}</textarea>
+                        <textarea name="body" id="ck" placeholder="Blog Content" cols="30" rows="10">{!! $blog->body !!}</textarea>
                         <span class="text-danger" id="">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                         <label for="">Banner Image ALT text</label>
                     <input type="text" class="form-control" name="alt_text" value="{{ $blog->alt_text }}" placeholder="Banner Image ALT Text">
                     <span class="text-danger" id="alt_text"></span>
-    
+
                     </div>
                     <div class="col-md-6 mt-2">
                         <label for="">Banner Image Title</label>
@@ -91,4 +91,15 @@
         <button type="submit" class="btn btn-primary " value="save">Save</button>
     </div>
 </form>
+
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'ck',
+    {
+        fullPage : true,
+        uiColor : '#efe8ce'
+    });
+
+</script>
+
 
