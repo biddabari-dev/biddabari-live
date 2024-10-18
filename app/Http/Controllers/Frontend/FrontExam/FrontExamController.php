@@ -290,110 +290,159 @@ class FrontExamController extends Controller
         $this->totalWrongAns = 0;
         $this->totalProvidedAns = 0;
         $this->exam = CourseSectionContent::whereId($contentId)->first();
-
-        if ($this->exam && $this->exam->content_type == 'written_exam') {
-            $imageUrls = [];
-            $this->fileSessionPaths = [];
-            $this->pdfFilePath = '';
-
-            if (isset($request->ans_files) && !empty($request->file('ans_files'))) {
-                // Store each image file temporarily and save the path
-                foreach ($request->file('ans_files') as $ans_file) {
-                    $imageUrl = moveFile($ans_file, 'backend/assets/uploaded-files/course-xm-temp-file-upload/');
-                    array_push($this->fileSessionPaths, $imageUrl);
-                    array_push($imageUrls, $imageUrl); // Collect image URLs for PDF creation
-                }
-
-                // Generate PDF with multiple images using TCPDF
-                $pdf = new TCPDF();
-                $pdf->SetCreator(PDF_CREATOR);
-                $pdf->SetAuthor('Your Name');
-                $pdf->SetTitle('Written Exam Answers');
-
-               /* // Add each image to a new page in the PDF
-                foreach ($imageUrls as $file) {
-                    $pdf->AddPage();
-                    $pdf->Image($file, 0, 0, 210, 297);
-                }*/
-
-                // Add each image to a new page in the PDF with its actual size
-                foreach ($this->fileSessionPaths as $file) {
-                    $pdf->AddPage();
-                    list($width, $height) = getimagesize($file);
-                    $dpi = 96;
-                    $widthInMM = $width * 25.4 / $dpi;
-                    $heightInMM = $height * 25.4 / $dpi;
-
-                    // A4 page dimensions
-                    $pageWidth = 210;
-                    $pageHeight = 297;
-
-                    // Ensure the image fits within the A4 page while keeping the aspect ratio
-                    if ($widthInMM > $pageWidth || $heightInMM > $pageHeight) {
-                        $scalingFactor = min($pageWidth / $widthInMM, $pageHeight / $heightInMM);
-                        $widthInMM *= $scalingFactor;
-                        $heightInMM *= $scalingFactor;
-                    }
-
-                    // Center the image on the page
-                    $x = ($pageWidth - $widthInMM) / 2;
-                    $y = ($pageHeight - $heightInMM) / 2;
-
-                    // Add the image to the PDF with its actual size or scaled down
-                    $pdf->Image($file, $x, $y, $widthInMM, $heightInMM);
-                }
-
-
-                // Set file path for storing the generated PDF
-                $this->pdfFilePath = 'backend/assets/uploaded-files/course-written-xm-ans-files/' . rand(10000, 99999) . time() . '.pdf';
-                $pdfFilePath = public_path($this->pdfFilePath);
-
-                // Save PDF to file system
-                $pdf->Output($pdfFilePath, 'F');
-
-                // Upload the generated PDF to a storage bucket (optional)
-                if (file_exists($pdfFilePath)) {
-                    $pdfFileObject = new \Illuminate\Http\File($pdfFilePath);
-                    $pdfFilePathInBucket = fileUpload($pdfFileObject, 'course-written-xm-ans-files');
-
-                    // Clean up temporary files (uploaded images)
-                    foreach ($this->fileSessionPaths as $fileSessionPath) {
-                        if (file_exists($fileSessionPath)) {
-                            unlink($fileSessionPath);
+        if ($this->exam)
+        {
+            if ($this->exam->content_type == 'exam')
+            {
+                if (!empty($request->question))
+                {
+                    $this->questionJson = $request->question;
+                    foreach ($request->question as $question_id => $answer)
+                    {
+                        if (!is_array($answer))
+                        {
+                            unset($this->questionJson[$question_id]);
+                        }
+                        $this->question = QuestionStore::whereId($question_id)->select('id', 'question_type', 'question_mark', 'negative_mark', 'has_all_wrong_ans', 'status')->first();
+                        if (is_array($answer))
+                        {
+                            ++$this->totalProvidedAns;
+                            if ($this->question->has_all_wrong_ans == 1)
+                            {
+                                $this->resultNumber -= $this->exam->exam_negative_mark;
+                                ++$this->totalWrongAns;
+                            } else {
+                                $this->questionOption = QuestionOption::whereId($answer['answer'])->select('id', 'is_correct')->first();
+                                if ($this->questionOption->is_correct == 1)
+                                {
+                                    $this->resultNumber += (int)$this->exam->exam_per_question_mark;
+                                    ++$this->totalRightAns;
+                                } else {
+                                    $this->resultNumber -= $this->exam->exam_negative_mark;
+                                    ++$this->totalWrongAns;
+                                }
+                            }
                         }
                     }
-
-                    // Clean up generated PDF
-                    if (file_exists($pdfFilePath)) {
-                        unlink($pdfFilePath);
-                    }
-                } else {
-                    return back()->with('error', 'PDF file does not exist');
                 }
-
-                // Store the exam result in the database
                 $this->examResult = [
-                    'course_section_content_id' => $contentId,
-                    'user_id' => ViewHelper::loggedUser()->id,
-                    'xm_type' => $this->exam->content_type,
-                    'written_xm_file' => $pdfFilePathInBucket,
-                    'is_reviewed' => 0,
-                    'required_time' => $request->required_time ?? 0,
-                    'status' => 'pending',
+                    'course_section_content_id'       => $contentId,
+                    'user_id'       => ViewHelper::loggedUser()->id,
+                    'xm_type'       => $this->exam->content_type,
+                    'provided_ans'      => json_encode($this->questionJson),
+                    'total_right_ans'       => $this->totalRightAns ?? 0,
+                    'total_wrong_ans'       => $this->totalWrongAns ?? 0,
+                    'total_provided_ans'    => $this->totalProvidedAns ?? 0,
+                    'result_mark'       => $this->resultNumber,
+                    'is_reviewed'       => 0,
+                    'required_time'       => $request->required_time ?? 0,
+                    'status'        => $this->exam->content_type == 'exam' ? ($this->resultNumber >= $this->exam->exam_pass_mark ? 'pass' : 'fail') : 'pending',
                 ];
 
-                // Save the result to the database (example model method)
-                $courseExamId = CourseExamResult::storeExamResult($this->examResult);
+            }elseif ($this->exam && $this->exam->content_type == 'written_exam') {
+                $imageUrls = [];
+                $this->fileSessionPaths = [];
+                $this->pdfFilePath = '';
 
-                // Forget session data
-                Session::forget(['getXmStartStatus', 'getXmDataToSession']);
+                if (isset($request->ans_files) && !empty($request->file('ans_files'))) {
+                    // Store each image file temporarily and save the path
+                    foreach ($request->file('ans_files') as $ans_file) {
+                        $imageUrl = moveFile($ans_file, 'backend/assets/uploaded-files/course-xm-temp-file-upload/');
+                        array_push($this->fileSessionPaths, $imageUrl);
+                        array_push($imageUrls, $imageUrl); // Collect image URLs for PDF creation
+                    }
 
-                // Return the response
-                return redirect()->route('front.student.show-course-exam-result', ['xm_id' => $contentId, 'xm_result_id' => $courseExamId->id])->with('success', 'You Successfully finished your exam.');
-            }
+                    // Generate PDF with multiple images using TCPDF
+                    $pdf = new TCPDF();
+                    $pdf->SetCreator(PDF_CREATOR);
+                    $pdf->SetAuthor('Your Name');
+                    $pdf->SetTitle('Written Exam Answers');
+
+                    /* // Add each image to a new page in the PDF
+                    foreach ($imageUrls as $file) {
+                        $pdf->AddPage();
+                        $pdf->Image($file, 0, 0, 210, 297);
+                    }*/
+
+                    // Add each image to a new page in the PDF with its actual size
+                    foreach ($this->fileSessionPaths as $file) {
+                        $pdf->AddPage();
+                        list($width, $height) = getimagesize($file);
+                        $dpi = 96;
+                        $widthInMM = $width * 25.4 / $dpi;
+                        $heightInMM = $height * 25.4 / $dpi;
+
+                        // A4 page dimensions
+                        $pageWidth = 210;
+                        $pageHeight = 297;
+
+                        // Ensure the image fits within the A4 page while keeping the aspect ratio
+                        if ($widthInMM > $pageWidth || $heightInMM > $pageHeight) {
+                            $scalingFactor = min($pageWidth / $widthInMM, $pageHeight / $heightInMM);
+                            $widthInMM *= $scalingFactor;
+                            $heightInMM *= $scalingFactor;
+                        }
+
+                        // Center the image on the page
+                        $x = ($pageWidth - $widthInMM) / 2;
+                        $y = ($pageHeight - $heightInMM) / 2;
+
+                        // Add the image to the PDF with its actual size or scaled down
+                        $pdf->Image($file, $x, $y, $widthInMM, $heightInMM);
+                    }
+
+
+                    // Set file path for storing the generated PDF
+                    $this->pdfFilePath = 'backend/assets/uploaded-files/course-written-xm-ans-files/' . rand(10000, 99999) . time() . '.pdf';
+                    $pdfFilePath = public_path($this->pdfFilePath);
+
+                    // Save PDF to file system
+                    $pdf->Output($pdfFilePath, 'F');
+
+                    // Upload the generated PDF to a storage bucket (optional)
+                    if (file_exists($pdfFilePath)) {
+                        $pdfFileObject = new \Illuminate\Http\File($pdfFilePath);
+                        $pdfFilePathInBucket = fileUpload($pdfFileObject, 'course-written-xm-ans-files');
+
+                        // Clean up temporary files (uploaded images)
+                        foreach ($this->fileSessionPaths as $fileSessionPath) {
+                            if (file_exists($fileSessionPath)) {
+                                unlink($fileSessionPath);
+                            }
+                        }
+
+                        // Clean up generated PDF
+                        if (file_exists($pdfFilePath)) {
+                            unlink($pdfFilePath);
+                        }
+                    } else {
+                        return back()->with('error', 'PDF file does not exist');
+                    }
+
+                    // Store the exam result in the database
+                    $this->examResult = [
+                        'course_section_content_id' => $contentId,
+                        'user_id' => ViewHelper::loggedUser()->id,
+                        'xm_type' => $this->exam->content_type,
+                        'written_xm_file' => $pdfFilePathInBucket,
+                        'is_reviewed' => 0,
+                        'required_time' => $request->required_time ?? 0,
+                        'status' => 'pending',
+                    ];
+                }
+            }       // Save the result to the database (example model method)
+            $courseExamId = CourseExamResult::storeExamResult($this->examResult);
+
+            // Forget session data
+            Session::forget(['getXmStartStatus', 'getXmDataToSession']);
+
+            // Return the response
+            return redirect()->route('front.student.show-course-exam-result', ['xm_id' => $contentId, 'xm_result_id' => $courseExamId->id])->with('success', 'You Successfully finished your exam.');
+
+        }else{
+            return ViewHelper::returEexceptionError('Exam Not Found.');
         }
 
-        return ViewHelper::returEexceptionError('Exam Not Found.');
     }
     public function getCourseExamResult(Request $request, $contentId, $slug = null)
     {
