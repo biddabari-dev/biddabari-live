@@ -46,10 +46,10 @@ class BasicViewController extends Controller
         $this->batchExams  = BatchExam::where(['status' => 1, 'is_master_exam' => 0, 'is_paid' => 1])->select('id', 'title', 'banner', 'slug')->take(6)->get();
         $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->orderBy('order', 'ASC')->select('id', 'name', 'image', 'slug', 'icon', 'order', 'status')->take(8)->get();
         $this->courses = Course::whereStatus(1)->where(['is_featured' => 1])->latest()->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link','total_file','total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time','admission_last_date','alt_text','banner_title')->take(9)->get();
-        foreach ($this->courses as $course)
-        {
-            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
-        }
+        // foreach ($this->courses as $course)
+        // {
+        //     $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
+        // }
         $this->products = Product::whereStatus(1)->latest()->select('id', 'title', 'image', 'slug', 'description','stock_amount','price', 'slug')->take(8)->get();
 //        $this->homeSliderCourses = Course::where('show_home_slider', 1)->select('id', 'slug', 'title', 'banner', 'description')->get();
         $this->homeSliderCourses = Advertisement::whereStatus(1)->whereContentType('course')->select('id', 'title', 'content_type', 'description','link','image')->take(6)->get();
@@ -239,16 +239,16 @@ class BasicViewController extends Controller
             }])->get();
 
         // Directly check if each course is enrolled
-        $this->courseCategories->each(function ($category) {
-            if ($category->courses->isNotEmpty()) {
-                $course = $category->courses->first();
-                if (strtotime($course->admission_last_date) > strtotime(currentDateTimeYmdHi())) {
-                    $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
-                } else {
-                    $course->order_status = 'false';
-                }
-            }
-        });
+        // $this->courseCategories->each(function ($category) {
+        //     if ($category->courses->isNotEmpty()) {
+        //         $course = $category->courses->first();
+        //         if (strtotime($course->admission_last_date) > strtotime(currentDateTimeYmdHi())) {
+        //             $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
+        //         } else {
+        //             $course->order_status = 'false';
+        //         }
+        //     }
+        // });
 
         // Fetch the featured courses directly without looping, using only necessary fields
         $this->courses = Course::where('status', 1)
@@ -258,9 +258,9 @@ class BasicViewController extends Controller
             ->get();
 
         // Check if the featured courses are enrolled
-        $this->courses->each(function ($course) {
-            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
-        });
+        // $this->courses->each(function ($course) {
+        //     $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
+        // });
 
         // Prepare the data for the view
         $this->data = [

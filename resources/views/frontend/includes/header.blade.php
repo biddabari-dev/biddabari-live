@@ -72,20 +72,6 @@
                                     <span style="padding: 0px 10px; font-size: 21px;">Notice</span>
                                 </div>
                             </li>
-                            {{-- <li class="bg-danger">
-                                <!-- <span class="live-text TT4zv"><svg class="live-icon El47e"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M16 26.667c5.89 0 10.666-4.776 10.666-10.667S21.89 5.333 15.999 5.333C10.11 5.333 5.333 10.11 5.333 16s4.775 10.667 10.666 10.667zm0 2.666c7.363 0 13.333-5.97 13.333-13.333 0-7.364-5.97-13.333-13.334-13.333C8.636 2.667 2.666 8.637 2.666 16c0 7.364 5.97 13.333 13.333 13.333z"
-                                            fill="#D60000"></path>
-                                        <path d="M24 16a8 8 0 1 1-16 0 8 8 0 0 1 16 0z" fill="#D60000"></path>
-                                    </svg><span class="live-text-with-title"><span class="live-text live">ব্রেকিং নিউজ
-                                        </span></span></span> -->
-
-                                <!-- <button id="runningButton" class="running-button">Click me!</button>
-                                <script src="script.js"></script> -->
-
-                            </li> --}}
                         </ul>
                     </div>
                 </div>

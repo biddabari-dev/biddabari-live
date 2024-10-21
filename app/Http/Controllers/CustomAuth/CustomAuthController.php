@@ -85,7 +85,7 @@ class CustomAuthController extends Controller
                         return redirect($redirectUrl)->with('success', 'You are successfully logged in.');
                     }
                 }
-                return redirect('/')->with('success', 'You are successfully logged in.');
+                return redirect(route('home'))->with('success', 'You are successfully logged in.');
             }
         }
         if (str()->contains(url()->current(), '/api/')) {

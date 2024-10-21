@@ -383,7 +383,7 @@ class CheckoutController extends Controller
             {
                 return redirect()->back()->with('error', 'We faced problem during creating your account in our system. Please try again.');
             }
-            if ($userCreateAuth['smsStatus'] == 'failed')
+            if ($userCreateAuth['message'] == 'failed')
             {
                 return redirect()->route('front.student.dashboard')->with('error', 'Something went wrong during sending sms to your number. Please Contact with our support.');
             }
@@ -407,6 +407,13 @@ class CheckoutController extends Controller
             if (str()->contains(url()->current(), '/api/'))
             {
                 return response()->json(['message' => 'You Ordered the course successfully.'], 200);
+            }
+            if ($userCreateAuth['message']){
+                $client = new Client();
+                //$body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$requestData->mobile.'&smstext='.$message);
+                $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$userCreateAuth['message']);
+                $responseCode = explode(':',$body->getBody()->getContents() )[1];
+
             }
             return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
         } elseif ($userCreateAuth['processStatus'] == 'failed')
@@ -467,6 +474,7 @@ class CheckoutController extends Controller
                 'user'      => self::$user,
                 'userStatus'    => $userStatus,
                 'processStatus' => 'success',
+
             ];
 
         } else {
@@ -474,6 +482,7 @@ class CheckoutController extends Controller
                 'user'      => self::$user,
                 'userStatus'    => false,
                 'processStatus' => 'failed',
+                'message' => 'failed',
             ];
         }
 
@@ -484,6 +493,7 @@ class CheckoutController extends Controller
                 'user'      => self::$user,
                 'userStatus'    => false,
                 'processStatus' => 'failed',
+                'message' => 'failed',
             ];
         }
     }
