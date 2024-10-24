@@ -51,7 +51,6 @@ class BatchExamSectionContent extends Model
         'status',
         'available_at',
         'available_at_timestamp',
-
         'written_total_marks',
         'written_pass_mark',
     ];
