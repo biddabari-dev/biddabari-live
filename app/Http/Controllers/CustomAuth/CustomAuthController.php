@@ -66,6 +66,7 @@ class CustomAuthController extends Controller
             $this->user = auth()->user();
             $this->user->device_token = session()->getId();
             $this->user->save();
+
             if (str()->contains(url()->current(), '/api/'))
             {
                 return response()->json([
@@ -80,12 +81,14 @@ class CustomAuthController extends Controller
 
                     if ($request->ajax())
                     {
+                        Session::forget('course_redirect_url');
                         return response()->json(['status' => 'success','url' => $redirectUrl]);
                     } else {
+                        Session::forget('course_redirect_url');
                         return redirect($redirectUrl)->with('success', 'You are successfully logged in.');
                     }
                 }
-                return redirect(route('home'))->with('success', 'You are successfully logged in.');
+                return redirect()->route('home')->with('success', 'You are successfully logged in.');
             }
         }
         if (str()->contains(url()->current(), '/api/')) {
@@ -166,16 +169,22 @@ class CustomAuthController extends Controller
                 Auth::login($this->user);
                 $this->user->device_token = session()->getId();
                 $this->user->save();
+
                 if (str()->contains(url()->current(), '/api/')) {
                     return response()->json(['user' => $this->user, 'auth_token' => $this->user->createToken('auth_token')->plainTextToken]);
                 } else {
-                    if (\session()->has('course_redirect_url'))
+                    if (Session::has('course_redirect_url'))
                     {
+                        $redirectUrl = Session::get('course_redirect_url');
+
                         if ($request->ajax())
                         {
-                            return response()->json(['status' => 'success', 'url' => \session()->get('course_redirect_url')]);
+                            Session::forget('course_redirect_url');
+                            return response()->json(['status' => 'success','url' => $redirectUrl]);
+
                         } else {
-                            return redirect(\session()->get('course_redirect_url'))->with('success', 'Your registration completed successfully.');
+                            Session::forget('course_redirect_url');
+                            return redirect($redirectUrl)->with('success', 'Your registration completed successfully.');
                         }
                     }
                     if ($request->roles == 4)
