@@ -309,7 +309,8 @@
             dataType: "JSON",
             data: formData,
             success: function (data) {
-                console.log(data);
+                //console.log(data);
+
                 if (data.status == 'success')
                 {
                     toastr.success('Your are successfully logged in the website.');
