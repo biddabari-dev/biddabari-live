@@ -22,6 +22,7 @@ use Illuminate\Bus\Batch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -329,12 +330,47 @@ class CheckoutController extends Controller
                             AffiliationHistory::createNewHistory($requestData, $requestData->model_name, $requestData->model_id, $requestData->affiliate_amount, 'insert');
                         }
                     }
-                    if ($userCreateAuth['message']){
-                        $client = new Client();
-                        //$body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$requestData->mobile.'&smstext='.$message);
-                        $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$userCreateAuth['message']);
-                        $responseCode = explode(':',$body->getBody()->getContents() )[1];
 
+                    // // for sms
+                    // $client = new Client();
+                    // //$body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$requestData->mobile.'&smstext='.$message);
+                    // $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$userCreateAuth['message']);
+                    // $responseCode = explode(':',$body->getBody()->getContents() )[1];
+
+                    if ($userCreateAuth['message']) {
+                        try {
+                            $client = new Client();
+                            // URL encode the message
+                            $message = $userCreateAuth['message'];
+
+                            // Send the request
+                            $response = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi', [
+                                'query' => [
+                                    'api_key'   => 'C2008649660d0a04f3d0e9.72990969',
+                                    'type'      => 'text',
+                                    'contacts'  => $requestData->mobile,
+                                    'senderid'  => '8809601011181',
+                                    'msg'       => $message,
+                                ]
+                            ]);
+
+                            // Check the response
+                            $body = $response->getBody()->getContents();
+
+                            // Handle response if it's in expected format, otherwise log an error
+                            if (strpos($body, ':') !== false) {
+                                $responseCode = explode(':', $body)[1];
+                            } else {
+                                // Log unexpected response for debugging
+                                Log::error('Unexpected response format: ' . $body);
+                                $responseCode = null;
+                            }
+                        } catch (\Exception $e) {
+                            // Handle errors (e.g., network issues)
+                            Log::error('SMS API request failed: ' . $e->getMessage());
+                            $responseCode = null;
+                        }
+                        return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
                     }
 
                     if (isset($responseCode) && !empty($responseCode))
@@ -383,7 +419,7 @@ class CheckoutController extends Controller
             {
                 return redirect()->back()->with('error', 'We faced problem during creating your account in our system. Please try again.');
             }
-            if ($userCreateAuth['smsStatus'] == 'failed')
+            if ($userCreateAuth['message'] == 'failed')
             {
                 return redirect()->route('front.student.dashboard')->with('error', 'Something went wrong during sending sms to your number. Please Contact with our support.');
             }
@@ -408,6 +444,48 @@ class CheckoutController extends Controller
             {
                 return response()->json(['message' => 'You Ordered the course successfully.'], 200);
             }
+
+            // $client = new Client();
+            // //$body = $client->request('GET', 'https://rapidapi.mimsms.com/smsapi?user=M00155&password=XbaWlww&sender=8809617612356&msisdn='.$requestData->mobile.'&smstext='.$message);
+            // $body = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi?api_key=C2008649660d0a04f3d0e9.72990969&type=text&contacts='.$requestData->mobile.'&senderid=8809601011181&msg='.$userCreateAuth['message']);
+            // $responseCode = explode(':',$body->getBody()->getContents() )[1];
+
+            if ($userCreateAuth['message']) {
+                try {
+                    $client = new Client();
+                    // URL encode the message
+                    $message = $userCreateAuth['message'];
+
+                    // Send the request
+                    $response = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi', [
+                        'query' => [
+                            'api_key'   => 'C2008649660d0a04f3d0e9.72990969',
+                            'type'      => 'text',
+                            'contacts'  => $requestData->mobile,
+                            'senderid'  => '8809601011181',
+                            'msg'       => $message,
+                        ]
+                    ]);
+
+                    // Check the response
+                    $body = $response->getBody()->getContents();
+
+                    // Handle response if it's in expected format, otherwise log an error
+                    if (strpos($body, ':') !== false) {
+                        $responseCode = explode(':', $body)[1];
+                    } else {
+                        // Log unexpected response for debugging
+                        Log::error('Unexpected response format: ' . $body);
+                        $responseCode = null;
+                    }
+                } catch (\Exception $e) {
+                    // Handle errors (e.g., network issues)
+                    Log::error('SMS API request failed: ' . $e->getMessage());
+                    $responseCode = null;
+                }
+                return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
+            }
+
             return redirect()->route('front.student.dashboard')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
         } elseif ($userCreateAuth['processStatus'] == 'failed')
         {
@@ -441,9 +519,9 @@ class CheckoutController extends Controller
                     Auth::login(self::$user);
                 }
                 if ($requestData->ordered_for == 'product'){
-                    $message = "Congratulations!+You+are+successfully+purchased+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01896060800-15.";
+                    $message = "Congratulations! You+have+successfully purchased" . urlencode(strip_tags($model->title)) .". Your Registered Number is " . $requestData->mobile .". Stay connected with Biddabari. For+more queries call-01896060800-15.";
                 }else{
-                    $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile.Stay+connected with Biddabari.+For+more+queries+call-01896060800-15.";
+                    $message = "Congratulations! You are successfully enrolled in " . strip_tags($model->title) . ". Your Registered Number is " . $requestData->mobile .". Stay connected with Biddabari. For more queries call - 01896060800-15.";
                 }
             } else {
 
@@ -451,10 +529,11 @@ class CheckoutController extends Controller
                 $newStudent = Student::createStudentAfterPayment($requestData, self::$user);
                 Auth::login(self::$user);
                 if ($requestData->ordered_for == 'product'){
-                    $message = "Congratulations!+You+are+successfully+purchased+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01896060800-15.";
+                    $message = "Congratulations! You are successfully purchased" . strip_tags($model->title) .". Your Registered Number is " . $requestData->mobile ." and Your Password is " . $pass ." For more queries, contact us at 01896060800-15.";
                 }else {
                     # code...
-                    $message = "Congratulations!+You+are+successfully+enrolled+in+".strip_tags($model->title).".+Your+Registered+Number+is+$requestData->mobile+and+Your+Password+is+$pass.+For+more+queries-01896060800-15.";
+                    $message = "Congratulations! You are successfully enrolled in " . strip_tags($model->title) .". Your Registered Number is " . $requestData->mobile ." and Your Password is " . $pass ." For more queries, contact us at 01896060800-15.";
+
                 }
             }
             if (!empty(self::$user))
@@ -467,6 +546,7 @@ class CheckoutController extends Controller
                 'user'      => self::$user,
                 'userStatus'    => $userStatus,
                 'processStatus' => 'success',
+
             ];
 
         } else {
@@ -474,6 +554,7 @@ class CheckoutController extends Controller
                 'user'      => self::$user,
                 'userStatus'    => false,
                 'processStatus' => 'failed',
+                'message' => 'failed',
             ];
         }
 
@@ -484,6 +565,7 @@ class CheckoutController extends Controller
                 'user'      => self::$user,
                 'userStatus'    => false,
                 'processStatus' => 'failed',
+                'message' => 'failed',
             ];
         }
     }
