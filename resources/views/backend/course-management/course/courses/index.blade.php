@@ -52,6 +52,7 @@
                                 <th>Price</th>
                                 <th>Duration</th>
                                 <th>Discount</th>
+                                <th>After Discount Price</th>
                                 {{-- <th>Partial Payment</th> --}}
                                 <th>Extra Features</th>
                                 <th>Actions</th>
@@ -94,8 +95,19 @@
                                         <td> ৳ {{ $course->price }}</td>
                                         <td>{{ $course->duration_in_month }} Months</td>
                                         <td>
-                                            ৳ {{ $course->discount_type == 1 ? $course->discount_amount : ($course->price * $course->discount_amount)/100 }}
+                                            ৳ {{ $course->discount_amount }}
                                         </td>
+                                        <td>
+                                            @php
+                                                $discountAmount = $course->discount_type == 1 ? ($course->price * $course->discount_amount) / 100 : $course->discount_amount;
+                                                $afterDiscountPrice = $course->price - $discountAmount;
+                                                $discountPercentage = $course->price != 0 ? ($discountAmount / $course->price) * 100 : 0;
+                                            @endphp
+                                            ৳ {{ $afterDiscountPrice }} ({{ round($discountPercentage, 2) }}% discount)
+                                        </td>
+
+
+
                                         {{-- <td> ৳ {{ $course->partial_payment }}</td> --}}
                                         <td>
                                             <a href="javascript:void(0)" class="badge badge-sm badge-orange-light text-dark">{{ $course->status == 1 ? 'Published' : 'Unpublished' }}</a>
