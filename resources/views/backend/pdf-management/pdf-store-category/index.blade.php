@@ -143,8 +143,8 @@
     <script src="{{ asset('/') }}backend/assets/plugins/dragNdrop/jquery.nestable.js"></script>
     <script src="{{ asset('/') }}backend/assets/plugins/dragNdrop/init.js"></script>
 
-    <script>
-        {{--    store course category--}}
+    {{--<script>
+        --}}{{--    store course category--}}{{--
         $(document).on('click', '.submit-btn', function () {
             event.preventDefault();
             var form = $('#courseCategoryForm')[0];
@@ -174,7 +174,7 @@
             //     }
             // })
         })
-    </script>
+    </script>--}}
     <script>
         {{--    edit course category--}}
         $(document).on('click', '.category-edit-btn', function () {
@@ -194,9 +194,15 @@
                         $('input[name="status"]').attr('checked', false);
                     }
                     $('.submit-btn').addClass('update-btn').removeClass('submit-btn');
-                    if (data.image != null)
-                    {
-                        $('#imagePreview').attr('src', data.image).css({height: '150px', width: '150px', marginTop: '5px', display: 'block'});
+
+                    if (data.image) {
+                        const imageUrl = `${assetUrl}/${data.image}`;
+                        $('#imagePreview').attr('src', imageUrl).css({
+                            height: '150px',
+                            width: '150px',
+                            marginTop: '5px',
+                            display: 'block'
+                        });
                     }
                     $('#courseCategoryForm').attr('action', base_url+'pdf-store-categories/update/'+data.id);
                     $('#courseCategoryModal').modal('show');
