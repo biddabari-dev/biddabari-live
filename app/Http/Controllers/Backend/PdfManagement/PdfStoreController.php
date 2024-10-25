@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\DB;
 
-class PdfStoreCategoryController extends Controller
+class PdfStoreController extends Controller
 {
     //    permission seed done
     protected $pdfCategory;
