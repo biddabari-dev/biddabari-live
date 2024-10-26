@@ -78,13 +78,12 @@ class CustomAuthController extends Controller
                 if (Session::has('course_redirect_url'))
                 {
                     $redirectUrl = Session::get('course_redirect_url');
+                    Session::forget('course_redirect_url');
 
                     if ($request->ajax())
                     {
-                        Session::forget('course_redirect_url');
                         return response()->json(['status' => 'success','url' => $redirectUrl]);
                     } else {
-                        Session::forget('course_redirect_url');
                         return redirect($redirectUrl)->with('success', 'You are successfully logged in.');
                     }
                 }
@@ -176,14 +175,12 @@ class CustomAuthController extends Controller
                     if (Session::has('course_redirect_url'))
                     {
                         $redirectUrl = Session::get('course_redirect_url');
+                        Session::forget('course_redirect_url');
 
                         if ($request->ajax())
                         {
-                            Session::forget('course_redirect_url');
                             return response()->json(['status' => 'success','url' => $redirectUrl]);
-
                         } else {
-                            Session::forget('course_redirect_url');
                             return redirect($redirectUrl)->with('success', 'Your registration completed successfully.');
                         }
                     }
