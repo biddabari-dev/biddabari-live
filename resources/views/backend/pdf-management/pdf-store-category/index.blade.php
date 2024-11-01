@@ -143,8 +143,8 @@
     <script src="{{ asset('/') }}backend/assets/plugins/dragNdrop/jquery.nestable.js"></script>
     <script src="{{ asset('/') }}backend/assets/plugins/dragNdrop/init.js"></script>
 
-    <script>
-        {{--    store course category--}}
+ {{--   <script>
+        --}}{{--    store course category--}}{{--
         $(document).on('click', '.submit-btn', function () {
             event.preventDefault();
             var form = $('#courseCategoryForm')[0];
@@ -174,18 +174,18 @@
             //     }
             // })
         })
-    </script>
-    <script>
-        {{--    edit course category--}}
+    </script>--}}
+   {{-- <script>
+        --}}{{--    edit course category--}}{{--
         $(document).on('click', '.category-edit-btn', function () {
             event.preventDefault();
             var categoryId = $(this).attr('data-category-id');
             $.ajax({
-                url: base_url+"pdf-store-categories/"+categoryId+"/edit",
+                url: "/pdf-store-categories/"+categoryId+"/edit",
                 method: "GET",
                 dataType: "JSON",
                 success: function (data) {
-                    console.log(data.note)
+                    console.log(data.note);
                     $('input[name="title"]').val(data.title);
                     if (data.status == 1)
                     {
@@ -203,6 +203,44 @@
                 }
             })
         })
+    </script>--}}
+
+    <script>
+        // Edit pdf sore categories
+        $(document).on('click', '.category-edit-btn', function (event) {
+            event.preventDefault();
+            var categoryId = $(this).attr('data-category-id');
+
+            $.ajax({
+                url: "/pdf-store-categories/" + categoryId + "/edit",
+                method: "GET",
+                dataType: "JSON",
+                success: function (data) {
+                    $('input[name="title"]').val(data.title);
+                    if (data.status == 1) {
+                        $('input[name="status"]').prop('checked', true);
+                    } else {
+                        $('input[name="status"]').prop('checked', false);
+                    }
+                    $('.submit-btn').addClass('update-btn').removeClass('submit-btn');
+                    if (data.image != null) {
+                        const imageUrl = "{{ asset('') }}" + data.image;
+                        $('#imagePreview').attr('src', imageUrl).css({
+                            height: '150px',
+                            width: '150px',
+                            marginTop: '5px',
+                            display: 'block'
+                        });
+                    }
+                    $('#courseCategoryForm').attr('action', base_url + 'pdf-store-categories/update/' + data.id);
+                    $('#courseCategoryModal').modal('show');
+                },
+               error: function (xhr, status, error) {
+                    console.error('AJAX request failed:', error);
+                    alert('An error occurred while fetching the category data.');
+                }
+            });
+        });
     </script>
 
     <script>

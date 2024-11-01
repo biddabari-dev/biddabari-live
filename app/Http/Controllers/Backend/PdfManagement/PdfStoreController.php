@@ -3,26 +3,31 @@
 namespace App\Http\Controllers\Backend\PdfManagement;
 
 use App\Http\Controllers\Controller;
-use App\Models\Backend\Course\CourseCategory;
-use App\Models\Backend\PdfManagement\PdfStore;
 use App\Models\Backend\PdfManagement\PdfStoreCategory;
+use App\Models\Backend\PdfManagement\PdfStore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\DB;
 
-class PdfStoreCategoryController extends Controller
+class PdfStoreController extends Controller
 {
     //    permission seed done
-    protected $pdfCategory;
+    protected $pdfStore, $pdfStores = [];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        abort_if(Gate::denies('manage-pdf-category'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('backend.pdf-management.pdf-store-category.index', [
-            'categories'      => PdfStoreCategory::where('parent_id', 0)->orderBy('order', 'ASC')->get()
+        abort_if(Gate::denies('manage-pdf'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        if (isset($_GET['cat-id']))
+        {
+            $this->pdfStores = PdfStore::where('pdf_store_category_id', $_GET['cat-id'])->get();
+        } else {
+            $this->pdfStores = PdfStore::all();
+        }
+        return view('backend.pdf-management.pdf-store.index', [
+            'pdfStoreCategories'    => PdfStoreCategory::whereStatus(1)->where('parent_id', 0)->select('id', 'title', 'parent_id')->whereParentId(0)->get(),
+            'pdfStores'             => $this->pdfStores,
         ]);
     }
 
@@ -31,93 +36,8 @@ class PdfStoreCategoryController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('create-pdf-category'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-    }
-
-    public function saveNestedCategories (Request $request)
-    {
-        $json = $request->nested_category_array;
-        $decoded_json = json_decode($json, TRUE);
-
-        $simplified_list = [];
-        $this->recur1($decoded_json, $simplified_list);
-
-        DB::beginTransaction();
-        try {
-            $info = [
-                "success" => FALSE,
-            ];
-
-            foreach($simplified_list as $k => $v){
-                $category = CourseCategory::find($v['category_id']);
-                $category->fill([
-                    "parent_id" => $v['parent_id'],
-                    "order" => $v['sort_order'],
-                ]);
-
-                $category->save();
-            }
-
-            DB::commit();
-            $info['success'] = TRUE;
-        } catch (\Exception $e) {
-            DB::rollback();
-            $info['success'] = FALSE;
-        }
-
-        if($info['success']){
-            $request->session()->flash('success', "All Categories updated.");
-        }else{
-            $request->session()->flash('error', "Something went wrong while updating...");
-        }
-        if ($request->ajax())
-        {
-            return response()->json('Order Updated');
-        } else {
-            return redirect(route('course-categories.index'));
-        }
-    }
-
-    public function recur1($nested_array=[], &$simplified_list=[]){
-
-        static $counter = 0;
-
-        foreach($nested_array as $k => $v){
-
-            $sort_order = $k+1;
-            $simplified_list[] = [
-                "category_id" => $v['id'],
-                "parent_id" => 0,
-                "sort_order" => $sort_order
-            ];
-
-            if(!empty($v["children"])){
-                $counter+=1;
-                $this->recur2($v['children'], $simplified_list, $v['id']);
-            }
-
-        }
-    }
-
-    public function recur2($sub_nested_array=[], &$simplified_list=[], $parent_id = NULL){
-
-        static $counter = 0;
-
-        foreach($sub_nested_array as $k => $v){
-
-            $sort_order = $k+1;
-            $simplified_list[] = [
-                "category_id" => $v['id'],
-                "parent_id" => $parent_id,
-                "sort_order" => $sort_order
-            ];
-
-            if(!empty($v["children"])){
-                $counter+=1;
-                return $this->recur2($v['children'], $simplified_list, $v['id']);
-            }
-        }
+        abort_if(Gate::denies('create-pdf'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //
     }
 
     /**
@@ -125,19 +45,18 @@ class PdfStoreCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        abort_if(Gate::denies('store-pdf-category'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('store-pdf'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $request->validate([
             'title' => 'required',
-            'image' => 'image'
+            'pdf_store_category_id' => 'required',
+            'file' => 'required',
         ]);
-        PdfStoreCategory::createOrUpdatePdfCategory($request);
+        PdfStore::saveOrUpdatePdfStore($request);
         if ($request->ajax())
         {
-//            $request->session()->flash('success', "Course Category created successfully.");
-            return response()->json('PDF Store Category created successfully.');
-        } else {
-            return back()->with('success', 'PDF Store ategory Created Successfully');
+            return response()->json('Pdf Created Successfully.');
         }
+        return back()->with('success', 'Pdf Created Successfully.');
     }
 
     /**
@@ -145,53 +64,38 @@ class PdfStoreCategoryController extends Controller
      */
     public function show(string $id)
     {
-        abort_if(Gate::denies('show-pdf-category'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        abort_if(Gate::denies('show-pdf'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-
-    public function edit(string $id, Request $request)
+    public function edit(string $id)
     {
-        abort_if(Gate::denies('edit-pdf-category'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $pdfCategory = PdfStoreCategory::find($id);
-
-        if (!$pdfCategory) {
-            return response()->json(['error' => 'Category not found'], Response::HTTP_NOT_FOUND);
-        }
-
-        if ($request->ajax()) {
-            return response()->json($pdfCategory);
-        }
-
-        return response()->json(['error' => 'This action is allowed only via AJAX requests'], Response::HTTP_FORBIDDEN);
+        abort_if(Gate::denies('edit-pdf'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        return view('backend.pdf-management.pdf-store.edit', [
+            'pdfStoreCategories'    => PdfStoreCategory::whereStatus(1)->where('parent_id', 0)->select('id', 'title')->get(),
+            'pdfStore'             => PdfStore::find($id),
+        ]);
     }
-
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        abort_if(Gate::denies('update-pdf-category'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('update-pdf'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $request->validate([
             'title' => 'required',
-            'image' => 'image'
+            'pdf_store_category_id' => 'required',
         ]);
-        PdfStoreCategory::createOrUpdatePdfCategory($request, $id);
+        PdfStore::saveOrUpdatePdfStore($request, $id);
         if ($request->ajax())
         {
-            return response()->json('PDF Store Category updated successfully.');
-        } else {
-            return back()->with('success', 'PDF Store Category updated successfully.');
+            return response()->json('Pdf Created Successfully.');
         }
-    }
-
-    public function test (Request $request)
-    {
-        return response()->json($request->all());
+        return back()->with('success', 'Pdf Updated Successfully.');
     }
 
     /**
@@ -199,30 +103,15 @@ class PdfStoreCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        abort_if(Gate::denies('delete-pdf-category'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $this->deleteNestedCategory(PdfStoreCategory::find($id));
-        return back()->with('success', 'PDF Store Category deleted successfully');
+        abort_if(Gate::denies('delete-pdf'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $this->blog = PdfStore::find($id)->delete();
+        return back()->with('success', 'Pdf Deleted Successfully.');
     }
 
-    protected function deleteNestedCategory ($category)
+    public function getPdfStoreFile($id)
     {
-        if (file_exists($category->image))
-        {
-            unlink($category->image);
-        }
-
-        if (!empty($category->pdfStoreCategories))
-        {
-            foreach ($category->pdfStoreCategories as $subCategory)
-            {
-                $this->deleteNestedCategory($subCategory);
-            }
-        }
-        $category->delete();
-    }
-
-    public function getCatWisePdf ($id)
-    {
-        return response()->json(PdfStore::wherePdfStoreCategoryId($id)->select('id', 'title', 'file_url')->get());
+//        abort_if(Gate::denies('manage-pdf'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+//        works as show method
+        return response()->json(PdfStore::find($id));
     }
 }

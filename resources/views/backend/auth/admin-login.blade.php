@@ -285,54 +285,105 @@
     }
     return true;
 }
-    $(document).on('click', '.submit', function () {
+
+
+    {{--$(document).on('click', '.submit', function () {--}}
+    {{--    event.preventDefault();--}}
+    {{--    var formData = $('#authModalForm').serialize();--}}
+    {{--    var authStatus = $(this).attr('data-status');--}}
+    {{--    var ajaxUrl = '';--}}
+    {{--    var password = $('.password').val();--}}
+    {{--    if (password == '') {--}}
+    {{--        $('.password').focus();--}}
+    {{--        $('.passreq').show();--}}
+    {{--        return;--}}
+    {{--    }--}}
+    {{--    if (authStatus == 'login')--}}
+    {{--    {--}}
+    {{--        ajaxUrl = "{{ route('login') }}";--}}
+    {{--    } else if (authStatus == 'register')--}}
+    {{--    {--}}
+    {{--        ajaxUrl = "{{ route('register') }}"--}}
+    {{--    }--}}
+    {{--    $.ajax({--}}
+    {{--        url: ajaxUrl,--}}
+    {{--        method: "POST",--}}
+    {{--        dataType: "JSON",--}}
+    {{--        data: formData,--}}
+    {{--        success: function (data) {--}}
+    {{--            //console.log(data);--}}
+
+    {{--            if (data.status == 'success')--}}
+    {{--            {--}}
+    {{--                toastr.success('Your are successfully logged in the website.');--}}
+    {{--                window.location.href = data.url;--}}
+    {{--                // window.location.reload();--}}
+    {{--            } else if (data.status == 'error')--}}
+    {{--            {--}}
+    {{--                toastr.error('Mobile no and Password does not match . Please try again.');--}}
+    {{--            }--}}
+    {{--        },--}}
+    {{--        error: function (errors) {--}}
+    {{--            if (errors.responseJSON)--}}
+    {{--            {--}}
+
+    {{--                var allErrors = errors.responseJSON.errors;--}}
+    {{--                for (key in allErrors)--}}
+    {{--                {--}}
+    {{--                    $('#'+key).empty().append(allErrors[key]);--}}
+    {{--                }--}}
+    {{--            }--}}
+    {{--        }--}}
+    {{--    })--}}
+    {{--})--}}
+
+
+
+    $(document).on('click', '.submit', function (event) {
         event.preventDefault();
         var formData = $('#authModalForm').serialize();
         var authStatus = $(this).attr('data-status');
         var ajaxUrl = '';
         var password = $('.password').val();
-        if (password == '') {
+
+        if (password === '') {
             $('.password').focus();
             $('.passreq').show();
             return;
         }
-        if (authStatus == 'login')
-        {
+
+        if (authStatus === 'login') {
             ajaxUrl = "{{ route('login') }}";
-        } else if (authStatus == 'register')
-        {
-            ajaxUrl = "{{ route('register') }}"
+        } else if (authStatus === 'register') {
+            ajaxUrl = "{{ route('register') }}";
         }
+
+        formData += '&_token={{ csrf_token() }}';
+
         $.ajax({
             url: ajaxUrl,
             method: "POST",
             dataType: "JSON",
             data: formData,
             success: function (data) {
-                console.log(data);
-                if (data.status == 'success')
-                {
-                    toastr.success('Your are successfully logged in the website.');
+                if (data.status === 'success') {
+                    toastr.success('You are successfully logged in to the website.');
                     window.location.href = data.url;
-                    // window.location.reload();
-                } else if (data.status == 'error')
-                {
-                    toastr.error('Mobile no and Password does not match . Please try again.');
+                } else if (data.status === 'error') {
+                    toastr.error('Mobile no and Password do not match. Please try again.');
                 }
             },
             error: function (errors) {
-                if (errors.responseJSON)
-                {
-
+                if (errors.responseJSON) {
                     var allErrors = errors.responseJSON.errors;
-                    for (key in allErrors)
-                    {
-                        $('#'+key).empty().append(allErrors[key]);
+                    for (var key in allErrors) {
+                        $('#' + key).empty().append(allErrors[key]);
                     }
                 }
             }
-        })
-    })
+        });
+    });
+
 </script>
 <script>
     $(document).on('click', '#viewPass', function () {
