@@ -229,12 +229,6 @@
                         }
                           $('.next').attr('disabled',false);
 
-
-
-                        // $('.otp-div').removeClass('d-none').attr('data-active', 1);
-                        // toastr.success('You will get otp shortly. Please input Otp correctly.');
-                        // $('.mobile-div').addClass('d-none').attr('data-active', '');
-                        // $('.otp-div').removeClass('d-none').attr('data-active', 1);
                     } else {
                         $('.next').attr('disabled',false);
                         toastr.error('something went wrong. Please check your mobile Number & try again.');
