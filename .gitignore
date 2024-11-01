@@ -3,7 +3,7 @@
 /public/hot
 /public/pdfs
 /vendor
-.env
+/.env
 /public/backend/assets/uploaded-files
 .phpunit.result.cache
 Homestead.json

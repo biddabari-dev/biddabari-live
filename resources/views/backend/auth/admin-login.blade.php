@@ -352,9 +352,12 @@
             ajaxUrl = "{{ route('register') }}";
         }
 
-        formData += '&_token={{ csrf_token() }}';
+        // formData += '&_token={{ csrf_token() }}';
 
         $.ajax({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
             url: ajaxUrl,
             method: "POST",
             dataType: "JSON",
