@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'single.device' => \App\Http\Middleware\SingleDeviceCheck::class,
         'previousUrlMiddleware' => RedirectToPreviousMiddleware::class,
+        'store.intended' => \App\Http\Middleware\StoreIntendedUrl::class,
     ];
 }

@@ -71,11 +71,11 @@
                     @endif
                 </thead>
             </table>
-            <div class="row mt-3">
+            {{--<div class="row mt-3">
                 @php
                     $participateStatus = \App\helper\ViewHelper::checkBatchExamParticipateStatus($content->id);
                 @endphp
-{{--                @if(dateTimeFormatYmdHi($content->exam_start_time) < \Illuminate\Support\Carbon::now()->format('Y-m-d H:i') && dateTimeFormatYmdHi($content->exam_end_time) > \Illuminate\Support\Carbon::now()->format('Y-m-d H:i'))--}}
+--}}{{--                @if(dateTimeFormatYmdHi($content->exam_start_time) < \Illuminate\Support\Carbon::now()->format('Y-m-d H:i') && dateTimeFormatYmdHi($content->exam_end_time) > \Illuminate\Support\Carbon::now()->format('Y-m-d H:i'))--}}{{--
                 @if( \Illuminate\Support\Carbon::now()->between(dateTimeFormatYmdHi($content->exam_start_time), dateTimeFormatYmdHi($content->exam_end_time)))
                     @if($participateStatus == 'false')
                         <div class="mb-3">
@@ -88,31 +88,67 @@
                         </div>
                     @endif
                 @endif
-{{--                @if( \Illuminate\Support\Carbon::parse($content->exam_end_time)->format('Y-m-d H:i') < \Illuminate\Support\Carbon::now()->format('Y-m-d H:i'))--}}
+--}}{{--                @if( \Illuminate\Support\Carbon::parse($content->exam_end_time)->format('Y-m-d H:i') < \Illuminate\Support\Carbon::now()->format('Y-m-d H:i'))--}}{{--
                 @if( dateTimeFormatYmdHi($content->exam_end_time) < currentDateTimeYmdHi())
                     <div class="callout-danger py-2 " style="border-left: 3px solid red">
                         <span class="f-s-22 py-0">Exam Has ended</span>
                     </div>
-{{--                    <div class="mt-3">--}}
-{{--                        <a href="{{ route('front.student.show-batch-exam-answers', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-warning border" style="background-color: #f18345!important; border: 1px solid #F18345!important; color: white">See Answers</a>--}}
-{{--                    </div>--}}
+--}}{{--                    <div class="mt-3">--}}{{--
+--}}{{--                        <a href="{{ route('front.student.show-batch-exam-answers', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-warning border" style="background-color: #f18345!important; border: 1px solid #F18345!important; color: white">See Answers</a>--}}{{--
+--}}{{--                    </div>--}}{{--
                 @endif
-{{--                @if(dateTimeFormatYmdHi($content->exam_result_publish_time) < currentDateTimeYmdHi())--}}
+--}}{{--                @if(dateTimeFormatYmdHi($content->exam_result_publish_time) < currentDateTimeYmdHi())--}}{{--
                <div class="mt-2">
-{{--                   @if($participateStatus == 'true'|| $content->exam_result_publish_time_timestamp < strtotime(currentDateTimeYmdHi()))--}}
+--}}{{--                   @if($participateStatus == 'true'|| $content->exam_result_publish_time_timestamp < strtotime(currentDateTimeYmdHi()))--}}{{--
                    @if($content->exam_end_time_timestamp < strtotime(currentDateTimeYmdHi()))
                        <a href="{{ route('front.student.show-batch-exam-answers', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-secondary">See Answers</a>
-{{--                       <a href="{{ route('front.student.show-batch-exam-ranking', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-primary">See Ranking</a>--}}
+--}}{{--                       <a href="{{ route('front.student.show-batch-exam-ranking', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-primary">See Ranking</a>--}}{{--
                    @endif
 
-{{--                   @if($content->exam_result_publish_time_timestamp <= strtotime(currentDateTimeYmdHi()))--}}
+--}}{{--                   @if($content->exam_result_publish_time_timestamp <= strtotime(currentDateTimeYmdHi()))--}}{{--
                    @if($content->exam_end_time_timestamp <= strtotime(currentDateTimeYmdHi()))
-{{--                       <a href="{{ route('front.student.show-batch-exam-answers', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-primary">See Ranking</a>--}}
+--}}{{--                       <a href="{{ route('front.student.show-batch-exam-answers', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-primary">See Ranking</a>--}}{{--
                        <a href="{{ route('front.student.show-batch-exam-ranking', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-primary">See Ranking</a>
                    @endif
 
                </div>
+            </div>--}}
+
+            <div class="row mt-3">
+                @php
+                    $participateStatus = \App\helper\ViewHelper::checkBatchExamParticipateStatus($content->id);
+                @endphp
+                @if( \Illuminate\Support\Carbon::now()->between(dateTimeFormatYmdHi($content->exam_start_time), dateTimeFormatYmdHi($content->exam_end_time)))
+                    @if($participateStatus == 'false' && $content->exam_end_time_timestamp >= strtotime(currentDateTimeYmdHi()))
+                        <div class="mb-3">
+                            <p class="f-s-22">Start your exam NOW!</p>
+                            <a href="{{ route('front.student.start-batch-exam', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-success">Enter Exam</a>
+                        </div>
+                    @else
+                        <div>
+                            <p class="f-s-22 text-success">You already participated in this exam.</p>
+                        </div>
+                    @endif
+                @endif
+                @if( dateTimeFormatYmdHi($content->exam_end_time) < currentDateTimeYmdHi())
+                    <div class="callout-danger py-2 " style="border-left: 3px solid red">
+                        <span class="f-s-22 py-0">Exam Has ended</span>
+                    </div>
+
+                @endif
+                @if($participateStatus == 'true')
+                    <div class="mt-2">
+                        @if($participateStatus == 'true' || $content->exam_result_publish_time_timestamp < strtotime(currentDateTimeYmdHi()))
+                            <a href="{{ route('front.student.show-batch-exam-answers', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-primary">See Answers</a>
+                        @endif
+
+                        @if($content->exam_result_publish_time_timestamp <= strtotime(currentDateTimeYmdHi()))
+                            <a href="{{ route('front.student.show-batch-exam-ranking', ['content_id' => $content->id, 'slug' => str_replace(' ', '-', $content->title)]) }}" class="btn btn-primary">See Ranking</a>
+                        @endif
+                    </div>
+                @endif
             </div>
+
         </div>
     @endif
     @if($content->content_type == 'written_exam')

@@ -124,9 +124,11 @@
                                                                 <label class="answer-label" id="ali{{ $questionOption->id }}" data-que-id="{{ $question->id }}" data-ans-id="{{ $questionOption->id }}" for="asw{{ $questionOption->id }}">
                                                                     <span class="answer-title mx-0">{{ $questionOption->option_title }}</span>
                                                                 </label>
-                                                                <span class="ps-1 d-none cont" id="ansCheck{{ $questionOption->id }}">
+                                                                <span class="ps-1 mt-2 d-none cont" id="ansCheck{{ $questionOption->id }}">
                                                                     <span class="check-ans" data-option-id="{{ $questionOption->id }}" style="cursor: pointer; color: black"><i class="fa-solid fa-check"></i></span>
+{{--
                                                                     <span class="text-danger cancel-ans" style="cursor: pointer; color: black"><i class="fa-solid fa-xmark"></i></span>
+--}}
                                                                 </span>
                                                             </div>
                                                         @else
