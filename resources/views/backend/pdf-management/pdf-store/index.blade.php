@@ -222,7 +222,7 @@
                 var pdflink = '';
                 if(data.file_url != null )
                 {
-                    pdflink = 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/'+data.file_url;
+                    pdflink = 'https://biddabari.s3.ap-southeast-1.amazonaws.com/'+data.file_url;
                 }
                 $('#pdf-container').empty();
                 var pdf = new PDFAnnotate("pdf-container", pdflink, {
