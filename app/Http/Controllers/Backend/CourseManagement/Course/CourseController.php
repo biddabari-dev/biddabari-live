@@ -22,6 +22,7 @@ use App\Models\Backend\UserManagement\Student;
 use App\Models\Backend\UserManagement\Teacher;
 use App\Models\CourseStudent;
 use App\Models\User;
+use Aws\S3\S3Client;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Cursor;
 use Illuminate\Pagination\CursorPaginator;
@@ -31,6 +32,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Maatwebsite\Excel\Facades\Excel;
@@ -41,6 +43,8 @@ use Yajra\DataTables\Facades\DataTables;
 use Hash;
 use Obs\ObsClient;
 use Zing\Flysystem\Obs\ObsAdapter;
+
+
 
 class CourseController extends Controller
 {
@@ -817,7 +821,12 @@ class CourseController extends Controller
         $delete = ParentOrder::where('parent_model_id',$id)->delete();
     }
 
-    public function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl = null)
+
+
+
+
+     // This Function use for OBS fileUpload
+    /*public function fileUpload ($fileObject, $directory, $nameString = null, $modelFileUrl = null)
     {
         // if ($fileObject)
         // {
@@ -873,7 +882,73 @@ class CourseController extends Controller
 
         //     return $fileDirectory.$fileName;
         // }
+    }*/
+
+
+
+    // This Function use for AWS fileUpload
+
+    public function fileUpload($fileObject, $directory, $nameString = null, $modelFileUrl = null)
+    {
+        if ($fileObject) {
+            // Delete the previous file from S3 if a URL is provided
+            /*if ($modelFileUrl && Storage::disk('s3')->exists($modelFileUrl)) {
+                Storage::disk('s3')->delete($modelFileUrl);
+            }*/
+
+            /*if ($modelFileUrl) {
+                $filePath = parse_url($modelFileUrl, PHP_URL_PATH);
+                $filePath = ltrim($filePath, '/');
+
+                if ($filePath && Storage::disk('s3')->exists($filePath)) {
+                    Storage::disk('s3')->delete($filePath);
+                }
+            }*/
+
+            $fileName = ($nameString ? $nameString . '-' : '') .
+                str_replace(' ', '-', pathinfo($fileObject->getClientOriginalName(), PATHINFO_FILENAME)) .
+                '_' . rand(100, 100000) . '.' . $fileObject->extension();
+            $fileDirectory = 'pdf/' . rtrim($directory, '/') . '/';
+
+
+            $s3FilePath = $fileDirectory . $fileName;
+
+            // Configure AWS S3 client
+            $s3Client = new S3Client([
+                'version' => 'latest',
+                'region' => env('AWS_DEFAULT_REGION'),
+                'credentials' => [
+                    'key' => env('AWS_ACCESS_KEY_ID'),
+                    'secret' => env('AWS_SECRET_ACCESS_KEY'),
+                ],
+            ]);
+
+            /*// Upload the file to S3
+            $result = $s3Client->putObject([
+                'Bucket' => env('AWS_BUCKET'),
+                'Key' => $s3FilePath,
+                'SourceFile' => $fileObject->getRealPath(),
+            ]);
+
+
+            return $result['ObjectURL'];*/
+
+            // Upload file to S3
+            $s3Client->putObject([
+                'Bucket' => env('AWS_BUCKET'),
+                'Key' => $s3FilePath,
+                'SourceFile' => $fileObject->getRealPath(),
+            ]);
+
+            // Return the relative path
+            return $s3FilePath;
+
+
+        }
+
+        return null;
     }
+
 
 
 }
