@@ -15,7 +15,7 @@
     {{--     for facebook --}}
     <meta property="og:url"                content="@yield('og-url')"/>
     <meta property="og:description"        content="@yield('meta-description')" />
-    <meta property="og:image"              content="https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/@yield('og-image')" />
+    <meta property="og:image"              content="https://biddabari.s3.ap-southeast-1.amazonaws.com/@yield('og-image')" />
     <meta property="og:image:width"        content="200"/>
     <meta property="og:image:height"       content="286"/>
     <meta name="facebook-domain-verification" content="g7t7phde3zn27hgjb1iaxlm67f8hdv" />

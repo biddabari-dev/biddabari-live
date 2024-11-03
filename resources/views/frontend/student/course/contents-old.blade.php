@@ -578,7 +578,7 @@
                     {
                         pdflink = data.sectionContent.pdf_link;
                     } else {
-                        pdflink = 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/'+data.sectionContent.pdf_file;
+                        pdflink = 'https://biddabari.s3.ap-southeast-1.amazonaws.com/'+data.sectionContent.pdf_file;
                     }
                     $('#pdf-container').empty();
 

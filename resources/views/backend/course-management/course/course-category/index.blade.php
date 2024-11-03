@@ -269,7 +269,7 @@
                     }
                     if (data.second_image != null)
                     {
-                        $('#imagePreview2').attr('src', 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/'+data.second_image).css({height: '150px', width: '150px', marginTop: '5px', display: 'block'});
+                        $('#imagePreview2').attr('src', 'https://biddabari.s3.ap-southeast-1.amazonaws.com/'+data.second_image).css({height: '150px', width: '150px', marginTop: '5px', display: 'block'});
                     }
                     $('#courseCategoryForm').attr('action', base_url+'course-categories/update/'+data.id);
                     $('#courseCategoryModal').modal('show');

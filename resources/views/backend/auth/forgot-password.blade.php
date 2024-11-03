@@ -10,7 +10,7 @@
     <meta name="description" content="Forgot your Biddabari account password? Reset it quickly and securely. Follow our simple steps to regain access to your account.">
     <meta name="keywords" content="">
     <meta name="google" content="nositelinkssearchbox">
-    <meta property="og:image"              content="https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/backend/assets/uploaded-files/additional-features-management/site-settings/logo-1717397688866.png" />
+    <meta property="og:image"              content="https://biddabari.s3.ap-southeast-1.amazonaws.com/backend/assets/uploaded-files/additional-features-management/site-settings/logo-1717397688866.png" />
     <meta property="og:image:width"        content="200"/> 
     <meta property="og:image:height"       content="286"/> 
     <!-- TITLE -->

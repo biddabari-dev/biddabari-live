@@ -372,7 +372,7 @@
                 var sectionContentId = $(this).attr('data-content-id');
                 $.ajax({
                     // url: base_url+"student/show-pdf/"+sectionContentId,
-                    url: "https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/student/show-pdf/"+sectionContentId,
+                    url: "https://biddabari.s3.ap-southeast-1.amazonaws.com/student/show-pdf/"+sectionContentId,
                     method: "GET",
                     success: function (data) {
                         var pdflink = '';

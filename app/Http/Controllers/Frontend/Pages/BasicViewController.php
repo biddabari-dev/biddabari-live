@@ -184,93 +184,22 @@ class BasicViewController extends Controller
 
     public function allCourses ()
     {
-
-       //------------------------------- old query ----------------------------------
-//         $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->where('id', '!=',157)->select('id', 'name', 'slug')->with(['courses' => function($course){
-//             $course->whereStatus(1)->where('is_paid', 1)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug','alt_text','banner_title')->get();
-//         },
-//             'courseCategories' => function($courseCategories) {
-//                 $courseCategories->select('id', 'parent_id', 'name', 'image', 'slug')->orderBy('order', 'ASC')->whereStatus(1)->get();
-//             }])->get();
-//         $tempCourses = [];
-//         foreach ($this->courseCategories as $courseCategory)
-//         {
-//             foreach ($courseCategory->courses as $course)
-//             {
-//                 if (strtotime(strtotime($course->admission_last_date)) > strtotime(currentDateTimeYmdHi()))
-//                 {
-//                     $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
-//                     array_push($tempCourses, $course);
-//                 } else {
-//                     $course->order_status = 'false';
-//                 }
-
-//             }
-
-//         }
-//         //$this->courses  = collect($tempCourses)->unique('id');
-//         $this->courses = Course::whereStatus(1)->where(['is_featured' => 1])->latest()->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link','total_file','total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time','admission_last_date','alt_text','banner_title')->take(9)->get();
-//         foreach ($this->courses as $course)
-//         {
-//             $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
-//         }
-// //        foreach ($this->courses as $course)
-// //        {
-// //            $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
-// //        }
-//          //dd($this->courseCategories);
-//         $this->data = ['courseCategories' => $this->courseCategories, 'allCourses' => $this->courses];
-//         return ViewHelper::checkViewForApi($this->data, 'frontend.courses.courses');
-
-
-//------------------------------- optimize query start----------------------------------
-
-       // Fetch the required course categories and their first course
-        $this->courseCategories = CourseCategory::where('status', 1)
-            ->where('parent_id', 0)
-            ->where('id', '!=', 157)
-            ->select('id', 'name', 'slug')
-            ->with(['courses' => function($query) {
-                $query->where('status', 1)
-                    ->where('is_paid', 1)
-                    ->select('id', 'title', 'price', 'banner', 'total_pdf', 'total_exam', 'total_live', 'discount_amount', 'discount_type', 'admission_last_date', 'slug', 'alt_text', 'banner_title')
-                    ->latest()
-                    ->take(1);  // Fetch only the first course to avoid unnecessary data
+        $this->courseCategories = CourseCategory::whereStatus(1)->where('parent_id', 0)->select('id', 'name', 'slug')->with(['courses' => function($course){
+            $course->whereStatus(1)->where('is_paid', 1)->latest()->select('id','title','price','banner','total_pdf','total_exam','total_live','discount_amount','discount_type', 'admission_last_date', 'slug','alt_text','banner_title')->get();
+        },
+            'courseCategories' => function($courseCategories) {
+                $courseCategories->select('id', 'parent_id', 'name', 'image', 'slug')->orderBy('order', 'ASC')->whereStatus(1)->get();
             }])->get();
 
-        // Directly check if each course is enrolled
-        // $this->courseCategories->each(function ($category) {
-        //     if ($category->courses->isNotEmpty()) {
-        //         $course = $category->courses->first();
-        //         if (strtotime($course->admission_last_date) > strtotime(currentDateTimeYmdHi())) {
-        //             $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
-        //         } else {
-        //             $course->order_status = 'false';
-        //         }
-        //     }
-        // });
-
-        // Fetch the featured courses directly without looping, using only necessary fields
         $this->courses = Course::where('status', 1)
             ->where('is_featured', 1)
-            ->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link', 'total_file', 'total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time', 'admission_last_date', 'alt_text', 'banner_title')
-            ->latest()// Limit the number of featured courses to 9
-            ->get();
+            ->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link', 'total_file', 'total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time', 'admission_last_date', 'alt_text', 'banner_title', 'discount_start_date', 'discount_end_date')
+            ->orderBy('id','DESC')
+            ->paginate(12);
 
-        // Check if the featured courses are enrolled
-        // $this->courses->each(function ($course) {
-        //     $course->order_status = ViewHelper::checkIfCourseIsEnrolled($course);
-        // });
+        $this->data = ['courseCategories' => $this->courseCategories, 'allCourses' => $this->courses];
 
-        // Prepare the data for the view
-        $this->data = [
-            'courseCategories' => $this->courseCategories,
-            'allCourses' => $this->courses
-        ];
-
-        // Return the view
         return ViewHelper::checkViewForApi($this->data, 'frontend.courses.courses');
-
     }
 
     public function categoryCourses ($slug)

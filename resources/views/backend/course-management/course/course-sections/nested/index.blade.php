@@ -454,7 +454,7 @@
             {
                 var pdflink = $(this).attr('data-pdf-url');
 
-                pdflink = 'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/'+pdflink;
+                pdflink = 'https://biddabari.s3.ap-southeast-1.amazonaws.com/'+pdflink;
 
                 $('#pdf-container').empty();
                 var pdf = new PDFAnnotate("pdf-container", pdflink, {

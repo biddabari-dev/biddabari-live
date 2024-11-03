@@ -10,7 +10,7 @@
     <meta name="facebook-domain-verification" content="g7t7phde3zn27hgjb1iaxlm67f8hdv" />
     <meta name="description"               content="Log in to your Biddabari account to manage your profile, courses, exam courses, orders etc."/>
     <meta property="og:url"                content="@yield('og-url')"/>
-    <meta property="og:image"              content="https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/backend/assets/uploaded-files/additional-features-management/site-settings/logo-1717397688866.png" />
+    <meta property="og:image"              content="https://biddabari.s3.ap-southeast-1.amazonaws.com/backend/assets/uploaded-files/additional-features-management/site-settings/logo-1717397688866.png" />
     <meta property="og:image:width"        content="200"/>
     <meta property="og:image:height"       content="286"/>
     <meta property="keywords"               content="@yield('meta-keywords')" />
@@ -229,12 +229,6 @@
                         }
                           $('.next').attr('disabled',false);
 
-
-
-                        // $('.otp-div').removeClass('d-none').attr('data-active', 1);
-                        // toastr.success('You will get otp shortly. Please input Otp correctly.');
-                        // $('.mobile-div').addClass('d-none').attr('data-active', '');
-                        // $('.otp-div').removeClass('d-none').attr('data-active', 1);
                     } else {
                         $('.next').attr('disabled',false);
                         toastr.error('something went wrong. Please check your mobile Number & try again.');
@@ -358,9 +352,12 @@
             ajaxUrl = "{{ route('register') }}";
         }
 
-        formData += '&_token={{ csrf_token() }}';
+        // formData += '&_token={{ csrf_token() }}';
 
         $.ajax({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
             url: ajaxUrl,
             method: "POST",
             dataType: "JSON",

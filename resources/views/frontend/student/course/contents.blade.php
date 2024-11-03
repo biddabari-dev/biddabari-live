@@ -990,7 +990,7 @@
                         pdflink = data.sectionContent.pdf_link;
                     } else if (data.sectionContent.pdf_file) {
                         pdflink =
-                            'https://biddabari-bucket.obs.as-south-208.rcloud.reddotdigitalit.com/' +
+                            'https://biddabari.s3.ap-southeast-1.amazonaws.com/' +
                             data.sectionContent.pdf_file;
                     } else {
                         pdflink = 'default-document.pdf'; // Fallback if no PDF is provided
