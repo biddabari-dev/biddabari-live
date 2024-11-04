@@ -123,7 +123,7 @@
     <!-- Required datatable js -->
     @include('backend.includes.assets.plugin-files.datatable')
     <script>
-        // {{--    edit course category--}}
+        // edit course category
         $(document).on('click', '.topic-edit-btn', function (event) {
             event.preventDefault();
             var categoryId = $(this).attr('data-topic-id');
