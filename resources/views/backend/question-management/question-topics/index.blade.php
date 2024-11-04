@@ -145,8 +145,9 @@
                     $('.submit-btn').addClass('update-btn').removeClass('submit-btn');
 
                     // Update form action URL and set method to PUT
-                    $('#questionTopicForm').attr('action', base_url + 'question-topics/' + data.id + '?q-type={{ $_GET["q-type"] }}{{ isset($_GET["topic_id"]) ? "&topic_id=" + $_GET["topic_id"] : "" }}');
-                    $('#questionTopicForm').append('<input type="hidden" name="_method" value="PUT">'); // Add hidden input to simulate PUT method
+                    $('.submit-btn').addClass('update-btn').removeClass('submit-btn');
+                    $('#questionTopicForm').attr('action', base_url+'question-topics/'+data.id+'?q-type={{ $_GET['q-type'] }}{{ isset($_GET['topic_id']) ? '&topic_id='.$_GET['topic_id'] : '' }}');
+                    $('#questionTopicForm').append('<input type="hidden" name="_method" value="PUT">');
                     $('#questionTopicsModal').modal('show');
                 }
             });
