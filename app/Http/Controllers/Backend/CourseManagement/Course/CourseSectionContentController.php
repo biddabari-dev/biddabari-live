@@ -210,7 +210,7 @@ class CourseSectionContentController extends Controller
                       ->with(['questionOptions']);
             }])
             ->get();
-            
+
         return view('backend.course-management.course.section-contents.include-questions', [
             'questionTopics' => $questionTopics,
         ]);

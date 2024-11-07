@@ -913,6 +913,9 @@ class CourseController extends Controller
 
             $s3FilePath = $fileDirectory . $fileName;
 
+
+            dd($s3FilePath);
+
             // Configure AWS S3 client
             $s3Client = new S3Client([
                 'version' => 'latest',

@@ -7,7 +7,7 @@
         <div class="col-md-10 mx-auto">
             <div class="card">
                 <div class="card-header bg-warning">
-                    <h4 class="float-start text-white">{{ $course->title ?? '' }}Course Sections</h4>
+                    <h4 class="float-start text-white">{{ $course->title ?? '' }} Course Sections</h4>
                     <a href="{{ route('courses.index') }}" title="Back to Courses" class="rounded-circle text-white border-5 text-light f-s-22 btn position-absolute end-0 m-r-50"><i class="fa-solid fa-arrow-left"></i></a>
                     @can('create-course-section')
                         <button type="button" class="rounded-circle text-white border-5 text-light f-s-22 btn position-absolute end-0 me-4 course-section-modal-btn"><i class="fa-solid fa-circle-plus"></i></button>
