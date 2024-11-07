@@ -259,8 +259,15 @@ function fileUpload($fileObject, $directory, $nameString = null, $modelFileUrl =
         }*/
 
         // Generate a unique file name if nameString is not provided
-        $fileName = ($nameString ? $nameString : mt_rand(1, 5555555555555555555)) . '.' . $fileObject->extension();
-        $fileDirectory = 'backend/assets/uploaded-files/' . rtrim($directory, '/') . '/';
+        $folderPath = 'backend/assets/uploaded-files/' . rtrim($directory, '/');
+        $nameString = $nameString ?? pathinfo($fileObject->getClientOriginalName(), PATHINFO_FILENAME);
+        $nameString = str_replace(' ', '-', $nameString);
+        $fileName = $nameString . '-' . time() . '-' . rand(10, 1000000000000000) . '.' . $fileObject->getClientOriginalExtension();
+        $s3FilePath = $folderPath . '/' . $fileName;
+
+        // Generate a unique file name if nameString is not provided
+       /* $fileName = ($nameString ? $nameString : mt_rand(1, 5555555555555555555)) . '.' . $fileObject->extension();
+        $fileDirectory = 'backend/assets/uploaded-files/' . rtrim($directory, '/') . '/';*/
 
         // Configure AWS S3 client
         $s3Client = new S3Client([
@@ -271,8 +278,6 @@ function fileUpload($fileObject, $directory, $nameString = null, $modelFileUrl =
                 'secret' => env('AWS_SECRET_ACCESS_KEY'),
             ],
         ]);
-
-        $s3FilePath = $fileDirectory . $fileName;
 
         /*// Upload file to S3
         $result = $s3Client->putObject([
