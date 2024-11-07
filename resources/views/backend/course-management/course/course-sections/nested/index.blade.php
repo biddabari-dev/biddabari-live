@@ -452,10 +452,22 @@
             var dataContentType = $(this).attr('data-content-type');
             if (dataContentType == 'pdf')
             {
+                /*var pdflink = $(this).attr('data-pdf-url');
+
+                pdflink = 'https://biddabari.s3.ap-southeast-1.amazonaws.com/'+pdflink;*/
+
                 var pdflink = $(this).attr('data-pdf-url');
 
-                pdflink = 'https://biddabari.s3.ap-southeast-1.amazonaws.com/'+pdflink;
+                if (pdflink) {
+                    let path = pdflink
+                        .replace(/^\/+|\/+$/g, "")  // Remove any leading or trailing slashes
+                        .replace(/pdf\/\/+/g, "pdf/");  // Replace "pdf//" with "pdf/" only
 
+                    let baseUrl = 'https://biddabari.s3.ap-southeast-1.amazonaws.com/';
+                    pdflink = baseUrl + path;
+
+                    console.log(pdflink);
+                }
                 $('#pdf-container').empty();
                 var pdf = new PDFAnnotate("pdf-container", pdflink, {
                     onPageUpdated(page, oldData, newData) {
