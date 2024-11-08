@@ -13,6 +13,8 @@ use App\Models\Backend\OrderManagement\ParentOrder;
 use App\Models\Backend\UserManagement\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class BkashController extends Controller
 {
@@ -81,10 +83,47 @@ class BkashController extends Controller
                         {
                             return redirect()->back()->with('error', 'We got your payment but we faced problem during creating your account in our system. Please try again.');
                         }
-                        if ($userCreateAuth['smsStatus'] == 'failed')
+                        if ($userCreateAuth['message']) {
+                            try {
+                                $client = new Client();
+                                // URL encode the message
+                                $message = $userCreateAuth['message'];
+
+                                // Send the request
+                                $response = $client->request('GET', 'https://msg.elitbuzz-bd.com/smsapi', [
+                                    'query' => [
+                                        'api_key'   => 'C2008649660d0a04f3d0e9.72990969',
+                                        'type'      => 'text',
+                                        'contacts'  => $requestData->mobile,
+                                        'senderid'  => '8809601011181',
+                                        'msg'       => $message,
+                                    ]
+                                ]);
+
+                                // Check the response
+                                $body = $response->getBody()->getContents();
+
+                                // Handle response if it's in expected format, otherwise log an error
+                                if (strpos($body, ':') !== false) {
+                                    $responseCode = explode(':', $body)[1];
+                                } else {
+                                    // Log unexpected response for debugging
+                                    Log::error('Unexpected response format: ' . $body);
+                                    $responseCode = null;
+                                }
+                            } catch (\Exception $e) {
+                                // Handle errors (e.g., network issues)
+                                Log::error('SMS API request failed: ' . $e->getMessage());
+                                $responseCode = null;
+                            }
+                            return redirect()->route('front.thankyou')->with('success', 'You Ordered the '.$requestData->model_name.' successfully.');
+                        }
+
+                        if ($userCreateAuth['message'] == 'failed')
                         {
                             return redirect()->route('front.thankyou')->with('error', 'Your successfully enrolled in the course but something went wrong during sending sms to your number. Please Contact with our support.');
                         }
+
 
                         if (str()->contains(url()->current(), '/api/'))
                         {
