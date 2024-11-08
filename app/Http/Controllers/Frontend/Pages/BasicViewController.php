@@ -524,4 +524,9 @@ class BasicViewController extends Controller
     // public function seo(){
 
     // }
+
+
+    public function thankyou(){
+        return view('frontend.thank-you');
+    }
 }
