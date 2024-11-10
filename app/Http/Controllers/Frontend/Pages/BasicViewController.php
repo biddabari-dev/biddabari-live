@@ -195,7 +195,7 @@ class BasicViewController extends Controller
             ->where('is_featured', 1)
             ->select('id', 'title', 'sub_title', 'price', 'banner', 'total_video', 'total_audio', 'total_pdf', 'total_exam', 'total_note', 'total_zip', 'total_live', 'total_link', 'total_file', 'total_written_exam', 'slug', 'discount_type', 'discount_amount', 'starting_date_time', 'admission_last_date', 'alt_text', 'banner_title', 'discount_start_date', 'discount_end_date')
             ->orderBy('id','DESC')
-            ->paginate(12);
+            ->get();
 
         $this->data = ['courseCategories' => $this->courseCategories, 'allCourses' => $this->courses];
 
