@@ -1,5 +1,18 @@
 @extends('frontend.master')
 
+@section('title', 'All Exam Courses - Biddabari')
+
+@section('meta-description', 'Prepare for your job exams with Biddabari\'s comprehensive courses and practice tests. Access resources, purchase study materials, and boost your exam readiness.')
+
+@section('meta-keywords', 'online job exam bd')
+
+@section('meta-url', request()->url())
+
+@section('og-url', request()->url())
+
+@section('og-image', 'frontend/logo/favicon/favicon-32x32.png')
+
+
 @section('body')
     <div class="courses-area-two section-bg ">
         <div class="container bg-white ">
@@ -273,7 +286,7 @@
                         div += '<div class="bottom-content">'+
                             '<a href="checkout/batch_exam/'+data.exam.title.replaceAll(" ", "-")+'?si='+val.id+'" class="btn btn-warning" style="float: right;">প্যাকেজটি কিনুন</a>'+
                         '</div>'+
-                        '   </div>\n'+    
+                        '   </div>\n'+
                             '   </div>\n';
                     })
                     div += '                                                    </div>';

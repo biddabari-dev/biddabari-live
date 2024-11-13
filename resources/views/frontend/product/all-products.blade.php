@@ -1,5 +1,16 @@
 @extends('frontend.master')
 
+@section('title', 'All Books - Biddabari')
+
+@section('meta-description', 'Browse all books from Biddabari, including NTRCA ডাইজেস্ট প্লাস, NTRCA মডেল টেস্ট প্লাস, and Job Solution Plus. Find essential resources for job exam preparation.')
+
+@section('meta-url', request()->url())
+
+@section('og-url', request()->url())
+
+@section('og-image', 'frontend/logo/favicon/favicon-32x32.png')
+
+
 @section('body')
 <div class="courses-area-two section-bg ">
     <div class="container bg-white  pb-70 ps-3">

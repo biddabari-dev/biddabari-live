@@ -1,4 +1,15 @@
 @extends('frontend.master')
+
+@section('title', 'All Notices - Biddabari')
+
+@section('meta-description', 'Stay updated with all the latest notices from Biddabari. Find important announcements, updates, and information in one place for easy access.')
+
+@section('meta-url', request()->url())
+
+@section('og-url', request()->url())
+
+@section('og-image', 'frontend/logo/favicon/favicon-32x32.png')
+
 @push('style')
     <link rel="stylesheet" href="{{ asset('/') }}backend/ppdf/css/pdfviewer.jquery.css" />
     <style>

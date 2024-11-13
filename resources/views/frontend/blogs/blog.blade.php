@@ -1,8 +1,19 @@
 @extends('frontend.master')
 
+@section('title', 'All Blogs - Biddabari')
+
+@section('meta-description', 'Explore all blogs from Biddabari in one place. Discover informative articles, tips, and insights on various topics to support your learning and career goals.')
+
+@section('meta-url', request()->url())
+
+@section('og-url', request()->url())
+
+@section('og-image', 'frontend/logo/favicon/favicon-32x32.png')
+
+
 @section('body')
 
-<div class="blog-widget-area pt-100 pb-70"> 
+<div class="blog-widget-area pt-100 pb-70">
     <div class="container">
         <div class="row">
             <h1 class="text-center">আমাদের ব্লগ সমূহ</h1>
@@ -34,7 +45,7 @@
                                             {{Str::limit($blog->title, 30) }}
                                         </h2>
                                         <p>{!! str()->words(strip_tags($blog->body), 6) !!}</p>
-                                        
+
                                         <button type="button" class="read-btn">Read More</button>
                                     </a>
                                 </div>

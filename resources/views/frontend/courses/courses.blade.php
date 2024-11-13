@@ -1,8 +1,17 @@
 @extends('frontend.master')
-@section('meta-url'){{ request()->url() }}@endsection
-@section('title')
-Biddabari - All Course
-@endsection
+
+@section('title', 'All Job and IT Related Courses - Biddabari')
+
+@section('meta-description', 'Explore Biddabari’s wide range of online courses for job exam preparation, including BCS, bank jobs, primary, NTRCA, 9-20th grade job and more.')
+
+@section('meta-keywords', 'BCS job preparation, Primary job preparation, bank job preparation,  9th to 10th grade job preparation, 11th to 20th grade job preparation, NTRCA job preparation, online it course in bangladesh')
+
+@section('meta-url', request()->url())
+
+@section('og-url', request()->url())
+
+@section('og-image', 'frontend/logo/favicon/favicon-32x32.png')
+
 
 @section('body')
 

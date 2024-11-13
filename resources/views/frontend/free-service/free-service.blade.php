@@ -1,8 +1,17 @@
 @extends('frontend.master')
 
-@section('title')
-Biddabari - All Course
-@endsection
+@section('title', 'Free Job Preparation Videos and Exams - Biddabari')
+
+@section('meta-description', 'Prepare for your dream job with free videos and exams from Biddabari. Access top online courses and resources for government and private job exams in Bangla.')
+
+@section('meta-keywords', 'free job preparation, Free job preparation online, Free job preparation courses, Best free job preparation online, Job preparation bangla, Govt Job preparation online')
+
+@section('meta-url', request()->url())
+
+@section('og-url', request()->url())
+
+@section('og-image', 'frontend/logo/favicon/favicon-32x32.png')
+
 
 @section('body')
     <div class="courses-area-two section-bg py-5 bg-white">
