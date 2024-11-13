@@ -2,7 +2,7 @@
 
 @section('title', 'Biddabari - The First Job Study Online Platform in Bangladesh')
 
-@section('meta-description', 'Biddabari is Bangladesh’s first online platform for job exam preparation, offering courses, expert guidance, and resources to help you achieve career success.')
+@section('meta-description', 'Biddabari – your go-to for online learning, live classes, and BCS prep. Log in for access to study resources on our app and website.')
 
 @section('meta-keywords', 'Biddabari, Online job preparation, Govt job preparation, online job exam, job circular, learning, bangladesh e-learning, BCS, NTRCA, Primary, Bank job, 11-20th grade job')
 
