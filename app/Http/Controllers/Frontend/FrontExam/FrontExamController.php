@@ -535,7 +535,7 @@ class FrontExamController extends Controller
                     'result_mark'       => $this->resultNumber,
                     'is_reviewed'       => 0,
                     'required_time'     => $request->required_time ?? 0,
-                    'status'        => $this->resultNumber >= $this->exam->exam_pass_mark ? 'pass' : 'fail',
+                    'status'            => 'pass',
                 ];
                 $courseClassExamResult = CourseClassExamResult::storeExamResult($this->examResult);
                 if (str()->contains(url()->current(), '/api/'))
